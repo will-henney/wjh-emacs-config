@@ -14,15 +14,33 @@
 #+LINK_HOME: 
 #+XSLT:
 
+
 * Introduction 
+  :LOGBOOK:
   CLOCK: [2011-11-04 Fri 23:18]--[2011-11-04 Fri 23:26] =>  0:08
+  :END:
 This is my personal emacs configuration setup. All the various =.el= files are tangled from this org-mode file. 
 
+** How to use the themes
+   :LOGBOOK:
+   CLOCK: [2011-11-06 Sun 13:40]
+   :END:
++ Currently the "Custom Themes" setting is broken in that "Save Theme Settings" only saves the last theme selected, erasing all the others. 
++ To work around that, it is necessary to directly customize the variable =custom-enabled-themes= to include the list of themes to enable. For example, I currently have the following line in my =custom.el=: 
+#+begin_src elisp
+   '(custom-enabled-themes (quote (wjh-org-faces wombat wjh-org-misc wjh-redbox-cursor)))
+#+end_src
++ Another annoying thing is that somewhere Aquamacs sets =default-frame-alist= to have black text on a white background. So it is necessary to customize that variable to remove the =foreground-color= and =background-color= items from the alist.  Still, this seems fixed now. 
+
+
 * Custom themes
+  :LOGBOOK:
   CLOCK: [2011-11-04 Fri 23:26]--[2011-11-05 Sat 00:05] =>  0:39
   CLOCK: [2011-11-04 Fri 22:18]--[2011-11-04 Fri 23:18] =>  1:00
+  :END:
 
 I am currently using the =wombat= theme, which has a nice dark gray background. These are some additional modular themes, which combine nicely with =wombat=. At least that is the idea. They will probably also work well with any other theme that has a dark background. 
+
 
 ** Template
 
@@ -46,7 +64,9 @@ A theme called FOO is defined in a file =FOO-theme.el=, which has the following 
 I should really make a Yasnippet snippet out of this. 
 
 ** Org faces
+   :LOGBOOK:
    CLOCK: [2011-11-05 Sat 20:48]--[2011-11-05 Sat 21:18] =>  0:30
+   :END:
    :PROPERTIES:
    :tangle:   wjh-org-faces-theme.el
    :END:
@@ -82,6 +102,7 @@ The main thing that we do here is to make the faces for tables and source blocks
   (provide-theme 'wjh-org-faces)
 #+end_src
 
+
 ** Redbox cursor
    :PROPERTIES:
    :tangle:   wjh-redbox-cursor-theme.el
@@ -109,10 +130,12 @@ In non-selected windows, I use a horizontal bar instead.
 
 ** Org misc
    :LOGBOOK:
+   - Note taken on [2011-11-06 Sun 14:03] \\
+     This is now working fine.
+   CLOCK: [2011-11-05 Sat 21:21]--[2011-11-05 Sat 21:35] =>  0:14
    - Note taken on [2011-11-05 Sat 21:22] \\
      Trying to get timestamps to go into LOGBOOK drawer.  Why is this not working?
    :END:
-   CLOCK: [2011-11-05 Sat 21:21]--[2011-11-05 Sat 21:35] =>  0:14
    :PROPERTIES:
    :tangle:   wjh-org-misc-theme.el
    :END:
