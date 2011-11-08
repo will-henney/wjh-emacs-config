@@ -3,7 +3,7 @@
   "Make latex buffers look nice")
 (custom-theme-set-faces
  'wjh-latex-faces
- ;; '(latex-mode-default ((t (:inherit text-mode-default :height 120 :width normal :family "Menlo"))))
+ '(latex-mode-default ((t (:inherit text-mode-default :height 120 :width normal :family "Monaco"))))
  '(font-latex-sectioning-0-face ((t (:inherit font-latex-sectioning-1-face :height 1.05))))
  '(font-latex-sectioning-1-face ((t (:inherit font-latex-sectioning-2-face :height 1.05))))
  '(font-latex-sectioning-2-face ((t (:inherit font-latex-sectioning-3-face :height 1.05))))
