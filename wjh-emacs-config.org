@@ -23,13 +23,16 @@ This is my personal emacs configuration setup. All the various =.el= files are t
 
 ** How to use the themes
    :LOGBOOK:
-   CLOCK: [2011-11-06 Sun 13:40]
+   CLOCK: [2011-11-06 Sun 13:40]--[2011-11-06 Sun 14:10] =>  0:30
    :END:
 + Currently the "Custom Themes" setting is broken in that "Save Theme Settings" only saves the last theme selected, erasing all the others. 
 + To work around that, it is necessary to directly customize the variable =custom-enabled-themes= to include the list of themes to enable. For example, I currently have the following line in my =custom.el=: 
 #+begin_src elisp
-   '(custom-enabled-themes (quote (wjh-org-faces wombat wjh-org-misc wjh-redbox-cursor)))
+  '(custom-enabled-themes (quote (wjh-org-faces wjh-latex-faces wjh-org-misc wjh-redbox-cursor wombat)))
+  '(custom-safe-themes t)
 #+end_src
+However, you do have to turn them on by hand at least once first.  Otherwise, they don't get added to =custom-safe-themes=, which means that emacs hangs on start.  /Update:/ Setting =custom-safe-themes= to =t= should fix that.  
+
 + Another annoying thing is that somewhere Aquamacs sets =default-frame-alist= to have black text on a white background. So it is necessary to customize that variable to remove the =foreground-color= and =background-color= items from the alist.  Still, this seems fixed now. 
 
 
@@ -39,8 +42,7 @@ This is my personal emacs configuration setup. All the various =.el= files are t
   CLOCK: [2011-11-04 Fri 22:18]--[2011-11-04 Fri 23:18] =>  1:00
   :END:
 
-I am currently using the =wombat= theme, which has a nice dark gray background. These are some additional modular themes, which combine nicely with =wombat=. At least that is the idea. They will probably also work well with any other theme that has a dark background. 
-
+I am currently using the =wombat= theme, which has a nice dark gray background. These are some additional modular themes, which combine nicely with =wombat=.  At least that is the idea.  They will probably also work well with any other theme that has a dark background.  I am leaving in the light-theme customizations that I had used previously.  
 
 ** Template
 
@@ -63,8 +65,55 @@ A theme called FOO is defined in a file =FOO-theme.el=, which has the following 
 
 I should really make a Yasnippet snippet out of this. 
 
+** Latex faces
+   :LOGBOOK:
+   CLOCK: [2011-11-07 Mon 22:30]--[2011-11-07 Mon 23:11] =>  0:41
+   CLOCK: [2011-11-07 Mon 12:42]--[2011-11-07 Mon 13:00] =>  0:18
+   :END:
+   :PROPERTIES:
+   :tangle:   wjh-latex-faces-theme.el
+   :END:
+
++ Using Menlo, just to see if I can get used to it.  /Update:/ No, it is horrible - go back to Monaco for now
++ The faces for dark background needed quite a lot of tweaking.  Originally, they looked too garish, so I have tried to turn things down a bit.  Could still be improved though.  
+
+
+#+begin_src elisp
+  (deftheme wjh-latex-faces
+    "Make latex buffers look nice")
+  (custom-theme-set-faces
+   'wjh-latex-faces
+   ;; '(latex-mode-default ((t (:inherit text-mode-default :height 120 :width normal :family "Menlo"))))
+   '(font-latex-sectioning-0-face ((t (:inherit font-latex-sectioning-1-face :height 1.05))))
+   '(font-latex-sectioning-1-face ((t (:inherit font-latex-sectioning-2-face :height 1.05))))
+   '(font-latex-sectioning-2-face ((t (:inherit font-latex-sectioning-3-face :height 1.05))))
+   '(font-latex-sectioning-3-face ((t (:inherit font-latex-sectioning-4-face :height 1.05))))
+   '(font-latex-sectioning-4-face ((t (:inherit font-latex-sectioning-5-face :height 1.05))))
+   '(font-latex-sectioning-5-face ((default (:inherit variable-pitch :weight bold))
+                                   (((class color) (background light)) (:foreground "IndianRed4"))
+                                   (((class color) (background dark)) (:foreground "IndianRed1"))
+                                   ))
+   '(font-latex-slide-title-face ((t (:inherit (variable-pitch font-latex-sectioning-5-face) :weight bold :height 1.2))))
+   '(font-latex-string-face ((default (:inherit font-lock-string-face))))
+   '(font-latex-warning-face ((default (:inherit bold))
+                              (((class color) (background light)) (:foreground "red3"))
+                              (((class color) (background dark)) (:foreground "#e5786d"))
+                              ))
+   '(font-latex-math-face (
+                             (((class color) (background dark)) (:foreground "PaleTurquoise1"))
+                             ))
+   '(tex-fold-folded-face (
+                             ;; The default grayish blue for light backgrounds is fine
+                             (((class color) (background dark)) (:foreground "MistyRose3"))
+                             ))
+   )
+  (provide-theme 'wjh-latex-faces)
+  
+#+end_src
+
 ** Org faces
    :LOGBOOK:
+   CLOCK: [2011-11-07 Mon 12:31]--[2011-11-07 Mon 12:42] =>  0:11
    CLOCK: [2011-11-05 Sat 20:48]--[2011-11-05 Sat 21:18] =>  0:30
    :END:
    :PROPERTIES:
@@ -73,6 +122,7 @@ I should really make a Yasnippet snippet out of this.
 
 The main thing that we do here is to make the faces for tables and source blocks inherit from =fixed-pitch=. This is especially necessary if you change the default text font to be varible pitch. There are advantages to this, even if you use a fixed pitch default font. In my case, I use monaco as the default, but =fixed-pitch= is set to courier, which looks more "code-y" and helps set off the source blocks. 
 
+Each =org-level-N= faces inherits from the corresponding =outline-N= face, so we change those.  The general philosophy here is that the different heading levels shouldn't have random contrasting colors since that just adds noise to the appearance of the file.  Instead, all our headings are variants of green, with a continuous change in tone from brighter to darker and more muted as one descends the hierarchy.  At least, that is the plan.  So far, I have only implemented the set for dark backgrounds.  
 
 #+begin_src elisp
   (deftheme wjh-org-faces
@@ -80,19 +130,35 @@ The main thing that we do here is to make the faces for tables and source blocks
   (custom-theme-set-faces
    'wjh-org-faces
    '(org-block ((t (:inherit (shadow fixed-pitch)))))
-   '(org-block-background ((t (:inherit fixed-pitch))))
+   '(org-block-background ((default (:inherit fixed-pitch))
+                           (((class color) (background dark)) (:background "#201f20"))
+                           ))
    '(org-code ((t (:inherit (shadow fixed-pitch)))))
+   '(org-formula (
+                  (((class color) (background dark)) (:foreground "LightSalmon1"))
+                  ))
    '(org-table ((default (:inherit fixed-pitch))
-                (((class color) (background light)) (:foreground "Blue4"))))
-   '(org-date ((((class color) (background light)) (:foreground "Purple4" :underline t))))
+                (((class color) (background light)) (:foreground "Blue4"))
+                (((class color) (background dark)) (:foreground "PaleTurquoise1"))
+                ))
+   '(org-date ((default (:underline t))
+               (((class color) (background light)) (:foreground "Purple4"))
+               (((class color) (background dark)) (:foreground "MediumPurple3"))
+               ))
    '(org-document-title ((default  (:weight bold))
                          (((class color) (background light)) 
                           (:foreground "midnight blue"))
                          (((class color) (background dark)) 
                           (:foreground "white"))
                          ))
-   ;; '(org-level-5 ((t (:inherit outline-5 :foreground "#c06d1a"))))
-   ;; '(org-level-6 ((t (:inherit outline-6 :foreground "#317563"))))
+   '(outline-1 ((((class color) (background dark)) (:foreground "green3"))))
+   '(outline-2 ((((class color) (background dark)) (:foreground "SeaGreen3"))))
+   '(outline-3 ((((class color) (background dark)) (:foreground "SpringGreen3"))))
+   '(outline-4 ((((class color) (background dark)) (:foreground "olive drab"))))
+   '(outline-5 ((((class color) (background dark)) (:foreground "green4"))))
+   '(outline-6 ((((class color) (background dark)) (:foreground "SeaGreen4"))))
+   '(outline-7 ((((class color) (background dark)) (:foreground "SpringGreen4"))))
+   '(outline-8 ((((class color) (background dark)) (:foreground "dark olive green"))))
    '(org-link ((((class color) (background light)) (:foreground "gray50" :underline t :weight bold))))
    '(org-todo ((t (:foreground "#b93030" :weight bold))))
   
@@ -100,8 +166,8 @@ The main thing that we do here is to make the faces for tables and source blocks
    '(org-column-title ((((class color) (min-colors 16) (background light)) (:background "grey90" :underline t :weight bold :family "monaco"))))
    )
   (provide-theme 'wjh-org-faces)
+  
 #+end_src
-
 
 ** Redbox cursor
    :PROPERTIES:
@@ -130,6 +196,7 @@ In non-selected windows, I use a horizontal bar instead.
 
 ** Org misc
    :LOGBOOK:
+   CLOCK: [2011-11-07 Mon 23:11]
    - Note taken on [2011-11-06 Sun 14:03] \\
      This is now working fine.
    CLOCK: [2011-11-05 Sat 21:21]--[2011-11-05 Sat 21:35] =>  0:14
@@ -139,6 +206,8 @@ In non-selected windows, I use a horizontal bar instead.
    :PROPERTIES:
    :tangle:   wjh-org-misc-theme.el
    :END:
+
+So, these customizations have nothing to do with faces.  It might be better to put them in normal configuration files, rather than a custom theme.  It isn't as if I am going to turn them on and off.  
 
 #+begin_src elisp
   (deftheme wjh-org-misc
@@ -157,3 +226,20 @@ In non-selected windows, I use a horizontal bar instead.
 
 * Packages
 ** Org mode
+
+* Sample org material (level 1)
+** level 2
+*** level 3
+**** level 4
+***** level 5
+****** level 6
+******* level 7 
+******** level 8
+********* level 9 (same as 1)
+| ! | Sample | Table | Extra |
+|---+--------+-------+-------|
+| * | data   | more  | more  |
+| * | 0.000  | 1.111 | 1.111 |
+|---+--------+-------+-------|
+    #+TBLFM: $4=$-1
+
