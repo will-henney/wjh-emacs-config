@@ -131,8 +131,8 @@ Each =org-level-N= faces inherits from the corresponding =outline-N= face, so we
    'wjh-org-faces
    '(org-block ((t (:inherit (shadow fixed-pitch)))))
    '(org-block-background ((default (:inherit fixed-pitch))
-                           (((class color) (background dark)) (:background "#201f20"))
-                           ))
+                           (((class color) (background dark)) (:background "gray18"))
+                           ) nil "This looks good with zenburn. YMMV otherwise")
    '(org-code ((t (:inherit (shadow fixed-pitch)))))
    '(org-formula (
                   (((class color) (background dark)) (:foreground "LightSalmon1"))
@@ -143,7 +143,7 @@ Each =org-level-N= faces inherits from the corresponding =outline-N= face, so we
                 ))
    '(org-date ((default (:underline t))
                (((class color) (background light)) (:foreground "Purple4"))
-               (((class color) (background dark)) (:foreground "MediumPurple3"))
+               (((class color) (background dark)) (:foreground "#c2a9c2"))
                ))
    '(org-document-title ((default  (:weight bold))
                          (((class color) (background light)) 
@@ -151,14 +151,23 @@ Each =org-level-N= faces inherits from the corresponding =outline-N= face, so we
                          (((class color) (background dark)) 
                           (:foreground "white"))
                          ))
-   '(outline-1 ((((class color) (background dark)) (:foreground "green3"))))
-   '(outline-2 ((((class color) (background dark)) (:foreground "SeaGreen3"))))
-   '(outline-3 ((((class color) (background dark)) (:foreground "SpringGreen3"))))
-   '(outline-4 ((((class color) (background dark)) (:foreground "olive drab"))))
-   '(outline-5 ((((class color) (background dark)) (:foreground "green4"))))
-   '(outline-6 ((((class color) (background dark)) (:foreground "SeaGreen4"))))
-   '(outline-7 ((((class color) (background dark)) (:foreground "SpringGreen4"))))
-   '(outline-8 ((((class color) (background dark)) (:foreground "dark olive green"))))
+  ;; lavender to goldenrod
+   '(org-level-1 ((((class color) (background dark)) (:foreground "#e6e6fa"))))
+   '(org-level-2 ((((class color) (background dark)) (:foreground "#e4dddb"))))
+   '(org-level-3 ((((class color) (background dark)) (:foreground "#e3d3bc"))))
+   '(org-level-4 ((((class color) (background dark)) (:foreground "#e1ca9d"))))
+   '(org-level-5 ((((class color) (background dark)) (:foreground "#dfc17d"))))
+   '(org-level-6 ((((class color) (background dark)) (:foreground "#ddb85e"))))
+   '(org-level-7 ((((class color) (background dark)) (:foreground "#dcae3f"))))
+   '(org-level-8 ((((class color) (background dark)) (:foreground "#daa520"))))
+   ;; '(outline-1 ((((class color) (background dark)) (:foreground "green3"))))
+   ;; '(outline-2 ((((class color) (background dark)) (:foreground "SeaGreen3"))))
+   ;; '(outline-3 ((((class color) (background dark)) (:foreground "SpringGreen3"))))
+   ;; '(outline-4 ((((class color) (background dark)) (:foreground "olive drab"))))
+   ;; '(outline-5 ((((class color) (background dark)) (:foreground "green4"))))
+   ;; '(outline-6 ((((class color) (background dark)) (:foreground "SeaGreen4"))))
+   ;; '(outline-7 ((((class color) (background dark)) (:foreground "SpringGreen4"))))
+   ;; '(outline-8 ((((class color) (background dark)) (:foreground "dark olive green"))))
    '(org-link ((((class color) (background light)) (:foreground "gray50" :underline t :weight bold))))
    '(org-todo ((t (:foreground "#b93030" :weight bold))))
   
@@ -168,6 +177,88 @@ Each =org-level-N= faces inherits from the corresponding =outline-N= face, so we
   (provide-theme 'wjh-org-faces)
   
 #+end_src
+
+*** Python script for choosing a color scheme
+    :LOGBOOK:
+    CLOCK: [2011-11-10 Thu 10:06]--[2011-11-10 Thu 11:07] =>  1:01
+    CLOCK: [2011-11-09 Wed 10:32]--[2011-11-09 Wed 13:10] =>  2:38
+    :END:
+    :PROPERTIES:
+    :tangle:   no
+    :END:
+
+#+srcname: choose-org-colors.py
+#+begin_src python :tangle choose-org-colors.py
+  """
+  Interpolate eight colors between two limits
+  """
+  from grapefruit import Color
+  import numpy as np
+  import sys
+  try: 
+      spec1, spec2 = sys.argv[1:3]
+      color1 = Color.NewFromHtml(spec1)
+      color2 = Color.NewFromHtml(spec2)
+  except: 
+      print """
+  Usage: %s spec1 spec2
+  
+  Where spec1 and spec2 are valid HTML color specs
+  """ % (sys.argv[0])
+  
+  NCOLORS = 8
+  fracs = np.linspace(1.0, 0.0, NCOLORS)
+  colors = [color1.Blend(color2, frac) for frac in fracs]
+  
+  facespec="'(org-level-%i ((((class color) (background dark)) (:foreground \"%s\"))))"
+  print ";; %s to %s" % (spec1, spec2)
+  for i, c in enumerate(colors):
+      print facespec % (i+1, c.html)
+  print
+  
+#+end_src
+
+
+
+#+begin_src sh :results output code
+  python choose-org-colors.py red yellow
+  python choose-org-colors.py lavender goldenrod
+  python choose-org-colors.py blanchedalmond lightgray
+#+end_src
+
+#+results:
+#+BEGIN_SRC lisp
+;; red to yellow
+'(org-level-1 ((((class color) (background dark)) (:foreground "#ff0000"))))
+'(org-level-2 ((((class color) (background dark)) (:foreground "#ff2400"))))
+'(org-level-3 ((((class color) (background dark)) (:foreground "#ff4900"))))
+'(org-level-4 ((((class color) (background dark)) (:foreground "#ff6d00"))))
+'(org-level-5 ((((class color) (background dark)) (:foreground "#ff9200"))))
+'(org-level-6 ((((class color) (background dark)) (:foreground "#ffb600"))))
+'(org-level-7 ((((class color) (background dark)) (:foreground "#ffdb00"))))
+'(org-level-8 ((((class color) (background dark)) (:foreground "#ffff00"))))
+
+;; lavender to goldenrod
+'(org-level-1 ((((class color) (background dark)) (:foreground "#e6e6fa"))))
+'(org-level-2 ((((class color) (background dark)) (:foreground "#e4dddb"))))
+'(org-level-3 ((((class color) (background dark)) (:foreground "#e3d3bc"))))
+'(org-level-4 ((((class color) (background dark)) (:foreground "#e1ca9d"))))
+'(org-level-5 ((((class color) (background dark)) (:foreground "#dfc17d"))))
+'(org-level-6 ((((class color) (background dark)) (:foreground "#ddb85e"))))
+'(org-level-7 ((((class color) (background dark)) (:foreground "#dcae3f"))))
+'(org-level-8 ((((class color) (background dark)) (:foreground "#daa520"))))
+
+;; blanchedalmond to lightgray
+'(org-level-1 ((((class color) (background dark)) (:foreground "#ffebcd"))))
+'(org-level-2 ((((class color) (background dark)) (:foreground "#f9e8ce"))))
+'(org-level-3 ((((class color) (background dark)) (:foreground "#f2e4cf"))))
+'(org-level-4 ((((class color) (background dark)) (:foreground "#ece1d0"))))
+'(org-level-5 ((((class color) (background dark)) (:foreground "#e6ddd0"))))
+'(org-level-6 ((((class color) (background dark)) (:foreground "#e0dad1"))))
+'(org-level-7 ((((class color) (background dark)) (:foreground "#d9d6d2"))))
+'(org-level-8 ((((class color) (background dark)) (:foreground "#d3d3d3"))))
+
+#+END_SRC
 
 ** Redbox cursor
    :PROPERTIES:
@@ -254,7 +345,7 @@ Remove extraneous chrome and try to de-uglify buttons and highlighting and the l
    '(line-spacing 2 nil nil "Most modes look better with an extra 2 pixel padding between lines")
    '(fringe-mode (quote (4 . 0)) nil (fringe) "Fringe on left only, and half default width")
    '(indicate-buffer-boundaries (quote ((t) (top . left) (bottom . left) (up . left) (down . left))) nil nil "Put little glyphs in the fringe to show buffer boundaries")
-   '(default-frame-alist (quote ((tool-bar-lines . 0) (menu-bar-lines . 1) (internal-border-width . 0))))
+   '(default-frame-alist (quote ((tool-bar-lines . 0) (vertical-scroll-bars . nil) (menu-bar-lines . 1) (internal-border-width . 0))))
    '(tabbar-mode nil nil (tabbar) "We don't want no stinking tab bars")
    '(show-paren-mode nil nil nil "Stop the blinking blinking")
    '(text-mode-hook (quote (smart-spacing-mode turn-on-word-wrap)))
