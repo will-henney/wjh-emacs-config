@@ -6,7 +6,7 @@
  '(line-spacing 2 nil nil "Most modes look better with an extra 2 pixel padding between lines")
  '(fringe-mode (quote (4 . 0)) nil (fringe) "Fringe on left only, and half default width")
  '(indicate-buffer-boundaries (quote ((t) (top . left) (bottom . left) (up . left) (down . left))) nil nil "Put little glyphs in the fringe to show buffer boundaries")
- '(default-frame-alist (quote ((tool-bar-lines . 0) (menu-bar-lines . 1) (internal-border-width . 0) (fringe) (vertical-scroll-bars))))
+ '(default-frame-alist (quote ((tool-bar-lines . 0) (menu-bar-lines . 1) (internal-border-width . 0))))
  '(tabbar-mode nil nil (tabbar) "We don't want no stinking tab bars")
  '(show-paren-mode nil nil nil "Stop the blinking blinking")
  '(text-mode-hook (quote (smart-spacing-mode turn-on-word-wrap)))
