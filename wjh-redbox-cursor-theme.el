@@ -12,4 +12,5 @@
  '(cursor ((t (:background "OrangeRed1" :foreground "#f6f3e8"))))
  )
 (provide-theme 'wjh-redbox-cursor)
-ZZZ
+
+;; ZZZ
