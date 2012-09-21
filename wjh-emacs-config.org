@@ -386,4 +386,3 @@ Remove extraneous chrome and try to de-uglify buttons and highlighting and the l
 |---+--------+-------+-------|
     #+TBLFM: $4=$-1
 
-XXXXXXX
