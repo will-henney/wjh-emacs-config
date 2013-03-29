@@ -335,7 +335,24 @@ Remove extraneous chrome and try to de-uglify buttons and highlighting and the l
   + =show=paren-mode=
   + =visual-line-mode=
   + =one-buffer-one-frame-mode=
-
++ [ ] Add colors to mode-line faces to make the fit in with emacs-powerline
+  + The problem is that the zenburn theme messes with these, giving them borders
+  + It is hard to work out in what order things are set - this is still not working quite right
+    + On the initial frame, we have a fixed-widt font, but with the wrong colors and ugly boxes
+      + Calling the following code:
+#+BEGIN_SRC lisp :tangle no
+(set-face-attribute 'mode-line nil
+                    :background "azure3"
+		    :foreground "black"
+		    :height 1.0
+                    :box nil)
+(set-face-attribute 'mode-line-inactive nil
+		    :height 1.0
+                    :box nil)
+#+END_SRC
+        works to put that right
+    + On subsequent frames (even without running the above snippet), the colors are right, but it has a proportional font.  Is this something to do with =default-frame-alist= and =initial-frame-alist= ?
+    + Strangely, the customization buffer for the mode-line face even appears differently, according to which frame I start it from. 
 
 #+begin_src elisp
   (deftheme wjh-misc-appearance
@@ -362,7 +379,7 @@ Remove extraneous chrome and try to de-uglify buttons and highlighting and the l
                     ) nil "Begone horrible raised boxes!")
    '(custom-button-mouse ((t (:inherit custom-button :weight bold))) nil "Just embolden")
    '(custom-button-pressed ((t (:inherit custom-button :underline t :weight bold))) nil "Then underline too")
-   '(mode-line ((t (:box nil :background "azure1" :foreground "black"))) nil "For powerline")
+   '(mode-line ((t (:box nil :background "azure3" :foreground "black"))) nil "For powerline")
    '(mode-line-inactive ((t (:box nil))) nil "For powerline")
    )
   (provide-theme 'wjh-misc-appearance)

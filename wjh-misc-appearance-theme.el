@@ -23,7 +23,7 @@
                     ) nil "Begone horrible raised boxes!")
    '(custom-button-mouse ((t (:inherit custom-button :weight bold))) nil "Just embolden")
    '(custom-button-pressed ((t (:inherit custom-button :underline t :weight bold))) nil "Then underline too")
-   '(mode-line ((t (:box nil :background "azure1" :foreground "black"))) nil "For powerline")
+   '(mode-line ((t (:box nil :background "azure3" :foreground "black"))) nil "For powerline")
    '(mode-line-inactive ((t (:box nil))) nil "For powerline")
    )
   (provide-theme 'wjh-misc-appearance)
