@@ -79,8 +79,19 @@
 (global-set-key (kbd "M-z") 'zap-up-to-char) 
 
 
-;; 
-
+;; Add in the Cmd-C, Cmd-V, Cmd-A, etc bindings like in aquamacs
+(global-set-key (kbd "s-a") 'mark-whole-buffer)
+;; This function copied from http://unix.stackexchange.com/questions/20849/emacs-how-to-copy-region-and-leave-it-highlighted
+(defun kill-ring-save-keep-highlight (beg end)
+  "Keep the region active after the kill"
+  (interactive "r")
+  (prog1 (kill-ring-save beg end)
+    (setq deactivate-mark nil)))
+(global-set-key (kbd "s-c") 'kill-ring-save-keep-highlight)
+(global-set-key (kbd "s-v") 'cua-paste)
+;; Allow shift-click to extend the region
+(global-set-key (kbd "<S-down-mouse-1>") 'ignore) 
+(global-set-key (kbd "<S-mouse-1>") 'mouse-save-then-kill)
 
 ;; WJH 26 Jul 2012
 ;; Use spotlight instead of locate
