@@ -58,6 +58,26 @@
 (load "wjh-mu4e-config")
 
 
+;; Extras for LaTeX editing 29 Mar 2013
+;; Code copied from tex.stackexchange
+;; http://tex.stackexchange.com/questions/27241/entering-math-mode-in-auctex-using-and
+(add-hook 'LaTeX-mode-hook 
+	  '(lambda ()
+	     (define-key TeX-mode-map "\C-cm" 'TeX-insert-inline-math)
+	     (defun TeX-insert-inline-math (arg)
+	       "Like TeX-insert-braces but for \\(...\\)" 
+	       (interactive "P")
+	       (if (TeX-active-mark)
+		   (progn
+		     (if (< (point) (mark)) (exchange-point-and-mark))
+		     (insert "\\)")
+		     (save-excursion (goto-char (mark)) (insert "\\(")))
+		 (insert "\\(")
+		 (save-excursion
+		   (if arg (forward-sexp (prefix-numeric-value arg)))
+		   (insert "\\)"))))))
+
+
 ;; 11 Sep 2011 anything
 ;; (wjh-add-to-load-path "anything-config")
 ;; (require 'anything-config)
