@@ -91,7 +91,7 @@ I should really make a Yasnippet snippet out of this.
    '(font-latex-sectioning-4-face ((t (:inherit font-latex-sectioning-5-face :height 1.05))))
    '(font-latex-sectioning-5-face ((default (:inherit variable-pitch :weight bold))
                                    (((class color) (background light)) (:foreground "IndianRed4"))
-                                   (((class color) (background dark)) (:foreground "IndianRed1"))
+                                   (((class color) (background dark)) (:foreground "Khaki"))
                                    ))
    '(font-latex-slide-title-face ((t (:inherit (variable-pitch font-latex-sectioning-5-face) :weight bold :height 1.2))))
    '(font-latex-string-face ((default (:inherit font-lock-string-face))))
@@ -122,22 +122,24 @@ I should really make a Yasnippet snippet out of this.
 
 The main thing that we do here is to make the faces for tables and source blocks inherit from =fixed-pitch=. This is especially necessary if you change the default text font to be varible pitch. There are advantages to this, even if you use a fixed pitch default font. In my case, I use monaco as the default, but =fixed-pitch= is set to courier, which looks more "code-y" and helps set off the source blocks. 
 
-Each =org-level-N= faces inherits from the corresponding =outline-N= face, so we change those.  The general philosophy here is that the different heading levels shouldn't have random contrasting colors since that just adds noise to the appearance of the file.  Instead, all our headings are variants of green, with a continuous change in tone from brighter to darker and more muted as one descends the hierarchy.  At least, that is the plan.  So far, I have only implemented the set for dark backgrounds.  
+We also make the height smaller for code blocks, tables etc.   This is because these elements are often wide and look bad when word wrap is in operation.  Making the font a tad smaller gives tham a bit more chance to fit on the screen withut wrapping. 
+
+Each =org-level-N= faces inherits from the corresponding =outline-N= face, so we change those.  The general philosophy here is that the different heading levels shouldn't have random contrasting colors since that just adds noise to the appearance of the file.  Instead,  our headings start as  variants of yellow, with a continuous change in tone from towards a grey misty color as one descends the hierarchy.  At least, that is the plan.  So far, I have only implemented the set for dark backgrounds.  
 
 #+begin_src elisp
   (deftheme wjh-org-faces
     "Created 2011-11-04.")
   (custom-theme-set-faces
    'wjh-org-faces
-   '(org-block ((t (:inherit (shadow fixed-pitch)))))
-   '(org-block-background ((default (:inherit fixed-pitch))
+   '(org-block ((t (:inherit (shadow fixed-pitch) :height 0.8))))
+   '(org-block-background ((default (:inherit fixed-pitch) :height 0.8)
                            (((class color) (background dark)) (:background "gray18"))
                            ) nil "This looks good with zenburn. YMMV otherwise")
    '(org-code ((t (:inherit (shadow fixed-pitch)))))
    '(org-formula (
                   (((class color) (background dark)) (:foreground "LightSalmon1"))
                   ))
-   '(org-table ((default (:inherit fixed-pitch))
+   '(org-table ((default (:inherit fixed-pitch :height 0.7))
                 (((class color) (background light)) (:foreground "Blue4"))
                 (((class color) (background dark)) (:foreground "PaleTurquoise1"))
                 ))
@@ -151,28 +153,32 @@ Each =org-level-N= faces inherits from the corresponding =outline-N= face, so we
                          (((class color) (background dark)) 
                           (:foreground "white"))
                          ))
-  ;; lavender to goldenrod
-   '(org-level-1 ((((class color) (background dark)) (:foreground "#e6e6fa"))))
-   '(org-level-2 ((((class color) (background dark)) (:foreground "#e4dddb"))))
-   '(org-level-3 ((((class color) (background dark)) (:foreground "#e3d3bc"))))
-   '(org-level-4 ((((class color) (background dark)) (:foreground "#e1ca9d"))))
-   '(org-level-5 ((((class color) (background dark)) (:foreground "#dfc17d"))))
-   '(org-level-6 ((((class color) (background dark)) (:foreground "#ddb85e"))))
-   '(org-level-7 ((((class color) (background dark)) (:foreground "#dcae3f"))))
-   '(org-level-8 ((((class color) (background dark)) (:foreground "#daa520"))))
-   ;; '(outline-1 ((((class color) (background dark)) (:foreground "green3"))))
-   ;; '(outline-2 ((((class color) (background dark)) (:foreground "SeaGreen3"))))
-   ;; '(outline-3 ((((class color) (background dark)) (:foreground "SpringGreen3"))))
-   ;; '(outline-4 ((((class color) (background dark)) (:foreground "olive drab"))))
-   ;; '(outline-5 ((((class color) (background dark)) (:foreground "green4"))))
-   ;; '(outline-6 ((((class color) (background dark)) (:foreground "SeaGreen4"))))
-   ;; '(outline-7 ((((class color) (background dark)) (:foreground "SpringGreen4"))))
-   ;; '(outline-8 ((((class color) (background dark)) (:foreground "dark olive green"))))
+   '(org-formula ((t (:inherit org-table :foreground "chocolate1"))))
+   '(org-meta-line ((t (:inherit font-lock-comment-face :slant italic))))
+   '(org-special-keyword ((t (:inherit font-lock-keyword-face :slant italic))))
+   ;; LemonChiffon to GhostWhite
+   '(org-level-1 ((((class color) (background dark)) (:foreground "#fffacd"))))
+   '(org-level-2 ((((class color) (background dark)) (:foreground "#fefad4"))))
+   '(org-level-3 ((((class color) (background dark)) (:foreground "#fdf9db"))))
+   '(org-level-4 ((((class color) (background dark)) (:foreground "#fcf9e2"))))
+   '(org-level-5 ((((class color) (background dark)) (:foreground "#fbf9ea"))))
+   '(org-level-6 ((((class color) (background dark)) (:foreground "#faf9f1"))))
+   '(org-level-7 ((((class color) (background dark)) (:foreground "#f9f8f8"))))
+   '(org-level-8 ((((class color) (background dark)) (:foreground "#f8f8ff"))))
    '(org-link ((((class color) (background light)) (:foreground "gray50" :underline t :weight bold))))
    '(org-todo ((t (:foreground "#b93030" :weight bold))))
   
    ;; Org column
    '(org-column-title ((((class color) (min-colors 16) (background light)) (:background "grey90" :underline t :weight bold :family "monaco"))))
+  
+   '(outline-1 ((t (:weight bold))))
+   '(outline-2 ((t (:inherit outline-1)))) 
+   '(outline-3 ((t (:inherit outline-1)))) 
+   '(outline-4 ((t (:inherit outline-1)))) 
+   '(outline-5 ((t (:inherit outline-1)))) 
+   '(outline-6 ((t (:inherit outline-1)))) 
+   '(outline-7 ((t (:inherit outline-1)))) 
+   '(outline-8 ((t (:inherit outline-1)))) 
    )
   (provide-theme 'wjh-org-faces)
   
@@ -220,6 +226,50 @@ Each =org-level-N= faces inherits from the corresponding =outline-N= face, so we
 
 
 
+**** New color schemes 21 Apr 2013
+Now that I am using my dice glyphs, there is less need to use color to distinguish adjacent levels from one another.  As a result, I am looking for a subtler run of nice brightish colors.  What I have been using until now (lavender to goldenrod) goes too grey around level two and then too dark and browny towards the end. 
+#+begin_src sh :results output code
+  python choose-org-colors.py LightYellow PapayaWhip
+  python choose-org-colors.py LightYellow Beige
+  python choose-org-colors.py LemonChiffon GhostWhite
+#+end_SRC
+
+#+RESULTS:
+#+BEGIN_SRC emacs-lisp
+  ;; LightYellow to PapayaWhip
+  '(org-level-1 ((((class color) (background dark)) (:foreground "#ffffe0"))))
+  '(org-level-2 ((((class color) (background dark)) (:foreground "#fffdde"))))
+  '(org-level-3 ((((class color) (background dark)) (:foreground "#fffadd"))))
+  '(org-level-4 ((((class color) (background dark)) (:foreground "#fff8db"))))
+  '(org-level-5 ((((class color) (background dark)) (:foreground "#fff6da"))))
+  '(org-level-6 ((((class color) (background dark)) (:foreground "#fff4d8"))))
+  '(org-level-7 ((((class color) (background dark)) (:foreground "#fff1d7"))))
+  '(org-level-8 ((((class color) (background dark)) (:foreground "#ffefd5"))))
+  
+  ;; LightYellow to Beige
+  '(org-level-1 ((((class color) (background dark)) (:foreground "#ffffe0"))))
+  '(org-level-2 ((((class color) (background dark)) (:foreground "#fefedf"))))
+  '(org-level-3 ((((class color) (background dark)) (:foreground "#fcfcdf"))))
+  '(org-level-4 ((((class color) (background dark)) (:foreground "#fbfbde"))))
+  '(org-level-5 ((((class color) (background dark)) (:foreground "#f9f9de"))))
+  '(org-level-6 ((((class color) (background dark)) (:foreground "#f8f8dd"))))
+  '(org-level-7 ((((class color) (background dark)) (:foreground "#f6f6dd"))))
+  '(org-level-8 ((((class color) (background dark)) (:foreground "#f5f5dc"))))
+  
+  ;; LemonChiffon to GhostWhite
+  '(org-level-1 ((((class color) (background dark)) (:foreground "#fffacd"))))
+  '(org-level-2 ((((class color) (background dark)) (:foreground "#fefad4"))))
+  '(org-level-3 ((((class color) (background dark)) (:foreground "#fdf9db"))))
+  '(org-level-4 ((((class color) (background dark)) (:foreground "#fcf9e2"))))
+  '(org-level-5 ((((class color) (background dark)) (:foreground "#fbf9ea"))))
+  '(org-level-6 ((((class color) (background dark)) (:foreground "#faf9f1"))))
+  '(org-level-7 ((((class color) (background dark)) (:foreground "#f9f8f8"))))
+  '(org-level-8 ((((class color) (background dark)) (:foreground "#f8f8ff"))))
+  
+#+END_SRC
+
+**** Original runs of this script
+
 #+begin_src sh :results output code
   python choose-org-colors.py red yellow
   python choose-org-colors.py lavender goldenrod
@@ -259,6 +309,25 @@ Each =org-level-N= faces inherits from the corresponding =outline-N= face, so we
 '(org-level-8 ((((class color) (background dark)) (:foreground "#d3d3d3"))))
 
 #+END_SRC
+
+
+
+* One
+Text one
+** Two
+Text two
+*** Three
+Text three
+**** Four
+Text four
+***** Five
+Text five
+****** Six
+Text six
+******* Seven
+Text seven
+******** Eight
+Text eight
 
 ** Redbox cursor
    :PROPERTIES:
