@@ -2,4 +2,7 @@ lisp/
 etc/
 info/
 pkg-src/
-
+OLD/
+/semantic.cache
+/share/info
+/site-packages/org
