@@ -53,6 +53,31 @@
 ;; This comes last so as to be sure to override key bindings
 (load "wjh-emacs-xemacs-emul")
 
+;; These were added automatically at some point
+(put 'narrow-to-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
+
+;; Load themes by hand instead of relying on custom, since that always messed up the priorities
+;; '(custom-enabled-themes (quote (wjh-misc-appearance wjh-latex-faces wjh-org-misc wjh-redbox-cursor zenburn)))
+
+(load-theme 'zenburn)
+(load-theme 'wjh-latex-faces)
+(load-theme 'wjh-org-faces)
+(load-theme 'wjh-org-misc)
+(load-theme 'wjh-misc-appearance)
+(load-theme 'wjh-redbox-cursor)
+
+
+;; See discussion in Miscellaneous Appearance section of wjh-emacs-config.org
+;; These need to come as late as possible so as they do not get overridden
+(set-face-attribute 'mode-line nil
+		    :background "azure3"
+		    :foreground "black"
+		    :height 1.0
+		    :box nil)
+(set-face-attribute 'mode-line-inactive nil
+		    :height 1.0
+		    :box nil)
 
 
 
@@ -60,6 +85,3 @@
 
 ;;; .emacs ends here
 
-(put 'narrow-to-region 'disabled nil)
-
-(put 'downcase-region 'disabled nil)

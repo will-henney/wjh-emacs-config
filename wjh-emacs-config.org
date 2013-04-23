@@ -2,6 +2,7 @@
 #+AUTHOR:    William Henney
 #+EMAIL:     will@henney.org
 #+DATE:      2011-11-04 Fri
+#+STARTUP: nofninline
 #+DESCRIPTION:
 #+KEYWORDS: emacs
 #+LANGUAGE:  en
@@ -204,11 +205,11 @@ Each =org-level-N= faces inherits from the corresponding =outline-N= face, so we
   from grapefruit import Color
   import numpy as np
   import sys
-  try: 
+  try:
       spec1, spec2 = sys.argv[1:3]
       color1 = Color.NewFromHtml(spec1)
       color2 = Color.NewFromHtml(spec2)
-  except: 
+  except:
       print """
   Usage: %s spec1 spec2
   
@@ -219,7 +220,7 @@ Each =org-level-N= faces inherits from the corresponding =outline-N= face, so we
   fracs = np.linspace(1.0, 0.0, NCOLORS)
   colors = [color1.Blend(color2, frac) for frac in fracs]
   
-  facespec="'(org-level-%i ((((class color) (background dark)) (:foreground \"%s\"))))"
+  facespec =  "'(org-level-%i ((((class color) (background dark)) (:foreground \"%s\"))))"
   print ";; %s to %s" % (spec1, spec2)
   for i, c in enumerate(colors):
       print facespec % (i+1, c.html)
@@ -412,21 +413,7 @@ Remove extraneous chrome and try to de-uglify buttons and highlighting and the l
   + The problem is that the zenburn theme messes with these, giving them borders
   + It is hard to work out in what order things are set - this is still not working quite right
     + On the initial frame, we have a fixed-width font, but with the wrong colors and ugly boxes
-      + Calling the following code:
-#+BEGIN_SRC emacs-lisp :tangle no
-  (set-face-attribute 'mode-line nil
-                      :background "azure3"
-                      :foreground "black"
-                      :height 1.0
-                      :box nil)
-  (set-face-attribute 'mode-line-inactive nil
-                      :height 1.0
-                      :box nil)
-#+END_SRC
-
-#+RESULTS:
-
-        works to put that right
+      + Calling the following code [fn:code] works to put that right.  This is now incoroprated in my init.el
     + On subsequent frames (even without running the above snippet), the colors are right, but it has a proportional font.  Is this something to do with =default-frame-alist= and =initial-frame-alist= ?
     + Strangely, the customization buffer for the mode-line face even appears differently, according to which frame I start it from. 
 
@@ -479,4 +466,21 @@ Remove extraneous chrome and try to de-uglify buttons and highlighting and the l
 | * | 0.000  | 1.111 | 1.111 |
 |---+--------+-------+-------|
     #+TBLFM: $4=$-1
+
+* Footnotes
+
+[fn:code] 
+#+BEGIN_SRC emacs-lisp :tangle no :results silent
+  (set-face-attribute 'mode-line nil
+                      :background "azure3"
+                      :foreground "<black"
+                      :height 1.0
+                      :box nil)
+  (set-face-attribute 'mode-line-inactive nil
+                      :height 1.0
+                      :box nil)
+#+END_SRC
+
+
+
 
