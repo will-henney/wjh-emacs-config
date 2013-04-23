@@ -38,7 +38,10 @@
  '(org-level-7 ((((class color) (background dark)) (:foreground "#f9f8f8"))))
  '(org-level-8 ((((class color) (background dark)) (:foreground "#f8f8ff"))))
  '(org-link ((((class color) (background light)) (:foreground "gray50" :underline t :weight bold))))
- '(org-todo ((t (:foreground "#b93030" :weight bold))))
+ '(org-todo ((t (:weight bold)))
+            (((class color) (background light)) (:foreground "#b93030"))
+            (((class color) (background dark)) (:foreground "DarkOrange"))
+            )
 
  ;; Org column
  '(org-column-title ((((class color) (min-colors 16) (background light)) (:background "grey90" :underline t :weight bold :family "monaco"))))
