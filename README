@@ -1,0 +1,7 @@
+DIRECTORY LAYOUT AND CONVENTIONS
+
+My config files are in top-level directory and begin `wjh-'
+
+3rd party package tarballs and installation trees are in pkg-src/ 
+
+Installations of 3rd party packages are in etc/ lisp/ and info/

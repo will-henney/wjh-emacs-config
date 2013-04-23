@@ -1,0 +1,6 @@
+(add-to-list 'load-path "/usr/local/share/emacs/site-lisp")
+(require 'org-install)
+;; (add-to-list 'load-path "/Users/will/emacs/lisp/org-mode/contrib/lisp")
+;; (add-to-list 'load-path "/Users/will/emacs/lisp/org-mode/contrib/babel/lisp/langs")
+;; (require 'org-babel-init) 
+;; (require 'org-babel-latex)
