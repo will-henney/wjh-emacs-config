@@ -1,2 +1,11 @@
 elpa/
 predictive/
+/.org-id-locations
+/ac-comphist.dat
+/anything-c-adaptive-history
+/games/tetris-scores
+/history
+/mysnippets/org-mode
+/plugins/yasnippet
+/tramp
+/zenburn-theme.el
