@@ -132,3 +132,6 @@ This will actually use spotlight instead of locate, so it only works on OS X"
 (setq help-at-pt-timer-delay 0)
 (help-at-pt-set-timer) 
 (setq help-at-pt-display-when-idle t)
+
+;; In general, this is good (except for when it gets in the way)
+(visual-line-mode)
