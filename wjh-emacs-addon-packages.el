@@ -21,6 +21,33 @@
 			   ))
 
 
+;; 17 Apr 2013 - markdown mode installed with package manager
+(autoload 'markdown-mode "markdown-mode"
+  "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+;; 18 Apr 2013 - ace-jump-mode installed with package manager
+(autoload
+  'ace-jump-mode
+  "ace-jump-mode"
+  "Emacs quick move minor mode"
+  t)
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+(autoload
+  'ace-jump-mode-pop-mark
+  "ace-jump-mode"
+  "Ace jump back:-)"
+  t)
+(eval-after-load "ace-jump-mode"
+  '(ace-jump-mode-enable-mark-sync))
+(define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
+
+;; Stop org-mode from stomping on that key binding
+(add-hook 'org-mode-hook 
+	  (function (lambda ()
+		      (local-unset-key (kbd "C-c SPC")))))
+
 ;; SVG mode line (does not work!)
 (require 'svg-mode-line-themes)
 (smt/enable)
