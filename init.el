@@ -23,7 +23,7 @@
 
 
 ;;; Code:
-(defvar wjh-local-lisp-dir (expand-file-name "~/emacs")
+(defvar wjh-local-lisp-dir (expand-file-name "~/.emacs.d")
   "*Where I keep all my elisp files.")
 (add-to-list 'load-path wjh-local-lisp-dir)
 
