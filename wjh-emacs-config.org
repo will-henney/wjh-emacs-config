@@ -1,0 +1,486 @@
+#+TITLE:     Will Henney's emacs configuration
+#+AUTHOR:    William Henney
+#+EMAIL:     will@henney.org
+#+DATE:      2011-11-04 Fri
+#+STARTUP: nofninline
+#+DESCRIPTION:
+#+KEYWORDS: emacs
+#+LANGUAGE:  en
+#+OPTIONS:   H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:   
+#+LINK_HOME: 
+#+XSLT:
+
+
+* Introduction 
+  :LOGBOOK:
+  CLOCK: [2011-11-04 Fri 23:18]--[2011-11-04 Fri 23:26] =>  0:08
+  :END:
+This is my personal emacs configuration setup. All the various =.el= files are tangled from this org-mode file. 
+
+** How to use the themes
+   :LOGBOOK:
+   CLOCK: [2011-11-06 Sun 13:40]--[2011-11-06 Sun 14:10] =>  0:30
+   :END:
++ Currently the "Custom Themes" setting is broken in that "Save Theme Settings" only saves the last theme selected, erasing all the others. 
++ To work around that, it is necessary to directly customize the variable =custom-enabled-themes= to include the list of themes to enable. For example, I currently have the following line in my =custom.el=: 
+#+begin_src elisp
+  '(custom-enabled-themes (quote (wjh-misc-appearance wjh-org-faces wjh-latex-faces wjh-org-misc wjh-redbox-cursor wombat)))
+  '(custom-safe-themes t)
+#+end_src
+However, you do have to turn them on by hand at least once first.  Otherwise, they don't get added to =custom-safe-themes=, which means that emacs hangs on start.  /Update:/ Setting =custom-safe-themes= to =t= should fix that.  
+
++ Another annoying thing is that somewhere Aquamacs sets =default-frame-alist= to have black text on a white background. So it is necessary to customize that variable to remove the =foreground-color= and =background-color= items from the alist.  Still, this seems fixed now. 
+
+
+* Custom themes
+  :LOGBOOK:
+  CLOCK: [2011-11-04 Fri 23:26]--[2011-11-05 Sat 00:05] =>  0:39
+  CLOCK: [2011-11-04 Fri 22:18]--[2011-11-04 Fri 23:18] =>  1:00
+  :END:
+
+I am currently using the =wombat= theme, which has a nice dark gray background. These are some additional modular themes, which combine nicely with =wombat=.  At least that is the idea.  They will probably also work well with any other theme that has a dark background.  I am leaving in the light-theme customizations that I had used previously.  
+
+** Template
+
+A theme called FOO is defined in a file =FOO-theme.el=, which has the following structure: 
+#+begin_src elisp
+  (deftheme FOO
+    "Comment about theme FOO")
+  (custom-theme-set-variables
+   'FOO
+   '(SYMBOL (EXPRESSION))
+   ...
+   )
+  (custom-theme-set-faces
+   'FOO
+   '(FACE (SPEC))
+   ...
+   )
+  (provide-theme 'FOO)
+#+end_src
+
+I should really make a Yasnippet snippet out of this. 
+
+** Latex faces
+   :LOGBOOK:
+   CLOCK: [2011-11-07 Mon 22:30]--[2011-11-07 Mon 23:11] =>  0:41
+   CLOCK: [2011-11-07 Mon 12:42]--[2011-11-07 Mon 13:00] =>  0:18
+   :END:
+   :PROPERTIES:
+   :tangle:   wjh-latex-faces-theme.el
+   :END:
+
++ Using Menlo, just to see if I can get used to it.  /Update:/ No, it is horrible - go back to Monaco for now
++ The faces for dark background needed quite a lot of tweaking.  Originally, they looked too garish, so I have tried to turn things down a bit.  Could still be improved though.  
+
+
+#+begin_src elisp
+  (deftheme wjh-latex-faces
+    "Make latex buffers look nice")
+  (custom-theme-set-faces
+   'wjh-latex-faces
+   '(latex-mode-default ((t (:inherit text-mode-default :height 120 :width normal :family "Monaco"))))
+   '(font-latex-sectioning-0-face ((t (:inherit font-latex-sectioning-1-face :height 1.05))))
+   '(font-latex-sectioning-1-face ((t (:inherit font-latex-sectioning-2-face :height 1.05))))
+   '(font-latex-sectioning-2-face ((t (:inherit font-latex-sectioning-3-face :height 1.05))))
+   '(font-latex-sectioning-3-face ((t (:inherit font-latex-sectioning-4-face :height 1.05))))
+   '(font-latex-sectioning-4-face ((t (:inherit font-latex-sectioning-5-face :height 1.05))))
+   '(font-latex-sectioning-5-face ((default (:inherit variable-pitch :weight bold))
+                                   (((class color) (background light)) (:foreground "IndianRed4"))
+                                   (((class color) (background dark)) (:foreground "Khaki"))
+                                   ))
+   '(font-latex-slide-title-face ((t (:inherit (variable-pitch font-latex-sectioning-5-face) :weight bold :height 1.2))))
+   '(font-latex-string-face ((default (:inherit font-lock-string-face))))
+   '(font-latex-warning-face ((default (:inherit bold))
+                              (((class color) (background light)) (:foreground "red3"))
+                              (((class color) (background dark)) (:foreground "#e5786d"))
+                              ))
+   '(font-latex-math-face (
+                             (((class color) (background dark)) (:foreground "PaleTurquoise1"))
+                             ))
+   '(tex-fold-folded-face (
+                             ;; The default grayish blue for light backgrounds is fine
+                             (((class color) (background dark)) (:foreground "MistyRose3"))
+                             ))
+   )
+  (provide-theme 'wjh-latex-faces)
+  
+#+end_src
+
+** Org faces
+   :LOGBOOK:
+   CLOCK: [2011-11-07 Mon 12:31]--[2011-11-07 Mon 12:42] =>  0:11
+   CLOCK: [2011-11-05 Sat 20:48]--[2011-11-05 Sat 21:18] =>  0:30
+   :END:
+   :PROPERTIES:
+   :tangle:   wjh-org-faces-theme.el
+   :END:
+
+The main thing that we do here is to make the faces for tables and source blocks inherit from =fixed-pitch=. This is especially necessary if you change the default text font to be varible pitch. There are advantages to this, even if you use a fixed pitch default font. In my case, I use monaco as the default, but =fixed-pitch= is set to courier, which looks more "code-y" and helps set off the source blocks. 
+
+We also make the height smaller for code blocks, tables etc.   This is because these elements are often wide and look bad when word wrap is in operation.  Making the font a tad smaller gives tham a bit more chance to fit on the screen withut wrapping. 
+
+Each =org-level-N= faces inherits from the corresponding =outline-N= face, so we change those.  The general philosophy here is that the different heading levels shouldn't have random contrasting colors since that just adds noise to the appearance of the file.  Instead,  our headings start as  variants of yellow, with a continuous change in tone from towards a grey misty color as one descends the hierarchy.  At least, that is the plan.  So far, I have only implemented the set for dark backgrounds.  
+
+#+begin_src elisp
+    (deftheme wjh-org-faces
+      "Created 2011-11-04.")
+    (custom-theme-set-faces
+     'wjh-org-faces
+     '(org-block ((t (:inherit (shadow fixed-pitch) :height 0.8))))
+     '(org-block-background ((default (:inherit fixed-pitch) :height 0.8)
+                             (((class color) (background dark)) (:background "gray18"))
+                             ) nil "This looks good with zenburn. YMMV otherwise")
+     '(org-code ((t (:inherit (shadow fixed-pitch)))))
+     '(org-formula (
+                    (((class color) (background dark)) (:foreground "LightSalmon1"))
+                    ))
+     '(org-table ((default (:inherit fixed-pitch :height 0.7))
+                  (((class color) (background light)) (:foreground "Blue4"))
+                  (((class color) (background dark)) (:foreground "PaleTurquoise1"))
+                  ))
+     '(org-date ((default (:underline t))
+                 (((class color) (background light)) (:foreground "Purple4"))
+                 (((class color) (background dark)) (:foreground "#c2a9c2"))
+                 ))
+     '(org-document-title ((default  (:weight bold))
+                           (((class color) (background light)) 
+                            (:foreground "midnight blue"))
+                           (((class color) (background dark)) 
+                            (:foreground "white"))
+                           ))
+     '(org-formula ((t (:inherit org-table :foreground "chocolate1"))))
+     '(org-meta-line ((t (:inherit font-lock-comment-face :slant italic))))
+     '(org-special-keyword ((t (:inherit font-lock-keyword-face :slant italic))))
+     ;; LemonChiffon to GhostWhite
+     '(org-level-1 ((((class color) (background dark)) (:foreground "#fffacd"))))
+     '(org-level-2 ((((class color) (background dark)) (:foreground "#fefad4"))))
+     '(org-level-3 ((((class color) (background dark)) (:foreground "#fdf9db"))))
+     '(org-level-4 ((((class color) (background dark)) (:foreground "#fcf9e2"))))
+     '(org-level-5 ((((class color) (background dark)) (:foreground "#fbf9ea"))))
+     '(org-level-6 ((((class color) (background dark)) (:foreground "#faf9f1"))))
+     '(org-level-7 ((((class color) (background dark)) (:foreground "#f9f8f8"))))
+     '(org-level-8 ((((class color) (background dark)) (:foreground "#f8f8ff"))))
+     '(org-link ((((class color) (background light)) (:foreground "gray50" :underline t :weight bold))))
+     '(org-todo ((t (:weight bold)))
+                (((class color) (background light)) (:foreground "#b93030"))
+                (((class color) (background dark)) (:foreground "DarkOrange"))
+                )
+    
+     ;; Org column
+     '(org-column-title ((((class color) (min-colors 16) (background light)) (:background "grey90" :underline t :weight bold :family "monaco"))))
+    
+     '(outline-1 ((t (:weight bold))))
+     '(outline-2 ((t (:inherit outline-1)))) 
+     '(outline-3 ((t (:inherit outline-1)))) 
+     '(outline-4 ((t (:inherit outline-1)))) 
+     '(outline-5 ((t (:inherit outline-1)))) 
+     '(outline-6 ((t (:inherit outline-1)))) 
+     '(outline-7 ((t (:inherit outline-1)))) 
+     '(outline-8 ((t (:inherit outline-1)))) 
+     )
+    (provide-theme 'wjh-org-faces)
+    
+#+end_src
+
+*** Python script for choosing a color scheme
+    :LOGBOOK:
+    CLOCK: [2011-11-10 Thu 10:06]--[2011-11-10 Thu 11:07] =>  1:01
+    CLOCK: [2011-11-09 Wed 10:32]--[2011-11-09 Wed 13:10] =>  2:38
+    :END:
+    :PROPERTIES:
+    :tangle:   no
+    :END:
+
+#+srcname: choose-org-colors.py
+#+begin_src python :tangle choose-org-colors.py
+  """
+  Interpolate eight colors between two limits
+  """
+  from grapefruit import Color
+  import numpy as np
+  import sys
+  try:
+      spec1, spec2 = sys.argv[1:3]
+      color1 = Color.NewFromHtml(spec1)
+      color2 = Color.NewFromHtml(spec2)
+  except:
+      print """
+  Usage: %s spec1 spec2
+  
+  Where spec1 and spec2 are valid HTML color specs
+  """ % (sys.argv[0])
+  
+  NCOLORS = 8
+  fracs = np.linspace(1.0, 0.0, NCOLORS)
+  colors = [color1.Blend(color2, frac) for frac in fracs]
+  
+  facespec =  "'(org-level-%i ((((class color) (background dark)) (:foreground \"%s\"))))"
+  print ";; %s to %s" % (spec1, spec2)
+  for i, c in enumerate(colors):
+      print facespec % (i+1, c.html)
+  print
+  
+#+end_src
+
+
+
+**** New color schemes 21 Apr 2013
+Now that I am using my dice glyphs, there is less need to use color to distinguish adjacent levels from one another.  As a result, I am looking for a subtler run of nice brightish colors.  What I have been using until now (lavender to goldenrod) goes too grey around level two and then too dark and browny towards the end. 
+#+begin_src sh :results output code
+  python choose-org-colors.py LightYellow PapayaWhip
+  python choose-org-colors.py LightYellow Beige
+  python choose-org-colors.py LemonChiffon GhostWhite
+#+end_SRC
+
+#+RESULTS:
+#+BEGIN_SRC emacs-lisp
+  ;; LightYellow to PapayaWhip
+  '(org-level-1 ((((class color) (background dark)) (:foreground "#ffffe0"))))
+  '(org-level-2 ((((class color) (background dark)) (:foreground "#fffdde"))))
+  '(org-level-3 ((((class color) (background dark)) (:foreground "#fffadd"))))
+  '(org-level-4 ((((class color) (background dark)) (:foreground "#fff8db"))))
+  '(org-level-5 ((((class color) (background dark)) (:foreground "#fff6da"))))
+  '(org-level-6 ((((class color) (background dark)) (:foreground "#fff4d8"))))
+  '(org-level-7 ((((class color) (background dark)) (:foreground "#fff1d7"))))
+  '(org-level-8 ((((class color) (background dark)) (:foreground "#ffefd5"))))
+  
+  ;; LightYellow to Beige
+  '(org-level-1 ((((class color) (background dark)) (:foreground "#ffffe0"))))
+  '(org-level-2 ((((class color) (background dark)) (:foreground "#fefedf"))))
+  '(org-level-3 ((((class color) (background dark)) (:foreground "#fcfcdf"))))
+  '(org-level-4 ((((class color) (background dark)) (:foreground "#fbfbde"))))
+  '(org-level-5 ((((class color) (background dark)) (:foreground "#f9f9de"))))
+  '(org-level-6 ((((class color) (background dark)) (:foreground "#f8f8dd"))))
+  '(org-level-7 ((((class color) (background dark)) (:foreground "#f6f6dd"))))
+  '(org-level-8 ((((class color) (background dark)) (:foreground "#f5f5dc"))))
+  
+  ;; LemonChiffon to GhostWhite
+  '(org-level-1 ((((class color) (background dark)) (:foreground "#fffacd"))))
+  '(org-level-2 ((((class color) (background dark)) (:foreground "#fefad4"))))
+  '(org-level-3 ((((class color) (background dark)) (:foreground "#fdf9db"))))
+  '(org-level-4 ((((class color) (background dark)) (:foreground "#fcf9e2"))))
+  '(org-level-5 ((((class color) (background dark)) (:foreground "#fbf9ea"))))
+  '(org-level-6 ((((class color) (background dark)) (:foreground "#faf9f1"))))
+  '(org-level-7 ((((class color) (background dark)) (:foreground "#f9f8f8"))))
+  '(org-level-8 ((((class color) (background dark)) (:foreground "#f8f8ff"))))
+  
+#+END_SRC
+
+**** Original runs of this script
+
+#+begin_src sh :results output code
+  python choose-org-colors.py red yellow
+  python choose-org-colors.py lavender goldenrod
+  python choose-org-colors.py blanchedalmond lightgray
+#+end_src
+
+#+results:
+#+BEGIN_SRC lisp
+;; red to yellow
+'(org-level-1 ((((class color) (background dark)) (:foreground "#ff0000"))))
+'(org-level-2 ((((class color) (background dark)) (:foreground "#ff2400"))))
+'(org-level-3 ((((class color) (background dark)) (:foreground "#ff4900"))))
+'(org-level-4 ((((class color) (background dark)) (:foreground "#ff6d00"))))
+'(org-level-5 ((((class color) (background dark)) (:foreground "#ff9200"))))
+'(org-level-6 ((((class color) (background dark)) (:foreground "#ffb600"))))
+'(org-level-7 ((((class color) (background dark)) (:foreground "#ffdb00"))))
+'(org-level-8 ((((class color) (background dark)) (:foreground "#ffff00"))))
+
+;; lavender to goldenrod
+'(org-level-1 ((((class color) (background dark)) (:foreground "#e6e6fa"))))
+'(org-level-2 ((((class color) (background dark)) (:foreground "#e4dddb"))))
+'(org-level-3 ((((class color) (background dark)) (:foreground "#e3d3bc"))))
+'(org-level-4 ((((class color) (background dark)) (:foreground "#e1ca9d"))))
+'(org-level-5 ((((class color) (background dark)) (:foreground "#dfc17d"))))
+'(org-level-6 ((((class color) (background dark)) (:foreground "#ddb85e"))))
+'(org-level-7 ((((class color) (background dark)) (:foreground "#dcae3f"))))
+'(org-level-8 ((((class color) (background dark)) (:foreground "#daa520"))))
+
+;; blanchedalmond to lightgray
+'(org-level-1 ((((class color) (background dark)) (:foreground "#ffebcd"))))
+'(org-level-2 ((((class color) (background dark)) (:foreground "#f9e8ce"))))
+'(org-level-3 ((((class color) (background dark)) (:foreground "#f2e4cf"))))
+'(org-level-4 ((((class color) (background dark)) (:foreground "#ece1d0"))))
+'(org-level-5 ((((class color) (background dark)) (:foreground "#e6ddd0"))))
+'(org-level-6 ((((class color) (background dark)) (:foreground "#e0dad1"))))
+'(org-level-7 ((((class color) (background dark)) (:foreground "#d9d6d2"))))
+'(org-level-8 ((((class color) (background dark)) (:foreground "#d3d3d3"))))
+
+#+END_SRC
+
+
+
+* One
+Text one
+** Two
+Text two
+*** Three
+Text three
+**** Four
+Text four
+***** Five
+Text five
+****** Six
+Text six
+******* Seven
+Text seven
+******** Eight
+Text eight
+
+** Redbox cursor
+   :PROPERTIES:
+   :tangle:   wjh-redbox-cursor-theme.el
+   :END:
+Use a nice red hollow box for the cursor. This is a good compromise between visibility and not getting in the way. Strangely, it is the background color that needs to be set to red (I use =OrangeRed1=). The foreground colour seems to have no effect. 
+
+In non-selected windows, I use a horizontal bar instead. 
+
+#+begin_src elisp
+  (deftheme wjh-redbox-cursor
+    "Created 2011-11-04.")
+  (custom-theme-set-variables
+   'wjh-redbox-cursor
+   '(blink-cursor-mode nil)
+   '(cursor-type (quote hollow))
+   '(cursor-in-non-selected-windows (quote hbar))
+   )
+  (custom-theme-set-faces
+   'wjh-redbox-cursor
+   '(cursor ((t (:background "OrangeRed1" :foreground "#f6f3e8"))))
+   )
+  (provide-theme 'wjh-redbox-cursor)
+  
+#+end_src
+
+** Org misc
+   :LOGBOOK:
+   CLOCK: [2011-11-07 Mon 23:11]--[2011-11-08 Tue 00:11] =>  1:00
+   - Note taken on [2011-11-06 Sun 14:03] \\
+     This is now working fine.
+   CLOCK: [2011-11-05 Sat 21:21]--[2011-11-05 Sat 21:35] =>  0:14
+   - Note taken on [2011-11-05 Sat 21:22] \\
+     Trying to get timestamps to go into LOGBOOK drawer.  Why is this not working?
+   :END:
+   :PROPERTIES:
+   :tangle:   wjh-org-misc-theme.el
+   :END:
+
+So, these customizations have nothing to do with faces.  It might be better to put them in normal configuration files, rather than a custom theme.  It isn't as if I am going to turn them on and off.  
+
+#+begin_src elisp
+  (deftheme wjh-org-misc
+    "Miscellaneous tweaks to org-mode configuration")
+  (custom-theme-set-variables
+   'wjh-org-misc
+   '(org-disputed-keys (quote (([(control tab)] . [(control shift tab)]))))
+   '(org-emphasis-alist (quote (("*" bold "<b>" "</b>") ("/" italic "<i>" "</i>") ("_" underline "<span style=\"text-decoration:underline;\">" "</span>") ("=" org-code "<code>" "</code>" verbatim) ("~" org-verbatim "<code>" "</code>" verbatim) ("@" org-warning "<b>" "</b>"))))
+   '(org-enforce-todo-dependencies t)
+   '(org-export-latex-packages-alist (quote (("" "siunitx" t))))
+   '(org-log-into-drawer t)
+   '(org-replace-disputed-keys t)
+   )
+  (provide-theme 'wjh-org-misc)
+#+end_src
+
+** Miscellaneous appearance
+   :LOGBOOK:
+   CLOCK: [2013-04-22 Mon 08:05]
+   CLOCK: [2011-11-08 Tue 11:29]--[2011-11-08 Tue 11:29] =>  0:00
+   CLOCK: [2011-11-08 Tue 10:28]--[2011-11-08 Tue 11:28] =>  1:00 
+   :END:
+   :PROPERTIES:
+   :tangle:   wjh-misc-appearance-theme.el
+   :END:
+
+
+Remove extraneous chrome and try to de-uglify buttons and highlighting and the like.  Some of this is no longer required now that I am no longer running aquamacs. 
+
++ No tab bars
++ No tool bars
++ No scroll bars
++ We /do/ want a decent interline spacing
++ We undo some of the "improvements" (ahem) that aquamacs installs by default
+  + =show=paren-mode=
+  + /CANCELLED/ =visual-line-mode= /actually, we do want this/ 
+  + =one-buffer-one-frame-mode=
++ [ ] Add colors to mode-line faces to make the fit in with emacs-powerline
+  + The problem is that the zenburn theme messes with these, giving them borders
+  + It is hard to work out in what order things are set - this is still not working quite right
+    + On the initial frame, we have a fixed-width font, but with the wrong colors and ugly boxes
+      + Calling the following code [fn:code] works to put that right.  This is now incoroprated in my init.el
+    + On subsequent frames (even without running the above snippet), the colors are right, but it has a proportional font.  Is this something to do with =default-frame-alist= and =initial-frame-alist= ?
+    + Strangely, the customization buffer for the mode-line face even appears differently, according to which frame I start it from. 
+
+#+begin_src elisp
+  (deftheme wjh-misc-appearance
+    "An attempt to de-uglify emacs")
+  (custom-theme-set-variables
+   'wjh-misc-appearance
+   '(line-spacing 2 nil nil "Most modes look better with an extra 2 pixel padding between lines")
+   '(fringe-mode (quote (4 . 0)) nil (fringe) "Fringe on left only, and half default width")
+   '(indicate-buffer-boundaries (quote ((t) (top . left) (bottom . left) (up . left) (down . left))) nil nil "Put little glyphs in the fringe to show buffer boundaries")
+   '(default-frame-alist (quote ((tool-bar-lines . 0) (vertical-scroll-bars . nil) (menu-bar-lines . 1) (internal-border-width . 0))))
+   '(tabbar-mode nil nil (tabbar) "We don't want no stinking tab bars")
+   '(show-paren-mode nil nil nil "Stop the blinking blinking")
+   '(text-mode-hook (quote (smart-spacing-mode turn-on-word-wrap)))
+   '(blink-cursor-mode nil nil nil "More blinking blinking - kill it")
+   '(one-buffer-one-frame-mode nil nil nil "Sigh")
+   '(size-indication-mode t nil nil "Gives buffer size in modeline after the % indicator")
+   )
+  (custom-theme-set-faces
+   'wjh-misc-appearance
+   '(echo-area ((t (:family "Monaco"))) nil "Make sure we don't use a proportional font here")
+   '(custom-button ((default (:box 1))
+                    (((class color) (background dark)) (:background "lightgrey" :foreground "black"))
+                    ) nil "Begone horrible raised boxes!")
+   '(custom-button-mouse ((t (:inherit custom-button :weight bold))) nil "Just embolden")
+   '(custom-button-pressed ((t (:inherit custom-button :underline t :weight bold))) nil "Then underline too")
+   '(mode-line ((t (:box nil :background "azure3" :foreground "black"))) nil "For powerline")
+   '(mode-line-inactive ((t (:box nil))) nil "For powerline")
+   )
+  (provide-theme 'wjh-misc-appearance)
+#+end_src
+
+
+* Packages
+** Org mode
+
+* Sample org material (level 1)
+** level 2
+*** level 3
+**** level 4
+***** level 5
+****** level 6
+******* level 7 
+******** level 8
+********* level 9 (same as 1)
+| ! | Sample | Table | Extra |
+|---+--------+-------+-------|
+| * | data   | more  | more  |
+| * | 0.000  | 1.111 | 1.111 |
+|---+--------+-------+-------|
+    #+TBLFM: $4=$-1
+
+* Footnotes
+
+[fn:code] 
+#+BEGIN_SRC emacs-lisp :tangle no :results silent
+  (set-face-attribute 'mode-line nil
+                      :background "azure3"
+                      :foreground "<black"
+                      :height 1.0
+                      :box nil)
+  (set-face-attribute 'mode-line-inactive nil
+                      :height 1.0
+                      :box nil)
+#+END_SRC
+
+
+
+
