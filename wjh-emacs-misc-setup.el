@@ -118,7 +118,7 @@ This will actually use spotlight instead of locate, so it only works on OS X"
 
 ;; Turn on word wrapping in text and derived modes
 (add-hook 'text-mode-hook '(lambda () 
-			     (visual-line-mode 1)
+			     (visual-line-mode)
 			     ))
 
 (add-hook 'LaTeX-mode-hook '(lambda () 
@@ -133,5 +133,3 @@ This will actually use spotlight instead of locate, so it only works on OS X"
 (help-at-pt-set-timer) 
 (setq help-at-pt-display-when-idle t)
 
-;; In general, this is good (except for when it gets in the way)
-(visual-line-mode)
