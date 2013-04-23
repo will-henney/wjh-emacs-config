@@ -8,6 +8,8 @@
 (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/org")
 
 
+
+
 ;; These need to get set before org is loaded
 ;; Add support for @ to give beamer alert font
 (setq org-emphasis-alist (quote (("*" bold "<b>" "</b>")
@@ -15,13 +17,11 @@
                                 ("_" underline "<span style=\"text-decoration:underline;\">" "</span>")
                                 ("=" org-code "<code>" "</code>" verbatim)
                                 ("~" org-verbatim "<code>" "</code>" verbatim)
-                                ("+" (:strike-through t) "<del>" "</del>")
                                 ("@" org-warning "<b>" "</b>")))
      org-export-latex-emphasis-alist (quote
                                       (("*" "\\textbf{%s}" nil)
                                        ("/" "\\emph{%s}" nil)
                                        ("_" "\\underline{%s}" nil)
-                                       ("+" "\\st{%s}" nil)
                                        ("=" "\\verb" nil)
                                        ("~" "\\verb" t)
                                        ("@" "\\alert{%s}" nil)))
@@ -59,6 +59,9 @@
 
 ;; this now seems to be needed 03 Sep 2007
 (require 'org)
+
+;; 18 Apr 2013 - note that some of my org config is done via customize
+;; See custom-nonaquamacs.el
 
 ;; 29 Nov 2010 - turn on fontification of source blocks
 (setq org-src-fontify-natively t)
