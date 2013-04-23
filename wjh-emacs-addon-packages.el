@@ -6,6 +6,19 @@
 
 (add-to-list 'load-path (concat wjh-local-lisp-dir "/lisp"))
 
+;; 18 Apr 2013 - try fancy bullets
+(require 'org-bullets)
+;; http://nadeausoftware.com/articles/2007/11/latency_friendly_customized_bullets_using_unicode_characters
+;; Reserve list: 
+;; "✸" "◰" "►" "★" "⬓" "☀" "☛" "☼" "⚛" "☯" "⬡"
+;; "➽" "⚀" "⚁" "⚂" "⚃" "⚄" "⚅"
+;; ◐ ◑ ◒ ◓
+;; ♣ ♥ ♦ ♠ ♧ ♡ ♢ ♤
+(add-hook 'org-mode-hook (lambda () 
+			   (setq org-bullets-bullet-list
+				 '("⚀" "⚁" "⚂" "⚃" "⚄" "⚅" "♧" "♡" "♢" "♤" "♣" "♥" "♦" "♠"))
+			   (org-bullets-mode 1)
+			   ))
 
 
 ;; SVG mode line (does not work!)
