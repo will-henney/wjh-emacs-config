@@ -93,6 +93,11 @@
 (global-set-key (kbd "<S-down-mouse-1>") 'ignore) 
 (global-set-key (kbd "<S-mouse-1>") 'mouse-save-then-kill)
 
+;; WJH 23 Apr 2013 recentf-open-files is too useful not to have a
+;; binding
+(global-set-key (kbd "C-c F") 'recentf-open-files)
+
+
 ;; WJH 26 Jul 2012
 ;; Use spotlight instead of locate
 (defun locate-spotlight-make-command-line (search-string)
