@@ -384,7 +384,9 @@
 
 ;; Eshell prompt configuration 23 Apr 2013 Initially based on code at
 ;; http://www.emacswiki.org/emacs/EshellPrompt but I have changed the
-;; colors and split out the last element of the full path
+;; colors and split out the last element of the full path.  I also use
+;; the rear-nonsticky property to make sure the prompt color does not
+;; bleed into the rest of the command line.
 (setq eshell-prompt-function 
       (lambda nil
 	(concat
@@ -393,6 +395,8 @@
 		       (split-string 
 			(expand-file-name (eshell/pwd)) "/")))
 		     'face `(:foreground "gray50"))
-	 (propertize " $ " 'face `(:foreground "orange")))))
+	 (propertize " $ " 
+		     'face `(:foreground "orange" :weight 'bold) 
+		     'rear-nonsticky t))))
 (setq eshell-highlight-prompt nil)
 
