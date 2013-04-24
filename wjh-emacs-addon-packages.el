@@ -400,3 +400,14 @@
 		     'rear-nonsticky t))))
 (setq eshell-highlight-prompt nil)
 
+;; 23 Apr 2013 - Try out shell switcher
+;; See https://github.com/DamienCassou/shell-switcher
+(require 'shell-switcher)
+(setq shell-switcher-mode t)
+(define-key shell-switcher-mode-map (kbd "C-'")
+  'shell-switcher-switch-buffer)
+(define-key shell-switcher-mode-map (kbd "C-x 4 '")
+  'shell-switcher-switch-buffer-other-window)
+(define-key shell-switcher-mode-map (kbd "C-M-'")
+  'shell-switcher-new-shell)
+(add-hook 'eshell-mode-hook 'shell-switcher-manually-register-shell)
