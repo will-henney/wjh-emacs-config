@@ -380,3 +380,19 @@
 (ido-mode)
 (setq ido-file-extensions-order 
       '(".org" ".tex" ".py" ".f90" ".xml" ".el"))
+
+
+;; Eshell prompt configuration 23 Apr 2013 Initially based on code at
+;; http://www.emacswiki.org/emacs/EshellPrompt but I have changed the
+;; colors and split out the last element of the full path
+(setq eshell-prompt-function 
+      (lambda nil
+	(concat
+	 (propertize (car 
+		      (last 
+		       (split-string 
+			(expand-file-name (eshell/pwd)) "/")))
+		     'face `(:foreground "gray50"))
+	 (propertize " $ " 'face `(:foreground "orange")))))
+(setq eshell-highlight-prompt nil)
+
