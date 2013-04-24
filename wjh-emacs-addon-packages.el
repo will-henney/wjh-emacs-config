@@ -411,3 +411,11 @@
 (define-key shell-switcher-mode-map (kbd "C-M-'")
   'shell-switcher-new-shell)
 (add-hook 'eshell-mode-hook 'shell-switcher-manually-register-shell)
+
+;; 24 Apr 2013 - Try out keyfreq package, which compiles statistics on
+;; use of keys.  To see them, use "M-x keyfreq-show".  See
+;; https://github.com/dacap/keyfreq
+(require 'keyfreq)
+(keyfreq-mode 1)
+(keyfreq-autosave-mode 1)
+
