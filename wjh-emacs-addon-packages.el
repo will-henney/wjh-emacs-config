@@ -414,8 +414,39 @@
 
 ;; 24 Apr 2013 - Try out keyfreq package, which compiles statistics on
 ;; use of keys.  To see them, use "M-x keyfreq-show".  See
-;; https://github.com/dacap/keyfreq
+;; https://github.com/dacap/keyfreq and Xah Lee's page at
+;; http://ergoemacs.org/emacs/command-frequency.html, which has a
+;; python script for analysing the results
 (require 'keyfreq)
 (keyfreq-mode 1)
 (keyfreq-autosave-mode 1)
+;; 24 Apr 2013 - Try out git-gutter - See
+;; https://github.com/syohex/emacs-git-gutter This adds marks to the
+;; gutter indicating diff status of source lines with respect to the
+;; last commit
+(require 'git-gutter)
+;; If you enable global minor mode
+(global-git-gutter-mode t)
+;; If you enable git-gutter-mode for some modes
+;; (add-hook 'ruby-mode-hook 'git-gutter-mode)
+;; WJH 24 Apr 2013 - I am changing all the key bindings to use "C-c g" prefix
+(global-set-key (kbd "C-c gg") 'git-gutter:toggle)
+(global-set-key (kbd "C-c g=") 'git-gutter:popup-hunk)
+;; Jump to next/previous hunk
+(global-set-key (kbd "C-c gp") 'git-gutter:previous-hunk)
+(global-set-key (kbd "C-c gn") 'git-gutter:next-hunk)
+;; Revert current hunk
+(global-set-key (kbd "C-c gr") 'git-gutter:revert-hunk)
+;; Further git-gutter config
+(setq git-gutter:lighter " GG")		; reduce modeline clutter
+;; WJH 24 Apr 2013 - more peaceful, subdued colors
+(set-face-foreground 'git-gutter:modified "orange3")
+(set-face-foreground 'git-gutter:added "DarkSeaGreen")
+(set-face-foreground 'git-gutter:deleted "orange3")
+(setq git-gutter:window-width nil)
+;; WJH 24 Apr 2013 - dots are perfectly fine
+(setq git-gutter:modified-sign ".")
+(setq git-gutter:added-sign ".")
+(setq git-gutter:deleted-sign "-")
+
 
