@@ -404,11 +404,13 @@
 ;; See https://github.com/DamienCassou/shell-switcher
 (require 'shell-switcher)
 (setq shell-switcher-mode t)
-(define-key shell-switcher-mode-map (kbd "C-'")
+;; WJH 25 Apr 2013 - use the Cmd key here since C-' is already mapped
+;; in many modes
+(define-key shell-switcher-mode-map (kbd "s-'")
   'shell-switcher-switch-buffer)
 (define-key shell-switcher-mode-map (kbd "C-x 4 '")
   'shell-switcher-switch-buffer-other-window)
-(define-key shell-switcher-mode-map (kbd "C-M-'")
+(define-key shell-switcher-mode-map (kbd "s-M-'")
   'shell-switcher-new-shell)
 (add-hook 'eshell-mode-hook 'shell-switcher-manually-register-shell)
 
