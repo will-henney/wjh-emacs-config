@@ -75,6 +75,7 @@
  '(org-clock-into-drawer "LOGBOOK")
  '(org-display-internal-link-with-indirect-buffer t)
  '(org-emphasis-alist (quote (("*" bold "<b>" "</b>") ("/" italic "<i>" "</i>") ("_" underline "<span style=\"text-decoration:underline;\">" "</span>") ("=" org-code "<code>" "</code>" verbatim) ("~" org-verbatim "<code>" "</code>" verbatim) ("@" org-warning "<b>" "</b>"))))
+ '(org-export-babel-evaluate nil)
  '(org-id-link-to-org-use-id (quote create-if-interactive-and-no-custom-id))
  '(org-log-into-drawer t)
  '(org-modules (quote (org-bbdb org-bibtex org-docview org-gnus org-id org-info org-inlinetask org-irc org-mhe org-protocol org-rmail)))
