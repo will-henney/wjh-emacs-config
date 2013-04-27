@@ -87,6 +87,8 @@
 
 ;; Trying something new 10 Mar 2013: https://github.com/jorgenschaefer/elpy/wiki
 (load "wjh-python-elpy-config")
+;; And also try out emacs ipython notebook
+(load "wjh-python-ein-config")
 
 
 ;; 22 Sep 2011 - also put org early on
