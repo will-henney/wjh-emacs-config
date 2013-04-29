@@ -27,10 +27,12 @@
 (global-set-key "\C-cR" 'wjh-unsafe-revert-buffer)
 
 ;; We now have an entire C-c t keymap for toggling various things. 
-;; Most are defined in wjh-org-config.el, but this one is more general.
+;; Most are defined in wjh-org-config.el, but these ones are more general.
 ;;
 ;; For those pesky cloudy output files
 (global-set-key "\C-ctt" 'toggle-truncate-lines)
+;; Turning this on automatically never seems to work
+(global-set-key "\C-ctv" 'visual-line-mode)
 
 
 
