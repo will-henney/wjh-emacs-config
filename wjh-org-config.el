@@ -289,3 +289,9 @@
 (wjh-add-to-load-path "org-weights")
 (autoload 'org-weights-mode "org-weights" nil t)
 (define-key org-mode-map "\C-cow" 'org-weights-mode)
+
+;; 29 Apr 2013 - try out org-mac-link-grabber
+(require 'org-mac-link-grabber)
+(add-hook 'org-mode-hook (lambda ()
+  (define-key org-mode-map (kbd "C-c gl") 'omlg-grab-link)))
+
