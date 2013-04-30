@@ -48,28 +48,33 @@
 	  (function (lambda ()
 		      (local-unset-key (kbd "C-c SPC")))))
 
-;; SVG mode line (does not work!)
+;; SVG mode line (works on new laptop - 30 Apr 2013 - yeah!)
 (require 'svg-mode-line-themes)
 (smt/enable)
-(smt/set-theme 'black-crystal)
+(smt/set-theme 'default)
 (set-face-attribute 'mode-line nil :box nil)
 (set-face-attribute 'mode-line-inactive nil :box nil)
 
 ;; 31 Aug 2012: Magit is magic!
 (wjh-add-to-load-path "magit")
+;; 30 Apr 2013 - note that on iris we use magit from package manager
 (require 'magit)
 (require 'magit-svn)
 (define-key global-map "\C-ci" 'magit-status)
 
+;; 30 Apr 2013 - not using powerline any more, since we are using svg-mode-line-themes
+;;
 ;; 09 Sep 2012 make the modeline fancier
-(wjh-add-to-load-path "emacs-powerline")
-;; This is using my own patch to poweline.el to work with bigger fonts
-(setq powerline-arrow-shape 'arrow20)
-(require 'powerline)
+;; (wjh-add-to-load-path "emacs-powerline")
+;; ;; This is using my own patch to poweline.el to work with bigger fonts
+;; (setq powerline-arrow-shape 'arrow20)
+;; (require 'powerline)
+
 ;; Note that the mode line face settings have been moved to the wjh-misc-appearance theme
 ;; because they need to be loaded after the zenburn theme
 ;; Except that still does not work for the firat frame :(
 ;;
+
 (set-face-attribute 'mode-line nil
                     :background "azure3"
 		    :foreground "black"
