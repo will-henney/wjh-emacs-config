@@ -1,3 +1,6 @@
+*~
+url/
+auto-save-list/
 lisp/
 etc/
 info/
@@ -17,3 +20,5 @@ predictive/
 /plugins/yasnippet
 /tramp
 /zenburn-theme.el
+/eshell/history
+/eshell/lastdir

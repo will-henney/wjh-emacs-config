@@ -50,8 +50,9 @@
 
 ;; SVG mode line (works on new laptop - 30 Apr 2013 - yeah!)
 (require 'svg-mode-line-themes)
+(require 'wjh-svg-mode-line-themes)
 (smt/enable)
-(smt/set-theme 'default)
+(smt/set-theme 'wjh)
 (set-face-attribute 'mode-line nil :box nil)
 (set-face-attribute 'mode-line-inactive nil :box nil)
 
