@@ -453,6 +453,9 @@
 (set-face-foreground 'git-gutter:modified "orange3")
 (set-face-foreground 'git-gutter:added "DarkSeaGreen")
 (set-face-foreground 'git-gutter:deleted "orange3")
+(set-face-inverse-video-p 'git-gutter:modified nil)
+(set-face-inverse-video-p 'git-gutter:added nil)
+(set-face-inverse-video-p 'git-gutter:deleted nil)
 (setq git-gutter:window-width nil)
 ;; WJH 24 Apr 2013 - dots are perfectly fine
 (setq git-gutter:modified-sign ".")
