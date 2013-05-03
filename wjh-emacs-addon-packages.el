@@ -103,7 +103,7 @@
 ;; (load "wjh-org-config-debug")
 
 ;; 06 Jan 2013 - try a new mailer
-(load "wjh-mu4e-config")
+;; (load "wjh-mu4e-config")
 
 
 ;; Extras for LaTeX editing 29 Mar 2013
@@ -228,8 +228,8 @@
 
 ;; emacs-nav seems a more lightweight version of speedbar 
 ;; Initial trying-out 02 Feb 2010
-(wjh-add-to-load-path "emacs-nav")
-(require 'nav)
+;; (wjh-add-to-load-path "emacs-nav")
+;; (require 'nav)
 
 ;; ;; Big Brother Database
 ;; (wjh-add-to-load-path "bbdb")
@@ -266,8 +266,8 @@
 ;; (add-hook 'latex-mode-hook 'talcum-mode)
 
 ;; W3M
-(wjh-add-to-load-path "emacs-w3m")
-(require 'w3m-load)
+;; (wjh-add-to-load-path "emacs-w3m")
+;; (require 'w3m-load)
 
 ;; NXML mode
 ;; (wjh-add-to-load-path "nxml")

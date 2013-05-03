@@ -1,4 +1,4 @@
 (elpy-enable)
-(setq python-check-command "python-check.sh")
+(setq python-check-command "pyflakes")
 (elpy-use-ipython)
 (elpy-clean-modeline)

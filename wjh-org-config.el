@@ -76,7 +76,8 @@
             (cons (concat "\\[\\[file:\\(~?" iimage-mode-image-filename-regex
                           "\\)\\]")  1))
 
-(require 'htmlize)
+
+;; (require 'htmlize)
 
 ;; ;; setup for integration between remember and org-mode
 ;; (org-remember-insinuate)
@@ -275,20 +276,21 @@
 (setq org-indent-mode-turns-on-hiding-stars nil)
 (setq org-indent-indentation-per-level 1)
 
-;; 29 May 2011 - Integration of Org mode with GitHub Issues
-(wjh-add-to-load-path "org-ghi")
-(require 'org-ghi)
+;; ;; 29 May 2011 - Integration of Org mode with GitHub Issues
+;; 30 May 2013  - dead project
+;; (wjh-add-to-load-path "org-ghi")
+;; (require 'org-ghi)
 
 ;; 29 May 2011 - Presentations in Emacs -- based on Org-mode 
 ;; https://github.com/eschulte/epresent
-(wjh-add-to-load-path "epresent")
-(require 'epresent)
+;; (wjh-add-to-load-path "epresent")
+;; (require 'epresent)
 
-;; 20 Feb 2013 - Show how many subheadings
-;; https://github.com/pinard/org-weights
-(wjh-add-to-load-path "org-weights")
-(autoload 'org-weights-mode "org-weights" nil t)
-(define-key org-mode-map "\C-cow" 'org-weights-mode)
+;; ;; 20 Feb 2013 - Show how many subheadings
+;; ;; https://github.com/pinard/org-weights
+;; (wjh-add-to-load-path "org-weights")
+;; (autoload 'org-weights-mode "org-weights" nil t)
+;; (define-key org-mode-map "\C-cow" 'org-weights-mode)
 
 ;; 29 Apr 2013 - try out org-mac-link-grabber
 (require 'org-mac-link-grabber)
