@@ -123,7 +123,7 @@ This will actually use spotlight instead of locate, so it only works on OS X"
 
 ;; Turn on word wrapping in text and derived modes
 (add-hook 'text-mode-hook '(lambda () 
-			     (visual-line-mode)
+			     (turn-on-visual-line-mode)
 			     ))
 
 (add-hook 'LaTeX-mode-hook '(lambda () 
