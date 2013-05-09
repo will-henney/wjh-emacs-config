@@ -89,6 +89,7 @@
  '(org-pretty-entities t)
  '(org-startup-align-all-tables t)
  '(org-startup-indented t)
+ '(pinboard-url "http://feeds.pinboard.in/json/u:deprecated/?count=10")
  '(recentf-mode t)
  '(safe-local-variable-values (quote ((org-use-property-inheritance . t) (system-time-locale . "en_GB.ISO8859-1"))))
  '(text-mode-hook nil)

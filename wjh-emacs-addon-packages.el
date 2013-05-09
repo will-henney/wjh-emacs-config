@@ -463,3 +463,23 @@
 (setq git-gutter:deleted-sign "-")
 
 
+;; 09 May 2013 - Try Nic Ferrier's pinboard.el
+;;
+;; Installed via package-manager.  Note that it has dependencies on
+;; other packages: web, creole-mode, kv, which have to be installed
+;; too (this is not automatic - why not?).  Also, it seems to be
+;; missing an explicit load or require of kv.
+(require 'kv)				
+(require 'pinboard)
+;; To use, first "M-x customize-group pinboard" to set user url. 
+;; Then "M-x pinboard-latest" to get (default 10) latest posts. 
+
+;; 09 May 2013 - Try out undo-tree - a better version of undo
+;;
+;; Installed via package-manager. 
+(require 'undo-tree)
+(global-undo-tree-mode)
+;; Basic Usage: 
+;; + "C-/" undo
+;; + "C-?" redo
+;; + "C-x u" visualize (use arrows to navigate tree)
