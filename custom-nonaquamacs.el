@@ -70,6 +70,7 @@
  '(debug-on-error t)
  '(default-input-method "spanish-prefix")
  '(diary-file "~/.emacs.d/diary")
+ '(dired-details-hidden-string "•")
  '(line-spacing 4)
  '(mac-command-modifier (quote super))
  '(mac-option-modifier (quote meta))

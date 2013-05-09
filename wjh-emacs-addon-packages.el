@@ -483,3 +483,9 @@
 ;; + "C-/" undo
 ;; + "C-?" redo
 ;; + "C-x u" visualize (use arrows to navigate tree)
+
+
+;; 09 May 2013 - dired-details
+;; Toggle with "(" and ")"
+(require 'dired-details)
+(dired-details-install)
