@@ -6,6 +6,27 @@
 
 (add-to-list 'load-path (concat wjh-local-lisp-dir "/lisp"))
 
+
+;; 12 Oct 2013 - try latex-extra
+(eval-after-load 'latex '(latex/setup-keybinds))
+
+;; 12 Oct 2013 - try projectile
+(projectile-global-mode)
+(setq projectile-enable-caching t)
+(setq projectile-switch-project-action 'projectile-dired)
+(define-key projectile-mode-map [?\s-d] 'projectile-find-dir)
+(define-key projectile-mode-map [?\s-p] 'projectile-switch-project)
+(define-key projectile-mode-map [?\s-f] 'projectile-find-file)
+(define-key projectile-mode-map [?\s-g] 'projectile-grep)
+
+;; projectile recommends use of flx-ido
+(require 'flx-ido)
+(ido-mode 1)
+(ido-everywhere 1)
+(flx-ido-mode 1)
+;; disable ido faces to see flx highlights.
+(setq ido-use-faces nil)
+
 ;; 18 Apr 2013 - try fancy bullets
 (require 'org-bullets)
 ;; http://nadeausoftware.com/articles/2007/11/latency_friendly_customized_bullets_using_unicode_characters
