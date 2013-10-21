@@ -1,5 +1,9 @@
 ;; Other stuff
 
+;; 07 Jun 2013 switch to variable pich for text modes
+(add-hook 'text-mode-hook 'variable-pitch-mode)
+;; This requires some finessing of org-mode tables etc
+
 ;; WJH 14 May 2010 - these are default in aquamacs anyhow
 ;; ;; Fontify unconditionally
 ;; (global-font-lock-mode t)

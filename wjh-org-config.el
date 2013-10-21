@@ -9,6 +9,25 @@
 
 
 
+;; Make sure that certain things are fixed pitch in org mode
+(defun my-adjoin-to-list-or-symbol (element list-or-symbol)
+  (let ((list (if (not (listp list-or-symbol))
+                  (list list-or-symbol)
+                list-or-symbol)))
+    (require 'cl-lib)
+    (cl-adjoin element list)))
+(eval-after-load "org"
+  '(mapc
+    (lambda (face)
+      (set-face-attribute
+       face nil
+       :inherit
+       (my-adjoin-to-list-or-symbol
+        'fixed-pitch
+        (face-attribute face :inherit))))
+    (list 'org-code 'org-block 'org-table 'org-block-background)))
+
+
 
 ;; These need to get set before org is loaded
 ;; Add support for @ to give beamer alert font
@@ -297,3 +316,7 @@
 (add-hook 'org-mode-hook (lambda ()
   (define-key org-mode-map (kbd "C-c gl") 'omlg-grab-link)))
 
+;; 13 Oct 2013 - no, I didn't like this
+;; ;; 12 Aug 2013 - try out Org-Trello integration
+;; ;; see http://ardumont.github.io/org-trello/
+;; (require 'org-trello)
