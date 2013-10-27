@@ -1,5 +1,21 @@
 ;; Other stuff
 
+;; 26 Oct 2013 - tweak scrolling behavior
+;; Copied from http://zeekat.nl/articles/making-emacs-work-for-me.html
+(setq redisplay-dont-pause t
+      scroll-margin 1
+      scroll-step 1
+      scroll-conservatively 10000
+      scroll-preserve-screen-position 1)
+
+;; 26 Oct 2013 - autocomplete
+(require 'fuzzy)
+(require 'auto-complete)
+(setq ac-auto-show-menu t
+      ac-quick-help-delay 0.5
+      ac-use-fuzzy t)
+(global-auto-complete-mode +1)
+
 ;; 07 Jun 2013 switch to variable pich for text modes
 (add-hook 'text-mode-hook 'variable-pitch-mode)
 ;; This requires some finessing of org-mode tables etc
