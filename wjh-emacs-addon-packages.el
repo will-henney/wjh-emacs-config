@@ -7,6 +7,11 @@
 (add-to-list 'load-path (concat wjh-local-lisp-dir "/lisp"))
 
 
+;; 26 Oct 2013 - Try out smart-mode-line
+(require 'smart-mode-line)
+(if after-init-time (sml/setup)
+  (add-hook 'after-init-hook 'sml/setup))
+
 ;; 12 Oct 2013 - try latex-extra
 (eval-after-load 'latex '(latex/setup-keybinds))
 
@@ -70,12 +75,12 @@
 		      (local-unset-key (kbd "C-c SPC")))))
 
 ;; SVG mode line (works on new laptop - 30 Apr 2013 - yeah!)
-(require 'svg-mode-line-themes)
-(require 'wjh-svg-mode-line-themes)
-(smt/enable)
-(smt/set-theme 'wjh)
-(set-face-attribute 'mode-line nil :box nil)
-(set-face-attribute 'mode-line-inactive nil :box nil)
+;; (require 'svg-mode-line-themes)
+;; (require 'wjh-svg-mode-line-themes)
+;; (smt/enable)
+;; (smt/set-theme 'wjh)
+;; (set-face-attribute 'mode-line nil :box nil)
+;; (set-face-attribute 'mode-line-inactive nil :box nil)
 
 ;; 31 Aug 2012: Magit is magic!
 (wjh-add-to-load-path "magit")
