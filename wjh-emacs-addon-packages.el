@@ -6,6 +6,16 @@
 
 (add-to-list 'load-path (concat wjh-local-lisp-dir "/lisp"))
 
+;; 03 Nov 2013 - try out smartparens
+(require 'smartparens-config)
+(load "wjh-smartparens-config")
+
+;; 03 Nov 2013 - try out smartscan
+;; (why does everything have to be smart these days?!)
+;; This is sort of like occur or isearch, but different
+;; M-n or M-p just jump to next or prev occurence of the word under point
+;; Just like that, no fuss, no fancy UI or highlighting
+(global-smartscan-mode 1)
 
 ;; 26 Oct 2013 - Try out smart-mode-line
 (require 'smart-mode-line)
