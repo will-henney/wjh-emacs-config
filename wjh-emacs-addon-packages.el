@@ -6,6 +6,57 @@
 
 (add-to-list 'load-path (concat wjh-local-lisp-dir "/lisp"))
 
+;; 04 Nov 2013 - persistent scratch buffer
+(require 'persistent-scratch)
+
+;; 04 Nov 2013 - try out guide key
+(require 'guide-key)
+;; (setq guide-key/guide-key-sequence '("C-x r" "C-x 4"))
+(guide-key-mode 1)  ; Enable guide-key-mode
+(setq guide-key/guide-key-sequence '("C-x" "C-c"))
+(setq guide-key/recursive-key-sequence-flag t)
+(setq guide-key/popup-window-position 'bottom)
+(setq guide-key/polling-time 2.0)
+(defun guide-key/my-hook-function-for-org-mode ()
+  (guide-key/add-local-guide-key-sequence "C-c")
+  (guide-key/add-local-guide-key-sequence "C-c C-x")
+  (guide-key/add-local-highlight-command-regexp "org-"))
+(add-hook 'org-mode-hook 'guide-key/my-hook-function-for-org-mode)
+
+;; 04 Nov 2013 - try out google-this
+(require 'google-this)
+(google-this-mode 1)
+(global-set-key (kbd "C-x g") 'google-this-mode-submap)
+;; To start a blank search, do google-search ("C-c / RET" or "C-x g
+;; RET"). If you want more control of what "under point" means for the
+;; google-this command, there are the google-word, google-symbol,
+;; google-line and google-region functions, bound as w, s, l and r,
+;; respectively. They all do a search for what's under point.
+
+;; If the google-wrap-in-quotes variable is t, than searches are
+;; enclosed by double quotes (default is NOT). If a prefix argument is
+;; given to any of the functions, invert the effect of
+;; google-wrap-in-quotes.
+
+;; There is also a google-error (C-c / e) function. It checks the
+;; current error in the compilation buffer, tries to do some parsing
+;; (to remove file name, line number, etc), and googles it. It's still
+;; experimental, and has only really been tested with gcc error
+;; reports.
+
+;; 04 Nov 2013 - try out anchored transpose, for swapping two regions around a static part
+(global-set-key [?\C-x ?t] 'anchored-transpose)
+(autoload 'anchored-transpose "anchored-transpose" nil t)
+;; Test of anchored transpose: 
+;;
+;; FROM: I want this phrase but not that word.
+;; TO: I want that word but not this phrase.
+;;
+;; 1. Select "this phrase but not that word"
+;; 2. Type "C-x t"
+;; 3. Select "but not" as anchor
+;; 4. Type "C-x t" again
+
 ;; 03 Nov 2013 - try out smartparens
 (require 'smartparens-config)
 (load "wjh-smartparens-config")
