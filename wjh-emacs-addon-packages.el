@@ -151,6 +151,9 @@
 (define-key global-map "\C-ci" 'magit-status)
 (set-variable 'magit-emacsclient-executable "/usr/local/Cellar/emacs-mac/emacs-24.3-mac-4.3/bin/emacsclient")
 
+;; 06 Nov 2013 - try this
+(add-hook 'git-commit-mode-hook 'git-commit-training-wheels-mode)
+
 ;; 30 Apr 2013 - not using powerline any more, since we are using svg-mode-line-themes
 ;;
 ;; 09 Sep 2012 make the modeline fancier
