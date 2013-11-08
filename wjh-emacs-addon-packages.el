@@ -10,13 +10,19 @@
 (require 'persistent-scratch)
 
 ;; 04 Nov 2013 - try out guide key
+(wjh-add-to-load-path "guide-key") ;; try and get my version
 (require 'guide-key)
 ;; (setq guide-key/guide-key-sequence '("C-x r" "C-x 4"))
 (guide-key-mode 1)  ; Enable guide-key-mode
 (setq guide-key/guide-key-sequence '("C-x" "C-c"))
 (setq guide-key/recursive-key-sequence-flag t)
 (setq guide-key/popup-window-position 'bottom)
-(setq guide-key/polling-time 2.0)
+;; (setq guide-key/idle-delay 1.0)
+;; (add-hook 'guide-key/popup-buffer-hook 
+;; 	  (lambda () 
+;; 	    (setq mode-line-format nil)
+;; 	    ;; (text-scale-set -2)
+;; 	    ))
 (defun guide-key/my-hook-function-for-org-mode ()
   (guide-key/add-local-guide-key-sequence "C-c")
   (guide-key/add-local-guide-key-sequence "C-c C-x")
@@ -498,6 +504,11 @@
 		     'face `(:foreground "orange" :weight 'bold) 
 		     'rear-nonsticky t))))
 (setq eshell-highlight-prompt nil)
+
+;; Other eshell customization, based on the "Mastering Eshell" tutorial 
+(require 'em-smart)
+(require 'em-rebind)
+
 
 ;; 23 Apr 2013 - Try out shell switcher
 ;; See https://github.com/DamienCassou/shell-switcher

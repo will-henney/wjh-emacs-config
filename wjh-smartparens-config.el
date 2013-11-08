@@ -27,9 +27,12 @@
 (define-key sp-keymap (kbd "C-M-k") 'sp-kill-sexp)
 (define-key sp-keymap (kbd "C-M-w") 'sp-copy-sexp)
 
-(define-key sp-keymap (kbd "M-<delete>") 'sp-unwrap-sexp)
-(define-key sp-keymap (kbd "M-<backspace>") 'sp-backward-unwrap-sexp)
+;; WJH 08 Nov 2013 - too much conflict with muscle memory if I let these ones stand!
+;; (define-key sp-keymap (kbd "M-<delete>") 'sp-unwrap-sexp)
+;; (define-key sp-keymap (kbd "M-<backspace>") 'sp-backward-unwrap-sexp)
 
+;; WJH 08 Nov 2013 - Wow! These are really useful
+;; Although the names are a bit gross
 (define-key sp-keymap (kbd "C-<right>") 'sp-forward-slurp-sexp)
 (define-key sp-keymap (kbd "C-<left>") 'sp-forward-barf-sexp)
 (define-key sp-keymap (kbd "C-M-<left>") 'sp-backward-slurp-sexp)
@@ -40,9 +43,14 @@
 (define-key sp-keymap (kbd "C-M-<backspace>") 'sp-splice-sexp-killing-backward)
 (define-key sp-keymap (kbd "C-S-<backspace>") 'sp-splice-sexp-killing-around)
 
+
+;; WJH 08 Nov 2013 - Modify these bindings somewhat.  Add shifted
+;; versions since C-[ can't be used (it means ESC).  Note that this
+;; stomps on the binding of abort-recursive-edit, but never mind
 (define-key sp-keymap (kbd "C-]") 'sp-select-next-thing-exchange)
-(define-key sp-keymap (kbd "C-<left_bracket>") 'sp-select-previous-thing)
+(define-key sp-keymap (kbd "C-{") 'sp-select-previous-thing)
 (define-key sp-keymap (kbd "C-M-]") 'sp-select-next-thing)
+(define-key sp-keymap (kbd "C-}") 'sp-select-next-thing)
 
 (define-key sp-keymap (kbd "M-F") 'sp-forward-symbol)
 (define-key sp-keymap (kbd "M-B") 'sp-backward-symbol)
@@ -71,12 +79,14 @@
 
 ;;; tex-mode latex-mode
 (sp-with-modes '(tex-mode plain-tex-mode latex-mode)
-  (sp-local-tag "i" "1d5f8e69396c521f645375107197ea4dfbc7b792quot;<" "1d5f8e69396c521f645375107197ea4dfbc7b792quot;>"))
+  (sp-local-tag "i" "\"<" "\">"))
 
 ;;; html-mode
 (sp-with-modes '(html-mode sgml-mode)
   (sp-local-pair "<" ">"))
 
 ;;; lisp modes
+;; WJH 08 Nov 2013 - this is amazing too!  It means that C-( will wrap
+;; the next "thing" in parentheses
 (sp-with-modes sp--lisp-modes
   (sp-local-pair "(" nil :bind "C-("))

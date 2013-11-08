@@ -52,6 +52,7 @@
 
 ;; This comes last so as to be sure to override key bindings
 (load "wjh-emacs-xemacs-emul")
+(load "wjh-emacs-mac-specific")
 
 ;; These were added automatically at some point
 (put 'narrow-to-region 'disabled nil)
