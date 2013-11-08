@@ -1,5 +1,11 @@
 ;; Other stuff
 
+;; 07 Nov 2013 - why is it suddenly necessary to put these in my PATH in emacs?
+(setq wjh-python-path "/Users/will/Library/Enthought/Canopy_64bit/User/bin")
+(setenv "PATH" (concat wjh-python-path ":" (getenv "PATH")))
+(add-to-list 'exec-path wjh-python-path)
+
+
 ;; 26 Oct 2013 - tweak scrolling behavior
 ;; Copied from http://zeekat.nl/articles/making-emacs-work-for-me.html
 (setq redisplay-dont-pause t
