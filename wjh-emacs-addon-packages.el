@@ -5,10 +5,11 @@
   (add-to-list 'load-path (concat wjh-local-lisp-dir "/lisp/" pkg)))
 
 (add-to-list 'load-path (concat wjh-local-lisp-dir "/lisp"))
-
+
 ;; 04 Nov 2013 - persistent scratch buffer
 (require 'persistent-scratch)
 
+
 ;; 04 Nov 2013 - try out guide key
 (wjh-add-to-load-path "guide-key") ;; try and get my version
 (require 'guide-key)
@@ -17,7 +18,7 @@
 (setq guide-key/guide-key-sequence '("C-x" "C-c"))
 (setq guide-key/recursive-key-sequence-flag t)
 (setq guide-key/popup-window-position 'bottom)
-;; (setq guide-key/idle-delay 1.0)
+(setq guide-key/idle-delay 2.0)
 ;; (add-hook 'guide-key/popup-buffer-hook 
 ;; 	  (lambda () 
 ;; 	    (setq mode-line-format nil)
@@ -29,6 +30,7 @@
   (guide-key/add-local-highlight-command-regexp "org-"))
 (add-hook 'org-mode-hook 'guide-key/my-hook-function-for-org-mode)
 
+
 ;; 04 Nov 2013 - try out google-this
 (require 'google-this)
 (google-this-mode 1)
@@ -50,6 +52,7 @@
 ;; experimental, and has only really been tested with gcc error
 ;; reports.
 
+
 ;; 04 Nov 2013 - try out anchored transpose, for swapping two regions around a static part
 (global-set-key [?\C-x ?t] 'anchored-transpose)
 (autoload 'anchored-transpose "anchored-transpose" nil t)
@@ -63,6 +66,7 @@
 ;; 3. Select "but not" as anchor
 ;; 4. Type "C-x t" again
 
+
 ;; 03 Nov 2013 - try out smartparens
 (require 'smartparens-config)
 (load "wjh-smartparens-config")
@@ -82,10 +86,13 @@
 ;; 12 Oct 2013 - try latex-extra
 (eval-after-load 'latex '(latex/setup-keybinds))
 
+
 ;; 12 Oct 2013 - try projectile
 (projectile-global-mode)
 (setq projectile-enable-caching t)
-(setq projectile-switch-project-action 'projectile-dired)
+;; (setq projectile-switch-project-action 'projectile-dired)
+(require 'wjh-projectile-patch)
+(setq projectile-switch-project-action 'wjh-projectile-find-dir)
 (define-key projectile-mode-map [?\s-d] 'projectile-find-dir)
 (define-key projectile-mode-map [?\s-p] 'projectile-switch-project)
 (define-key projectile-mode-map [?\s-f] 'projectile-find-file)
@@ -99,6 +106,7 @@
 ;; disable ido faces to see flx highlights.
 (setq ido-use-faces nil)
 
+
 ;; 18 Apr 2013 - try fancy bullets
 (require 'org-bullets)
 ;; http://nadeausoftware.com/articles/2007/11/latency_friendly_customized_bullets_using_unicode_characters
@@ -113,13 +121,14 @@
 			   (org-bullets-mode 1)
 			   ))
 
-
+
 ;; 17 Apr 2013 - markdown mode installed with package manager
 (autoload 'markdown-mode "markdown-mode"
   "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
+
 ;; 18 Apr 2013 - ace-jump-mode installed with package manager
 (autoload
   'ace-jump-mode
@@ -149,17 +158,18 @@
 ;; (set-face-attribute 'mode-line nil :box nil)
 ;; (set-face-attribute 'mode-line-inactive nil :box nil)
 
+
 ;; 31 Aug 2012: Magit is magic!
 (wjh-add-to-load-path "magit")
 ;; 30 Apr 2013 - note that on iris we use magit from package manager
 (require 'magit)
 (require 'magit-svn)
 (define-key global-map "\C-ci" 'magit-status)
-(set-variable 'magit-emacsclient-executable "/usr/local/Cellar/emacs-mac/emacs-24.3-mac-4.3/bin/emacsclient")
 
 ;; 06 Nov 2013 - try this
 (add-hook 'git-commit-mode-hook 'git-commit-training-wheels-mode)
 
+
 ;; 30 Apr 2013 - not using powerline any more, since we are using svg-mode-line-themes
 ;;
 ;; 09 Sep 2012 make the modeline fancier
@@ -183,6 +193,7 @@
                     :box nil)
 
 
+
 ;; 22 Sep 2011 - move python config to the beginning so the GNU python file is never loaded
 ;; All my setup for python stuff
 ;; (load "wjh-python-github-config") ; this is the new version 2011 by fgallina
@@ -194,6 +205,7 @@
 (load "wjh-python-ein-config")
 
 
+
 ;; 22 Sep 2011 - also put org early on
 ;; Let's use org-mode!
 (load "wjh-org-config")
@@ -202,7 +214,7 @@
 ;; 06 Jan 2013 - try a new mailer
 ;; (load "wjh-mu4e-config")
 
-
+
 ;; Extras for LaTeX editing 29 Mar 2013
 ;; Code copied from tex.stackexchange
 ;; http://tex.stackexchange.com/questions/27241/entering-math-mode-in-auctex-using-and
@@ -222,7 +234,7 @@
 		   (if arg (forward-sexp (prefix-numeric-value arg)))
 		   (insert "\\)"))))))
 
-
+
 ;; 11 Sep 2011 anything
 ;; (wjh-add-to-load-path "anything-config")
 ;; (require 'anything-config)
@@ -251,7 +263,7 @@
 ;; (require 'workgroups)
 ;; (workgroups-mode 1)
 ;; (wg-load (concat wjh-local-lisp-dir "/lisp/workgroups/myworkgroups"))
-
+
 ;; miscellaneous single-file packages
 
 (wjh-add-to-load-path "fold-dwim")
@@ -373,7 +385,7 @@
 ;; Bibtex stuff
 ;; (wjh-add-to-load-path "Beebe")
 
-
+
 ;; Synonyms
 (setq synonyms-file (concat wjh-local-lisp-dir "/etc/synonyms/mthesaur.txt"))
 (setq synonyms-cache-file (concat wjh-local-lisp-dir "/etc/synonyms/mthesaur.txt.cache"))
@@ -401,7 +413,7 @@
 ;; (require 'anything-config)
 ;; (global-set-key "\C-cb" 'anything)
 
-
+
 ;; RefTeX needs extra help to find files that are not in the current
 ;; directory (added 07 Jul 2008)
 (setq reftex-use-external-file-finders t)
@@ -420,14 +432,14 @@
 ;; ;; (global-set-key [(meta ?@)] 'cycle-thing-region) ; vs `mark-word'
 ;; (global-set-key [(meta ?@)] 'mark-a-word-or-thing) ; vs `mark-word'
 
-
+
 ;; TSV mode for Cloudy files
 (autoload 'tsv-mode "tsv-mode" "A mode to edit table like file" t)
 (autoload 'tsv-normal-mode "tsv-mode" "A minor mode to edit table like file" t)
 
 
 ;;
-
+
 ;; these lines enable the use of gnuplot mode
 (autoload 'gnuplot-mode "gnuplot" "gnuplot major mode" t)
 (autoload 'gnuplot-make-buffer "gnuplot" "open a buffer in gnuplot mode" t)
@@ -437,17 +449,18 @@
 (setq auto-mode-alist (append '(("\\.gp$" . gnuplot-mode)) auto-mode-alist))
 (setq auto-mode-alist (append '(("\\.gnuplot$" . gnuplot-mode)) auto-mode-alist))
 
-
+
 ;; Following mention in this blog post
 ;; http://emacs-fu.blogspot.com/2010/04/navigating-kill-ring.html
 (when (require 'browse-kill-ring nil 'noerror)
   (browse-kill-ring-default-keybindings)
   (setq browse-kill-ring-quit-action 'save-and-restore))
 
+
 (require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.ya?ml$" . yaml-mode))
 
-
+
 ;; 29 Nov 2010 dired-x
 (require 'dired-x)
 (add-hook 'dired-load-hook
@@ -464,7 +477,7 @@
 	    (auto-revert-mode)
 	    ))
 
-
+
 ;; WJH 01 Feb 2012 - try out predictive
 ;; see http://www.dr-qubit.org/predictive/
 ;; predictive install location
@@ -486,7 +499,7 @@
 (setq ido-file-extensions-order 
       '(".org" ".tex" ".py" ".f90" ".xml" ".el"))
 
-
+
 ;; Eshell prompt configuration 23 Apr 2013 Initially based on code at
 ;; http://www.emacswiki.org/emacs/EshellPrompt but I have changed the
 ;; colors and split out the last element of the full path.  I also use
@@ -524,6 +537,7 @@
   'shell-switcher-new-shell)
 (add-hook 'eshell-mode-hook 'shell-switcher-manually-register-shell)
 
+
 ;; 24 Apr 2013 - Try out keyfreq package, which compiles statistics on
 ;; use of keys.  To see them, use "M-x keyfreq-show".  See
 ;; https://github.com/dacap/keyfreq and Xah Lee's page at
@@ -532,6 +546,8 @@
 (require 'keyfreq)
 (keyfreq-mode 1)
 (keyfreq-autosave-mode 1)
+
+
 ;; 24 Apr 2013 - Try out git-gutter - See
 ;; https://github.com/syohex/emacs-git-gutter This adds marks to the
 ;; gutter indicating diff status of source lines with respect to the
@@ -564,7 +580,7 @@
 (setq git-gutter:added-sign ".")
 (setq git-gutter:deleted-sign "-")
 
-
+
 ;; 09 May 2013 - Try Nic Ferrier's pinboard.el
 ;;
 ;; Installed via package-manager.  Note that it has dependencies on
@@ -576,6 +592,7 @@
 ;; To use, first "M-x customize-group pinboard" to set user url. 
 ;; Then "M-x pinboard-latest" to get (default 10) latest posts. 
 
+
 ;; 09 May 2013 - Try out undo-tree - a better version of undo
 ;;
 ;; Installed via package-manager. 
@@ -587,6 +604,7 @@
 ;; + "C-x u" visualize (use arrows to navigate tree)
 
 
+
 ;; 09 May 2013 - dired-details
 ;; Toggle with "(" and ")"
 (require 'dired-details)
