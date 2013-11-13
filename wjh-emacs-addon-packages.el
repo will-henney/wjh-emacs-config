@@ -90,9 +90,12 @@
 ;; 12 Oct 2013 - try projectile
 (projectile-global-mode)
 (setq projectile-enable-caching t)
+(setq projectile-require-project-root nil)
 ;; (setq projectile-switch-project-action 'projectile-dired)
-(require 'wjh-projectile-patch)
-(setq projectile-switch-project-action 'wjh-projectile-find-dir)
+(defadvice projectile-current-project-dirs (around wjh/add-top-level activate)
+  "Include top-level dir in `projectile-current-project-dirs'."
+  (setq ad-return-value (append '("./") ad-do-it)))
+(setq projectile-switch-project-action 'projectile-find-dir)
 (define-key projectile-mode-map [?\s-d] 'projectile-find-dir)
 (define-key projectile-mode-map [?\s-p] 'projectile-switch-project)
 (define-key projectile-mode-map [?\s-f] 'projectile-find-file)
