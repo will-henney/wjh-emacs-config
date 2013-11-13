@@ -26,3 +26,51 @@
 (global-set-key (kbd "<H-backspace>") 'delete-char)
 
 
+
+;;
+;; Customize the animations for 3-finger swiping left/right and up/down
+;;
+(defun wjh/previous-buffer (event)
+  "Like `previous-buffer', but operate on the window where EVENT occurred."
+  (interactive "e")
+  (let ((window (posn-window (event-start event))))
+    (mac-start-animation window :type 'swipe :direction 'right)
+    (with-selected-window window
+      (previous-buffer))))
+
+(defun wjh/next-buffer (event)
+  "Like `next-buffer', but operate on the window where EVENT occurred."
+  (interactive "e")
+  (let ((window (posn-window (event-start event))))
+    (mac-start-animation window :type 'swipe :direction 'left)
+    (with-selected-window window
+      (next-buffer))))
+
+(defun wjh/beginning-of-buffer ()
+  "Like `beginning-of-buffer' but with fancy animation"
+  (interactive "^")
+  (progn
+    (mac-start-animation nil :type 'swipe :direction 'up :duration 0.5)
+    (beginning-of-buffer)
+    )
+  )
+(defun wjh/end-of-buffer ()
+  "Like `end-of-buffer' but with fancy animation"
+  (interactive "^")
+  (progn
+    (mac-start-animation nil :type 'swipe :direction 'down :duration 0.5)
+    (end-of-buffer)
+    )
+  )
+
+(global-set-key [swipe-up] 'wjh/beginning-of-buffer)
+(global-set-key [swipe-down] 'wjh/end-of-buffer)
+(global-set-key [swipe-left] 'wjh/previous-buffer)
+(global-set-key [swipe-right] 'wjh/next-buffer)
+
+(defun wjh/drop-event (event)
+  "Replacement for `mac-mwheel-scroll' so that 2-finger left/right swipes are ignored"
+  (interactive (list last-input-event))
+  nil)
+(global-set-key [wheel-left] 'wjh/drop-event)
+(global-set-key [wheel-right] 'wjh/drop-event)
