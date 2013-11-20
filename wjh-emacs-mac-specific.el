@@ -1,9 +1,14 @@
 ;; 08 Nov 2013 - Rationalize modifier keys
 
-;; Main thing: option is meta
-(setq mac-option-modifier 'meta)
-;; Set up the Cmd key as super - then define a handful of mac-ish bindings
-(setq mac-command-modifier 'super)
+
+;; ;; Main thing: option is meta
+;; (setq mac-option-modifier 'meta)
+;; ;; Set up the Cmd key as super - then define a handful of mac-ish bindings
+;; (setq mac-command-modifier 'super)
+
+;; WJH 20 Nov 2013 - try out a completely new system!
+(require wjh-emacs-mac-remap)
+
 ;; Add in the Cmd-C, Cmd-V, Cmd-A, etc bindings like in aquamacs
 (global-set-key (kbd "s-a") 'mark-whole-buffer)
 ;; This function copied from http://unix.stackexchange.com/questions/20849/emacs-how-to-copy-region-and-leave-it-highlighted
