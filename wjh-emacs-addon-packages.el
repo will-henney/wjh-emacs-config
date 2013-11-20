@@ -88,14 +88,16 @@
 
 
 ;; 12 Oct 2013 - try projectile
+(wjh-add-to-load-path "projectile") ;; try and get my version
 (projectile-global-mode)
 (setq projectile-enable-caching t)
 (setq projectile-require-project-root nil)
 ;; (setq projectile-switch-project-action 'projectile-dired)
-(defadvice projectile-current-project-dirs (around wjh/add-top-level activate)
-  "Include top-level dir in `projectile-current-project-dirs'."
-  (setq ad-return-value (append '("./") ad-do-it)))
+;; (defadvice projectile-current-project-dirs (around wjh/add-top-level activate)
+;;   "Include top-level dir in `projectile-current-project-dirs'."
+;;   (setq ad-return-value (append '("./") ad-do-it)))
 (setq projectile-switch-project-action 'projectile-find-dir)
+(setq projectile-find-dir-includes-top-level t)
 (define-key projectile-mode-map [?\s-d] 'projectile-find-dir)
 (define-key projectile-mode-map [?\s-p] 'projectile-switch-project)
 (define-key projectile-mode-map [?\s-f] 'projectile-find-file)
