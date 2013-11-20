@@ -7,7 +7,7 @@
 ;; (setq mac-command-modifier 'super)
 
 ;; WJH 20 Nov 2013 - try out a completely new system!
-(require wjh-emacs-mac-remap)
+(require 'wjh-emacs-mac-remap)
 
 ;; Add in the Cmd-C, Cmd-V, Cmd-A, etc bindings like in aquamacs
 (global-set-key (kbd "s-a") 'mark-whole-buffer)

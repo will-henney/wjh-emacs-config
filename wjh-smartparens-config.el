@@ -25,7 +25,9 @@
 (define-key sp-keymap (kbd "C-M-p") 'sp-previous-sexp)
 
 (define-key sp-keymap (kbd "C-M-k") 'sp-kill-sexp)
-(define-key sp-keymap (kbd "C-M-w") 'sp-copy-sexp)
+;; WJH 20 Nov 2013 - the standard mapping of this is too useful
+;; (define-key sp-keymap (kbd "C-M-w") 'sp-copy-sexp)
+(define-key sp-keymap (kbd "s-w") 'sp-copy-sexp)
 
 ;; WJH 08 Nov 2013 - too much conflict with muscle memory if I let these ones stand!
 ;; (define-key sp-keymap (kbd "M-<delete>") 'sp-unwrap-sexp)

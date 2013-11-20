@@ -10,6 +10,7 @@
 ;; Cmd-TAB, Cmd-SPACE (this is Alfred's fault)
 ;; + We could map s-tab to other-window
 (global-set-key (kbd "<s-tab>") 'other-window)
+(global-set-key (kbd "C-`") 'other-frame)
 ;; + We could make Alfred use another key
 ;;   or we could use C-@ in emacs to set the mark.
 ;;   Decided to use Option-Cmd-SPACE for Alfred
@@ -17,4 +18,4 @@
 ;; C-# and C-$ are used for screen shots: Cmd-Shift-3, Cmd-Shift-4,
 ;; but this is OK since they are undefined in emacs
 
- (provide 'wjh-emacs-mac-remap)
+(provide 'wjh-emacs-mac-remap)
