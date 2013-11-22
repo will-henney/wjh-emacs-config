@@ -9,8 +9,17 @@
 ;; WJH 20 Nov 2013 - try out a completely new system!
 (require 'wjh-emacs-mac-remap)
 
+;; WJH 22 Nov 2013 - some convenience keys, to humor my muscle memory.
+;; I keep pressing Ctl-A, which is bound to "s-a", when I mean to
+;; press "Cmd-A", which is bound to "C-a"
+(global-set-key (kbd "s-a") 'move-beginning-of-line)
+(global-set-key (kbd "s-e") 'move-end-of-line)
+
 ;; Add in the Cmd-C, Cmd-V, Cmd-A, etc bindings like in aquamacs
-(global-set-key (kbd "s-a") 'mark-whole-buffer)
+;; (global-set-key (kbd "s-a") 'mark-whole-buffer)
+
+
+
 ;; This function copied from http://unix.stackexchange.com/questions/20849/emacs-how-to-copy-region-and-leave-it-highlighted
 (defun kill-ring-save-keep-highlight (beg end)
   "Keep the region active after the kill"
