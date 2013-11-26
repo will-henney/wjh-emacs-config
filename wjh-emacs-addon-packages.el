@@ -6,6 +6,18 @@
 
 (add-to-list 'load-path (concat wjh-local-lisp-dir "/lisp"))
 
+;; 25 Nov 2013 - stuff inspired by Magnar Sveen's config
+;; https://github.com/magnars/.emacs.d/blob/master/init.el
+
+;; ido vertical mode - much easier to take in the options at a glance
+(require 'ido-vertical-mode)
+(ido-vertical-mode)
+
+;; expand-region - this is great!
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
+
+
 ;; 04 Nov 2013 - persistent scratch buffer
 (require 'persistent-scratch)
 
