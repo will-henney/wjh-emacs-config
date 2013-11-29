@@ -29,6 +29,9 @@
 ;; (define-key sp-keymap (kbd "C-M-w") 'sp-copy-sexp)
 (define-key sp-keymap (kbd "s-w") 'sp-copy-sexp)
 
+;; WJH 25 Nov 2013 - new stuff
+(define-key sp-keymap (kbd "s-k") 'sp-kill-hybrid-sexp)
+
 ;; WJH 08 Nov 2013 - too much conflict with muscle memory if I let these ones stand!
 ;; (define-key sp-keymap (kbd "M-<delete>") 'sp-unwrap-sexp)
 ;; (define-key sp-keymap (kbd "M-<backspace>") 'sp-backward-unwrap-sexp)

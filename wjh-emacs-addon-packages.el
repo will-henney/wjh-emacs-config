@@ -91,6 +91,7 @@
 (global-smartscan-mode 1)
 
 ;; 26 Oct 2013 - Try out smart-mode-line
+(setq sml/theme 'dark)
 (require 'smart-mode-line)
 (if after-init-time (sml/setup)
   (add-hook 'after-init-hook 'sml/setup))
@@ -453,7 +454,11 @@
 ;; TSV mode for Cloudy files
 (autoload 'tsv-mode "tsv-mode" "A mode to edit table like file" t)
 (autoload 'tsv-normal-mode "tsv-mode" "A minor mode to edit table like file" t)
-
+(add-hook 'tsv-mode-hook
+	  (lambda ()
+	    ;; Use the first line to define the column names
+	    (tsv-first-line-as-header)
+	    ))
 
 ;;
 
