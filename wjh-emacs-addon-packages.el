@@ -97,7 +97,52 @@
   (add-hook 'after-init-hook 'sml/setup))
 
 ;; 12 Oct 2013 - try latex-extra
-(eval-after-load 'latex '(latex/setup-keybinds))
+;; 29 Nov 2013 - but I don't like some of the keybindings
+(setq latex/override-preview-map t)
+(defun wjh-latex/setup-keybinds ()
+  "Define our key binds. Modified by wjh from original"
+  (interactive)
+  (add-hook 'LaTeX-mode-hook 'latex/setup-auto-fill)  
+  (define-key LaTeX-mode-map "\C-\M-f" 'latex/forward-environment)
+  (define-key LaTeX-mode-map "\C-\M-b" 'latex/backward-environment)
+  (define-key LaTeX-mode-map "\C-\M-a" 'latex/beginning-of-environment)
+  (define-key LaTeX-mode-map "\C-\M-e" 'latex/end-of-environment)
+  (define-key LaTeX-mode-map ""   'latex/beginning-of-line)
+  (define-key LaTeX-mode-map "" 'latex/compile-commands-until-done)
+  ;; This overrides C-c C-q C-e, etc but I never used those and maybe
+  ;; this is better
+  (define-key LaTeX-mode-map "" 'latex/clean-fill-indent-environment)
+  (define-key LaTeX-mode-map "" 'latex/up-section)
+  ;; This overrides TeX-normal-mode, which I rearely use
+  (define-key LaTeX-mode-map "" 'latex/next-section)
+  ;; This overrides the font changing command ...
+  (define-key LaTeX-mode-map "" 'latex/next-section-same-level)
+  ;; ... so move TeX-font to "C-c f".  I tried to customize
+  ;; Tex-font-list so I could use "C-c f i" instead of "C-c f C-i",
+  ;; etc, but that doesn't work.  I can successfully change the global
+  ;; value, but the buffer-local value is gettig overridden somewhere
+  ;; and reverts to the Control version.
+  (define-key LaTeX-mode-map "f" 'TeX-font)
+  ;; overrides TeX-command-buffer, which I never use
+  (define-key LaTeX-mode-map "" 'latex/previous-section-same-level)
+  (when latex/override-preview-map
+    (define-key LaTeX-mode-map "" 'latex/previous-section)
+    (define-key LaTeX-mode-map "p"  'preview-map))
+  (add-hook 'LaTeX-mode-hook 'latex/setup-auto-fill)
+  (defadvice LaTeX-preview-setup (after latex/after-LaTeX-preview-setup-advice () activate)
+    "Move the preview map to \"p\" so that we free up \"\"."
+    (when latex/override-preview-map
+      (define-key LaTeX-mode-map "" 'latex/previous-section)
+      (define-key LaTeX-mode-map "p"  'preview-map))))
+(eval-after-load 'latex '(wjh-latex/setup-keybinds))
+(defvar wjh-latex/beamer-section-hierarchy 
+  '("\\begin{block}" "\\begin{frame}" "\\subsection" "\\section" "\\maketitle" "\\documentclass")
+  )
+(defun wjh-latex/set-beamer-section-hierarchy ()
+  "This still doesn't work very well"
+  (interactive)
+  (setq latex/section-hierarchy wjh-latex/beamer-section-hierarchy)
+  )
 
 
 ;; 12 Oct 2013 - try projectile
