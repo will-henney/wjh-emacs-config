@@ -3,8 +3,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#3f3f3f" :foreground "#dcdccc" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight light :height 161 :width normal :foundry "nil" :family "Source Code Pro"))))
- '(TeX-fold-folded-face ((t (:foreground "cadet blue"))) t)
+ '(default ((t (:inherit nil :stipple nil :background "#3f3f3f" :foreground "#dcdccc" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 161 :width normal :foundry "nil" :family "Source Code Pro"))))
+ '(TeX-fold-folded-face ((t (:foreground "#8faeb0"))))
  '(ace-jump-face-background ((t (:foreground "gray60"))) t)
  '(ace-jump-face-foreground ((t (:foreground "orange"))) t)
  '(col-highlight ((t (:background "#603838"))))
@@ -19,7 +19,8 @@
  '(emacs-wiki-header-6 ((t (:inherit nil :weight normal :height 1.0))) t)
  '(emacs-wiki-link-face ((t (:foreground "blue4" :underline "blue4" :weight bold))) t)
  '(emacs-wiki-verbatim-face ((t (:foreground "gray60"))) t)
- '(fixed-pitch ((t (:weight light :family "Source Code Pro"))))
+ '(fixed-pitch ((t (:family "Source Code Pro"))))
+ '(font-latex-bold-face ((t (:inherit bold))))
  '(font-latex-italic-face ((t (:inherit italic))))
  '(font-latex-math-face ((t (:inherit fixed-pitch :foreground "#cceeee"))))
  '(font-latex-sectioning-5-face ((t (:inherit monospace :foreground "#dda090" :weight demibold))))
@@ -61,7 +62,7 @@
  '(planner-completed-task-face ((t (:foreground "gray50" :strike-through t))) t)
  '(region ((t (:background "gold4" :foreground "#dcdccc"))))
  '(secondary-selection ((((class color) (min-colors 88) (background light)) (:background "#fed"))))
- '(sh-heredoc ((t (:foreground "tan1"))) t)
+ '(sh-heredoc ((t (:foreground "tan1"))))
  '(sh-heredoc-face ((t (:foreground "tan4"))) t)
  '(sp-pair-overlay-face ((t (:weight bold))))
  '(sp-show-pair-enclosing ((t (:background "black" :weight bold))))
