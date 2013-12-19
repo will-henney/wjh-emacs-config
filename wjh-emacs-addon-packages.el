@@ -1,10 +1,27 @@
-;; Third party add-on packages that are not shipped with Emacs 22 CVS
+;; Third party add-on packages that are not shipped with Emacs
+
+;; 19 Dec 2013 - Hopefully, cask will simplify everything
+(require 'cask "~/.cask/cask.el")
+(cask-initialize)
+
 
 (defun wjh-add-to-load-path (pkg)
   "Add pkg directory to load path."
   (add-to-list 'load-path (concat wjh-local-lisp-dir "/lisp/" pkg)))
 
 (add-to-list 'load-path (concat wjh-local-lisp-dir "/lisp"))
+
+
+;; 19 Dec 2013 - use prodigy to manage iPython Notebook sessions
+(require prodigy)
+(prodigy-define-service
+  :name "Orion Statistics"
+  :command "ipython"
+  :cwd "/Users/will/Dropbox/OrionStats"
+  :args '("notebook" "--pylab=inline")
+  :tags '(ipynb))
+
+
 
 ;; 25 Nov 2013 - stuff inspired by Magnar Sveen's config
 ;; https://github.com/magnars/.emacs.d/blob/master/init.el
