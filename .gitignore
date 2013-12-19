@@ -1,3 +1,4 @@
+.cask
 *~
 url/
 auto-save-list/
@@ -27,3 +28,14 @@ predictive/
 /projectile-bookmarks.eld
 /projectile.cache
 /request/curl-cookie-jar
+/.cask/24.3.1/bootstrap/archives/gnu/archive-contents
+/.cask/24.3.1/bootstrap/archives/melpa/archive-contents
+/.cask/24.3.1/bootstrap/dash-20131030.2119/dash-autoloads.el
+/.cask/24.3.1/bootstrap/dash-20131030.2119/dash-pkg.el
+/.cask/24.3.1/bootstrap/dash-20131030.2119/dash-pkg.elc
+/.cask/24.3.1/bootstrap/dash-20131030.2119/dash.el
+/.cask/24.3.1/bootstrap/dash-20131030.2119/dash.elc
+/.cask/24.3.1/bootstrap/f-20131025.2156/f-autoloads.el
+/.cask/24.3.1/bootstrap/f-20131025.2156/f-pkg.el
+/.cask/24.3.1/bootstrap/f-20131025.2156/f-pkg.elc
+/.cask/24.3.1/bootstrap/f-20131025.2156/f.el
