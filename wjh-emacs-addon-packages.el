@@ -20,6 +20,25 @@
   :cwd "/Users/will/Dropbox/OrionStats"
   :args '("notebook" "--pylab=inline")
   :tags '(ipynb))
+(prodigy-define-service
+  :name "Orion T-squared"
+  :command "ipython"
+  :cwd "/Users/will/Work/RubinWFC3/Tsquared"
+  :args '("notebook" "--pylab=inline")
+  :tags '(ipynb))
+(prodigy-define-service
+  :name "Ring Nebula"
+  :command "ipython"
+  :cwd "/Users/will/Work/RingNebula/WFC3/2013-Geometry"
+  :args '("notebook" "--pylab=inline")
+  :tags '(ipynb))
+(prodigy-define-service
+  :name "LL Ori Bowshocks"
+  :command "ipython"
+  :cwd "/Users/will/Dropbox/JorgeBowshocks/LuisLL"
+  :args '("notebook" "--pylab=inline")
+  :tags '(ipynb))
+
 
 
 
