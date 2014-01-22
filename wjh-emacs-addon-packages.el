@@ -13,11 +13,23 @@
 
 
 ;; 19 Dec 2013 - use prodigy to manage iPython Notebook sessions
-(require prodigy)
+(require 'prodigy)
+(prodigy-define-service
+  :name "Jorge Bowshocks"
+  :command "ipython"
+  :cwd "/Users/will/Work/Bowshocks/Jorge/bowshock-shape"
+  :args '("notebook" "--pylab=inline")
+  :tags '(ipynb))
 (prodigy-define-service
   :name "Orion Statistics"
   :command "ipython"
   :cwd "/Users/will/Dropbox/OrionStats"
+  :args '("notebook" "--pylab=inline")
+  :tags '(ipynb))
+(prodigy-define-service
+  :name "Orion Dust"
+  :command "ipython"
+  :cwd "/Users/will/Dropbox/OrionDust"
   :args '("notebook" "--pylab=inline")
   :tags '(ipynb))
 (prodigy-define-service
