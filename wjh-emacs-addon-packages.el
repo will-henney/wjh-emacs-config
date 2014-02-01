@@ -271,6 +271,10 @@
 (require 'magit-svn)
 (define-key global-map "\C-ci" 'magit-status)
 
+(setq magit-emacsclient-executable 
+      (expand-file-name "../../../bin/emacsclient" invocation-directory))
+
+
 ;; 06 Nov 2013 - try this
 (add-hook 'git-commit-mode-hook 'git-commit-training-wheels-mode)
 
