@@ -12,11 +12,22 @@
 (add-to-list 'load-path (concat wjh-local-lisp-dir "/lisp"))
 
 
+;; 24 Feb 2014 - Use stripe-buffer in tables
+(add-hook 'dired-mode-hook 'turn-on-stripe-buffer-mode)
+(add-hook 'tsv-mode-hook 'turn-on-stripe-buffer-mode)
+(add-hook 'org-mode-hook 'turn-on-stripe-table-mode)
+
+
 ;; 19 Dec 2013 - use prodigy to manage iPython Notebook sessions
 (require 'prodigy)
 (prodigy-define-tag
   :name 'ipynb
   :command "ipython"
+  :args '("notebook" "--pylab=inline")
+  :stop-signal 'sigkill)
+(prodigy-define-tag
+  :name 'ipynb27
+  :command "/Users/will/anaconda/envs/py27/bin/ipython"
   :args '("notebook" "--pylab=inline")
   :stop-signal 'sigkill)
 (prodigy-define-service
@@ -35,6 +46,10 @@
   :name "Orion T-squared"
   :cwd "/Users/will/Work/RubinWFC3/Tsquared"
   :tags '(ipynb))
+(prodigy-define-service
+  :name "Py2.7: Orion T-squared"
+  :cwd "/Users/will/Work/RubinWFC3/Tsquared"
+  :tags '(ipynb27))
 (prodigy-define-service
   :name "Ring Nebula"
   :cwd "/Users/will/Work/RingNebula/WFC3/2013-Geometry"
