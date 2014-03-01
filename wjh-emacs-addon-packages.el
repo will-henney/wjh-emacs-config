@@ -12,6 +12,14 @@
 (add-to-list 'load-path (concat wjh-local-lisp-dir "/lisp"))
 
 
+;; 27 Feb 2014 - Try out smex
+;; https://github.com/nonsequitur/smex/blob/master/README.markdown
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; This is your old M-x.
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+
+
 ;; 24 Feb 2014 - Use stripe-buffer in tables
 (add-hook 'dired-mode-hook 'turn-on-stripe-buffer-mode)
 (add-hook 'tsv-mode-hook 'turn-on-stripe-buffer-mode)
