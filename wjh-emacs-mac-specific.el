@@ -111,3 +111,13 @@
     (setq exec-path (split-string path-from-shell path-separator))))
 ;; call function now
 (set-exec-path-from-shell-PATH)
+
+;; 05 Mar 2014 - Clean up the menu-bar.  The idea here is to eliminate
+;; top-level menus that I almost never would want to use.  The only
+;; ones I leave are "Emacs", "Edit", "Help", plus any mode-specific
+;; ones.  This should then leave loads of space in my menubar for all
+;; my little OS X menubar items, which might otherwise disappear
+(global-unset-key [menu-bar tools])
+(global-unset-key [menu-bar options])
+(global-unset-key [menu-bar buffer])
+(global-unset-key [menu-bar file])
