@@ -565,14 +565,19 @@
 ;; (global-set-key [(meta ?@)] 'mark-a-word-or-thing) ; vs `mark-word'
 
 
-;; TSV mode for Cloudy files
+;; TSV mode for Cloudy files and others
+;; 05 Mar 2014 - add more features and auto-detect .tab and .tsv files
 (autoload 'tsv-mode "tsv-mode" "A mode to edit table like file" t)
 (autoload 'tsv-normal-mode "tsv-mode" "A minor mode to edit table like file" t)
 (add-hook 'tsv-mode-hook
 	  (lambda ()
 	    ;; Use the first line to define the column names
 	    (tsv-first-line-as-header)
+	    ;; Set a reasonable default for the columns
+	    (tsv-set-all-column-width 8)
 	    ))
+(add-to-list 'auto-mode-alist '("\\.tsv\\'" . tsv-mode))
+(add-to-list 'auto-mode-alist '("\\.tab\\'" . tsv-mode))
 
 ;;
 
