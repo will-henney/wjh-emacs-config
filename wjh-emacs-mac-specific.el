@@ -7,7 +7,8 @@
 ;; (setq mac-command-modifier 'super)
 
 ;; WJH 20 Nov 2013 - try out a completely new system!
-(require 'wjh-emacs-mac-remap)
+;; WJH 06 Mar 2014 - Now doing it system-wide instead
+(require 'wjh-emacs-mac-unremap)
 
 ;; WJH 22 Nov 2013 - some convenience keys, to humor my muscle memory.
 ;; I keep pressing Ctl-A, which is bound to "s-a", when I mean to
