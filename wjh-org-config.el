@@ -5,8 +5,8 @@
 ;; - but let's just use a new version
 ;; (wjh-add-to-load-path "org")
 ;; 02 Jan 2009 - now tracking development git repo, which installs here
-(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/org")
-
+;; (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/org")
+;; 01 Apr 2014 - we now use org from Org ELPA repo 
 
 
 ;; Make sure that certain things are fixed pitch in org mode
