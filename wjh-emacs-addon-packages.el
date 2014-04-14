@@ -11,6 +11,43 @@
 
 (add-to-list 'load-path (concat wjh-local-lisp-dir "/lisp"))
 
+
+
+;; 14 Apr 2014 - Use ibuffer and ibuffer-vc
+
+;; Override the standard list-buffers command
+(defalias 'list-buffers 'ibuffer)
+
+;; Sort by VC root
+(add-hook 'ibuffer-hook
+	  (lambda ()
+	    (ibuffer-vc-set-filter-groups-by-vc-root)
+	    (unless (eq ibuffer-sorting-mode 'alphabetic)
+	      (ibuffer-do-sort-by-alphabetic))))
+
+;; Use human readable Size column instead of original one
+;; Original written by http://www.emacswiki.org/emacs/Yen-Chin%2cLee#coldnew
+;; Copied from http://www.emacswiki.org/emacs/IbufferMode
+;; Modified WJH 14 Apr 2014 to use fewer sig figs
+(define-ibuffer-column size-h
+  (:name "Size" :inline t)
+  (cond
+   ((> (buffer-size) 1000000) (format "%7.1fM" (/ (buffer-size) 1000000.0)))
+   ((> (buffer-size) 1000) (format "%7.1fK" (/ (buffer-size) 1000.0)))
+   (t (format "%8d" (buffer-size)))))
+
+;; Add a column showing VC status 
+(setq ibuffer-formats
+      '((mark modified read-only vc-status-mini " "
+	      (name 18 18 :left :elide)
+	      " "
+	      (size-h 9 -1 :right)
+	      " "
+	      (mode 16 16 :left :elide)
+	      " "
+	      (vc-status 16 16 :left)
+	      " "
+	      filename-and-process)))
 
 ;; 27 Feb 2014 - Try out smex
 ;; https://github.com/nonsequitur/smex/blob/master/README.markdown
