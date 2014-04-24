@@ -14,13 +14,18 @@
 
 
 ;; 14 Apr 2014 - Use ibuffer and ibuffer-vc
+(require 'ibuffer)
 
 ;; Override the standard list-buffers command
 (defalias 'list-buffers 'ibuffer)
 
-;; Sort by VC root
 (add-hook 'ibuffer-hook
 	  (lambda ()
+	    ;; Make mouse clicks work as in dired, etc
+	    (define-key ibuffer-name-map [(mouse-1)] 'ibuffer-visit-buffer)
+	    ;;	    (local-set-key [mouse-1] 'ibuffer-visit-buffer)
+	    ;; (local-set-key [double-mouse-1] 'ibuffer-visit-buffer)
+	    ;; Sort by VC root
 	    (ibuffer-vc-set-filter-groups-by-vc-root)
 	    (unless (eq ibuffer-sorting-mode 'alphabetic)
 	      (ibuffer-do-sort-by-alphabetic))))
@@ -39,15 +44,17 @@
 ;; Add a column showing VC status 
 (setq ibuffer-formats
       '((mark modified read-only vc-status-mini " "
-	      (name 18 18 :left :elide)
+	      (name 32 32 :left :elide)
 	      " "
 	      (size-h 9 -1 :right)
 	      " "
 	      (mode 16 16 :left :elide)
 	      " "
-	      (vc-status 16 16 :left)
-	      " "
+	      ;; (vc-status 16 16 :left)
+	      ;; " "
 	      filename-and-process)))
+
+
 
 ;; 27 Feb 2014 - Try out smex
 ;; https://github.com/nonsequitur/smex/blob/master/README.markdown
