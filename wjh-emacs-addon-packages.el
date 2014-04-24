@@ -108,7 +108,7 @@
   :tags '(ipynb))
 (prodigy-define-service
   :name "LL Ori Bowshocks"
-  :cwd "/Users/will/Dropbox/JorgeBowshocks/LuisLL"
+  :cwd "/Users/will/Dropbox/LuisBowshocks"
   :tags '(ipynb))
 
 
