@@ -339,7 +339,9 @@
 ;; 29 Apr 2013 - try out org-mac-link-grabber
 (require 'org-mac-link-grabber)
 (add-hook 'org-mode-hook (lambda ()
-  (define-key org-mode-map (kbd "C-c gl") 'omlg-grab-link)))
+  (define-key org-mode-map (kbd "C-c gl") 'omlg-grab-link)
+  (define-key org-mode-map [(control meta return)] 'org-insert-heading-respect-content)
+  ))
 
 ;; 13 Oct 2013 - no, I didn't like this
 ;; ;; 12 Aug 2013 - try out Org-Trello integration
