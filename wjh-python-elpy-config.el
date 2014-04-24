@@ -1,7 +1,8 @@
 (elpy-enable)
 (setq python-check-command "pyflakes")
-(elpy-use-ipython)
+;;(elpy-use-ipython)
 (elpy-clean-modeline)
+(setq elpy-rpc-backend "jedi")
 ;; WJH 08 Nov 2013 - we prefer to use these for smartscan
 (define-key elpy-mode-map (kbd "M-n") nil)
 (define-key elpy-mode-map (kbd "M-p") nil)
