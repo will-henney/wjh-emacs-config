@@ -124,6 +124,12 @@ This will actually use spotlight instead of locate, so it only works on OS X"
   (list "mdfind" "-name" search-string))
 (setq locate-make-command-line 'locate-spotlight-make-command-line)
 
+;; Put a darker background on code buffers to match org-block-background
+(defun buffer-background-dark ()
+  (interactive)
+  (setq buffer-face-mode-face `(:background "gray18"))
+  (buffer-face-mode 1))
+(add-hook 'python-mode-hook 'buffer-background-dark)
 
 ;;;
 ;;; Using Emacs as an external editor for textareas in Firefox
