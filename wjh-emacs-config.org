@@ -450,6 +450,13 @@ Remove extraneous chrome and try to de-uglify buttons and highlighting and the l
 
 * Packages
 ** Org mode
+#+BEGIN_SRC calc
+10 cm
+'ub
+#+END_SRC
+
+#+RESULTS:
+: ub
 
 * Sample org material (level 1)
 ** level 2
