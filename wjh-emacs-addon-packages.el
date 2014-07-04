@@ -662,6 +662,17 @@
 	    (auto-revert-mode)
 	    ))
 
+(setq dired-guess-shell-alist-user      ;quess shell command by file ext
+      '(("\\.pdf\\'" "open" "open -a Adobe\\ Reader")
+        ("\\.png\\'" "open")
+        ("\\.jpg\\'" "open")
+        ("\\.avi\\'" "open")
+        ("\\.m4a\\'" "open")
+        ("\\.mov\\'" "open")
+        ("\\.gif\\'" "open -a Safari")
+        ("\\.doc\\'" "open -a TextEdit" "open -a Pages")))
+
+
 
 ;; WJH 01 Feb 2012 - try out predictive
 ;; see http://www.dr-qubit.org/predictive/
