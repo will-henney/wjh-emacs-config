@@ -13,6 +13,9 @@
 
 
 
+;; 13 Jul 2014 - Use helm
+(load "wjh-helm-config")
+
 ;; 14 Apr 2014 - Use ibuffer and ibuffer-vc
 (require 'ibuffer)
 

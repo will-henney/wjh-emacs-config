@@ -285,7 +285,7 @@
 (require 'ob-gnuplot)   ;; requires gnuplot, and gnuplot-mode
 (require 'ob-latex)
 (require 'ob-sh)
-(require 'ob-calc)
+;; (require 'ob-calc) ;; gives load error 
 ;;(org-babel-load-library-of-babel)
 
 ;; 15 Nov 2009 - new speed commands in 6.33

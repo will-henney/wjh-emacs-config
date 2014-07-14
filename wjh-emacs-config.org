@@ -390,7 +390,7 @@ So, these customizations have nothing to do with faces.  It might be better to p
 
 ** Miscellaneous appearance
    :LOGBOOK:
-   CLOCK: [2013-04-22 Mon 08:05]
+   CLOCK: [2013-04-22 Mon 08:05]--[2013-04-22 Mon 09:05] =>  1:00
    CLOCK: [2011-11-08 Tue 11:29]--[2011-11-08 Tue 11:29] =>  0:00
    CLOCK: [2011-11-08 Tue 10:28]--[2011-11-08 Tue 11:28] =>  1:00 
    :END:
