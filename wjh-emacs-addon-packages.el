@@ -16,6 +16,9 @@
 ;; 13 Jul 2014 - Use helm
 (load "wjh-helm-config")
 
+;; 14 Jul 2014 - change default file for calc settings 
+(setq calc-settings-file "/Users/will/.emacs.d/calc-settings.el")
+
 ;; 14 Apr 2014 - Use ibuffer and ibuffer-vc
 (require 'ibuffer)
 
