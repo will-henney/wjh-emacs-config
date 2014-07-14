@@ -14,6 +14,24 @@
 ;;  WJH 03 May 2005 :: added customize section
 ;;  WJH 01 May 2005 :: initial version
 
+;;; Code:
+(defvar wjh-local-lisp-dir (expand-file-name "~/.emacs.d")
+  "*Where I keep all my elisp files.")
+(add-to-list 'load-path wjh-local-lisp-dir)
+
+;; Put customize modifications in a separate file a la xemacs
+(cond
+ ((boundp 'aquamacs-version)
+  ;;; need separate custom files since aquamacs may refer to vars that 
+  ;;; do not exist in Emacs.app and vice versa
+  (setq custom-file (concat wjh-local-lisp-dir "/custom.el"))
+;;   (setq custom-file (concat wjh-local-lisp-dir "/custom-empty.el"))
+  )
+ (t
+  (setq custom-file (concat wjh-local-lisp-dir "/custom-nonaquamacs.el")))
+ )
+(load custom-file)
+
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
@@ -28,28 +46,11 @@
 (package-initialize)
 
 
-;;; Code:
-(defvar wjh-local-lisp-dir (expand-file-name "~/.emacs.d")
-  "*Where I keep all my elisp files.")
-(add-to-list 'load-path wjh-local-lisp-dir)
-
 ;; add in personal info directory as soon as possible
 (add-to-list 'Info-default-directory-list 
 	     (concat wjh-local-lisp-dir "/info/"))
 
  
-;; Put customize modifications in a separate file a la xemacs
-(cond
- ((boundp 'aquamacs-version)
-  ;;; need separate custom files since aquamacs may refer to vars that 
-  ;;; do not exist in Emacs.app and vice versa
-  (setq custom-file (concat wjh-local-lisp-dir "/custom.el"))
-;;   (setq custom-file (concat wjh-local-lisp-dir "/custom-empty.el"))
-  )
- (t
-  (setq custom-file (concat wjh-local-lisp-dir "/custom-nonaquamacs.el")))
- )
-(load custom-file)
 
 (load "wjh-emacs-addon-packages")
 (load "wjh-emacs-clean-gui")
@@ -77,14 +78,14 @@
 
 ;; See discussion in Miscellaneous Appearance section of wjh-emacs-config.org
 ;; These need to come as late as possible so as they do not get overridden
-(set-face-attribute 'mode-line nil
-		    :background "azure3"
-		    :foreground "black"
-		    :height 1.0
-		    :box nil)
-(set-face-attribute 'mode-line-inactive nil
-		    :height 1.0
-		    :box nil)
+;; (set-face-attribute 'mode-line nil
+;; 		    :background "azure3"
+;; 		    :foreground "black"
+;; 		    :height 1.0
+;; 		    :box nil)
+;; (set-face-attribute 'mode-line-inactive nil
+;; 		    :height 1.0
+;; 		    :box nil)
 
 
 

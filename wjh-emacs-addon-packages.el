@@ -206,9 +206,16 @@
 
 ;; 26 Oct 2013 - Try out smart-mode-line
 (setq sml/theme 'dark)
+;; These are minor modes that we don't want to see cluttering up the modeline
+(setq sml/hidden-modes (mapconcat 'identity 
+				  '(" hl-p" " Undo-Tree" " MRev" " Projectile.*" " SP"
+				   " Google" " Guide" " Helm" " Ind" " GG" " OCDL"
+				   " Ref" " Wrap")
+				  "\\|"))
 (require 'smart-mode-line)
 (if after-init-time (sml/setup)
   (add-hook 'after-init-hook 'sml/setup))
+
 
 ;; 12 Oct 2013 - try latex-extra
 ;; 29 Nov 2013 - but I don't like some of the keybindings
@@ -365,14 +372,14 @@
 ;; Except that still does not work for the firat frame :(
 ;;
 
-(set-face-attribute 'mode-line nil
-                    :background "azure3"
-		    :foreground "black"
-		    :height 1.0
-                    :box nil)
-(set-face-attribute 'mode-line-inactive nil
-		    :height 1.0
-                    :box nil)
+;; (set-face-attribute 'mode-line nil
+;;                     :background "azure3"
+;; 		    :foreground "black"
+;; 		    :height 1.0
+;;                     :box nil)
+;; (set-face-attribute 'mode-line-inactive nil
+;; 		    :height 1.0
+;;                     :box nil)
 
 
 
