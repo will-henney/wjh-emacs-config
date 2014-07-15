@@ -109,7 +109,7 @@ I should really make a Yasnippet snippet out of this.
                              ))
    )
   (provide-theme 'wjh-latex-faces)
-  
+
 #+end_src
 
 ** Org faces

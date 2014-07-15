@@ -13,6 +13,9 @@
 
 
 
+;; 14 Jul 2014 - Use colored identifiers
+(load "wjh-rainbow-config")
+
 ;; 13 Jul 2014 - Use helm
 (load "wjh-helm-config")
 
