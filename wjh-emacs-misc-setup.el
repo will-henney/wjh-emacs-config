@@ -107,9 +107,26 @@
 (global-set-key (kbd "M-z") 'zap-up-to-char) 
 
 
-;; Allow shift-click to extend the region
+;; Allow super-click to extend the region (used to be on shift-click
+;; but I never used it, so demoted)
+(global-set-key (kbd "<s-down-mouse-1>") 'ignore) 
+(global-set-key (kbd "<s-mouse-1>") 'mouse-save-then-kill)
+
+;; 15 Jul 2014 - a better shift-click
+(defun wjh/mouse-expand-region (click)
+  "Half-baked attempt to use the mouse to do er/expand-region
+It sort of works but you have to move the mouse around to feel
+for the boundary that you want."
+  (interactive "e")
+  (mouse-minibuffer-check click)
+  (let ((posn (event-start click)))
+    (select-window (posn-window posn))
+      (goto-char (posn-point posn))
+      (er/expand-region 1)
+    ))
 (global-set-key (kbd "<S-down-mouse-1>") 'ignore) 
-(global-set-key (kbd "<S-mouse-1>") 'mouse-save-then-kill)
+(global-set-key [S-mouse-1] 'wjh/mouse-expand-region)
+
 
 ;; WJH 23 Apr 2013 recentf-open-files is too useful not to have a
 ;; binding
