@@ -141,12 +141,26 @@ This will actually use spotlight instead of locate, so it only works on OS X"
   (list "mdfind" "-name" search-string))
 (setq locate-make-command-line 'locate-spotlight-make-command-line)
 
+;; WJH 27 Jul 2014 - did not like this
 ;; Put a darker background on code buffers to match org-block-background
-(defun buffer-background-dark ()
-  (interactive)
-  (setq buffer-face-mode-face `(:background "gray18"))
-  (buffer-face-mode 1))
-(add-hook 'python-mode-hook 'buffer-background-dark)
+;; (defun buffer-background-dark ()
+;;   (interactive)
+;;   (setq buffer-face-mode-face `(:background "gray18"))
+;;   (buffer-face-mode 1))
+;; (add-hook 'python-mode-hook 'buffer-background-dark)
+
+;; 27 Jul 2014
+;; Turn on soft-wrapping in certain modes
+;; Not perfect, but it sometimes works
+(add-hook 'visual-line-mode-hook 'adaptive-soft-wrap-mode)
+(setq visual-line-fringe-indicators (quote (left-curly-arrow right-curly-arrow)))
+(add-hook 'emacs-lisp-mode-hook 'visual-line-mode)
+(add-hook 'swift-mode-hook 'visual-line-mode)
+(add-hook 'python-mode-hook 'visual-line-mode)
+
+
+
+
 
 ;;;
 ;;; Using Emacs as an external editor for textareas in Firefox
