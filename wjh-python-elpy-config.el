@@ -9,3 +9,6 @@
 ;; Use the fn key instead
 (define-key elpy-mode-map (kbd "H-n") 'elpy-nav-forward-definition)
 (define-key elpy-mode-map (kbd "H-p") 'elpy-nav-backward-definition)
+
+;; I decided I didn't like this
+(highlight-indentation-mode 0)
