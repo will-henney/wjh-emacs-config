@@ -288,6 +288,12 @@
 (require 'ob-calc) 
 ;;(org-babel-load-library-of-babel)
 
+;; 28 Jul 2014 - Finally get round to turning off confirmation
+;;        
+;; NOTE: THIS IS A POTENTIAL SECURITY RISK - NEVER EXECUTE CODE BLOCKS
+;;       IN UNTRUSTED FILES!
+(setq org-confirm-babel-evaluate nil)
+
 ;; 15 Nov 2009 - new speed commands in 6.33
 (setq org-use-speed-commands t)
 

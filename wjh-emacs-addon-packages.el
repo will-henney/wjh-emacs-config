@@ -671,10 +671,12 @@
 	    ;; (setq dired-guess-shell-gnutar "gtar")
 	    ;; (setq dired-x-hands-off-my-keys nil)
 	    ))
+;; 28 Jul 2014 - I don't like the "... omitting ..." messages.  They get in the way.
 (add-hook 'dired-mode-hook
 	  (lambda ()
 	    ;; Set dired-x buffer-local variables here.  For example:
 	    (dired-omit-mode 1)
+	    (dired-omit-verbose nil)
 	    (auto-revert-mode)
 	    ))
 

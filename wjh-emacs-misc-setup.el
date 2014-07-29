@@ -152,6 +152,7 @@ This will actually use spotlight instead of locate, so it only works on OS X"
 ;; 27 Jul 2014
 ;; Turn on soft-wrapping in certain modes
 ;; Not perfect, but it sometimes works
+(require 'adaptive-soft-wrap)
 (add-hook 'visual-line-mode-hook 'adaptive-soft-wrap-mode)
 (setq visual-line-fringe-indicators (quote (left-curly-arrow right-curly-arrow)))
 (add-hook 'emacs-lisp-mode-hook 'visual-line-mode)

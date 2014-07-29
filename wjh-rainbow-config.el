@@ -23,7 +23,7 @@
 (add-hook 'org-mode-hook 'wjh/decolorize-prog-faces)
 
 (setq
- color-identifiers:num-colors 15
+ color-identifiers:num-colors 30
  color-identifiers:color-luminance 0.75
  color-identifiers:min-color-saturation 0.2
  color-identifiers:max-color-saturation 0.4

@@ -1,6 +1,10 @@
+;;; adaptive-soft-wrap.el --- Soft indentation of word-wrapped lines
+
 ;; The following code leverages visual-line-mode, font-lock-mode and filladapt to provide a soft indent feature. I’ve only been using it for a while, so it may have some rough edges yet that need to be smoothed out; comments or suggestions would be very welcome. – JamesWright
 
 ;; Copied from http://www.emacswiki.org/emacs/SoftIndent
+
+;;; Code:
 
 (defvar adaptive-soft-wrap-font-keywords
   '((find-next-fillable-line 0 (list 'face nil 'wrap-prefix fill-prefix) append))
@@ -52,3 +56,7 @@
 		   (filladapt-make-fill-prefix tokens))))
     (if (> (length prefix) 0)
 	prefix)))
+
+(provide 'adaptive-soft-wrap)
+
+;;; adaptive-soft-wrap.el ends here
