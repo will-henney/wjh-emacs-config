@@ -42,7 +42,7 @@
  '(git-gutter:deleted ((t (:foreground "#CC9393" :weight bold))))
  '(git-gutter:modified ((t (:foreground "#DC8CC3" :weight bold))))
  '(git-gutter:unchanged ((t (:background "yellow" :foreground "#DCDCCC" :weight bold))))
- '(helm-selection ((t (:background "#ffee90" :foreground "black" :underline nil :weight bold))))
+ '(helm-selection ((t (:background "#204060" :foreground "white" :underline nil :weight bold))) nil "Third attempt at getting this right.  Inverse video wasn't working; made me thing it was a heading.  Hopefully this will be easier to spot.")
  '(helm-source-header ((t (:background "#2B2B2B" :foreground "seashell4" :inverse-video t :box nil :underline nil :weight bold))))
  '(highlight ((t (:background "coral4"))))
  '(highlight-indentation-face ((t (:underline "gray40"))))
