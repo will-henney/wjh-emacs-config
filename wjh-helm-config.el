@@ -7,6 +7,53 @@
 (require 'helm-grep)
 (require 'helm-adaptive)
 
+;; WJH 31 Jul 2014 - Use the mouse to select candidates in the helm buffer
+;; Based on this github issue: https://github.com/emacs-helm/helm/issues/501
+(defun helm-mouse-1-exit-minibuffer (click)
+  (interactive "e")
+  (mouse-set-point click)
+  (helm-mark-current-line)
+  (helm-exit-minibuffer))
+(define-key helm-map (kbd "<mouse-1>") 'helm-mouse-1-exit-minibuffer)
+
+;; WJH 31 Jul 2014: Unfortunately, defadvice did not work
+;; 
+;; (defadvice helm-insert-match (after helm-mouse-highlight activate)
+;;   "Highlight selection when it is moused over"
+;;   (let ((start     (point-at-bol (point))))
+;;     (put-text-property start (point-at-eol) 'mouse-face 'highlight)))
+
+;; So I directly patch this function to achieve mouseover highlighting
+(defun helm-insert-match (match insert-function source &optional num)
+  "Insert MATCH into `helm-buffer' with INSERT-FUNCTION for SOURCE.
+If MATCH is a list then insert the string intended to appear on the display
+and store the real value in a text property."
+  (let ((start     (point-at-bol (point)))
+        (dispvalue (or (car-safe match) match))
+        (realvalue (cdr-safe match)))
+    (setq dispvalue
+          (cond ((symbolp dispvalue) (symbol-name dispvalue))
+                ((numberp dispvalue) (number-to-string dispvalue))
+                ((string= "" dispvalue))
+                (t dispvalue)))
+    (when (stringp dispvalue)
+      (funcall insert-function dispvalue)
+      ;; Some sources with candidates-in-buffer have already added
+      ;; 'helm-realvalue property when creating candidate buffer.
+      (unless (get-text-property start 'helm-realvalue)
+        (and realvalue
+             (put-text-property start (point-at-eol)
+                                'helm-realvalue realvalue)))
+      (when num
+        (put-text-property start (point-at-eol) 'helm-cand-num num))
+      (when helm-source-in-each-line-flag
+        (put-text-property start (point-at-eol) 'helm-source source))
+      ;; Next line is my addition WJH 31 Jul 2014
+      (put-text-property start (point-at-eol) 'mouse-face 'highlight)
+      (funcall insert-function "\n"))))
+
+
+
 ; rebind tab to do persistent action
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) 
 ; make TAB works in terminal
