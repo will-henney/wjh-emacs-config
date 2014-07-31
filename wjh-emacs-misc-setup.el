@@ -107,12 +107,13 @@
 (global-set-key (kbd "M-z") 'zap-up-to-char) 
 
 
-;; Allow super-click to extend the region (used to be on shift-click
-;; but I never used it, so demoted)
-(global-set-key (kbd "<s-down-mouse-1>") 'ignore) 
-(global-set-key (kbd "<s-mouse-1>") 'mouse-save-then-kill)
+;; Allow Shift-click to extend the region 
+(global-set-key (kbd "<S-down-mouse-1>") 'ignore) 
+(global-set-key (kbd "<S-mouse-1>") 'mouse-save-then-kill)
 
-;; 15 Jul 2014 - a better shift-click
+;; 15 Jul 2014/31 Jul 2014 - a better super-click. It used to be on
+;; shift-click but I didn't like it so much, so demoted.  Turns out
+;; that the C-= binding is much more useful
 (defun wjh/mouse-expand-region (click)
   "Half-baked attempt to use the mouse to do er/expand-region
 It sort of works but you have to move the mouse around to feel
@@ -124,9 +125,27 @@ for the boundary that you want."
       (goto-char (posn-point posn))
       (er/expand-region 1)
     ))
-(global-set-key (kbd "<S-down-mouse-1>") 'ignore) 
-(global-set-key [S-mouse-1] 'wjh/mouse-expand-region)
+(global-set-key (kbd "<s-down-mouse-1>") 'ignore) 
+(global-set-key [s-mouse-1] 'wjh/mouse-expand-region)
 
+;; WJH 31 Jul 2014 - useful naroow/widen function
+;; Copied from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html
+(defun narrow-or-widen-dwim (p)
+  "If the buffer is narrowed, it widens. Otherwise, it narrows intelligently.
+Intelligently means: region, subtree, or defun, whichever applies
+first.
+
+With prefix P, don't widen, just narrow even if buffer is already
+narrowed."
+  (interactive "P")
+  (declare (interactive-only))
+  (cond ((and (buffer-narrowed-p) (not p)) (widen))
+        ((region-active-p)
+         (narrow-to-region (region-beginning) (region-end)))
+        ((derived-mode-p 'org-mode) (org-narrow-to-subtree))
+        (t (narrow-to-defun))))
+
+(global-set-key (kbd "C-c n") 'narrow-or-widen-dwim)
 
 ;; WJH 23 Apr 2013 recentf-open-files is too useful not to have a
 ;; binding
@@ -158,10 +177,6 @@ This will actually use spotlight instead of locate, so it only works on OS X"
 (add-hook 'emacs-lisp-mode-hook 'visual-line-mode)
 (add-hook 'swift-mode-hook 'visual-line-mode)
 (add-hook 'python-mode-hook 'visual-line-mode)
-
-
-
-
 
 ;;;
 ;;; Using Emacs as an external editor for textareas in Firefox

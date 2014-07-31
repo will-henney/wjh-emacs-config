@@ -13,6 +13,11 @@
 
 
 
+
+;; 31 Jul 2014 - Delete all whitespace
+(require 'hungry-delete)
+(global-hungry-delete-mode)
+
 ;; 14 Jul 2014 - Use colored identifiers
 (load "wjh-rainbow-config")
 
@@ -219,6 +224,8 @@
 (if after-init-time (sml/setup)
   (add-hook 'after-init-hook 'sml/setup))
 
+
+(add-hook 'LaTeX-mode-hook 'TeX-global-PDF-mode)
 
 ;; 12 Oct 2013 - try latex-extra
 ;; 29 Nov 2013 - but I don't like some of the keybindings
@@ -670,13 +677,13 @@
 	    ;; Set dired-x global variables here.  For example:
 	    ;; (setq dired-guess-shell-gnutar "gtar")
 	    ;; (setq dired-x-hands-off-my-keys nil)
+	    (setq dired-omit-verbose nil)
 	    ))
 ;; 28 Jul 2014 - I don't like the "... omitting ..." messages.  They get in the way.
 (add-hook 'dired-mode-hook
 	  (lambda ()
 	    ;; Set dired-x buffer-local variables here.  For example:
 	    (dired-omit-mode 1)
-	    (dired-omit-verbose nil)
 	    (auto-revert-mode)
 	    ))
 
