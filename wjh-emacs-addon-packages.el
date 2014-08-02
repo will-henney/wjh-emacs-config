@@ -15,10 +15,11 @@
 
 
 ;; 02 Aug 2014 - A better way of indicating indentation?
-(require 'indent-guide)
-(indent-guide-global-mode)
-(set-face-background 'indent-guide-face "dimgray")
-(setq indent-guide-char ":")
+;; 02 Aug 2014 - NOPE: I didn't like it
+;; (require 'indent-guide)
+;; (indent-guide-global-mode)
+;; (set-face-background 'indent-guide-face "dimgray")
+;; (setq indent-guide-char ":")
 
 ;; 31 Jul 2014 - Delete all whitespace
 (require 'hungry-delete)
