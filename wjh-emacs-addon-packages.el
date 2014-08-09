@@ -1,7 +1,7 @@
 ;; Third party add-on packages that are not shipped with Emacs
 
 ;; 19 Dec 2013 - Hopefully, cask will simplify everything
-(require 'cask "~/.cask/cask.el")
+(require 'cask "/usr/local/Cellar/cask/0.7.0/cask.el")
 (cask-initialize)
 
 

@@ -42,7 +42,8 @@
 (add-to-list 'package-archives
              '("elpy" . "http://jorgenschaefer.github.io/packages/"))
 ;;(setq package-archives '(("elpy" . "http://jorgenschaefer.github.io/packages/")))
-(setq package-load-list '((elpy "1.3.0") all))
+;; (setq package-load-list '((elpy "1.3.0") all))
+(setq package-load-list '(all))
 (package-initialize)
 
 

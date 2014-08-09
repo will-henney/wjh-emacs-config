@@ -26,7 +26,7 @@
 (depends-on "dired-details")
 (depends-on "ein")
 (depends-on "elnode")
-(depends-on "elpy")
+;; (depends-on "elpy")
 (depends-on "epl")
 (depends-on "esxml")
 (depends-on "f")
