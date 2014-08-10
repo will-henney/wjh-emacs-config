@@ -22,5 +22,31 @@
 (define-key elpy-mode-map (kbd "H-n") 'elpy-nav-forward-definition)
 (define-key elpy-mode-map (kbd "H-p") 'elpy-nav-backward-definition)
 
-;; I decided I didn't like this
-(highlight-indentation-mode 0)
+;; Will's fancy new auto-switcher for virtual environments
+(defvar wjh/elpy-virtual-environment nil 
+  "The python virtual environment to use for the current buffer.
+
+Should be set as a file- or directory-local variable 
+using \\[add-file-local-variable] or \\[add-dir-local-variable].")
+(make-variable-buffer-local 'wjh/elpy-virtual-environment)
+
+(defun wjh/elpy:pre-command-hook ()
+  "Ensure we are in the correct virtual environment for this buffer. 
+
+This checks the value of `wjh/elpy-virtual-environment' against the 
+result of (getenv \"VIRTUAL_ENV\") and if they are not the 
+same calls `pyvenv-activate' or `pyvenv-deactivate' as appropriate.
+It is designed to be added to `pre-command-hook'."
+  (let ((current-venv (getenv "VIRTUAL_ENV"))
+        (desired-venv (when wjh/elpy-virtual-environment
+                        (expand-file-name wjh/elpy-virtual-environment))))
+    (unless (equal 'current-venv 'desired-venv)
+      (if desired-venv 
+          (pyvenv-activate desired-venv)
+        (pyvenv-deactivate)))))
+
+(add-hook 'python-mode-hook
+          '(lambda ()
+             ;; fourth arg to add-hook means buffer-local only
+             (add-hook 'pre-command-hook 'wjh/elpy:pre-command-hook nil t)))
+
