@@ -7,6 +7,6 @@
      '("elpy" "pyvenv" "company-mode" "yasnippet" "highlight-indentation"))
 (require 'elpy)
 (elpy-enable)
-(pyvenv-activate (expand-file-name "~/anaconda/envs/py27"))
+;; (pyvenv-activate (expand-file-name "~/anaconda/envs/py27"))
 (setq elpy-rpc-backend "rope")
 
