@@ -713,6 +713,7 @@ prefix argument set OTHER-WINDOW true."
   (dired-jump other-window))
 ;; 13 Aug 2014 - A convenient binding for going up from a file to the enclosing dir
 (global-set-key (kbd "C-^") 'wjh/dired-jump)
+(global-set-key (kbd "M-6") 'wjh/dired-jump)
 
 
 
