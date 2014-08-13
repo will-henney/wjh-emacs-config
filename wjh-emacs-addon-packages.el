@@ -705,6 +705,16 @@
         ("\\.doc\\'" "open -a TextEdit" "open -a Pages")))
 
 
+(defun wjh/dired-jump (&optional other-window)
+  "Jump to dired buffer corresponding to current buffer.
+Just like the `dired-jump' from `dired-x' except that interactively with
+prefix argument set OTHER-WINDOW true."
+  (interactive "P")
+  (dired-jump other-window))
+;; 13 Aug 2014 - A convenient binding for going up from a file to the enclosing dir
+(global-set-key (kbd "C-^") 'wjh/dired-jump)
+
+
 
 ;; WJH 01 Feb 2012 - try out predictive
 ;; see http://www.dr-qubit.org/predictive/

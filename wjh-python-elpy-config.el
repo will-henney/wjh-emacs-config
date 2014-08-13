@@ -49,4 +49,3 @@ It is designed to be added to `pre-command-hook'."
           '(lambda ()
              ;; fourth arg to add-hook means buffer-local only
              (add-hook 'pre-command-hook 'wjh/elpy:pre-command-hook nil t)))
-
