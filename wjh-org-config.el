@@ -87,6 +87,20 @@
 ;; 29 Nov 2010 - this should speed things up
 (setq font-lock-verbose nil)
 
+;; 15 Aug 2014 we now have separate faces for begin/end source blocks
+;; Let's take advantage
+;; 
+(set-face-attribute 'org-meta-line nil
+		    :inherit nil :foreground "gray60" :weight 'light)
+(set-face-attribute 'org-block-begin-line nil
+		    :inherit 'org-block-background
+		    :underline nil :overline nil
+		    :foreground "gray60" :weight 'light)
+(set-face-attribute 'org-block-end-line nil
+		    :inherit 'org-block-background
+		    :underline nil :overline nil
+		    :foreground "gray60" :weight 'light)
+
 ;;iimage
 (require 'iimage)
 (setq iimage-mode-image-search-path (expand-file-name "~/"))
