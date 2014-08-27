@@ -209,3 +209,5 @@ This will actually use spotlight instead of locate, so it only works on OS X"
 (help-at-pt-set-timer) 
 (setq help-at-pt-display-when-idle t)
 
+;; 27 Aug 2014 - Useful bindings for M-1, M-2, M-3, etc
+(load "wjh-emacs-meta-digits")
