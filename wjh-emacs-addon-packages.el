@@ -14,6 +14,11 @@
 
 
 
+;; 27 Aug 2014 - popup git commit messages
+(require 'git-messenger)
+(global-set-key (kbd "C-x v p") 'git-messenger:popup-message)
+
+
 ;; 02 Aug 2014 - A better way of indicating indentation?
 ;; 02 Aug 2014 - NOPE: I didn't like it
 ;; (require 'indent-guide)
