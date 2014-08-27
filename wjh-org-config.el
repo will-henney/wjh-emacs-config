@@ -90,8 +90,12 @@
 ;; 15 Aug 2014 we now have separate faces for begin/end source blocks
 ;; Let's take advantage
 ;; 
+(set-face-attribute 'org-special-keyword nil
+		    :weight 'light)
+(set-face-attribute 'org-date nil
+		    :weight 'light)
 (set-face-attribute 'org-meta-line nil
-		    :inherit nil :foreground "gray60" :weight 'light)
+		    :inherit nil :foreground "#b0a0a0" :weight 'light)
 (set-face-attribute 'org-block-begin-line nil
 		    :inherit 'org-block-background
 		    :underline nil :overline nil
