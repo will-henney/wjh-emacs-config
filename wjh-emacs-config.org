@@ -89,7 +89,7 @@ I should really make a Yasnippet snippet out of this.
    CLOCK: [2011-11-07 Mon 12:42]--[2011-11-07 Mon 13:00] =>  0:18
    :END:
    :PROPERTIES:
-   :tangle:   lisp/wjh-latex-faces-theme.el
+   :tangle:   themes/wjh-latex-faces-theme.el
    :END:
 
 + Using Menlo, just to see if I can get used to it.  /Update:/ No, it is horrible - go back to Monaco for now
@@ -135,7 +135,7 @@ I should really make a Yasnippet snippet out of this.
    CLOCK: [2011-11-05 Sat 20:48]--[2011-11-05 Sat 21:18] =>  0:30
    :END:
    :PROPERTIES:
-   :tangle:   lisp/wjh-org-faces-theme.el
+   :tangle:   themes/wjh-org-faces-theme.el
    :END:
 
 The main thing that we do here is to make the faces for tables and source blocks inherit from =fixed-pitch=. This is especially necessary if you change the default text font to be varible pitch. There are advantages to this, even if you use a fixed pitch default font. In my case, I use monaco as the default, but =fixed-pitch= is set to courier, which looks more "code-y" and helps set off the source blocks. 
@@ -352,7 +352,7 @@ Text eight
 
 ** Redbox cursor
    :PROPERTIES:
-   :tangle:   lisp/wjh-redbox-cursor-theme.el
+   :tangle:   themes/wjh-redbox-cursor-theme.el
    :END:
 Use a nice red hollow box for the cursor. This is a good compromise between visibility and not getting in the way. Strangely, it is the background color that needs to be set to red (I use =OrangeRed1=). The foreground colour seems to have no effect. 
 
@@ -385,7 +385,7 @@ In non-selected windows, I use a horizontal bar instead.
      Trying to get timestamps to go into LOGBOOK drawer.  Why is this not working?
    :END:
    :PROPERTIES:
-   :tangle:   lisp/wjh-org-misc-theme.el
+   :tangle:   themes/wjh-org-misc-theme.el
    :END:
 
 So, these customizations have nothing to do with faces.  It might be better to put them in normal configuration files, rather than a custom theme.  It isn't as if I am going to turn them on and off.  
@@ -412,7 +412,7 @@ So, these customizations have nothing to do with faces.  It might be better to p
    CLOCK: [2011-11-08 Tue 10:28]--[2011-11-08 Tue 11:28] =>  1:00 
    :END:
    :PROPERTIES:
-   :tangle:   lisp/wjh-misc-appearance-theme.el
+   :tangle:   themes/wjh-misc-appearance-theme.el
    :END:
 
 

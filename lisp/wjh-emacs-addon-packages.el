@@ -7,9 +7,8 @@
 
 (defun wjh-add-to-load-path (pkg)
   "Add pkg directory to load path."
-  (add-to-list 'load-path (concat wjh-local-lisp-dir "/lisp/" pkg)))
+  (add-to-list 'load-path (concat wjh-local-lisp-dir pkg)))
 
-(add-to-list 'load-path (concat wjh-local-lisp-dir "/lisp"))
 
 
 

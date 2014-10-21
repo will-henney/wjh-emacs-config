@@ -15,7 +15,7 @@
 ;;  WJH 01 May 2005 :: initial version
 
 ;;; Code:
-(defvar wjh-local-lisp-dir (expand-file-name "~/.emacs.d")
+(defvar wjh-local-lisp-dir (expand-file-name "~/.emacs.d/lisp")
   "*Where I keep all my elisp files.")
 (add-to-list 'load-path wjh-local-lisp-dir)
 
@@ -24,11 +24,11 @@
  ((boundp 'aquamacs-version)
   ;;; need separate custom files since aquamacs may refer to vars that 
   ;;; do not exist in Emacs.app and vice versa
-  (setq custom-file (concat wjh-local-lisp-dir "/custom.el"))
+  (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
 ;;   (setq custom-file (concat wjh-local-lisp-dir "/custom-empty.el"))
   )
  (t
-  (setq custom-file (concat wjh-local-lisp-dir "/custom-nonaquamacs.el")))
+  (setq custom-file (expand-file-name "~/.emacs.d/custom-nonaquamacs.el")))
  )
 (load custom-file)
 
@@ -49,7 +49,7 @@
 
 ;; add in personal info directory as soon as possible
 (add-to-list 'Info-default-directory-list 
-	     (concat wjh-local-lisp-dir "/info/"))
+	     (expand-file-name "~/.emacs.d/info/"))
 
  
 
@@ -68,6 +68,8 @@
 
 ;; Load themes by hand instead of relying on custom, since that always messed up the priorities
 ;; '(custom-enabled-themes (quote (wjh-misc-appearance wjh-latex-faces wjh-org-misc wjh-redbox-cursor zenburn)))
+
+(setq custom-theme-directory (expand-file-name "~/.emacs.d/themes"))
 
 (load-theme 'zenburn)
 (load-theme 'wjh-latex-faces)
