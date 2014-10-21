@@ -2,6 +2,8 @@
 ;;; Copied mainly from Amit Patel's blog
 ;;; http://amitp.blogspot.mx/2014/04/emacs-rainbow-identifiers.html
 
+;; Add the following to Cask:
+;; (depends-on "color-identifiers-mode")
 
 (defun wjh/decolorize-prog-faces ()
   "Replace the syntax highlight colors with some subtle font changes"

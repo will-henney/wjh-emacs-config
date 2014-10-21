@@ -26,7 +26,8 @@
 (depends-on "dired-details")
 (depends-on "ein")
 (depends-on "elnode")
-;; (depends-on "elpy")
+;; Why was this commented out?
+(depends-on "elpy")
 (depends-on "epl")
 (depends-on "esxml")
 (depends-on "f")
@@ -98,3 +99,12 @@
 (depends-on "persistent-scratch")
 (depends-on "google-this")
 (depends-on "tsv-mode")
+;; New dependencies that I discovered I was missing with emacs 24.4
+(depends-on "git-messenger")
+(depends-on "hungry-delete")
+(depends-on "helm")
+(depends-on "color-identifiers-mode")
+(depends-on "smex")
+(depends-on "stripe-buffer")
+; (depends-on "")
+; (depends-on "")

@@ -1,0 +1,237 @@
+
+In toplevel form:
+achievements-functions.el:12:1:Warning: cl package required at runtime
+
+In achievements-num-times-commands-were-run:
+achievements-functions.el:185:40:Warning: reference to free variable
+    `keyfreq-table'
+
+In achievements-update-score:
+achievements-functions.el:269:24:Warning: reference to free variable
+    `achievements-display-when-earned'
+
+In achievements-post-command-function:
+achievements-functions.el:410:8:Warning: `flet' is an obsolete macro (as of
+    24.3); use either `cl-flet' or `cl-letf'.
+
+In end of data:
+achievements-functions.el:443:1:Warning: the following functions are not known
+    to be defined: keyfreq-table-load, command-frequency-list
+
+In end of data:
+basic-achievements.el:418:1:Warning: the following functions are not known to
+    be defined: animate, yow, emstar, fliptext-flip-region, nethack, nyan-mode
+
+In toplevel form:
+ideas-achievements.el:2:1:Warning: reference to free variable `This'
+ideas-achievements.el:2:6:Warning: reference to free variable `is'
+ideas-achievements.el:2:9:Warning: reference to free variable `a'
+ideas-achievements.el:2:11:Warning: reference to free variable `file'
+ideas-achievements.el:2:16:Warning: reference to free variable `with'
+ideas-achievements.el:2:23:Warning: reference to free variable `bunch'
+ideas-achievements.el:2:29:Warning: reference to free variable `of'
+ideas-achievements.el:2:32:Warning: reference to free variable `random'
+ideas-achievements.el:2:39:Warning: reference to free variable `pieces'
+ideas-achievements.el:2:49:Warning: reference to free variable `ideas'
+ideas-achievements.el:2:55:Warning: reference to free variable `for'
+ideas-achievements.el:3:1:Warning: reference to free variable `achievements'
+ideas-achievements.el:3:15:Warning: reference to free variable `and/or'
+ideas-achievements.el:3:22:Warning: reference to free variable `improvements'
+ideas-achievements.el:3:35:Warning: reference to free variable `to'
+ideas-achievements.el:3:38:Warning: reference to free variable `the'
+ideas-achievements.el:3:42:Warning: reference to free variable `mechanism\.'
+ideas-achievements.el:3:54:Warning: reference to free variable `It'
+ideas-achievements.el:3:62:Warning: reference to free variable `real'
+ideas-achievements.el:4:1:Warning: reference to free variable `mess'
+ideas-achievements.el:4:7:Warning: reference to free variable `but'
+ideas-achievements.el:4:11:Warning: reference to free variable `hey'
+ideas-achievements.el:4:16:Warning: reference to free variable `it'
+ideas-achievements.el:4:19:Warning: reference to free variable `keeps'
+ideas-achievements.el:4:25:Warning: reference to free variable `me'
+ideas-achievements.el:4:28:Warning: reference to free variable `from'
+ideas-achievements.el:4:33:Warning: reference to free variable `forgetting'
+ideas-achievements.el:4:44:Warning: reference to free variable `things\.'
+ideas-achievements.el:23:3:Warning: reference to free variable `viper'
+ideas-achievements.el:23:9:Warning: reference to free variable `vi'
+ideas-achievements.el:23:12:Warning: reference to free variable `vip'
+ideas-achievements.el:30:1:Warning: reference to free variable
+    `keyolution\.el'
+ideas-achievements.el:47:1:Warning: reference to free variable
+    `org-replace-region-by-latex'
+ideas-achievements.el:66:1:Warning: reference to free variable `elint'
+ideas-achievements.el:67:1:Warning: reference to free variable `checkdoc'
+ideas-achievements.el:68:1:Warning: reference to free variable `edebug'
+ideas-achievements.el:69:1:Warning: reference to free variable `profile'
+ideas-achievements.el:70:1:Warning: reference to free variable `format-spec'
+ideas-achievements.el:71:1:Warning: reference to free variable `cl'
+ideas-achievements.el:71:4:Warning: reference to free variable `package'
+ideas-achievements.el:73:1:Warning: reference to free variable
+    `define-derived-mode'
+ideas-achievements.el:74:1:Warning: reference to free variable `benchmark-run'
+ideas-achievements.el:75:1:Warning: reference to free variable `hack-let'
+ideas-achievements.el:76:1:Warning: reference to free variable
+    `debug-on-entry'
+ideas-achievements.el:79:1:Warning: reference to free variable
+    `eval-last-sexp'
+ideas-achievements.el:79:16:Warning: reference to free variable `twice'
+ideas-achievements.el:79:25:Warning: reference to free variable `get'
+ideas-achievements.el:79:29:Warning: reference to free variable `hex'
+ideas-achievements.el:79:33:Warning: reference to free variable `numbers'
+ideas-achievements.el:80:1:Warning: reference to free variable `ert'
+ideas-achievements.el:81:1:Warning: reference to free variable `disassemble'
+ideas-achievements.el:89:13:Warning: reference to free variable `cperl-mode'
+ideas-achievements.el:90:1:Warning: reference to free variable
+    `sh-script-mode'
+ideas-achievements.el:131:1:Warning: reference to free variable
+    `which-func-mode'
+ideas-achievements.el:168:31:Warning: reference to free variable
+    `customize-changed'
+ideas-achievements.el:193:1:Warning: reference to free variable `mark-defun'
+ideas-achievements.el:194:1:Warning: reference to free variable
+    `mark-whole-buffer'
+ideas-achievements.el:195:1:Warning: reference to free variable
+    `delete-indentation'
+ideas-achievements.el:197:1:Warning: reference to free variable `flyspell'
+ideas-achievements.el:197:10:Warning: reference to free variable `speck'
+ideas-achievements.el:197:16:Warning: reference to free variable `wcheck-mode'
+ideas-achievements.el:198:1:Warning: reference to free variable
+    `clone-indirect-buffer'
+ideas-achievements.el:199:1:Warning: reference to free variable
+    `move-to-window-line'
+ideas-achievements.el:200:1:Warning: reference to free variable
+    `append-next-kill'
+ideas-achievements.el:202:1:Warning: reference to free variable `transpose'
+ideas-achievements.el:202:11:Warning: reference to free variable `commands'
+ideas-achievements.el:202:20:Warning: reference to free variable `--'
+ideas-achievements.el:202:23:Warning: reference to free variable `and'
+ideas-achievements.el:202:34:Warning: reference to free variable `prefix'
+ideas-achievements.el:202:41:Warning: reference to free variable `arg'
+ideas-achievements.el:204:1:Warning: reference to free variable `align'
+ideas-achievements.el:205:1:Warning: reference to free variable `align-regexp'
+ideas-achievements.el:206:1:Warning: reference to free variable
+    `fill-paragraph'
+ideas-achievements.el:207:1:Warning: reference to free variable `two-column'
+ideas-achievements.el:208:1:Warning: reference to free variable `C-q'
+ideas-achievements.el:208:8:Warning: reference to free variable `especially'
+ideas-achievements.el:208:19:Warning: reference to free variable `in'
+ideas-achievements.el:208:22:Warning: reference to free variable `search'
+ideas-achievements.el:208:33:Warning: reference to free variable `replace'
+ideas-achievements.el:213:1:Warning: reference to free variable
+    `occur-edit-mode'
+ideas-achievements.el:214:1:Warning: reference to free variable
+    `ack-and-a-half'
+ideas-achievements.el:215:1:Warning: reference to free variable `multi-occur'
+ideas-achievements.el:216:1:Warning: reference to free variable
+    `isearch-edit-string'
+ideas-achievements.el:223:1:Warning: reference to free variable
+    `find-grep-dired'
+ideas-achievements.el:224:1:Warning: reference to free variable `wgrep'
+ideas-achievements.el:225:1:Warning: reference to free variable `C-j'
+ideas-achievements.el:225:11:Warning: reference to free variable `match'
+ideas-achievements.el:225:19:Warning: reference to free variable `newline'
+ideas-achievements.el:225:27:Warning: reference to free variable `when'
+ideas-achievements.el:225:32:Warning: reference to free variable `searching'
+ideas-achievements.el:245:1:Warning: reference to free variable
+    `whitespace-mode'
+ideas-achievements.el:252:9:Warning: reference to free variable `50%'
+ideas-achievements.el:252:13:Warning: reference to free variable `are'
+ideas-achievements.el:252:17:Warning: reference to free variable `self-insert'
+ideas-achievements.el:254:1:Warning: reference to free variable `array'
+ideas-achievements.el:255:1:Warning: reference to free variable `autorevert'
+ideas-achievements.el:256:1:Warning: reference to free variable `avoid'
+ideas-achievements.el:257:1:Warning: reference to free variable `battery'
+ideas-achievements.el:258:1:Warning: reference to free variable
+    `bug-reference'
+ideas-achievements.el:259:1:Warning: reference to free variable
+    `compare-windows'
+ideas-achievements.el:260:1:Warning: reference to free variable `diary-lib'
+ideas-achievements.el:261:1:Warning: reference to free variable
+    `describe-text-properties'
+ideas-achievements.el:262:1:Warning: reference to free variable
+    `describe-char'
+ideas-achievements.el:263:1:Warning: reference to free variable `delsel'
+ideas-achievements.el:264:1:Warning: reference to free variable `dbus'
+ideas-achievements.el:265:1:Warning: reference to free variable `css-mode'
+ideas-achievements.el:266:1:Warning: reference to free variable `cwarn'
+ideas-achievements.el:268:1:Warning: reference to free variable `subword'
+ideas-achievements.el:269:1:Warning: reference to free variable `speedbar'
+ideas-achievements.el:270:1:Warning: reference to free variable `cedet'
+ideas-achievements.el:271:1:Warning: reference to free variable `sql'
+ideas-achievements.el:272:1:Warning: reference to free variable `imenu'
+ideas-achievements.el:273:1:Warning: reference to free variable `ediff'
+ideas-achievements.el:274:1:Warning: reference to free variable `ecb'
+ideas-achievements.el:275:1:Warning: reference to free variable `doc-view'
+ideas-achievements.el:276:1:Warning: reference to free variable
+    `yasnippet/skeleton/etc\.'
+ideas-achievements.el:279:1:Warning: reference to free variable
+    `enriched-mode'
+ideas-achievements.el:281:1:Warning: reference to free variable `view-lossage'
+ideas-achievements.el:282:1:Warning: reference to free variable `flymake'
+ideas-achievements.el:283:1:Warning: reference to free variable `proced'
+ideas-achievements.el:284:1:Warning: reference to free variable `re-builder'
+ideas-achievements.el:285:1:Warning: reference to free variable
+    `count-lines-region'
+ideas-achievements.el:286:1:Warning: reference to free variable `sort-lines'
+ideas-achievements.el:287:1:Warning: reference to free variable `sort-columns'
+ideas-achievements.el:288:1:Warning: reference to free variable `autocomplete'
+ideas-achievements.el:289:1:Warning: reference to free variable `secrets'
+ideas-achievements.el:290:1:Warning: reference to free variable `saveplace'
+ideas-achievements.el:291:1:Warning: reference to free variable `desktop'
+ideas-achievements.el:292:1:Warning: reference to free variable `rot13'
+ideas-achievements.el:293:1:Warning: reference to free variable `repeat'
+ideas-achievements.el:294:1:Warning: reference to free variable `remember'
+ideas-achievements.el:295:1:Warning: reference to free variable `regex-opt'
+ideas-achievements.el:297:1:Warning: reference to free variable `rcompile'
+ideas-achievements.el:300:1:Warning: reference to free variable `normal-mode'
+ideas-achievements.el:302:1:Warning: reference to free variable
+    `repeat-complex-command'
+ideas-achievements.el:303:1:Warning: reference to free variable `bookmarks'
+ideas-achievements.el:304:1:Warning: reference to free variable
+    `file/directory'
+ideas-achievements.el:304:16:Warning: reference to free variable `local'
+ideas-achievements.el:304:22:Warning: reference to free variable `variables'
+ideas-achievements.el:308:1:Warning: reference to free variable
+    `network-interface-info'
+ideas-achievements.el:316:1:Warning: reference to free variable `locate'
+ideas-achievements.el:319:1:Warning: reference to free variable `c-eldoc'
+ideas-achievements.el:320:1:Warning: reference to free variable
+    `ace-jump-mode'
+ideas-achievements.el:321:1:Warning: reference to free variable
+    `writegood-mode'
+ideas-achievements.el:322:1:Warning: reference to free variable
+    `writeroom-mode'
+ideas-achievements.el:323:1:Warning: reference to free variable `drag-stuff'
+ideas-achievements.el:324:1:Warning: reference to free variable `parenface'
+ideas-achievements.el:325:1:Warning: reference to free variable `paredit'
+ideas-achievements.el:326:1:Warning: reference to free variable `num3-mode'
+ideas-achievements.el:327:1:Warning: reference to free variable
+    `multiple-cursors'
+ideas-achievements.el:328:1:Warning: reference to free variable
+    `mark-multiple'
+ideas-achievements.el:329:1:Warning: reference to free variable `keyfreq'
+ideas-achievements.el:330:1:Warning: reference to free variable `hl-sexp'
+ideas-achievements.el:331:1:Warning: reference to free variable
+    `highlight-symbol'
+ideas-achievements.el:333:1:Warning: reference to free variable `linum'
+ideas-achievements.el:335:1:Warning: reference to free variable `undo-tree'
+ideas-achievements.el:336:1:Warning: reference to free variable `emacs-lock'
+ideas-achievements.el:337:1:Warning: reference to free variable `smex'
+ideas-achievements.el:338:1:Warning: reference to free variable `emerge'
+ideas-achievements.el:339:1:Warning: reference to free variable `follow'
+ideas-achievements.el:340:1:Warning: reference to free variable `finder'
+ideas-achievements.el:341:1:Warning: reference to free variable `ffap'
+ideas-achievements.el:342:1:Warning: reference to free variable `face-remap'
+ideas-achievements.el:343:1:Warning: reference to free variable `fortune'
+ideas-achievements.el:344:1:Warning: reference to free variable `hexl-mode'
+ideas-achievements.el:345:1:Warning: reference to free variable `gud'
+ideas-achievements.el:346:1:Warning: reference to free variable
+    `zencoding-mode\.el'
+ideas-achievements.el:354:1:Warning: reference to free variable `uniquify'
+ideas-achievements.el:359:1:Warning: reference to free variable `tramp'
+ideas-achievements.el:360:1:Warning: reference to free variable `tar'
+ideas-achievements.el:360:5:Warning: reference to free variable `zip'
+ideas-achievements.el:360:9:Warning: reference to free variable `etc\.'
+
+In end of data:
+ideas-achievements.el:469:1:Warning: the following functions are not known to
+    be defined: ,, how-to, over, master, longlines
