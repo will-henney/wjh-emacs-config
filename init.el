@@ -71,12 +71,16 @@
 
 (setq custom-theme-directory (expand-file-name "~/.emacs.d/themes"))
 
-(load-theme 'zenburn)
-(load-theme 'wjh-latex-faces)
-(load-theme 'wjh-org-faces)
-(load-theme 'wjh-org-misc)
-(load-theme 'wjh-misc-appearance)
-(load-theme 'wjh-redbox-cursor)
+(load-theme 'zenburn t)
+(load-theme 'wjh-latex-faces t)
+(load-theme 'wjh-org-faces t)
+(load-theme 'wjh-org-misc t)
+(load-theme 'wjh-misc-appearance t)
+(load-theme 'wjh-redbox-cursor t)
+
+
+(setq fringes-outside-margins t)
+(fringe-mode 4)
 
 
 ;; See discussion in Miscellaneous Appearance section of wjh-emacs-config.org

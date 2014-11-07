@@ -45,7 +45,8 @@ It is designed to be added to `pre-command-hook'."
           (pyvenv-activate desired-venv)
         (pyvenv-deactivate)))))
 
-(add-hook 'python-mode-hook
-          '(lambda ()
-             ;; fourth arg to add-hook means buffer-local only
-             (add-hook 'pre-command-hook 'wjh/elpy:pre-command-hook nil t)))
+;; No longer necessary 30 Oct 2014
+;; (add-hook 'python-mode-hook
+;;           '(lambda ()
+;;              ;; fourth arg to add-hook means buffer-local only
+;;              (add-hook 'pre-command-hook 'wjh/elpy:pre-command-hook nil t)))
