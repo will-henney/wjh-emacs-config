@@ -1,5 +1,5 @@
 ;; The nuclear option - use the command for control
-;; This is the layour that is closest to what was intended in early emacs
+;; This is the layout that is closest to what was intended in early emacs
 (setq mac-command-modifier 'control)
 (setq mac-option-modifier 'meta)
 (setq mac-control-modifier 'super)
@@ -10,7 +10,10 @@
 ;; Cmd-TAB, Cmd-SPACE (this is Alfred's fault)
 ;; + We could map s-tab to other-window
 (global-set-key (kbd "<s-tab>") 'other-window)
-(global-set-key (kbd "C-`") 'other-frame)
+;; (global-set-key (kbd "C-`") 'other-frame)
+;; 07 Nov 2014 - Due to bad interaction with Preview.app, I have now
+;; switched back to Cmd-` for switching frames
+(global-set-key (kbd "s-`") 'other-frame)
 ;; + We could make Alfred use another key
 ;;   or we could use C-@ in emacs to set the mark.
 ;;   Decided to use Option-Cmd-SPACE for Alfred
