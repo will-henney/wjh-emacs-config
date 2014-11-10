@@ -37,7 +37,11 @@ This is my personal emacs configuration setup.
   #+BEGIN_SRC sh
 EMACS="/usr/local/Cellar/emacs-mac/emacs-24.4-mac-5.0/Emacs.app/Contents/MacOS/Emacs" cask install
   #+END_SRC
-  + Obviously, with the path adjusted according to circumstances. 
+  + Obviously, with the path adjusted according to circumstances.
+
+** TODO Switch to pallet?
++ I should really start using pallet or something similar (maybe use-package)
++ This will automatically update my Cask file whenever I install new packages
 
 * How to use the themes
    :LOGBOOK:
