@@ -12,6 +12,25 @@
 
 
 
+;; 03 Dec 2014 - spelling and grammar
+;; Inspired by https://joelkuiper.eu/spellcheck_emacs
+
+;; Use hunspell if available 
+(when (executable-find "hunspell")
+  (setq-default ispell-program-name "hunspell")
+  (setq ispell-really-hunspell t))
+
+;; Use langtool 
+(require 'langtool)
+(setq langtool-language-tool-jar 
+      "/usr/local/Cellar/languagetool/2.7/libexec/languagetool-commandline.jar"
+      langtool-mother-tongue "en"
+      langtool-disabled-rules '("WHITESPACE_RULE"
+                                "EN_UNPAIRED_BRACKETS"
+                                "COMMA_PARENTHESIS_WHITESPACE"
+                                "EN_QUOTES"))
+
+
 
 ;; 27 Aug 2014 - popup git commit messages
 (require 'git-messenger)

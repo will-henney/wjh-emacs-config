@@ -18,7 +18,7 @@
 
 * Introduction 
   :LOGBOOK:
-  CLOCK: [2014-10-21 Tue 12:43]
+  CLOCK: [2014-10-21 Tue 12:43]--[2014-10-21 Tue 13:43] =>  1:00
   CLOCK: [2011-11-04 Fri 23:18]--[2011-11-04 Fri 23:26] =>  0:08
   :END:
 This is my personal emacs configuration setup. 

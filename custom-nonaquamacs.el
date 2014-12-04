@@ -81,7 +81,7 @@
  '(sp-pair-overlay-face ((t (:weight bold))))
  '(sp-show-pair-enclosing ((t (:background "black" :weight bold))))
  '(sp-show-pair-match-face ((t (:background "#3f3f3f" :foreground "gold" :weight bold))))
- '(speedbar-highlight-face ((((class color) (background light)) (:background "#aaffaa"))) t)
+ '(speedbar-highlight-face ((((class color) (background light)) (:background "#aaffaa"))))
  '(stripe-highlight ((t (:background "#333333"))))
  '(tooltip ((t (:inherit variable-pitch :background "lightyellow" :foreground "black" :weight extra-bold :height 0.7))))
  '(variable-pitch ((t (:height 1.0 :family "Avenir Next"))))
@@ -178,7 +178,7 @@
  '(line-spacing 4)
  '(org-agenda-files
    (quote
-    ("~/Dropbox/Nebulio/nebulio-notes.org" "~/Work/RubinWFC3/Tsquared/orion-t2.org")))
+    ("~/Dropbox/Nebulio/nebulio-notes.org" "~/Work/RubinWFC3/Tsquared/orion-t2.org" "~/Dropbox/Family/Matthew-Money/matt-loan.org")))
  '(org-attach-directory "~/Dropbox/Org-Attach")
  '(org-attach-method (quote ln))
  '(org-clock-into-drawer "LOGBOOK")
@@ -194,6 +194,7 @@
      ("~" org-verbatim "<code>" "</code>" verbatim)
      ("@" org-warning "<b>" "</b>"))))
  '(org-export-babel-evaluate nil)
+ '(org-export-backends (quote (ascii beamer html icalendar latex md org)))
  '(org-export-dispatch-use-expert-ui t)
  '(org-id-link-to-org-use-id (quote create-if-interactive-and-no-custom-id))
  '(org-log-into-drawer t)
@@ -208,9 +209,12 @@
  '(org-tag-faces (quote (("noexport" . "#33bb44"))))
  '(pinboard-url "http://feeds.pinboard.in/json/u:deprecated/?count=10")
  '(recentf-mode t)
+ '(rm-blacklist
+   (quote
+    (" hl-p" " Undo-Tree" " MRev" " Projectile" " Google" " Guide" " Helm" " Ind" " GG" " OCDL")))
  '(rm-excluded-modes
    (quote
-    (" hl-p" " Undo-Tree" " MRev" " Projectile" " Google" " Guide" " Helm" " Ind" " GG" " OCDL")) t)
+    (" hl-p" " Undo-Tree" " MRev" " Projectile" " Google" " Guide" " Helm" " Ind" " GG" " OCDL")))
  '(safe-local-variable-values
    (quote
     ((wjh/elpy-virtual-environment . "~/anaconda/envs/py27")
@@ -243,7 +247,7 @@
  '(show-paren-mode nil)
  '(sml/hidden-modes
    (quote
-    (" hl-p" " Undo-Tree" " MRev" " Projectile" " Google" " Guide" " Helm" " Ind" " GG" " OCDL")) t)
+    (" hl-p" " Undo-Tree" " MRev" " Projectile" " Google" " Guide" " Helm" " Ind" " GG" " OCDL")))
  '(sml/inactive-background-color "#222233")
  '(sml/name-width 20)
  '(text-mode-hook (quote (turn-on-visual-line-mode)))
