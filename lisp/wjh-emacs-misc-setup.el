@@ -114,6 +114,9 @@
 ;; 15 Jul 2014/31 Jul 2014 - a better super-click. It used to be on
 ;; shift-click but I didn't like it so much, so demoted.  Turns out
 ;; that the C-= binding is much more useful
+;;
+;; 04 Dec 2014 - Now remove the binding completely because I wanted it
+;; for flyspell-correct-word
 (defun wjh/mouse-expand-region (click)
   "Half-baked attempt to use the mouse to do er/expand-region
 It sort of works but you have to move the mouse around to feel
@@ -125,8 +128,8 @@ for the boundary that you want."
       (goto-char (posn-point posn))
       (er/expand-region 1)
     ))
-(global-set-key (kbd "<s-down-mouse-1>") 'ignore) 
-(global-set-key [s-mouse-1] 'wjh/mouse-expand-region)
+;; (global-set-key (kbd "<s-down-mouse-1>") 'ignore) 
+;; (global-set-key [s-mouse-1] 'wjh/mouse-expand-region)
 
 ;; WJH 31 Jul 2014 - useful naroow/widen function
 ;; Copied from http://endlessparentheses.com/emacs-narrow-or-widen-dwim.html

@@ -30,6 +30,8 @@
                                 "COMMA_PARENTHESIS_WHITESPACE"
                                 "EN_QUOTES"))
 
+(global-set-key [s-down-mouse-1] 'flyspell-correct-word)
+
 
 
 ;; 27 Aug 2014 - popup git commit messages
