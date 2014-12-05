@@ -45,8 +45,13 @@
 ;; (setq indent-guide-char ":")
 
 ;; 31 Jul 2014 - Delete all whitespace
+;; 05 Dec 2014 - No, I didn't like this much, at least not to be
+;; turned on all the time.  It hijacks the delete key and many times I
+;; deleted more than I wanted and had to undo.
 (require 'hungry-delete)
-(global-hungry-delete-mode)
+;; (global-hungry-delete-mode)
+;; 05 Dec 2014 - Just put it on meta delete in case we want it ever
+(global-set-key (kbd "M-DEL") 'hungry-delete-backward)
 
 ;; 14 Jul 2014 - Use colored identifiers
 (load "wjh-rainbow-config")
