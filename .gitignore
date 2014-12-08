@@ -31,3 +31,4 @@ predictive/
 /request/curl-cookie-jar
 
 !lisp/wjh-*.el
+/TAGS

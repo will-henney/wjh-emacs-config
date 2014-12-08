@@ -110,7 +110,7 @@
 (depends-on "helm-bibtex")
 (depends-on "helm-dash")
 (depends-on "langtool")
-; (depends-on "")
+(depends-on "ggtags")
 ; (depends-on "")
 ; (depends-on "")
 ; (depends-on "")
