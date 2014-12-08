@@ -326,7 +326,8 @@
 ;;   "Include top-level dir in `projectile-current-project-dirs'."
 ;;   (setq ad-return-value (append '("./") ad-do-it)))
 ;; (setq projectile-switch-project-action 'projectile-find-dir)
-(setq projectile-switch-project-action 'projectile-recentf)
+;; (setq projectile-switch-project-action 'projectile-recentf)
+(setq projectile-switch-project-action 'projectile-find-file)
 (setq projectile-find-dir-includes-top-level t)
 (define-key projectile-mode-map [?\s-d] 'projectile-find-dir)
 (define-key projectile-mode-map [?\s-p] 'projectile-switch-project)
