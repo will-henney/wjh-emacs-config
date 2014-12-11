@@ -6,6 +6,10 @@
 ;; (setenv "PATH" (concat wjh-python-path ":" (getenv "PATH")))
 ;; (add-to-list 'exec-path wjh-python-path)
 
+;; 10 Dec 2014 - Pointed out by Artur Malabarba
+;; http://endlessparentheses.com/sweet-new-features-in-24-4.html
+;; "... so you’re never accidentally using outdated compiled files."
+(setq load-prefer-newer t)
 
 ;; 26 Oct 2013 - tweak scrolling behavior
 ;; Copied from http://zeekat.nl/articles/making-emacs-work-for-me.html
@@ -100,9 +104,9 @@
 ;; 08 Aug 2010 Miscellaneous tweaks to editing commands
 (require 'misc)
 ;; always goes to start of word
-(global-set-key (kbd "M-f") 'forward-to-word)
+(global-set-key (kbd "M-F") 'forward-to-word)
 ;; always goes to end of word
-(global-set-key (kbd "M-b") 'backward-to-word)
+(global-set-key (kbd "M-B") 'backward-to-word)
 ;; zaps all BUT the character zapped to
 (global-set-key (kbd "M-z") 'zap-up-to-char) 
 

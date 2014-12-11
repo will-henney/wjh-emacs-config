@@ -52,8 +52,8 @@
 ;; deleted more than I wanted and had to undo.
 (require 'hungry-delete)
 ;; (global-hungry-delete-mode)
-;; 05 Dec 2014 - Just put it on meta delete in case we want it ever
-(global-set-key (kbd "M-DEL") 'hungry-delete-backward)
+;; 05 Dec 2014 - Just put it on control delete in case we want it ever
+(global-set-key (kbd "C-DEL") 'hungry-delete-backward)
 
 ;; 14 Jul 2014 - Use colored identifiers
 (load "wjh-rainbow-config")
@@ -263,6 +263,11 @@
 (require 'smart-mode-line)
 (if after-init-time (sml/setup)
   (add-hook 'after-init-hook 'sml/setup))
+;; Vars moved from cutomize - 10 Dec 2014
+(setq
+ sml/inactive-background-color "#222233"
+ sml/name-width 20
+ )
 
 
 (add-hook 'LaTeX-mode-hook 'TeX-global-PDF-mode)
@@ -319,7 +324,7 @@
 ;; 12 Oct 2013 - try projectile
 (wjh-add-to-load-path "projectile") ;; try and get my version
 (projectile-global-mode)
-(setq projectile-enable-caching t)
+(setq projectile-enable-caching nil)
 (setq projectile-require-project-root nil)
 ;; (setq projectile-switch-project-action 'projectile-dired)
 ;; (defadvice projectile-current-project-dirs (around wjh/add-top-level activate)
@@ -327,7 +332,9 @@
 ;;   (setq ad-return-value (append '("./") ad-do-it)))
 ;; (setq projectile-switch-project-action 'projectile-find-dir)
 ;; (setq projectile-switch-project-action 'projectile-recentf)
-(setq projectile-switch-project-action 'projectile-find-file)
+;; (setq projectile-switch-project-action 'projectile-find-file)
+(setq projectile-switch-project-action 'projectile-find-file-dwim)
+(setq projectile-remember-window-configs t) 
 (setq projectile-find-dir-includes-top-level t)
 (define-key projectile-mode-map [?\s-d] 'projectile-find-dir)
 (define-key projectile-mode-map [?\s-p] 'projectile-switch-project)
@@ -727,6 +734,10 @@
 	    (dired-omit-mode 1)
 	    (auto-revert-mode)
 	    ))
+
+;; 08 Dec 2014 - Installed GNU coreutils from Homebrew - try using ls from that
+(when (executable-find "gls")
+  (setq insert-directory-program "gls"))
 
 (setq dired-guess-shell-alist-user      ;quess shell command by file ext
       '(("\\.pdf\\'" "open" "open -a Adobe\\ Reader")
