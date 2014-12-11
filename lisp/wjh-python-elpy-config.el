@@ -22,6 +22,12 @@
 (define-key elpy-mode-map (kbd "H-n") 'elpy-nav-forward-definition)
 (define-key elpy-mode-map (kbd "H-p") 'elpy-nav-backward-definition)
 
+;; WJH 11 Dec 2014 - fix conflict with smartparens
+(define-key elpy-mode-map (kbd "C-<right>") nil)
+(define-key elpy-mode-map (kbd "C-<left>") nil)
+(define-key elpy-mode-map (kbd "H-<right>") 'elpy-nav-forward-block)
+(define-key elpy-mode-map (kbd "H-<left>") 'elpy-nav-backward-block)
+
 ;; Will's fancy new auto-switcher for virtual environments
 (defvar wjh/elpy-virtual-environment nil 
   "The python virtual environment to use for the current buffer.
