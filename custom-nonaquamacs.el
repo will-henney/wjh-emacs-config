@@ -172,13 +172,45 @@
  '(diary-file "~/.emacs.d/diary")
  '(dired-details-hidden-string "• ")
  '(dired-omit-verbose nil)
+ '(easy-kill-alist
+   (quote
+    ((94 backward-line-edge "
+")
+     (36 forward-line-edge "
+")
+     (66 buffer "
+
+")
+     (60 buffer-before-point "
+
+")
+     (62 buffer-after-point "
+
+")
+     (70 string-up-to-char-forward "")
+     (116 string-to-char-backward "")
+     (84 string-up-to-char-backward "")
+     (119 word " ")
+     (115 sexp "
+")
+     (108 list "
+")
+     (102 filename "
+")
+     (100 defun "
+
+")
+     (68 defun-name " ")
+     (101 line "
+")
+     (98 buffer-file-name nil))))
  '(elpy-modules
    (quote
     (elpy-module-company elpy-module-eldoc elpy-module-flymake elpy-module-pyvenv elpy-module-yasnippet elpy-module-sane-defaults)))
  '(line-spacing 4)
  '(org-agenda-files
    (quote
-    ("~/Dropbox/Nebulio/nebulio-notes.org" "~/Work/RubinWFC3/Tsquared/orion-t2.org" "~/Dropbox/Family/Matthew-Money/matt-loan.org")))
+    ("~/Dropbox/Org/pub-orion-atlas/index.org" "~/Dropbox/Nebulio/nebulio-notes.org" "~/Work/RubinWFC3/Tsquared/orion-t2.org" "~/Dropbox/Family/Matthew-Money/matt-loan.org")))
  '(org-attach-directory "~/Dropbox/Org-Attach")
  '(org-attach-method (quote ln))
  '(org-clock-into-drawer "LOGBOOK")

@@ -75,7 +75,8 @@
 (depends-on "rainbow-mode")
 (depends-on "request")
 (depends-on "s")
-(depends-on "shell-switcher")
+(depends-on "names") ;; 6 Jan 2015 seems to be needed for shell-switcher
+;; (depends-on "shell-switcher")
 (depends-on "simple-httpd")
 (depends-on "smart-mode-line")
 ;; 10 Nov 2014 - now compiled from source
@@ -111,6 +112,10 @@
 (depends-on "helm-dash")
 (depends-on "langtool")
 (depends-on "ggtags")
+;; 28 Jan 2015 try out this replacement for M-w
+(depends-on "easy-kill")
+(depends-on "easy-kill-extras")
+;; 
 ; (depends-on "")
 ; (depends-on "")
 ; (depends-on "")

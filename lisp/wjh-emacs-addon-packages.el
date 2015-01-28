@@ -7,7 +7,7 @@
 
 (defun wjh-add-to-load-path (pkg)
   "Add pkg directory to load path."
-  (add-to-list 'load-path (concat wjh-local-lisp-dir pkg)))
+  (add-to-list 'load-path (concat wjh-local-lisp-dir "/" pkg)))
 
 
 
@@ -56,7 +56,7 @@
 (global-set-key (kbd "C-DEL") 'hungry-delete-backward)
 
 ;; 14 Jul 2014 - Use colored identifiers
-(load "wjh-rainbow-config")
+;; (load "wjh-rainbow-config")
 
 ;; 13 Jul 2014 - Use helm
 (load "wjh-helm-config")
@@ -175,6 +175,21 @@
 ;; expand-region - this is great!
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
+
+;; 28 Jan 2015 - Similar to expand-region, but possibly even better.
+;; Let's try out easy-kill!
+;; Replace M-w - should work as command and as prefix
+(global-set-key [remap kill-ring-save] 'easy-kill)
+;; Replace C-M-@ (need a better keybinding!  Note that C-M-SPACE is
+;; taken by Alfred on my Macbook
+(global-set-key [remap mark-sexp] 'easy-mark)
+;; Now the mappings for easy-mark-extras
+(global-set-key [remap mark-word] 'easy-mark-word)
+(global-set-key [remap zap-to-char] 'easy-mark-to-char)
+(global-set-key [remap zap-up-to-char] 'easy-mark-up-to-char)
+(define-key easy-kill-base-map (kbd "C-d") 'easy-kill-delete-region)
+(define-key easy-kill-base-map (kbd "DEL") 'easy-kill-delete-region)
+;; Note that customizations to easy-kill-alist are in custom file
 
 
 ;; 04 Nov 2013 - persistent scratch buffer
@@ -326,14 +341,14 @@
 (projectile-global-mode)
 (setq projectile-enable-caching nil)
 (setq projectile-require-project-root nil)
-;; (setq projectile-switch-project-action 'projectile-dired)
+(setq projectile-switch-project-action 'projectile-dired)
 ;; (defadvice projectile-current-project-dirs (around wjh/add-top-level activate)
 ;;   "Include top-level dir in `projectile-current-project-dirs'."
 ;;   (setq ad-return-value (append '("./") ad-do-it)))
 ;; (setq projectile-switch-project-action 'projectile-find-dir)
 ;; (setq projectile-switch-project-action 'projectile-recentf)
 ;; (setq projectile-switch-project-action 'projectile-find-file)
-(setq projectile-switch-project-action 'projectile-find-file-dwim)
+;; (setq projectile-switch-project-action 'projectile-find-file-dwim)
 (setq projectile-remember-window-configs t) 
 (setq projectile-find-dir-includes-top-level t)
 (define-key projectile-mode-map [?\s-d] 'projectile-find-dir)
@@ -809,6 +824,8 @@ prefix argument set OTHER-WINDOW true."
 
 ;; 23 Apr 2013 - Try out shell switcher
 ;; See https://github.com/DamienCassou/shell-switcher
+;; 6 Jan 2015 - MELPA version is broken, so use mine
+(wjh-add-to-load-path "shell-switcher")
 (require 'shell-switcher)
 (setq shell-switcher-mode t)
 ;; WJH 25 Apr 2013 - use the Cmd key here since C-' is already mapped

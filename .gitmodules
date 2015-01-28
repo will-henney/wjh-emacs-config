@@ -1,3 +1,6 @@
 [submodule "lisp/smartparens"]
 	path = lisp/smartparens
 	url = https://github.com/deprecated/smartparens.git
+[submodule "lisp/shell-switcher"]
+	path = lisp/shell-switcher
+	url = https://github.com/DamienCassou/shell-switcher.git
