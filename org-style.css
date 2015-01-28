@@ -22,6 +22,7 @@ h1, h2, h3, h4, h5 {
 	margin: 1em 0 0.5em 0;
 	padding: 0.5em 0.5em 0.5em 0.5em;
         font-weight: bold;
+	/* Why did I remove the color? */
 	/* background-color: #fafada; */
 	line-height: 1.2em;
 }	
@@ -34,14 +35,24 @@ h1, h2, h3, h4, h5 {
 /*     border-bottom: 2px solid rgb(135,135,135); */
 /* }   */
 
-h1, h2, h3, h4, h5, h6 {
-    color: rgb(16,16,32);
+h1, h2, h3, h4 {
+    color: #f0f0f0;
+    background-color: #404040;
+}
+h4 {
+    color: #f0f0f0;
+    background-color: #606060;
+}
+h5, h6 {
+    color: #f0f0f0;
+    background-color: #808080;
 }
 h1 {font-size: 140%;}
 h2 {font-size: 120%;}
 h3, h4, h5, h6 {font-size: 100%;}
 h6 {font-style: italic;}
 
+p {margin: 0.5em 0.0em;}
 /* .src:before {  */
 /*     background: #3F3F3F; */
 /*     border-right: 1px solid #DCDCDC; border-bottom: 1px solid #DCDCDC; */
@@ -78,14 +89,14 @@ pre.src {
 /* Make sure paragraphs are no thinner than a certain width, even if
    there is a floating div eating up their space - based on this tip:
    http://css-tricks.com/minimum-paragraph-widths */ 
-p:before {
-  content: "";
-  width: 20em;
-  display: block;
-  overflow: hidden;
-  /* For Demonstration */
-  /* border: 1px solid green; */
-}
+/* p:before { */
+/*   content: ""; */
+/*   width: 20em; */
+/*   display: block; */
+/*   overflow: hidden; */
+/*   /\* For Demonstration *\/ */
+/*   /\* border: 1px solid green; *\/ */
+/* } */
 
 /* ul { */
 /*     /\* try and fix item indentation when the list is to the right pf a */
