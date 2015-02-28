@@ -178,12 +178,14 @@
 
 ;; 28 Jan 2015 - Similar to expand-region, but possibly even better.
 ;; Let's try out easy-kill!
+(require 'easy-kill)
 ;; Replace M-w - should work as command and as prefix
 (global-set-key [remap kill-ring-save] 'easy-kill)
 ;; Replace C-M-@ (need a better keybinding!  Note that C-M-SPACE is
 ;; taken by Alfred on my Macbook
 (global-set-key [remap mark-sexp] 'easy-mark)
 ;; Now the mappings for easy-mark-extras
+(require 'easy-kill-extras)
 (global-set-key [remap mark-word] 'easy-mark-word)
 (global-set-key [remap zap-to-char] 'easy-mark-to-char)
 (global-set-key [remap zap-up-to-char] 'easy-mark-up-to-char)

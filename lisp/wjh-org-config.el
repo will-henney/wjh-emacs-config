@@ -61,6 +61,13 @@
 (global-set-key "\C-ctp" 'org-toggle-pretty-entities)
 (global-set-key "\C-cti" 'org-toggle-inline-images)
 
+;; 27 Feb 2015: Improve table export and give it a key binding
+(defun wjh-org-table-export ()
+  "Avoid loading tsv-mode since it causes problems"
+  (interactive)
+  (let (auto-mode-alist) (org-table-export))
+  )
+(global-set-key "\C-cte" 'wjh-org-table-export)
 
 ;; where to keep all the files
 (setq org-directory "~/Org/")
