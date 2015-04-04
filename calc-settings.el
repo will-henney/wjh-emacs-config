@@ -9,7 +9,7 @@
 	(Rsun "6.96e10 * cm" "Solar radius")
 	(Rearth "6.378e8 * cm" "Earth radius")
 	(Lsun "3.82e33 * erg/s"  "Solar Luminosity")
-	(AU "1.49597870691d13 * cm" "Astronomical unit")
-	(Jansky "1d-23 erg/cm^2 s Hz" "Jansky"))
+	(AU "1.49597870691e13 * cm" "Astronomical unit")
+	(Jansky "1e-23 erg/cm^2 s Hz" "Jansky"))
 )
 ;;; End of custom units
