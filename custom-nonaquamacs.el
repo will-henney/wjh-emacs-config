@@ -60,6 +60,7 @@
  '(mode-line-inactive ((t (:inherit mode-line :background "gray20" :inverse-video nil :box nil :weight light :height 1.0))))
  '(org-block-background ((t (:inherit fixed-pitch :background "gray18"))))
  '(org-date ((t (:inherit fixed-pitch :foreground "#c2a9c2" :underline t))))
+ '(org-formula ((t (:inherit org-table :foreground "LightSalmon1"))))
  '(org-indent ((t (:stipple "" :underline "gray35"))) t)
  '(org-level-1 ((t (:inherit bold :foreground "#fffacd"))))
  '(org-level-2 ((t (:inherit bold :foreground "#fefad4"))))
@@ -249,7 +250,8 @@
     (" hl-p" " Undo-Tree" " MRev" " Projectile" " Google" " Guide" " Helm" " Ind" " GG" " OCDL")))
  '(safe-local-variable-values
    (quote
-    ((wjh/elpy-virtual-environment . "~/anaconda/envs/py27")
+    ((encoding . utf-8)
+     (wjh/elpy-virtual-environment . "~/anaconda/envs/py27")
      (eval pyvenv-deactivate)
      (eval quote
 	   (pyvenv-activate
