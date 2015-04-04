@@ -11,6 +11,12 @@ a:visited {color: #777788; }
 a:hover {color: #2222ff; }
 
 
+/* 08 Mar 2015 - we want more definite distinguishing of blockquotes */
+blockquote {
+    background: #E3E3E3;
+    font-size: 90%
+}
+
 /* Added by Will 03 Sep 2007 */
 li {padding: 4px; }
 
