@@ -1,5 +1,10 @@
 ;; Other stuff
 
+
+;; 04 Apr 2015 - so we never lose text copied from external application
+;; Based on some discussion thread on reddit
+(setq save-interprogram-paste-before-kill t)
+
 ;; 02 Feb 2014 - not necessary any more! see set-exec-path-from-shell-PATH in wjh-emacs-mac-specific.el
 ;; 07 Nov 2013 - why is it suddenly necessary to put these in my PATH in emacs?
 ;; (setq wjh-python-path "/Users/will/Library/Enthought/Canopy_64bit/User/bin")

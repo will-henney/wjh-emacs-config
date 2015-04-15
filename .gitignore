@@ -32,3 +32,4 @@ predictive/
 
 !lisp/wjh-*.el
 /TAGS
+/.sx/
