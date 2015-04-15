@@ -76,6 +76,7 @@
 ;; This can be overridden with C-u
 (setq org-file-apps 
       '((auto-mode . emacs)
+	(directory . emacs)
 	("\\.x?html?\\'" . default)
 	("pdf" . default)
 	("png" . default)
