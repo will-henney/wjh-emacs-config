@@ -80,10 +80,10 @@
 (depends-on "simple-httpd")
 (depends-on "smart-mode-line")
 ;; 10 Nov 2014 - now compiled from source
-;;(depends-on "smartparens")
+(depends-on "smartparens")
 (depends-on "smartscan")
 (depends-on "sparkline")
-(depends-on "svg-clock")
+;; (depends-on "svg-clock")
 (depends-on "svg-mode-line-themes")
 (depends-on "synonyms")
 (depends-on "undo-tree")

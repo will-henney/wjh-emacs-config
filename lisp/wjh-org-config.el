@@ -369,9 +369,9 @@
 ;; (define-key org-mode-map "\C-cow" 'org-weights-mode)
 
 ;; 29 Apr 2013 - try out org-mac-link-grabber
-(require 'org-mac-link-grabber)
+;; (require 'org-mac-link-grabber)
 (add-hook 'org-mode-hook (lambda ()
-  (define-key org-mode-map (kbd "C-c gl") 'omlg-grab-link)
+  ;; (define-key org-mode-map (kbd "C-c gl") 'omlg-grab-link)
   (define-key org-mode-map [(control meta return)] 'org-insert-heading-respect-content)
   ))
 

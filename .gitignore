@@ -33,3 +33,4 @@ predictive/
 !lisp/wjh-*.el
 /TAGS
 /.sx/
+/emacs.keyfreq

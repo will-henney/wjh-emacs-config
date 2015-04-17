@@ -23,7 +23,7 @@
 ;; Use langtool 
 (require 'langtool)
 (setq langtool-language-tool-jar 
-      "/usr/local/Cellar/languagetool/2.7/libexec/languagetool-commandline.jar"
+      "/usr/local/Cellar/languagetool/2.8/libexec/languagetool-commandline.jar"
       langtool-mother-tongue "en"
       langtool-disabled-rules '("WHITESPACE_RULE"
                                 "EN_UNPAIRED_BRACKETS"
@@ -427,8 +427,9 @@
 (define-key global-map "\C-ci" 'magit-status)
 
 (setq magit-emacsclient-executable 
-      (expand-file-name "../../../bin/emacsclient" invocation-directory))
-
+      (expand-file-name "bin/emacsclient" invocation-directory))
+;; 16 Apr 2015 - we don't need to see these again
+(setq magit-last-seen-setup-instructions "1.4.0")
 
 ;; 06 Nov 2013 - try this
 (add-hook 'git-commit-mode-hook 'git-commit-training-wheels-mode)
@@ -847,6 +848,10 @@ prefix argument set OTHER-WINDOW true."
 ;; http://ergoemacs.org/emacs/command-frequency.html, which has a
 ;; python script for analysing the results
 (require 'keyfreq)
+(customize-set-value 'keyfreq-file "~/.emacs.d/emacs.keyfreq"
+		     "Tidy this away, out of top-level home dir")
+(customize-set-value 'keyfreq-file-lock "~/.emacs.d/emacs.keyfreq.lock"
+		     "Tidy this away, out of top-level home dir")
 (keyfreq-mode 1)
 (keyfreq-autosave-mode 1)
 
