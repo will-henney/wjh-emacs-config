@@ -61,6 +61,22 @@
 (global-set-key "\C-ctp" 'org-toggle-pretty-entities)
 (global-set-key "\C-cti" 'org-toggle-inline-images)
 
+
+;; 17 Apr 2015: Unlinkify an org link (replace by description)
+;; Taken from Andrew Swann's answer on emacs stackexchange
+;; http://emacs.stackexchange.com/a/10714/1980
+(defun afs/org-replace-link-by-link-description ()
+    "Replace an org link by its description or if empty its address"
+  (interactive)
+  (if (org-in-regexp org-bracket-link-regexp 1)
+      (let ((remove (list (match-beginning 0) (match-end 0)))
+        (description (if (match-end 3) 
+                 (org-match-string-no-properties 3)
+                 (org-match-string-no-properties 1))))
+    (apply 'delete-region remove)
+    (insert description))))
+(define-key org-mode-map (kbd "C-c DEL") 'afs/org-replace-link-by-link-description)
+
 ;; 27 Feb 2015: Improve table export and give it a key binding
 (defun wjh-org-table-export ()
   "Avoid loading tsv-mode since it causes problems"
