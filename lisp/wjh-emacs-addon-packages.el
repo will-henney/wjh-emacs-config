@@ -750,8 +750,12 @@
 	  (lambda ()
 	    ;; Set dired-x buffer-local variables here.  For example:
 	    (dired-omit-mode 1)
-	    (auto-revert-mode)
+	    (turn-on-auto-revert-mode)
 	    ))
+(customize-set-value 'auto-revert-verbose nil
+		     "Prevent any auto-revert messages from
+		     obscuring the minibuffer at crucial times!")
+
 
 ;; 08 Dec 2014 - Installed GNU coreutils from Homebrew - try using ls from that
 (when (executable-find "gls")
