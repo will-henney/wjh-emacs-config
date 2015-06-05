@@ -1,3 +1,6 @@
+;; this now seems to be needed 03 Sep 2007
+(require 'org)
+
 
 ;; 03 Nov 2006
 
@@ -75,7 +78,9 @@
                  (org-match-string-no-properties 1))))
     (apply 'delete-region remove)
     (insert description))))
-(define-key org-mode-map (kbd "C-c DEL") 'afs/org-replace-link-by-link-description)
+(add-hook 'org-mode-hook
+	  (define-key org-mode-map (kbd "C-c DEL")
+	    'afs/org-replace-link-by-link-description))
 
 ;; 27 Feb 2015: Improve table export and give it a key binding
 (defun wjh-org-table-export ()
@@ -99,9 +104,6 @@
 	("jpg" . default)))
 
 		 
-
-;; this now seems to be needed 03 Sep 2007
-(require 'org)
 
 ;; 18 Apr 2013 - note that some of my org config is done via customize
 ;; See custom-nonaquamacs.el
@@ -188,6 +190,7 @@
 \\usepackage[eulergreek]{mathastext}
 \\MathastextEulerScale{0.92}
 \\usepackage[mathscr]{eucal}
+\\AtBeginDocument{\\boldmath\\large}
 \\pagestyle{empty}             % do not remove
 \[PACKAGES]
 \[DEFAULT-PACKAGES]

@@ -115,7 +115,6 @@
 ;; 28 Jan 2015 try out this replacement for M-w
 (depends-on "easy-kill")
 (depends-on "easy-kill-extras")
-;; 
 ; (depends-on "")
 ; (depends-on "")
 ; (depends-on "")
