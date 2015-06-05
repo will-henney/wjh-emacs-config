@@ -12,6 +12,10 @@
 
 
 
+;; 26 May 2015 - generic modes
+(require 'generic-x)
+
+
 ;; 03 Dec 2014 - spelling and grammar
 ;; Inspired by https://joelkuiper.eu/spellcheck_emacs
 
