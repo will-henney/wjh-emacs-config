@@ -60,7 +60,7 @@
  '(mode-line-inactive ((t (:inherit mode-line :background "gray20" :inverse-video nil :box nil :weight light :height 1.0))))
  '(nxml-element-local-name ((t (:inherit font-lock-function-name-face :foreground "lemon chiffon" :slant italic :weight bold))))
  '(org-block-background ((t (:inherit fixed-pitch :background "gray18"))))
- '(org-date ((t (:inherit fixed-pitch :foreground "#c2a9c2" :underline t))))
+ '(org-date ((t (:inherit org-table :foreground "#c2a9c2" :underline t))))
  '(org-formula ((t (:inherit org-table :foreground "LightSalmon1"))))
  '(org-indent ((t (:stipple "" :underline "gray35"))) t)
  '(org-level-1 ((t (:inherit bold :foreground "#fffacd"))))
