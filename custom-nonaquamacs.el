@@ -5,8 +5,8 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "#3f3f3f" :foreground "#dcdccc" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight light :height 130 :width normal :foundry "nil" :family "Input Mono"))))
  '(TeX-fold-folded-face ((t (:foreground "#8faeb0"))) t)
- '(ace-jump-face-background ((t (:foreground "gray60"))) t)
- '(ace-jump-face-foreground ((t (:foreground "orange"))) t)
+ '(ace-jump-face-background ((t (:foreground "gray60"))))
+ '(ace-jump-face-foreground ((t (:foreground "orange"))))
  '(col-highlight ((t (:background "#603838"))))
  '(custom-button ((((type x w32 mac) (class color)) (:background "lightgrey" :foreground "black" :box (:line-width 2 :color "gray95")))))
  '(custom-button-mouse ((((type x w32 mac) (class color)) (:background "#ddc4bf" :foreground "black" :box (:line-width 2 :color "gray95")))))
@@ -58,6 +58,7 @@
  '(mode-line ((t (:inherit variable-pitch :background "gray10" :foreground "gray60" :inverse-video nil :box (:line-width -1 :style released-button)))))
  '(mode-line-buffer-id ((t (:foreground "black" :weight bold))))
  '(mode-line-inactive ((t (:inherit mode-line :background "gray20" :inverse-video nil :box nil :weight light :height 1.0))))
+ '(nxml-element-local-name ((t (:inherit font-lock-function-name-face :foreground "lemon chiffon" :slant italic :weight bold))))
  '(org-block-background ((t (:inherit fixed-pitch :background "gray18"))))
  '(org-date ((t (:inherit fixed-pitch :foreground "#c2a9c2" :underline t))))
  '(org-formula ((t (:inherit org-table :foreground "LightSalmon1"))))

@@ -12,6 +12,17 @@
 
 
 
+;; 16 Jun 2015 - multiple-cursors
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+(global-set-key (kbd "M-/") 'hippie-expand)
+
+
+
 ;; 26 May 2015 - generic modes
 (require 'generic-x)
 
@@ -484,6 +495,47 @@
 ;; (load "wjh-mu4e-config")
 
 
+;; More LaTeX/AUCTeX config - see
+;; http://www.stefanom.org/setting-up-a-nice-auctex-environment-on-mac-os-x/
+
+;; AucTeX
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
+(setq-default TeX-master nil)
+(add-hook 'LaTeX-mode-hook 'visual-line-mode)
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+(setq reftex-plug-into-AUCTeX t)
+(setq TeX-PDF-mode t)
+
+;; Use Skim as viewer, enable source <-> PDF sync
+;; make latexmk available via C-c C-c
+;; Note: SyncTeX is setup via ~/.latexmkrc (see below)
+(add-hook 'LaTeX-mode-hook (lambda ()
+  (push
+    '("latexmk" "latexmk -synctex=1 -pdf %s" TeX-run-TeX nil t
+      :help "Run latexmk on file")
+    TeX-command-list)))
+(add-hook 'TeX-mode-hook '(lambda () (setq TeX-command-default "latexmk")))
+
+;; use Skim as default pdf viewer
+;; Skim's displayline is used for forward search (from .tex to .pdf)
+;; option -b highlights the current line; option -g opens Skim in the background  
+(setq TeX-view-program-selection '((output-pdf "PDF Viewer")))
+(setq TeX-view-program-list
+      '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")))
+
+
+;; Se also http://stackoverflow.com/questions/7899845/emacs-synctex-skim-how-to-correctly-set-up-syncronization-none-of-the-exi
+(add-hook 'TeX-mode-hook
+    (lambda ()
+        (add-to-list 'TeX-output-view-style
+            '("^pdf$" "."
+              "/Applications/Skim.app/Contents/SharedSupport/displayline -b %n %o %b")))
+)
+
+
 ;; Extras for LaTeX editing 29 Mar 2013
 ;; Code copied from tex.stackexchange
 ;; http://tex.stackexchange.com/questions/27241/entering-math-mode-in-auctex-using-and
@@ -713,8 +765,8 @@
 	    ;; Set a reasonable default for the columns
 	    (tsv-set-all-column-width 8)
 	    ))
-(add-to-list 'auto-mode-alist '("\\.tsv\\'" . tsv-mode))
-(add-to-list 'auto-mode-alist '("\\.tab\\'" . tsv-mode))
+(add-to-list 'auto-mode-alist '("\\.tsv\\'" . csv-mode))
+(add-to-list 'auto-mode-alist '("\\.tab\\'" . csv-mode))
 
 ;;
 

@@ -330,7 +330,8 @@
 (require 'ob-gnuplot)   ;; requires gnuplot, and gnuplot-mode
 (require 'ob-latex)
 (require 'ob-sh)
-(require 'ob-calc) 
+(require 'ob-calc)
+(require 'ob-ipython)
 ;;(org-babel-load-library-of-babel)
 
 ;; 28 Jul 2014 - Finally get round to turning off confirmation

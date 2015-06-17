@@ -115,6 +115,8 @@
 ;; 28 Jan 2015 try out this replacement for M-w
 (depends-on "easy-kill")
 (depends-on "easy-kill-extras")
-; (depends-on "")
+;; 16 Jun 2015
+(depends-on "multiple-cursors")
+(depends-on "ob-ipython")
 ; (depends-on "")
 ; (depends-on "")
