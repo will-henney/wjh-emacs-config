@@ -12,6 +12,22 @@
 
 
 
+;; 20 Jun 2015 - abo-abo stuff
+
+;; Avy is for tree-based navigation of stuff visible on screen
+(require 'avy)
+(global-set-key (kbd "C-:") 'avy-goto-char)
+(global-set-key (kbd "C-\"") 'avy-goto-char-2)
+(global-set-key (kbd "M-g e") 'avy-goto-word-0)
+(global-set-key (kbd "M-g w") 'avy-goto-word-1)
+(global-set-key (kbd "M-g g") 'avy-goto-line)
+(avy-setup-default)
+(setq avy-background t)
+
+;; Paradox uses a private github token
+;; The following file should NOT be commited to any pulic repo
+(load "wjh-private-stuff")
+
 ;; 16 Jun 2015 - multiple-cursors
 (require 'multiple-cursors)
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
@@ -20,7 +36,6 @@
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 (global-set-key (kbd "M-/") 'hippie-expand)
-
 
 
 ;; 26 May 2015 - generic modes

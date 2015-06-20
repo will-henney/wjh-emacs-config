@@ -118,5 +118,7 @@
 ;; 16 Jun 2015
 (depends-on "multiple-cursors")
 (depends-on "ob-ipython")
-; (depends-on "")
+;; 20 Jun 2015
+(depends-on "avy")
+(depends-on "paradox")
 ; (depends-on "")
