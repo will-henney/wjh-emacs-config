@@ -28,6 +28,19 @@
 ;; The following file should NOT be commited to any pulic repo
 (load "wjh-private-stuff")
 
+(require 'swiper)
+(ivy-mode 1)
+(setq ivy-use-virtual-buffers t)
+(global-set-key "\C-s" 'swiper)
+(global-set-key "\C-r" 'swiper)
+(global-set-key (kbd "C-c C-r") 'ivy-resume)
+(setq magit-completing-read-function 'ivy-completing-read)
+(setq projectile-completion-system 'ivy)
+
+;; Ace-window is a supercharged version of other-window
+(require 'ace-window)
+(global-set-key (kbd "C-x o") 'ace-window)
+
 ;; 16 Jun 2015 - multiple-cursors
 (require 'multiple-cursors)
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
@@ -89,7 +102,7 @@
 ;; (load "wjh-rainbow-config")
 
 ;; 13 Jul 2014 - Use helm
-(load "wjh-helm-config")
+;;(load "wjh-helm-config")
 
 ;; 14 Jul 2014 - change default file for calc settings 
 (setq calc-settings-file "/Users/will/.emacs.d/calc-settings.el")
