@@ -12,11 +12,17 @@
 
 
 
-;; 20 Jun 2015 - abo-abo stuff
+;; 21 Jun 2015 - fancy-narrow
+(require 'fancy-narrow)
+(fancy-narrow-mode)
 
-;; Avy is for tree-based navigation of stuff visible on screen
+
+;; 20 Jun 2015 - Lots of packages by Oleh Krehel (abo-abo)
+
+;; Avy is for tree-based navigation of stuff visible on screen (similar to ace-jump)
 (require 'avy)
 (global-set-key (kbd "C-:") 'avy-goto-char)
+;; Docs suggest C-' but I use that for shell-switcher
 (global-set-key (kbd "C-\"") 'avy-goto-char-2)
 (global-set-key (kbd "M-g e") 'avy-goto-word-0)
 (global-set-key (kbd "M-g w") 'avy-goto-word-1)
@@ -50,6 +56,8 @@
 
 (global-set-key (kbd "M-/") 'hippie-expand)
 
+
+;; 20 Jun 2015
 ;; Try out deft for organising note files
 ;; See http://pragmaticemacs.com/emacs/make-quick-notes-with-deft/
 (require 'deft)
@@ -393,7 +401,7 @@
 
 
 ;; 12 Oct 2013 - try projectile
-(wjh-add-to-load-path "projectile") ;; try and get my version
+;;(wjh-add-to-load-path "projectile") ;; My version must be obsolete by now
 (projectile-global-mode)
 (setq projectile-enable-caching nil)
 (setq projectile-require-project-root nil)
@@ -443,26 +451,31 @@
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 
-;; 18 Apr 2013 - ace-jump-mode installed with package manager
-(autoload
-  'ace-jump-mode
-  "ace-jump-mode"
-  "Emacs quick move minor mode"
-  t)
-(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
-(autoload
-  'ace-jump-mode-pop-mark
-  "ace-jump-mode"
-  "Ace jump back:-)"
-  t)
-(eval-after-load "ace-jump-mode"
-  '(ace-jump-mode-enable-mark-sync))
-(define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
+;; 20 Jun 2015 - Disable ace-jump for two reasons:
+;;               1. It is replaced by avy
+;;               2. I never used it anyhow
+;;                  (So, will I use avy?)
+;;
+;; ;; 18 Apr 2013 - ace-jump-mode installed with package manager
+;; (autoload
+;;   'ace-jump-mode
+;;   "ace-jump-mode"
+;;   "Emacs quick move minor mode"
+;;   t)
+;; (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+;; (autoload
+;;   'ace-jump-mode-pop-mark
+;;   "ace-jump-mode"
+;;   "Ace jump back:-)"
+;;   t)
+;; (eval-after-load "ace-jump-mode"
+;;   '(ace-jump-mode-enable-mark-sync))
+;; (define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
 
-;; Stop org-mode from stomping on that key binding
-(add-hook 'org-mode-hook 
-	  (function (lambda ()
-		      (local-unset-key (kbd "C-c SPC")))))
+;; ;; Stop org-mode from stomping on that key binding
+;; (add-hook 'org-mode-hook 
+;; 	  (function (lambda ()
+;; 		      (local-unset-key (kbd "C-c SPC")))))
 
 ;; SVG mode line (works on new laptop - 30 Apr 2013 - yeah!)
 ;; (require 'svg-mode-line-themes)
