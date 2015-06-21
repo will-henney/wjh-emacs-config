@@ -7,6 +7,9 @@
  '(TeX-fold-folded-face ((t (:foreground "#8faeb0"))) t)
  '(ace-jump-face-background ((t (:foreground "gray60"))))
  '(ace-jump-face-foreground ((t (:foreground "orange"))))
+ '(avy-lead-face ((t (:background "#3F3F3F" :foreground "lemon chiffon" :inverse-video nil :weight bold))))
+ '(avy-lead-face-0 ((t (:background "#3F3F3F" :foreground "orange" :inverse-video nil :weight ultra-bold))))
+ '(aw-leading-char-face ((t (:foreground "gold" :weight ultra-bold :height 1.5))))
  '(col-highlight ((t (:background "#603838"))))
  '(custom-button ((((type x w32 mac) (class color)) (:background "lightgrey" :foreground "black" :box (:line-width 2 :color "gray95")))))
  '(custom-button-mouse ((((type x w32 mac) (class color)) (:background "#ddc4bf" :foreground "black" :box (:line-width 2 :color "gray95")))))
@@ -241,6 +244,7 @@
  '(org-startup-align-all-tables t)
  '(org-startup-indented t)
  '(org-tag-faces (quote (("noexport" . "#33bb44"))))
+ '(paradox-automatically-star t)
  '(pinboard-url "http://feeds.pinboard.in/json/u:deprecated/?count=10")
  '(recentf-mode t)
  '(rm-blacklist
