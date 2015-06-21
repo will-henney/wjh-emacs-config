@@ -50,6 +50,17 @@
 
 (global-set-key (kbd "M-/") 'hippie-expand)
 
+;; Try out deft for organising note files
+;; See http://pragmaticemacs.com/emacs/make-quick-notes-with-deft/
+(require 'deft)
+(setq deft-directory "~/Dropbox/Notes")
+(setq deft-extension "org")
+(setq deft-text-mode 'org-mode)
+(setq deft-use-filename-as-title t)
+(setq deft-use-filter-string-for-filename t)
+(setq deft-auto-save-interval 0)
+;;key to launch deft
+(global-set-key (kbd "C-c o") 'deft)
 
 ;; 26 May 2015 - generic modes
 (require 'generic-x)
