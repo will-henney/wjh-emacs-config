@@ -12,6 +12,38 @@
 
 
 
+;; 21 Jun 2015 - lispy mode (another abo-abo package)
+(add-hook 'emacs-lisp-mode-hook (lambda () (lispy-mode 1)))
+
+;; key-chord to avoid shift key
+;; Copied from
+;; http://endlessparentheses.com/banishing-the-shift-key-with-key-chord-in-emacs.html
+(key-chord-define-global "0o" ")")
+(key-chord-define-global "1q" "!")
+(key-chord-define-global "2w" "@")
+(key-chord-define-global "3e" "#")
+(key-chord-define-global "4r" "$")
+(key-chord-define-global "5t" "%")
+(key-chord-define-global "6y" "^")
+(key-chord-define-global "6t" "^")
+(key-chord-define-global "7y" "&")
+(key-chord-define-global "8u" "*")
+(key-chord-define-global "9i" "(")
+(key-chord-define-global "-p" "_")
+(key-chord-define emacs-lisp-mode-map
+                  "7y" "&optional ")
+
+(key-chord-define-global "qq"     "the ")
+(key-chord-define-global "QQ"     "The ")
+(key-chord-define-global ",."     "<>\C-b")
+(key-chord-mode 1)
+
+(key-chord-define-global "FF" 'find-file)
+;;; Need to find better use for these bindings
+(key-chord-define-global "jk" 'beginning-of-buffer)
+
+
+
 ;; 21 Jun 2015 - fancy-narrow
 (require 'fancy-narrow)
 (fancy-narrow-mode)
@@ -19,7 +51,11 @@
 
 ;; 20 Jun 2015 - Lots of packages by Oleh Krehel (abo-abo)
 
-;; Avy is for tree-based navigation of stuff visible on screen (similar to ace-jump)
+;; Hydra stuff
+(load "wjh-hydra")
+
+;; Avy is for tree-based navigation of stuff visible on screen
+;; (similar to ace-jump)
 (require 'avy)
 (global-set-key (kbd "C-:") 'avy-goto-char)
 ;; Docs suggest C-' but I use that for shell-switcher
@@ -28,7 +64,7 @@
 (global-set-key (kbd "M-g w") 'avy-goto-word-1)
 (global-set-key (kbd "M-g g") 'avy-goto-line)
 (avy-setup-default)
-(setq avy-background t)
+
 
 ;; Paradox uses a private github token
 ;; The following file should NOT be commited to any pulic repo
@@ -128,6 +164,9 @@
 
 ;; 14 Apr 2014 - Use ibuffer and ibuffer-vc
 (require 'ibuffer)
+;; 21 Jun 2015 - not sure why this worked before
+;; but now we need to explicitly load this
+(require 'ibuffer-vc)
 
 ;; Override the standard list-buffers command
 (defalias 'list-buffers 'ibuffer)
@@ -136,8 +175,6 @@
 	  (lambda ()
 	    ;; Make mouse clicks work as in dired, etc
 	    (define-key ibuffer-name-map [(mouse-1)] 'ibuffer-visit-buffer)
-	    ;;	    (local-set-key [mouse-1] 'ibuffer-visit-buffer)
-	    ;; (local-set-key [double-mouse-1] 'ibuffer-visit-buffer)
 	    ;; Sort by VC root
 	    (ibuffer-vc-set-filter-groups-by-vc-root)
 	    (unless (eq ibuffer-sorting-mode 'alphabetic)
@@ -416,7 +453,7 @@
 (setq projectile-remember-window-configs t) 
 (setq projectile-find-dir-includes-top-level t)
 (define-key projectile-mode-map [?\s-d] 'projectile-find-dir)
-(define-key projectile-mode-map [?\s-p] 'projectile-switch-project)
+(define-key projectile-mode-map [?\s-p] 'hydra-projectile/body)
 (define-key projectile-mode-map [?\s-f] 'projectile-find-file)
 (define-key projectile-mode-map [?\s-g] 'projectile-grep)
 
