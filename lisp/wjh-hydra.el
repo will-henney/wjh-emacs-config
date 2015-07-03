@@ -48,15 +48,6 @@ _h_tml    ^ ^         ^ ^             _A_SCII:
   (insert str)
   (org-try-structure-completion))
 
-;; I bind it for myself like this:
-
-(define-key org-mode-map "<"
-  (lambda () (interactive)
-     (if (looking-back "^")
-         (hydra-org-template/body)
-       (self-insert-command 1))))
-
-
 ;; Projectile
 (defhydra hydra-projectile-other-window (:color teal)
   "projectile-other-window"
@@ -103,6 +94,7 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
   ("z"   projectile-cache-current-file)
   ("`"   hydra-projectile-other-window/body "other window")
   ("q"   nil "cancel" :color blue))
+(key-chord-define-global "p[" 'hydra-projectile/body)
 
 
 

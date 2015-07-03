@@ -393,6 +393,11 @@
 (add-hook 'org-mode-hook (lambda ()
   ;; (define-key org-mode-map (kbd "C-c gl") 'omlg-grab-link)
   (define-key org-mode-map [(control meta return)] 'org-insert-heading-respect-content)
+  (define-key org-mode-map "<"
+    (lambda () (interactive)
+      (if (looking-back "^")
+	  (hydra-org-template/body)
+	(self-insert-command 1))))
   ))
 
 ;; 13 Oct 2013 - no, I didn't like this
