@@ -215,7 +215,7 @@
  '(line-spacing 4)
  '(org-agenda-files
    (quote
-    ("~/Dropbox/Org/pub-orion-atlas/index.org" "~/Dropbox/Nebulio/nebulio-notes.org" "~/Work/RubinWFC3/Tsquared/orion-t2.org" "~/Dropbox/Family/Matthew-Money/matt-loan.org")))
+    ("~/Dropbox/Notes/will-macbook-config.org" "~/Dropbox/Notes/workflow.org" "~/Dropbox/Notes/apple accounts.org" "~/Dropbox/Notes/paper projects 2015.org" "~/Dropbox/Org/pub-orion-atlas/index.org" "~/Dropbox/Nebulio/nebulio-notes.org" "~/Work/RubinWFC3/Tsquared/orion-t2.org" "~/Dropbox/Family/Matthew-Money/matt-loan.org")))
  '(org-attach-directory "~/Dropbox/Org-Attach")
  '(org-attach-method (quote ln))
  '(org-clock-into-drawer "LOGBOOK")
@@ -255,7 +255,12 @@
     (" hl-p" " Undo-Tree" " MRev" " Projectile" " Google" " Guide" " Helm" " Ind" " GG" " OCDL")))
  '(safe-local-variable-values
    (quote
-    ((encoding . utf-8)
+    ((eval add-hook
+	   (quote find-file-hook)
+	   (lambda nil
+	     (message "This file is part of ~/Dropbox/Referee tree"))
+	   nil t)
+     (encoding . utf-8)
      (wjh/elpy-virtual-environment . "~/anaconda/envs/py27")
      (eval pyvenv-deactivate)
      (eval quote
