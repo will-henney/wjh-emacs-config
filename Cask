@@ -76,7 +76,7 @@
 (depends-on "request")
 (depends-on "s")
 (depends-on "names") ;; 6 Jan 2015 seems to be needed for shell-switcher
-;; (depends-on "shell-switcher")
+(depends-on "shell-switcher")
 (depends-on "simple-httpd")
 (depends-on "smart-mode-line")
 ;; 10 Nov 2014 - now compiled from source
