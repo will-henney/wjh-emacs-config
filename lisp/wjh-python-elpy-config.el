@@ -1,6 +1,6 @@
 ;; Make sure we use the new version
-(load-file "/Users/will/.emacs.d/lisp4elpy/elpy/elpy.el")
-(setq elpy-rpc-pythonpath "/Users/will/.emacs.d/lisp4elpy/elpy/")
+;; (load-file "/Users/will/.emacs.d/lisp4elpy/elpy/elpy.el")
+;; (setq elpy-rpc-pythonpath "/Users/will/.emacs.d/lisp4elpy/elpy/")
 
 (elpy-enable)
 (setq python-check-command "pyflakes")
