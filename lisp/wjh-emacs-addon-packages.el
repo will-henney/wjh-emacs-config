@@ -979,8 +979,8 @@ prefix argument set OTHER-WINDOW true."
 ;; 23 Apr 2013 - Try out shell switcher
 ;; See https://github.com/DamienCassou/shell-switcher
 ;; 6 Jan 2015 - MELPA version is broken, so use mine
-;; (wjh-add-to-load-path "shell-switcher")
-;; Go back to MELPA version
+(wjh-add-to-load-path "shell-switcher")
+;; MELPA version still broken
 (require 'shell-switcher)
 (setq shell-switcher-mode t)
 
