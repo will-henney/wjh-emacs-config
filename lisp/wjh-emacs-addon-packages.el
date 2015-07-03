@@ -538,7 +538,7 @@
 (setq magit-last-seen-setup-instructions "1.4.0")
 
 ;; 06 Nov 2013 - try this
-(add-hook 'git-commit-mode-hook 'git-commit-training-wheels-mode)
+;; (add-hook 'git-commit-mode-hook 'git-commit-training-wheels-mode)
 
 
 ;; 30 Apr 2013 - not using powerline any more, since we are using svg-mode-line-themes
