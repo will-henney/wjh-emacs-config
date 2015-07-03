@@ -356,10 +356,11 @@
 
 
 ;; 03 Nov 2013 - try out smartparens
-;;(require 'smartparens-config)
+(require 'smartparens-config)
+;; 03 Jul 2015 - switch back to MELPA version
 ;; 10 Nov 2014 - force the github version which I have patched for 24.4
-(require 'smartparens-config (concat wjh-local-lisp-dir
-				     "/smartparens/smartparens-config.el"))
+;; (require 'smartparens-config (concat wjh-local-lisp-dir
+;; 				     "/smartparens/smartparens-config.el"))
 (load "wjh-smartparens-config")
 
 ;; 03 Nov 2013 - try out smartscan
