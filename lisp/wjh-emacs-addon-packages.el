@@ -68,6 +68,7 @@
 
 ;; Paradox uses a private github token
 ;; The following file should NOT be commited to any pulic repo
+;; A copy can be found in a Secure Note in my 1Password vault
 (load "wjh-private-stuff")
 
 (require 'swiper)
