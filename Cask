@@ -121,4 +121,11 @@
 ;; 20 Jun 2015
 (depends-on "avy")
 (depends-on "paradox")
+;; 03 Jul 2015
+(depends-on "lispy")
+(depends-on "key-chord")
+(depends-on "fancy-narrow")
+(depends-on "hydra")
+; (depends-on "")
+; (depends-on "")
 ; (depends-on "")
