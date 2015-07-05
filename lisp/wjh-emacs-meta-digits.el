@@ -8,7 +8,7 @@
   "Save project buffers and call `magit-status'"
   (interactive)
   (projectile-save-project-buffers)
-  (magit-status (magit-get-top-dir)))
+  (magit-status))
 
 (defun wjh/safe-constants-replace ()
   (interactive)
