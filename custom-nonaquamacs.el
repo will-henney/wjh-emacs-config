@@ -3,7 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#3f3f3f" :foreground "#dcdccc" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight light :height 130 :width normal :foundry "nil" :family "Input Mono"))))
+ '(default ((t (:inherit nil :stipple nil :background "#3f3f3f" :foreground "#dcdccc" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight light :height 130 :width normal :foundry "nil" :family "Source Code Pro"))))
  '(TeX-fold-folded-face ((t (:foreground "#8faeb0"))) t)
  '(ace-jump-face-background ((t (:foreground "gray60"))))
  '(ace-jump-face-foreground ((t (:foreground "orange"))))
@@ -155,14 +155,14 @@
      (115 "{\\sl " "\\/}")
      (116 "{\\tt " "}")
      (100 "" "" t))))
- '(TeX-view-program-list (quote (("osx-open" ((output-pdf "open %o"))))))
+ '(TeX-view-program-list (quote (("osx-open" ((output-pdf "open %o"))))) t)
  '(TeX-view-program-selection
    (quote
     (((output-dvi style-pstricks)
       "dvips and gv")
      (output-dvi "xdvi")
      (output-pdf "osx-open")
-     (output-html "xdg-open"))))
+     (output-html "xdg-open"))) t)
  '(blink-matching-paren nil)
  '(calendar-date-style (quote european))
  '(cua-enable-cua-keys nil)
