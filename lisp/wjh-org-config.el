@@ -28,8 +28,11 @@
        (my-adjoin-to-list-or-symbol
         'fixed-pitch
         (face-attribute face :inherit))))
-    (list 'org-code 'org-block 'org-table 'org-block-background)))
-
+    (list 'org-code 'org-block 'org-table ;; 'org-block-background
+	  )))
+;; org-block-backround was removed 2014-07-28 in this commit:
+;; http://orgmode.org/cgit.cgi/org-mode.git/commit/?id=f8b42e8eb
+;; It only showed up on the ELPA version 2015-08 (or maybe 07, I was on holiday)
 
 
 ;; These need to get set before org is loaded
@@ -324,7 +327,8 @@
 ;; (require 'org-babel-init) 
 ;; 9 Aug 2010 - babel now integrated in orgmode - above no longer necessary
 ;; Some changes needed to config
-(require 'ob-R)         ;; requires R and ess-mode
+;; (require 'ob-R)
+;; requires R and ess-mode
 (require 'ob-ruby)      ;; requires ruby, irb, ruby-mode, and inf-ruby
 (require 'ob-python)    ;; requires python, and python-mode
 (require 'ob-gnuplot)   ;; requires gnuplot, and gnuplot-mode
