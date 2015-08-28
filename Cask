@@ -128,4 +128,10 @@
 (depends-on "hydra")
 (depends-on "deft")
 (depends-on "ibuffer-vc")
+;; 20 Aug 2015
+(depends-on "lispy")
+(depends-on "htmlize")
 ; (depends-on "")
+; (depends-on "")
+; (depends-on "")
+
