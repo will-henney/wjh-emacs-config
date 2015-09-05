@@ -131,7 +131,8 @@
 ;; 20 Aug 2015
 (depends-on "lispy")
 (depends-on "htmlize")
-; (depends-on "")
+;; 05 Sep 2015
+(depends-on "csv-mode")
 ; (depends-on "")
 ; (depends-on "")
 

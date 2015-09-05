@@ -59,13 +59,13 @@
  '(markdown-url-face ((t (:inherit font-lock-string-face :foreground "dark gray" :height 0.6))))
  '(minibuffer-prompt ((t (:foreground "LightBlue1"))))
  '(mode-line ((t (:inherit variable-pitch :background "gray10" :foreground "gray60" :inverse-video nil :box (:line-width -1 :style released-button)))))
- '(mode-line-buffer-id ((t (:foreground "black" :weight bold))))
+ '(mode-line-buffer-id ((t (:inherit sml/filename :weight bold))))
  '(mode-line-inactive ((t (:inherit mode-line :background "gray20" :inverse-video nil :box nil :weight light :height 1.0))))
  '(nxml-element-local-name ((t (:inherit font-lock-function-name-face :foreground "lemon chiffon" :slant italic :weight bold))))
  '(org-block-background ((t (:inherit fixed-pitch :background "gray18"))))
  '(org-date ((t (:inherit org-table :foreground "#c2a9c2" :underline t))))
  '(org-formula ((t (:inherit org-table :foreground "LightSalmon1"))))
- '(org-indent ((t (:stipple "" :underline "gray35"))) t)
+ '(org-indent ((t (:foreground "#3f3f3f"))))
  '(org-level-1 ((t (:inherit bold :foreground "#fffacd"))))
  '(org-level-2 ((t (:inherit bold :foreground "#fefad4"))))
  '(org-level-3 ((t (:inherit bold :foreground "#fdf9db"))))
@@ -213,6 +213,7 @@
    (quote
     (elpy-module-company elpy-module-eldoc elpy-module-flymake elpy-module-pyvenv elpy-module-yasnippet elpy-module-sane-defaults)))
  '(line-spacing 4)
+ '(magit-push-always-verify nil)
  '(org-agenda-files
    (quote
     ("~/Dropbox/Notes/will-macbook-config.org" "~/Dropbox/Notes/workflow.org" "~/Dropbox/Notes/apple accounts.org" "~/Dropbox/Notes/paper projects 2015.org" "~/Dropbox/Org/pub-orion-atlas/index.org" "~/Dropbox/Nebulio/nebulio-notes.org" "~/Work/RubinWFC3/Tsquared/orion-t2.org" "~/Dropbox/Family/Matthew-Money/matt-loan.org")))
