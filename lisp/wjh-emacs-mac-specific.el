@@ -40,6 +40,16 @@
 (global-set-key (kbd "<H-down>") 'cua-scroll-up)
 (global-set-key (kbd "<H-backspace>") 'delete-char)
 
+;; 14 Sep 2015 - new bindings for function key
+
+;; Saving different points in the buffer, and returning to them
+(global-set-key (kbd "H-SPC") 'point-to-register)
+(global-set-key (kbd "H-z") 'jump-to-register)
+(global-set-key (kbd "H-m") 'bookmark-set)
+(global-set-key (kbd "H-b") 'bookmark-jump)
+(global-set-key (kbd "H-l") 'bookmark-bmenu-list)
+
+
 
 
 ;;
