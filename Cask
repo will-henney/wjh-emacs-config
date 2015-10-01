@@ -133,6 +133,7 @@
 (depends-on "htmlize")
 ;; 05 Sep 2015
 (depends-on "csv-mode")
-; (depends-on "")
+;; 01 Oct 2015
+(depends-on "spotlight")
 ; (depends-on "")
 
