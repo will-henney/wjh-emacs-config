@@ -89,7 +89,7 @@
  '(speedbar-highlight-face ((((class color) (background light)) (:background "#aaffaa"))))
  '(stripe-highlight ((t (:background "#333333"))))
  '(tooltip ((t (:inherit variable-pitch :background "lightyellow" :foreground "black" :weight extra-bold :height 0.7))))
- '(variable-pitch ((t (:height 1.0 :family "Input Sans"))))
+ '(variable-pitch ((t (:height 1.1 :width normal :family "San Francisco"))))
  '(w3m-anchor ((t (:foreground "gray70" :underline t :weight bold))) t)
  '(w3m-arrived-anchor ((t (:foreground "gray60" :underline t :weight normal))) t)
  '(w3m-tab-selected-face ((((type x w32 mac) (class color)) (:inherit variable-pitch :background "Gray85" :foreground "black" :box (:line-width -1 :style released-button)))) t)
