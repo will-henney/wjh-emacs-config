@@ -49,3 +49,48 @@ otherwise start a new shell."
 
 ;; Toggle automatic filling
 (global-set-key "\C-cf" 'auto-fill-mode)
+
+
+(defun wjh-mouse-drag-secondary-pasting (start-event)
+  "Drag out a secondary selection, then paste it at the current point.
+
+This is modified from the original version (from mouse-copy.el)
+in two ways.  First, it behaves the same way as `yank' with
+respect to text properties (as in not copying invisible
+properties that you probably don't want).  Secondly, it
+deactivates the secondary selection when it has finished."
+  (interactive "e")
+  ;; Work-around: We see and react to each part of a multi-click event
+  ;; as it proceeds.  For a triple-event, this means the double-event
+  ;; has already copied something that the triple-event will re-copy
+  ;; (a Bad Thing).  We therefore undo the prior insertion if we're on
+  ;; a multiple event.
+  (if (and mouse-copy-last-paste-start
+	   (>= (event-click-count start-event) 2))
+      (delete-region mouse-copy-last-paste-start
+		     mouse-copy-last-paste-end))
+
+  ;; HACK: We assume that mouse-drag-secondary returns nil if
+  ;; there's no secondary selection.  This assumption holds as of
+  ;; emacs-19.22 but is not documented.  It's not clear that there's
+  ;; any other way to get this information.
+  (if (mouse-drag-secondary start-event)
+      (progn
+	(if mouse-copy-have-drag-bug
+	    (mouse-copy-work-around-drag-bug start-event last-input-event))
+	;; Remember what we do so we can undo it, if necessary.
+	(setq mouse-copy-last-paste-start (point))
+	;; WJH 18 Feb 2016 - change insert to insert-for-yank-1
+	(insert-for-yank-1 (x-get-selection 'SECONDARY))
+	(setq mouse-copy-last-paste-end (point))
+	;; WJH 18 Feb 2016 - added the following line so that
+	;; highlighting doesn't linger
+	(delete-overlay mouse-secondary-overlay))
+    (setq mouse-copy-last-paste-start nil)))
+
+
+;; this does something similar to C-mouse1 in xemacs
+(require 'mouse-copy)
+(global-set-key [M-down-mouse-1] 'wjh-mouse-drag-secondary-pasting)
+;; TODO 18 Feb 2016 - re-write this function too
+(global-set-key [M-S-down-mouse-1] 'mouse-drag-secondary-moving)

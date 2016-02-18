@@ -4,11 +4,6 @@
 (if (< emacs-major-version 22)
     (global-set-key [M-g] 'goto-line))
 
-;; this does something similar to C-mouse1 in xemacs
-(require 'mouse-copy)
-(global-set-key [M-down-mouse-1] 'mouse-drag-secondary-pasting)
-(global-set-key [M-S-down-mouse-1] 'mouse-drag-secondary-moving)
-
 ;; And just for fun, this is by the same author
 ;; Disabled 09 Sep 2005 - I never use it and it is confusing anyhow
 ;;(require 'mouse-drag)

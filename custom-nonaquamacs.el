@@ -216,7 +216,7 @@
  '(magit-push-always-verify nil)
  '(org-agenda-files
    (quote
-    ("~/Dropbox/Notes/will-macbook-config.org" "~/Dropbox/Notes/workflow.org" "~/Dropbox/Notes/apple accounts.org" "~/Dropbox/Notes/paper projects 2015.org" "~/Dropbox/Org/pub-orion-atlas/index.org" "~/Dropbox/Nebulio/nebulio-notes.org" "~/Work/RubinWFC3/Tsquared/orion-t2.org" "~/Dropbox/Family/Matthew-Money/matt-loan.org")))
+    ("~/Work/RubinWFC3/Tsquared/wfc3-drizzle.org" "~/Dropbox/Notes/will-macbook-config.org" "~/Dropbox/Notes/workflow.org" "~/Dropbox/Notes/apple accounts.org" "~/Dropbox/Notes/paper projects 2015.org" "~/Dropbox/Org/pub-orion-atlas/index.org" "~/Dropbox/Nebulio/nebulio-notes.org" "~/Work/RubinWFC3/Tsquared/orion-t2.org" "~/Dropbox/Family/Matthew-Money/matt-loan.org")))
  '(org-attach-directory "~/Dropbox/Org-Attach")
  '(org-attach-method (quote ln))
  '(org-clock-into-drawer "LOGBOOK")
@@ -242,6 +242,8 @@
    (quote
     (org-bbdb org-bibtex org-docview org-gnus org-id org-info org-inlinetask org-irc org-mhe org-protocol org-rmail)))
  '(org-pretty-entities t)
+ '(org-special-ctrl-a/e t)
+ '(org-special-ctrl-k t)
  '(org-startup-align-all-tables t)
  '(org-startup-indented t)
  '(org-tag-faces (quote (("noexport" . "#33bb44"))))
