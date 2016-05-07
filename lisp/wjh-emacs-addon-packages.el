@@ -390,6 +390,7 @@
 
 (add-hook 'LaTeX-mode-hook 'TeX-global-PDF-mode)
 
+
 ;; 12 Oct 2013 - try latex-extra
 ;; 29 Nov 2013 - but I don't like some of the keybindings
 (setq latex/override-preview-map t)
@@ -645,6 +646,61 @@
 		 (save-excursion
 		   (if arg (forward-sexp (prefix-numeric-value arg)))
 		   (insert "\\)"))))))
+
+
+
+;; Drag and drop files onto latex buffer
+;; Copied from SO answer;
+;; http://emacs.stackexchange.com/questions/16318/drag-and-drop-images-to-auctex
+(defcustom AUCTeX-dnd-format "\\includegraphics[width=\\linewidth]{%s}"
+  "What to insert, when a file is dropped on Emacs window. %s is
+replaced by the actual file name. If the filename is located
+under the directory of .tex document, only the part of the name
+relative to that directory in used."
+  :type 'string
+  :group 'AUCTeX)
+
+
+;; Modified version
+(defun AUCTeX-dnd-includegraphics (uri action)
+  "Insert the text defined by `AUCTeX-dnd-format' when a file is
+dropped on Emacs window."
+  (let ((file (dnd-get-local-file-name uri t)))
+    (when (and file (file-regular-p file))
+      (if (string-match default-directory file)
+      (insert (format AUCTeX-dnd-format (file-name-nondirectory file)))
+    (insert (format AUCTeX-dnd-format file))
+    )
+      )
+    )
+  )
+
+
+(defcustom AUCTeX-dnd-protocol-alist
+  '(("^file:///" . AUCTeX-dnd-includegraphics)
+    ("^file://"  . dnd-open-file)
+    ("^file:"    . AUCTeX-dnd-includegraphics))
+  "The functions to call when a drop in `mml-mode' is made.
+See `dnd-protocol-alist' for more information.  When nil, behave
+as in other buffers."
+  :type '(choice (repeat (cons (regexp) (function)))
+                 (const :tag "Behave as in other buffers" nil))
+  :version "22.1" ;; Gnus 5.10.9
+  :group 'AUCTeX)
+
+
+(define-minor-mode AUCTeX-dnd-mode
+  "Minor mode to inser some text (\includegraphics by default)
+when a file is dopped on Emacs window."
+  :lighter " DND"
+  (when (boundp 'dnd-protocol-alist)
+    (if AUCTeX-dnd-mode
+        (set (make-local-variable 'dnd-protocol-alist)
+             (append AUCTeX-dnd-protocol-alist dnd-protocol-alist))
+      (kill-local-variable 'dnd-protocol-alist))))
+
+(add-hook 'LaTeX-mode-hook 'AUCTeX-dnd-mode)
+
 
 
 ;; 11 Sep 2011 anything
