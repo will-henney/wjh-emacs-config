@@ -121,7 +121,9 @@
     (("TeX" "%(PDF)%(tex) %`%S%(PDFout)%(mode)%' %t" TeX-run-TeX nil
       (plain-tex-mode texinfo-mode ams-tex-mode)
       :help "Run plain TeX")
-     ("LaTeX" "%`%l%(mode)%' %t" TeX-run-TeX nil
+     (#("LaTeX" 0 1
+	(idx 2))
+      "%`%l%(mode)%' %t" TeX-run-TeX nil
       (latex-mode doctex-mode)
       :help "Run LaTeX")
      ("Makeinfo" "makeinfo %t" TeX-run-compile nil
@@ -139,19 +141,41 @@
      ("ConTeXt Full" "texexec %(execopts)%t" TeX-run-TeX nil
       (context-mode)
       :help "Run ConTeXt until completion")
-     ("BibTeX" "bibtex %s" TeX-run-BibTeX nil t :help "Run BibTeX")
-     ("View" "%V" TeX-run-discard-or-function t t :help "Run Viewer")
-     ("Print" "%p" TeX-run-command t t :help "Print the file")
-     ("Queue" "%q" TeX-run-background nil t :help "View the printer queue" :visible TeX-queue-command)
-     ("File" "%(o?)dvips %d -o %f " TeX-run-command t t :help "Generate PostScript file")
-     ("Index" "makeindex %s" TeX-run-command nil t :help "Create index file")
-     ("Check" "lacheck %s" TeX-run-compile nil
+     (#("BibTeX" 0 1
+	(idx 3))
+      "bibtex %s" TeX-run-BibTeX nil t :help "Run BibTeX")
+     (#("View" 0 1
+	(idx 4))
+      "%V" TeX-run-discard-or-function t t :help "Run Viewer")
+     (#("Print" 0 1
+	(idx 5))
+      "%p" TeX-run-command t t :help "Print the file")
+     (#("Queue" 0 1
+	(idx 6))
+      "%q" TeX-run-background nil t :help "View the printer queue" :visible TeX-queue-command)
+     (#("File" 0 1
+	(idx 7))
+      "%(o?)dvips %d -o %f " TeX-run-command t t :help "Generate PostScript file")
+     (#("Index" 0 1
+	(idx 8))
+      "makeindex %s" TeX-run-command nil t :help "Create index file")
+     (#("Check" 0 1
+	(idx 9))
+      "lacheck %s" TeX-run-compile nil
       (latex-mode)
       :help "Check LaTeX file for correctness")
-     ("Spell" "(TeX-ispell-document \"\")" TeX-run-function nil t :help "Spell-check the document")
-     ("Clean" "TeX-clean" TeX-run-function nil t :help "Delete generated intermediate files")
-     ("Clean All" "(TeX-clean t)" TeX-run-function nil t :help "Delete generated intermediate and output files")
-     ("Other" "" TeX-run-command t t :help "Run an arbitrary command"))))
+     (#("Spell" 0 1
+	(idx 10))
+      "(TeX-ispell-document \"\")" TeX-run-function nil t :help "Spell-check the document")
+     (#("Clean" 0 1
+	(idx 11))
+      "TeX-clean" TeX-run-function nil t :help "Delete generated intermediate files")
+     (#("Clean All" 0 1
+	(idx 12))
+      "(TeX-clean t)" TeX-run-function nil t :help "Delete generated intermediate and output files")
+     (#("Other" 0 1
+	(idx 13))
+      "" TeX-run-command t t :help "Run an arbitrary command"))))
  '(TeX-font-list
    (quote
     ((98 "{\\bf " "}")
@@ -227,6 +251,7 @@
     ("~/Work/RubinWFC3/Tsquared/wfc3-drizzle.org" "~/Dropbox/Notes/will-macbook-config.org" "~/Dropbox/Notes/workflow.org" "~/Dropbox/Notes/apple accounts.org" "~/Dropbox/Notes/paper projects 2015.org" "~/Dropbox/Org/pub-orion-atlas/index.org" "~/Dropbox/Nebulio/nebulio-notes.org" "~/Work/RubinWFC3/Tsquared/orion-t2.org" "~/Dropbox/Family/Matthew-Money/matt-loan.org")))
  '(org-attach-directory "~/Dropbox/Org-Attach")
  '(org-attach-method (quote ln))
+ '(org-bookmark-jump-indirect t)
  '(org-clock-into-drawer "LOGBOOK")
  '(org-clock-string-limit 30)
  '(org-default-notes-file "~/Dropbox/Org/notes.org")

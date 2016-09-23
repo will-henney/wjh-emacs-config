@@ -135,5 +135,12 @@
 (depends-on "csv-mode")
 ;; 01 Oct 2015
 (depends-on "spotlight")
+;; 23 Sep 2016
+(depends-on "org-bookmark-heading")
+(depends-on "magithub")
+(depends-on "ivy")
+(depends-on "swiper")
+(depends-on "unfill")
+(depends-on "conda")
 ; (depends-on "")
 

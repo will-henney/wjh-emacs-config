@@ -408,3 +408,7 @@
 ;; ;; 12 Aug 2013 - try out Org-Trello integration
 ;; ;; see http://ardumont.github.io/org-trello/
 ;; (require 'org-trello)
+
+;; 23 Sep 2016 - try out integration with org bookmarks
+;; and turned on org-bookmark-jump-indirect 
+(require 'org-bookmark-heading)
