@@ -13,6 +13,7 @@
 
 
 ;; 21 Jun 2015 - lispy mode (another abo-abo package)
+(require 'lispy)
 (add-hook 'emacs-lisp-mode-hook (lambda () (lispy-mode 1)))
 
 ;; key-chord to avoid shift key

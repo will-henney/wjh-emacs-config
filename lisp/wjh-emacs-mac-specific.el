@@ -10,17 +10,20 @@
 ;; WJH 06 Mar 2014 - Now doing it system-wide instead
 (require 'wjh-emacs-mac-unremap)
 
+
+
 ;; WJH 22 Nov 2013 - some convenience keys, to humor my muscle memory.
 ;; I keep pressing Ctl-A, which is bound to "s-a", when I mean to
 ;; press "Cmd-A", which is bound to "C-a"
-(global-set-key (kbd "s-a") 'move-beginning-of-line)
-(global-set-key (kbd "s-e") 'move-end-of-line)
+
+;; WJH 24 Sep 2016 - removed these - not a mistake I ever make these days
+;; (global-set-key (kbd "s-a") 'move-beginning-of-line)
+;; (global-set-key (kbd "s-e") 'move-end-of-line)
+
+
+
 
 ;; Add in the Cmd-C, Cmd-V, Cmd-A, etc bindings like in aquamacs
-;; (global-set-key (kbd "s-a") 'mark-whole-buffer)
-
-
-
 ;; This function copied from http://unix.stackexchange.com/questions/20849/emacs-how-to-copy-region-and-leave-it-highlighted
 (defun kill-ring-save-keep-highlight (beg end)
   "Keep the region active after the kill"
@@ -29,6 +32,12 @@
     (setq deactivate-mark nil)))
 (global-set-key (kbd "s-c") 'kill-ring-save-keep-highlight)
 (global-set-key (kbd "s-v") 'cua-paste)
+(global-set-key (kbd "s-a") 'mark-whole-buffer)
+
+;; we already have C-` set to this, but bind it to ⌘-` as well, for
+;; consistency with other apps
+(global-set-key (kbd "s-`") 'other-frame)
+
 
 ;; Thirdly - use Fn key as hyper
 (setq mac-function-modifier 'hyper)
@@ -42,7 +51,10 @@
 
 ;; 14 Sep 2015 - new bindings for function key
 
-;; Saving different points in the buffer, and returning to them
+;; Saving different points in the buffer, and returning to them These
+;; are functions that are usually on the 'C-x r' map, but using the
+;; function keys will make them easier to use, and might make me
+;; actually use them!
 (global-set-key (kbd "H-SPC") 'point-to-register)
 (global-set-key (kbd "H-z") 'jump-to-register)
 (global-set-key (kbd "H-m") 'bookmark-set)
