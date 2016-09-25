@@ -125,6 +125,11 @@
 ;; (add-hook 'f90-mode-hook 'wjh-f90-pretty-mode-setup)
 
 
+;; 24 Sep 2016 - don't ask redundantly which buffer to kill
+;; Borrowed from suggestion by Ben Maughan
+;; http://pragmaticemacs.com/emacs/dont-kill-buffer-kill-this-buffer-instead/
+(global-set-key (kbd "C-x k") 'kill-this-buffer)
+
 ;; 08 Aug 2010 Miscellaneous tweaks to editing commands
 (require 'misc)
 ;; always goes to start of word
