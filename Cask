@@ -64,7 +64,7 @@
 (depends-on "org-dotemacs")
 ;; (depends-on "org-mac-link-grabber")
 (depends-on "org-magit")
-(depends-on "org-screenshot")
+;; (depends-on "org-screenshot")
 (depends-on "org-trello")
 (depends-on "pallet")
 (depends-on "pinboard")
@@ -100,7 +100,7 @@
 (depends-on "expand-region")
 (depends-on "persistent-scratch")
 (depends-on "google-this")
-(depends-on "tsv-mode")
+;; (depends-on "tsv-mode") 
 ;; New dependencies that I discovered I was missing with emacs 24.4
 (depends-on "git-messenger")
 (depends-on "hungry-delete")
