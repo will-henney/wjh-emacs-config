@@ -12,6 +12,10 @@
 
 
 
+;; 25 Sep 2016 - do the opposite of fill
+(require 'unfill)
+(global-set-key (kbd "M-Q") 'unfill-paragraph)
+
 ;; 21 Jun 2015 - lispy mode (another abo-abo package)
 (require 'lispy)
 (add-hook 'emacs-lisp-mode-hook (lambda () (lispy-mode 1)))
