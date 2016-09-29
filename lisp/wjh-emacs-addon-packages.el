@@ -535,7 +535,7 @@
 (wjh-add-to-load-path "magit")
 ;; 30 Apr 2013 - note that on iris we use magit from package manager
 (require 'magit)
-(require 'magithub)
+;; (require 'magithub)
 ;; (require 'magit-svn)
 (define-key global-map "\C-ci" 'magit-status)
 
