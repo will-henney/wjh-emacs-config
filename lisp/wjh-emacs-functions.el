@@ -132,3 +132,62 @@ recent first."
   (message "moved %s to %s" start-file-full end-file)))
 
 (global-set-key (kbd "C-c D") 'bjm/move-file-here)
+
+
+;; WJH 06 Oct 2016.  Some extra commands for scrolling medium amounts.
+;; Remember that scrolling moves the viewport, so the window moves in
+;; the opposite direction to what you might think.
+;;
+;; Four lines seems like a good compromise.  It means we can use the
+;; Cmd key as an accelerator for cursor movement.
+(defun wjh/scroll-up-4 ()
+  "Scroll viewport up by 4 lines"
+  (interactive)
+  (cua-scroll-up 4)
+  )
+(defun wjh/scroll-down-4 ()
+  "Scroll viewport down by 4 lines"
+  (interactive)
+  (cua-scroll-down 4)
+  )
+(global-set-key (kbd "s-<up>") 'wjh/scroll-down-4)
+(global-set-key (kbd "s-<down>") 'wjh/scroll-up-4)
+
+
+;; Also, a complementary pair of functions for doing the same
+;; acceleration of C-p and C-n.  Except, this time we do it by moving
+;; up/down lines in the buffer instead of moving the viewport, so the
+;; visual effect is different.
+(defun wjh/forward-4-lines ()
+  "Move 4 lines forward"
+  (interactive)
+  (forward-line 4)
+  )
+(defun wjh/backward-4-lines ()
+  "Move 4 lines backward"
+  (interactive)
+  (forward-line -4)
+  )
+(global-set-key (kbd "s-C-p") 'wjh/backward-4-lines)
+(global-set-key (kbd "s-C-n") 'wjh/forward-4-lines)
+
+;; For consistency, we do a similar thing for left and right arrows.
+;; This time, we don't do it by scrolling the viewport, since I very
+;; rarely want to that in the horizontal direction.
+(defun wjh/move-right-4 ()
+  "Move point 4 characters to the right"
+  (interactive)
+  (right-char 4)
+  )
+(defun wjh/move-left-4 ()
+  "Move point 4 characters to the left"
+  (interactive)
+  (left-char 4)
+  )
+;; Acceleration of arrows and of C-f/C-b is exactly the same
+(global-set-key (kbd "s-<left>") 'wjh/move-left-4)
+(global-set-key (kbd "s-<right>") 'wjh/move-right-4)
+(global-set-key (kbd "s-C-b") 'wjh/move-left-4)
+(global-set-key (kbd "s-C-f") 'wjh/move-right-4)
+
+
