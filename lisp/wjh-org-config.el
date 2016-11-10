@@ -85,6 +85,13 @@
 	  (define-key org-mode-map (kbd "C-c DEL")
 	    'afs/org-replace-link-by-link-description))
 
+;; 10 Nov 2016: Better M-/ completion for noweb references This
+;; modifies the syntax table so that << and >> are treated as
+;; delimiters, rather than part of the symbol
+(modify-syntax-entry ?< "(>" org-mode-syntax-table)
+(modify-syntax-entry ?> ")<" org-mode-syntax-table)
+
+
 ;; 27 Feb 2015: Improve table export and give it a key binding
 (defun wjh-org-table-export ()
   "Avoid loading tsv-mode since it causes problems"
