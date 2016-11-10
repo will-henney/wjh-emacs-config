@@ -247,3 +247,7 @@ This will actually use spotlight instead of locate, so it only works on OS X"
 
 ;; 27 Aug 2014 - Useful bindings for M-1, M-2, M-3, etc
 (load "wjh-emacs-meta-digits")
+
+;; WJH 06 Oct 2016 - saner behavior for prettified symbols
+(setq prettify-symbols-unprettify-at-point 'right-edge)
+(global-prettify-symbols-mode)

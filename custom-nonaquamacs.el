@@ -186,14 +186,14 @@
      (115 "{\\sl " "\\/}")
      (116 "{\\tt " "}")
      (100 "" "" t))))
- '(TeX-view-program-list (quote (("osx-open" ((output-pdf "open %o"))))))
+ '(TeX-view-program-list (quote (("osx-open" ((output-pdf "open %o"))))) t)
  '(TeX-view-program-selection
    (quote
     (((output-dvi style-pstricks)
       "dvips and gv")
      (output-dvi "xdvi")
      (output-pdf "osx-open")
-     (output-html "xdg-open"))))
+     (output-html "xdg-open"))) t)
  '(blink-matching-paren nil)
  '(calendar-date-style (quote european))
  '(csv-align-style (quote auto))
@@ -281,8 +281,15 @@
  '(org-startup-indented t)
  '(org-tag-faces (quote (("noexport" . "#33bb44"))))
  '(org-tags-column 50)
+ '(package-selected-packages
+   (quote
+    (julia-mode zenburn-theme yaml-mode w3m virtualenv unfill undo-tree synonyms svg-mode-line-themes stripe-buffer spotlight sparkline smex smartscan smartparens smart-mode-line rainbow-mode projectile prodigy pinboard persistent-scratch paradox pallet org-trello org-plus-contrib org-magit org-dotemacs org-bullets org-bookmark-heading ob-ipython nose names multiple-cursors markdown-mode magithub magit-svn lispy latex-extra langtool key-chord idomenu ido-vertical-mode ibuffer-vc hungry-delete htmlize helm-dash helm-bibtex guide-key google-this golden-ratio god-mode gitty git-messenger git-gutter ggtags fuzzy fold-dwim-org flx-ido fancy-narrow expand-region esxml elpy elnode ein easy-kill-extras dired-details diminish deft csv-mode crosshairs creole-mode conda color-identifiers-mode bibslurp bf-mode auto-complete alert airplay ack-and-a-half achievements ace-jump-mode)))
  '(paradox-automatically-star t)
  '(pinboard-url "http://feeds.pinboard.in/json/u:deprecated/?count=10")
+ '(recentf-exclude
+   (quote
+    ("/\\(\\(\\(COMMIT\\|NOTES\\|PULLREQ\\|TAG\\)_EDIT\\|MERGE_\\|\\)MSG\\|BRANCH_DESCRIPTION\\)\\'" "\\.cask")))
+ '(recentf-max-menu-items 50)
  '(recentf-mode t)
  '(recentf-show-file-shortcuts-flag nil)
  '(rm-blacklist
