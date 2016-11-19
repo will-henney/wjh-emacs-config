@@ -360,14 +360,17 @@
 ;; Some changes needed to config
 ;; (require 'ob-R)
 ;; requires R and ess-mode
-(require 'ob-ruby)      ;; requires ruby, irb, ruby-mode, and inf-ruby
-(require 'ob-python)    ;; requires python, and python-mode
-(require 'ob-gnuplot)   ;; requires gnuplot, and gnuplot-mode
-(require 'ob-latex)
-(require 'ob-sh)
-(require 'ob-calc)
-(require 'ob-ipython)
-;;(org-babel-load-library-of-babel)
+;; active Babel languages
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((ruby . t)
+   (python . t)
+   (gnuplot . t)
+   (latex . t)
+   (shell . t)
+   (calc . t)
+   (ipython . t)
+   ))
 
 ;; 28 Jul 2014 - Finally get round to turning off confirmation
 ;;        
