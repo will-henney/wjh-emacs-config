@@ -52,6 +52,14 @@
                                        ("@" "\\alert{%s}" nil)))
      )
 
+;; 18 Nov 2016 - try to allow emphasis in middle of a word
+(setq org-emphasis-regexp-components
+      '("[:space:][:cntrl:]('\"{}"          ;; Allowed prematch
+	"[:space:][:cntrl:]-.,:!?;'\")}\\[" ;; Allowed postmatch
+	"[:space:][:cntrl:]"		    ;; Forbidden in border 
+	"."				    ;; Allowed body
+	1				    ;; Max number of newlines
+	))
 
 ;; make sure it gets loaded on .org files
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
