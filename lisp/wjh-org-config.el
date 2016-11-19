@@ -91,6 +91,30 @@
 (modify-syntax-entry ?< "(>" org-mode-syntax-table)
 (modify-syntax-entry ?> ")<" org-mode-syntax-table)
 
+;; (defun org-src-block-names--completion-function (str pred action)
+;;   (let ((tbl (org-babel-src-block-names)))
+;;     (pcase action
+;;       (`nil (try-completion   str tbl pred))
+;;       (`t   (all-completions  str tbl pred))
+;;       (`metadata
+;;        '(metadata (annotation-function . org-src-block-names--get-lang))))))
+
+;; (defun org-src-block-names--get-lang (lang)
+;;   (concat " " (car-safe (org-babel-lob--src-info lang))))
+
+;; (defun org-src-block-names-completion-at-point-function ()
+;;   (when (and (looking-back "<<\\([-a-z]+\\)")
+;;              (eq (org-element-type (org-element-at-point)) 'src-block))
+;;     (list
+;;      (match-beginning 1)
+;;      (point)
+;;      'org-src-block-names--completion-function
+;;      :exclusive 'no
+;;      :annotation-function 'org-src-block-names--get-lang)))
+
+
+;; (add-to-list 'hippie-expand-try-functions-list 'org-src-block-names--completion-function)
+
 
 ;; 27 Feb 2015: Improve table export and give it a key binding
 (defun wjh-org-table-export ()
