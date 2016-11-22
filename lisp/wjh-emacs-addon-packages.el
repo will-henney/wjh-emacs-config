@@ -79,8 +79,9 @@
 (require 'swiper)
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
-(global-set-key "\C-s" 'swiper)
-(global-set-key "\C-r" 'swiper)
+;; 22 Nov 2016 - I prefer the regular isearch to swiper I think
+;; (global-set-key "\C-s" 'swiper)
+;; (global-set-key "\C-r" 'swiper)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 (setq magit-completing-read-function 'ivy-completing-read)
 (setq projectile-completion-system 'ivy)
