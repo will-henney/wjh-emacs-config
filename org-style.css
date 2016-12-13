@@ -1,134 +1,361 @@
-html {
-    font-family: Lucida Grande, Tahoma, Arial, Helvetica, sans-serif;
-    font-size: 11pt;
-    /* color:  rgb(224, 224, 224); */
-    /* background: rgb(48, 48, 48); */
+/* 18 Jan 2016: Modified from the stylesheet by Zhitao Gong on
+https://github.com/gongzhitaao/orgcss/
+ */
+
+body {
+    max-width: 100%;
+    margin: 1% 1%;
+    font: normal normal normal 16px/1.6em 'Open Sans', sans-serif;
+    color: #333;
 }
 
-/* Links */
-a:link {color: #333399; }
-a:visited {color: #777788; }
-a:hover {color: #2222ff; }
+@media all and (min-width: 95ex) {
+    body {
+        max-width: 95ex;
+        margin: 1% auto;
+    }
 
-
-/* 08 Mar 2015 - we want more definite distinguishing of blockquotes */
-blockquote {
-    background: #E3E3E3;
-    font-size: 90%
+    .creator {
+        float: right;
+    }
 }
 
-/* Added by Will 03 Sep 2007 */
-li {padding: 4px; }
+@media not all and (min-width: 110ex) {
 
-/* Added by Will 08 Oct 2007 */ 
+    .creator {
+        float: left;
+    }
 
-/* Headings shamelessly copied from MoinMoin theme "sinorca4moin" by David Linke*/
-
-h1, h2, h3, h4, h5 {
-	margin: 1em 0 0.5em 0;
-	padding: 0.5em 0.5em 0.5em 0.5em;
-        font-weight: bold;
-	/* Why did I remove the color? */
-	/* background-color: #fafada; */
-	line-height: 1.2em;
-}	
-
-/* h5, h6 { */
-/*     border-bottom: 1px dashed rgb(135,135,135); */
-/* }   */
-/* h1, h2, h3, h4 { */
-/*     /\* border-left: 1px solid rgb(135,135,135); *\/ */
-/*     border-bottom: 2px solid rgb(135,135,135); */
-/* }   */
-
-h1, h2, h3, h4 {
-    color: #f0f0f0;
-    background-color: #404040;
-}
-h4 {
-    color: #f0f0f0;
-    background-color: #606060;
-}
-h5, h6 {
-    color: #f0f0f0;
-    background-color: #808080;
-}
-h1 {font-size: 140%;}
-h2 {font-size: 120%;}
-h3, h4, h5, h6 {font-size: 100%;}
-h6 {font-style: italic;}
-
-p {margin: 0.5em 0.0em;}
-/* .src:before {  */
-/*     background: #3F3F3F; */
-/*     border-right: 1px solid #DCDCDC; border-bottom: 1px solid #DCDCDC; */
-/* } */
-
-.src {
-    background: #4F4F4F;
-    color: #ECECEC;
-}
-.example, thead {
-    background: #E3E3E3;
+    p img {
+        width: 95%;
+    }
 }
 
-pre.src:before {
+.title {
+    padding: .5em 0;
+    text-align: center;
     color: black;
+}
+
+.subtitle {
+    font-size: medium;
+    font-weight: bold;
+    margin-top: 0;
+    text-align: center;
+}
+
+.abstract {
+    width: 80%;
+    margin: auto;
+    font-style: italic;
+}
+
+.abstract p:last-of-type:before {
+    content: "    ";
+    white-space: pre;
+}
+
+.status {
+    font-size: 90%;
+    margin: 2em auto;
+}
+
+[class^="section-number-"] {
+    margin-right: .5em;
+}
+
+#footnotes {
+    font-size: 90%;
+}
+
+.footpara {
+    display: inline;
+    margin: .2em auto;
+}
+
+.footdef {
+    margin-bottom: 1em;
+}
+
+.footdef sup {
+    padding-right: .5em;
+}
+
+a {
+    color: #527d9a;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #003355;
+    border-bottom: 1px dotted;
+}
+
+p img {
+    vertical-align: middle;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    color: #A5573E;
+    line-height: 1.6em;
+    font-family: 'Droid Serif', serif;
+}
+
+h4,h5,h6 {
+    font-size: 1em;
+}
+
+table {
+    border-top: 2px solid;
+    border-bottom: 2px solid;
+    margin: auto;
+    border-collapse: collapse;
+}
+
+thead {
+    border-bottom: 2px solid;
+}
+
+table td + td, table th + th {
+    border-left: 1px solid gray;
+}
+
+table tr {
+    border-top: 1px solid lightgray;
+}
+
+td,th {
+    padding: 5px 10px;
+    vertical-align: middle;
+}
+
+code {
+    padding: 2px 5px;
+    margin: auto 1px;
+    border: 1px solid #DDD;
+    border-radius: 3px;
+    background-clip: padding-box;
+    color: #333;
+    font-size: 90%;
+}
+
+blockquote {
+    margin: 1em 2em;
+    padding-left: 1em;
+    border-left: 3px solid #ccc;
+}
+
+kbd {
+    background-color: #f7f7f7;
+    font-size: 14px;
+    margin: 0 .1em;
+    padding: .1em .6em;
+}
+
+.figure {
+    padding: 1em;
+}
+
+.figure p {
+    text-align: center;
+}
+
+.todo {
+    color: red;
+    font-family: monospace;
+}
+
+.done {
+    color: green;
+    font-family: monospace;
+}
+
+.priority {
+    color: orange;
+    font-family: monospace;
+}
+
+.tag {
+    background-color: #eee;
+    font-family: monospace;
+    font-size: 80%;
+    font-weight: normal;
+    padding: 2px;
+}
+
+.timestamp {
+    color: #bebebe;
+}
+
+.timestamp-kwd {
+    color: #5f9ea0;
+}
+
+.org-right {
+    margin-left: auto;
+    margin-right: 0px;
+    text-align: right;
+}
+
+.org-left {
+    margin-left: 0px;
+    margin-right: auto;
+    text-align: left;
+}
+
+.org-center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+#postamble p, #preamble p {
+    font-size: 90%;
+    margin: .2em;
+}
+
+p.verse {
+    margin-left: 3%;
+}
+
+pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    font-family: monospace;
+    margin: 1.2em;
+    padding: 8pt;
 }
 
 pre.src {
     overflow: auto;
+    padding-top: 1.2em;
+    position: relative;
+    font-size: 90%;
+    color: #dcdccc;
+    background-color: #3f3f3f; 
 }
 
-/* pre.src-python:before { content: 'Python'; } */
-
-.wjhfig {
-    background-color: #eee;
-    padding: 10pt;
-    margin: 10pt;
-}
-.figure, img {
-    padding: 0pt;
-    margin: 0pt;
+pre.src:before {
+    background-color: gray;
+    border: 1px solid black;
+    display: none;
+    padding: 3px;
+    position: absolute;
+    right: 10px;
+    /* top: -10px; */
 }
 
-/* Make sure paragraphs are no thinner than a certain width, even if
-   there is a floating div eating up their space - based on this tip:
-   http://css-tricks.com/minimum-paragraph-widths */ 
-/* p:before { */
-/*   content: ""; */
-/*   width: 20em; */
-/*   display: block; */
-/*   overflow: hidden; */
-/*   /\* For Demonstration *\/ */
-/*   /\* border: 1px solid green; *\/ */
+pre.src:hover:before {
+    display: inline;
+}
+
+pre.src-sh:before {
+    content: 'sh';
+}
+pre.src-bash:before {
+    content: 'bash';
+}
+pre.src-emacs-lisp:before {
+    content: 'Emacs Lisp';
+}
+pre.src-R:before {
+    content: 'R';
+}
+pre.src-python:before {
+    content: 'Python';
+}
+pre.src-org:before {
+    content: 'Org';
+}
+pre.src-c++:before {
+    content: 'C++';
+}
+pre.src-c:before {
+    content: 'C';
+}
+pre.src-html:before {
+    content: 'HTML'
+}
+
+caption.t-above {
+    caption-side: top;
+}
+
+caption.t-bottom {
+    caption-side: bottom;
+}
+
+th.org-right {
+    text-align: center;
+}
+
+th.org-left {
+    text-align: center;
+}
+
+th.org-center {
+    text-align: center;
+}
+
+td.org-right {
+    text-align: right;
+}
+
+td.org-left {
+    text-align: left;
+}
+
+td.org-center {
+    text-align: center;
+}
+
+dt {
+    font-weight: bold;
+}
+
+.inlinetask {
+    background: #ffffcc;
+    border: 2px solid gray;
+    margin: 10px;
+    padding: 10px;
+}
+
+#org-div-home-and-up {
+    font-size: 70%;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.linenr {
+    font-size: smaller;
+}
+
+.code-highlighted {
+    background-color: #ffff00;
+}
+
+#bibliography {
+    font-size: 90%;
+}
+
+#bibliography table {
+    width: 100%;
+}
+
+/* .org-info-js_info-navigation { */
+/*     border-style: none; */
 /* } */
-
-/* ul { */
-/*     /\* try and fix item indentation when the list is to the right pf a */
-/*        "float:left" div.  Initially inspired by advice from */
-/*        http://wordpress.org/support/topic/left-float-and-bullet-lists-not-playing-well-together */
-/*        although in the end I had to do things differently*\/ */
-/*     list-style: inside; */
-/*     text-indent: 10pt; */
+/* #org-info-js_console-label { */
+/*     font-size: 10px; */
+/*     font-weight: bold; */
+/*     white-space: nowrap; */
 /* } */
-/* ul > li > ul { text-indent: 20pt; } */
-/* ul > li > ul > li > ul { text-indent: 30pt; } */
-
-.src, .example, table {
-    font-size: 80%;
-}
-
-tbody {
-    background-color: #fafada;
-    /* background-color: rgb(250, 250, 200); */
-}
-
-
-#table-of-contents {
-    background-color: #f0f0f0;
-}
-
-
-
-
+/* .org-info-js_search-highlight { */
+/*     background-color: #ffff00; */
+/*     color: #000000; */
+/*     font-weight: bold; */
+/* } */
