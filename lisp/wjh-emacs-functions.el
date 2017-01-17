@@ -78,8 +78,8 @@ deactivates the secondary selection when it has finished."
 ;; move file to current directory
 ;; copied from Pragmatic Emacs blog post 
 ;; http://pragmaticemacs.com/emacs/quickly-move-a-file-to-the-current-directory/
-(require 'dash)
-(require 'swiper)
+(use-package dash :ensure t)
+(use-package swiper :ensure t)
 
 ;; start directory
 (defvar bjm/move-file-here-start-dir (expand-file-name "~/Downloads"))

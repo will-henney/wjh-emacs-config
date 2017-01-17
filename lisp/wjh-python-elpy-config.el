@@ -4,7 +4,7 @@
 
 (use-package elpy
   :ensure t
-  :pin elpy
+  ;; :pin elpy
   :config
   (elpy-enable)
   (setq python-check-command "pyflakes")

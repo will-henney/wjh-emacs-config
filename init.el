@@ -36,14 +36,12 @@
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
+;; (add-to-list 'package-archives
+;;              '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives
-             '("org" . "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives
-             '("elpy" . "http://jorgenschaefer.github.io/packages/"))
-;;(setq package-archives '(("elpy" . "http://jorgenschaefer.github.io/packages/")))
-;; (setq package-load-list '((elpy "1.3.0") all))
+             '("org" . "http://orgmode.org/elpa/") t)
+;; (add-to-list 'package-archives
+;;              '("elpy" . "http://jorgenschaefer.github.io/packages/"))
 (setq package-load-list '(all))
 (package-initialize)
 
@@ -54,7 +52,7 @@
 
  
 
-(load "wjh-emacs-addon-packages")
+(load "wjh-emacs-use-package")
 (load "wjh-emacs-clean-gui")
 (load "wjh-emacs-functions")
 (load "wjh-emacs-misc-setup")
@@ -72,7 +70,11 @@
 
 (setq custom-theme-directory (expand-file-name "~/.emacs.d/themes"))
 
-(load-theme 'zenburn t)
+(use-package zenburn-theme
+  :ensure t
+  :config
+  (load-theme 'zenburn t)
+  )
 (load-theme 'wjh-latex-faces t)
 (load-theme 'wjh-org-faces t)
 (load-theme 'wjh-org-misc t)

@@ -1,0 +1,134 @@
+html {
+    font-family: Lucida Grande, Tahoma, Arial, Helvetica, sans-serif;
+    font-size: 11pt;
+    /* color:  rgb(224, 224, 224); */
+    /* background: rgb(48, 48, 48); */
+}
+
+/* Links */
+a:link {color: #333399; }
+a:visited {color: #777788; }
+a:hover {color: #2222ff; }
+
+
+/* 08 Mar 2015 - we want more definite distinguishing of blockquotes */
+blockquote {
+    background: #E3E3E3;
+    font-size: 90%
+}
+
+/* Added by Will 03 Sep 2007 */
+li {padding: 4px; }
+
+/* Added by Will 08 Oct 2007 */ 
+
+/* Headings shamelessly copied from MoinMoin theme "sinorca4moin" by David Linke*/
+
+h1, h2, h3, h4, h5 {
+	margin: 1em 0 0.5em 0;
+	padding: 0.5em 0.5em 0.5em 0.5em;
+        font-weight: bold;
+	/* Why did I remove the color? */
+	/* background-color: #fafada; */
+	line-height: 1.2em;
+}	
+
+/* h5, h6 { */
+/*     border-bottom: 1px dashed rgb(135,135,135); */
+/* }   */
+/* h1, h2, h3, h4 { */
+/*     /\* border-left: 1px solid rgb(135,135,135); *\/ */
+/*     border-bottom: 2px solid rgb(135,135,135); */
+/* }   */
+
+h1, h2, h3, h4 {
+    color: #f0f0f0;
+    background-color: #404040;
+}
+h4 {
+    color: #f0f0f0;
+    background-color: #606060;
+}
+h5, h6 {
+    color: #f0f0f0;
+    background-color: #808080;
+}
+h1 {font-size: 140%;}
+h2 {font-size: 120%;}
+h3, h4, h5, h6 {font-size: 100%;}
+h6 {font-style: italic;}
+
+p {margin: 0.5em 0.0em;}
+/* .src:before {  */
+/*     background: #3F3F3F; */
+/*     border-right: 1px solid #DCDCDC; border-bottom: 1px solid #DCDCDC; */
+/* } */
+
+.src {
+    background: #4F4F4F;
+    color: #ECECEC;
+}
+.example, thead {
+    background: #E3E3E3;
+}
+
+pre.src:before {
+    color: black;
+}
+
+pre.src {
+    overflow: auto;
+}
+
+/* pre.src-python:before { content: 'Python'; } */
+
+.wjhfig {
+    background-color: #eee;
+    padding: 10pt;
+    margin: 10pt;
+}
+.figure, img {
+    padding: 0pt;
+    margin: 0pt;
+}
+
+/* Make sure paragraphs are no thinner than a certain width, even if
+   there is a floating div eating up their space - based on this tip:
+   http://css-tricks.com/minimum-paragraph-widths */ 
+/* p:before { */
+/*   content: ""; */
+/*   width: 20em; */
+/*   display: block; */
+/*   overflow: hidden; */
+/*   /\* For Demonstration *\/ */
+/*   /\* border: 1px solid green; *\/ */
+/* } */
+
+/* ul { */
+/*     /\* try and fix item indentation when the list is to the right pf a */
+/*        "float:left" div.  Initially inspired by advice from */
+/*        http://wordpress.org/support/topic/left-float-and-bullet-lists-not-playing-well-together */
+/*        although in the end I had to do things differently*\/ */
+/*     list-style: inside; */
+/*     text-indent: 10pt; */
+/* } */
+/* ul > li > ul { text-indent: 20pt; } */
+/* ul > li > ul > li > ul { text-indent: 30pt; } */
+
+.src, .example, table {
+    font-size: 80%;
+}
+
+tbody {
+    background-color: #fafada;
+    /* background-color: rgb(250, 250, 200); */
+}
+
+
+#table-of-contents {
+    background-color: #f0f0f0;
+}
+
+
+
+

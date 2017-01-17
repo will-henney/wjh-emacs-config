@@ -587,3 +587,141 @@ when a file is dopped on Emacs window."
   (setq constants-rename '(("cc" . "c") ("bk" . "k") ("hp" . "h")))
   ;; A default list of constants to insert when none are specified
   (setq constants-default-list "cc,bk,hp"))
+
+
+(use-package csv-mode
+  :ensure t
+  :mode ("\\.tsv\\'" "\\.tab\\'"))
+
+;; Following mention in this blog post
+;; http://emacs-fu.blogspot.com/2010/04/navigating-kill-ring.html
+(when (require 'browse-kill-ring nil 'noerror)
+  (browse-kill-ring-default-keybindings)
+  (setq browse-kill-ring-quit-action 'save-and-restore))
+
+(use-package yaml-mode :ensure t :mode "\\.ya?ml$")
+
+
+;; 29 Nov 2010 dired-x
+(use-package dired-x
+  :config
+  (add-hook 'dired-load-hook
+	    (lambda ()
+	      (load "dired-x")
+	      ;; Set dired-x global variables here.  For example:
+	      ;; (setq dired-guess-shell-gnutar "gtar")
+	      ;; (setq dired-x-hands-off-my-keys nil)
+	      (setq dired-omit-verbose nil)
+	      ;; 28 Jul 2014 - I don't like the "... omitting ..."
+	      ;; messages.  They get in the way.
+	      (dired-omit-mode 1)
+	      (turn-on-auto-revert-mode)
+	      ))
+  (customize-set-value 'auto-revert-verbose nil
+		       "Prevent any auto-revert messages from
+		     obscuring the minibuffer at crucial times!")
+  ;; 08 Dec 2014 - Installed GNU coreutils from Homebrew - try using ls from that
+  (when (executable-find "gls")
+    (setq insert-directory-program "gls"))
+  (setq dired-guess-shell-alist-user      ;quess shell command by file ext
+	'(("\\.pdf\\'" "open" "open -a Adobe\\ Reader")
+	  ("\\.png\\'" "open")
+	  ("\\.jpg\\'" "open")
+	  ("\\.avi\\'" "open")
+	  ("\\.m4a\\'" "open")
+	  ("\\.mov\\'" "open")
+	  ("\\.gif\\'" "open -a Safari")
+	  ("\\.doc\\'" "open -a TextEdit" "open -a Pages")))
+  (defun wjh/dired-jump (&optional other-window)
+    "Jump to dired buffer corresponding to current buffer.
+Just like the `dired-jump' from `dired-x' except that interactively with
+prefix argument set OTHER-WINDOW true."
+    (interactive "P")
+    (dired-jump other-window))
+  ;; 13 Aug 2014 - A convenient binding for going up from a file to the enclosing dir
+  (global-set-key (kbd "C-^") 'wjh/dired-jump)
+  (global-set-key (kbd "M-6") 'wjh/dired-jump))
+
+(use-package dired-details
+  :ensure t
+  :config
+  (dired-details-install))
+
+
+(use-package ido
+  :ensure t
+  :init
+  (setq ido-enable-flex-matching t)
+  :config
+  (ido-mode)
+  (setq ido-file-extensions-order 
+	'(".org" ".tex" ".py" ".f90" ".xml" ".el"))
+  )
+
+
+(use-package eshell
+  :ensure t
+  :config
+  ;; Eshell prompt configuration 23 Apr 2013 Initially based on code at
+  ;; http://www.emacswiki.org/emacs/EshellPrompt but I have changed the
+  ;; colors and split out the last element of the full path.  I also use
+  ;; the rear-nonsticky property to make sure the prompt color does not
+  ;; bleed into the rest of the command line.
+  (setq eshell-prompt-function 
+	(lambda nil
+	  (concat
+	   (propertize (car 
+			(last 
+			 (split-string 
+			  (expand-file-name (eshell/pwd)) "/")))
+		       'face `(:foreground "gray50"))
+	   (propertize " $ " 
+		       'face `(:foreground "orange" :weight 'bold) 
+		       'rear-nonsticky t))))
+  (setq eshell-highlight-prompt nil))
+
+;; (use-package em-smart :ensure t)
+;; (use-package em-rebind :ensure t)
+
+(use-package shell-switcher
+  :ensure t
+  :config
+  (setq shell-switcher-mode t)
+  ;; WJH 25 Apr 2013 - use the Cmd key here since C-' is already mapped
+  ;; in many modes
+  (define-key shell-switcher-mode-map (kbd "s-'")
+    'shell-switcher-switch-buffer)
+  (define-key shell-switcher-mode-map (kbd "C-x 4 '")
+    'shell-switcher-switch-buffer-other-window)
+  (define-key shell-switcher-mode-map (kbd "s-M-'")
+    'shell-switcher-new-shell)
+  (add-hook 'eshell-mode-hook 'shell-switcher-manually-register-shell)
+  )
+
+
+;; 24 Apr 2013 - Try out keyfreq package, which compiles statistics on
+;; use of keys.  To see them, use "M-x keyfreq-show".  See
+;; https://github.com/dacap/keyfreq and Xah Lee's page at
+;; http://ergoemacs.org/emacs/command-frequency.html, which has a
+;; python script for analysing the results
+(use-package keyfreq
+  :ensure t
+  :config
+  (customize-set-value 'keyfreq-file "~/.emacs.d/emacs.keyfreq"
+		       "Tidy this away, out of top-level home dir")
+  (customize-set-value 'keyfreq-file-lock "~/.emacs.d/emacs.keyfreq.lock"
+		       "Tidy this away, out of top-level home dir")
+  (keyfreq-mode 1)
+  (keyfreq-autosave-mode 1))
+
+
+(use-package undo-tree
+  :ensure t
+  :config
+  (global-undo-tree-mode)
+  ;; Basic Usage: 
+  ;; + "C-/" undo
+  ;; + "C-?" redo
+  ;; + "C-x u" visualize (use arrows to navigate tree)
+  )
+

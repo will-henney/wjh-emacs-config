@@ -3,7 +3,7 @@
 ;; 19 Dec 2013 - Hopefully, cask will simplify everything
 (require 'cask "/usr/local/Cellar/cask/0.8.0/cask.el")
 (cask-initialize)
-
+(add-to-list 'load-path "/Users/will/.emacs.d/.cask/25.1.3/elpa")
 
 (defun wjh-add-to-load-path (pkg)
   "Add pkg directory to load path."
@@ -13,8 +13,9 @@
 
 
 ;; 25 Sep 2016 - do the opposite of fill
-(require 'unfill)
-(global-set-key (kbd "M-Q") 'unfill-paragraph)
+;; 12 Jan 2017 - why has this stopped working?
+;; (require 'unfill)
+;; (global-set-key (kbd "M-Q") 'unfill-paragraph)
 
 ;; 21 Jun 2015 - lispy mode (another abo-abo package)
 (require 'lispy)

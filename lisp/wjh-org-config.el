@@ -170,7 +170,7 @@
 		    :foreground "gray60" :weight 'light)
 
 ;;iimage
-(use-package 'iimage
+(use-package iimage
   :ensure t
   :config
   (setq iimage-mode-image-search-path (expand-file-name "~/"))
@@ -369,6 +369,7 @@
 ;; (require 'ob-R)
 ;; requires R and ess-mode
 ;; active Babel languages
+(use-package ob-ipython :ensure t)
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((ruby . t)

@@ -44,8 +44,8 @@
         regexp-search-ring))
 
 ;; 26 Oct 2013 - autocomplete
-(require 'fuzzy)
-(require 'auto-complete)
+(use-package fuzzy :ensure t)
+(use-package auto-complete :ensure t)
 (setq ac-auto-show-menu t
       ac-quick-help-delay 0.5
       ac-use-fuzzy t)
