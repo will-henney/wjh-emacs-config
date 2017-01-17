@@ -1,7 +1,3 @@
-;; this now seems to be needed 03 Sep 2007
-(require 'org)
-
-
 ;; 03 Nov 2006
 
 ;; org-mode comes included with recent emacsen 
@@ -174,12 +170,14 @@
 		    :foreground "gray60" :weight 'light)
 
 ;;iimage
-(require 'iimage)
-(setq iimage-mode-image-search-path (expand-file-name "~/"))
-;;Match org file: links
-(add-to-list 'iimage-mode-image-regex-alist
-            (cons (concat "\\[\\[file:\\(~?" iimage-mode-image-filename-regex
-                          "\\)\\]")  1))
+(use-package 'iimage
+  :ensure t
+  :config
+  (setq iimage-mode-image-search-path (expand-file-name "~/"))
+  ;;Match org file: links
+  (add-to-list 'iimage-mode-image-regex-alist
+	       (cons (concat "\\[\\[file:\\(~?" iimage-mode-image-filename-regex
+			     "\\)\\]")  1)))
 
 
 ;; (require 'htmlize)
@@ -214,7 +212,7 @@
 (setq org-footnote-auto-label nil)	; always prompt for label
 
 ;; inline tasks - make one with C-c C-x t
-(require 'org-inlinetask)
+(use-package org-inlinetask)
 
 ;; export latex equations
 (setq org-export-with-LaTeX-fragments t)
@@ -244,8 +242,10 @@
 
 ;;; Support for magit links in org buffers
 ;;; https://github.com/sigma/org-magit
-(wjh-add-to-load-path "org-magit")
-(require 'org-magit)
+(use-package org-magit
+  :ensure t)
+;; (wjh-add-to-load-path "org-magit")
+;; (require 'org-magit)
 
 
 ;; ;; Using RefTeX in org buffers - copied from blog post by Mario Fasold
@@ -453,4 +453,4 @@
 
 ;; 23 Sep 2016 - try out integration with org bookmarks
 ;; and turned on org-bookmark-jump-indirect 
-(require 'org-bookmark-heading)
+(use-package org-bookmark-heading :ensure t)

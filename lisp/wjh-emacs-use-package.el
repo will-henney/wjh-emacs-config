@@ -389,7 +389,105 @@
   :ensure auctex
   :config
   (setq TeX-auto-save t)
-  (add-hook 'LaTeX-mode-hook 'TeX-global-PDF-mode))
+  (setq TeX-parse-self t)
+  (setq-default TeX-master nil)
+  (add-hook 'LaTeX-mode-hook 'visual-line-mode)
+  (add-hook 'LaTeX-mode-hook 'flyspell-mode)
+  (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+  (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+  (add-hook 'LaTeX-mode-hook 'TeX-global-PDF-mode)
+  (setq reftex-plug-into-AUCTeX t)
+  (setq TeX-PDF-mode t)
+  ;; Use Skim as viewer, enable source <-> PDF sync
+  ;; make latexmk available via C-c C-c
+  ;; Note: SyncTeX is setup via ~/.latexmkrc (see below)
+  (push '("latexmk" "latexmk -synctex=1 -pdf %s" TeX-run-TeX nil t
+	  :help "Run latexmk on file")
+	TeX-command-list)
+  (add-hook 'TeX-mode-hook '(lambda () (setq TeX-command-default "latexmk")))
+  ;; use Skim as default pdf viewer
+  ;; Skim's displayline is used for forward search (from .tex to .pdf)
+  ;; option -b highlights the current line; option -g opens Skim in the background  
+  (setq TeX-view-program-selection '((output-pdf "PDF Viewer")))
+  (setq TeX-view-program-list
+	'(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")))
+  ;; See also
+  ;; http://stackoverflow.com/questions/7899845/emacs-synctex-skim-how-to-correctly-set-up-syncronization-none-of-the-exi
+  (add-hook 'TeX-mode-hook
+	    (lambda ()
+	      (add-to-list 'TeX-output-view-style
+			   '("^pdf$" "."
+			     "/Applications/Skim.app/Contents/SharedSupport/displayline -b %n %o %b")))
+)
+  ;; Extras for LaTeX editing 29 Mar 2013
+  ;; Code copied from tex.stackexchange
+  ;; http://tex.stackexchange.com/questions/27241/entering-math-mode-in-auctex-using-and
+  (add-hook 'LaTeX-mode-hook 
+	    '(lambda ()
+	       (define-key TeX-mode-map "\C-cm" 'TeX-insert-inline-math)
+	       (defun TeX-insert-inline-math (arg)
+		 "Like TeX-insert-braces but for \\(...\\)" 
+		 (interactive "P")
+		 (if (TeX-active-mark)
+		     (progn
+		       (if (< (point) (mark)) (exchange-point-and-mark))
+		       (insert "\\)")
+		       (save-excursion (goto-char (mark)) (insert "\\(")))
+		   (insert "\\(")
+		   (save-excursion
+		     (if arg (forward-sexp (prefix-numeric-value arg)))
+		     (insert "\\)"))))))
+  ;; Drag and drop files onto latex buffer
+  ;; Copied from SO answer;
+  ;; http://emacs.stackexchange.com/questions/16318/drag-and-drop-images-to-auctex
+  (defcustom AUCTeX-dnd-format "\\includegraphics[width=\\linewidth]{%s}"
+    "What to insert, when a file is dropped on Emacs window. %s is
+replaced by the actual file name. If the filename is located
+under the directory of .tex document, only the part of the name
+relative to that directory in used."
+    :type 'string
+    :group 'AUCTeX)
+  ;; Modified version
+  (defun AUCTeX-dnd-includegraphics (uri action)
+    "Insert the text defined by `AUCTeX-dnd-format' when a file is
+dropped on Emacs window."
+    (let ((file (dnd-get-local-file-name uri t)))
+      (when (and file (file-regular-p file))
+	(if (string-match default-directory file)
+	    (insert (format AUCTeX-dnd-format (file-name-nondirectory file)))
+	  (insert (format AUCTeX-dnd-format file))
+	  )
+	)
+      )
+    )
+  (defcustom AUCTeX-dnd-protocol-alist
+    '(("^file:///" . AUCTeX-dnd-includegraphics)
+      ("^file://"  . dnd-open-file)
+      ("^file:"    . AUCTeX-dnd-includegraphics))
+    "The functions to call when a drop in `mml-mode' is made.
+See `dnd-protocol-alist' for more information.  When nil, behave
+as in other buffers."
+    :type '(choice (repeat (cons (regexp) (function)))
+		   (const :tag "Behave as in other buffers" nil))
+    :version "22.1" ;; Gnus 5.10.9
+    :group 'AUCTeX)
+  (define-minor-mode AUCTeX-dnd-mode
+    "Minor mode to inser some text (\includegraphics by default)
+when a file is dopped on Emacs window."
+    :lighter " DND"
+    (when (boundp 'dnd-protocol-alist)
+      (if AUCTeX-dnd-mode
+	  (set (make-local-variable 'dnd-protocol-alist)
+	       (append AUCTeX-dnd-protocol-alist dnd-protocol-alist))
+	(kill-local-variable 'dnd-protocol-alist))))
+  (add-hook 'LaTeX-mode-hook 'AUCTeX-dnd-mode)
+  ;; RefTeX needs extra help to find files that are not in the current
+  ;; directory (added 07 Jul 2008)
+  (setq reftex-use-external-file-finders t)
+  (setq reftex-external-file-finders
+	'(("tex" . "kpsewhich -format=.tex %f")
+	  ("bib" . "kpsewhich -format=.bib %f")))
+  )
 
 ;; Miss out the latex-extra stuff for now
 
@@ -448,4 +546,44 @@
   :ensure t
   :bind ("C-c i" . magit-status))
 
+
+;; Trying something new 10 Mar 2013: https://github.com/jorgenschaefer/elpy/wiki
+(load "wjh-python-elpy-config")
+;; And also try out emacs ipython notebook
+(use-package ein
+  :ensure t
+  )
 
+
+;; 22 Sep 2011 - also put org early on
+;; Let's use org-mode!
+(use-package org
+  :ensure t
+  ;; :ensure org-extra
+  :pin org
+  :config (load "wjh-org-config"))
+
+
+
+;; misc packages
+(use-package fold-dwim :ensure t)
+(use-package fold-dwim-org :ensure t)
+
+(use-package comint
+  :bind (:map comint-mode-map
+	      ("M-p" . comint-previous-matching-input-from-input)
+	      ("M-n" . comint-next-matching-input-from-input)))
+
+(use-package constants
+  ;; :ensure t
+  :commands (constants-insert constants-get constants-replace)
+  :bind (("C-c c i" . constants-insert)
+	 ("C-c c g" . constants-get)
+	 ("C-c c r" . constants-replace))
+  :config
+  (setq constants-unit-system 'cgs)   ;  this is the default
+  ;; Use "cc" as the standard variable name for speed of light,
+  ;; "bk" for Boltzmann's constant, and "hp" for Planck's constant
+  (setq constants-rename '(("cc" . "c") ("bk" . "k") ("hp" . "h")))
+  ;; A default list of constants to insert when none are specified
+  (setq constants-default-list "cc,bk,hp"))
