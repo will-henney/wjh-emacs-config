@@ -8,9 +8,12 @@
   :config
   (elpy-enable)
   (setq python-check-command "pyflakes")
-  ;; IPython used to cause problems in earlier versions of elpy
-  ;; I should check if it works again in 1.5
   (elpy-use-ipython)
+  ;; 31 Jan 2017 - With ipython 5, we need to switch over to a simple
+  ;; prompt.  This is because they have ditched readline in favor of
+  ;; prompt_toolkit, which doesn't work in emacs inferior python
+  ;; buffers
+  (setq python-shell-interpreter-args "--simple-prompt")
   ;; 08 Aug 2014 WJH Choose a backend
   ;; Jedi works fine but is not so good at documentation lookup
   ;;(setq elpy-rpc-backend "jedi")
