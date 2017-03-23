@@ -13,7 +13,9 @@
   ;; prompt.  This is because they have ditched readline in favor of
   ;; prompt_toolkit, which doesn't work in emacs inferior python
   ;; buffers
-  (setq python-shell-interpreter-args "--simple-prompt")
+  (setq python-shell-interpreter-args "--simple-prompt"
+	python-shell-completion-native-enable nil)
+  
   ;; 08 Aug 2014 WJH Choose a backend
   ;; Jedi works fine but is not so good at documentation lookup
   ;;(setq elpy-rpc-backend "jedi")

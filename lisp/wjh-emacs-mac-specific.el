@@ -144,3 +144,9 @@
 (global-unset-key [menu-bar options])
 (global-unset-key [menu-bar buffer])
 (global-unset-key [menu-bar file])
+(global-unset-key (kbd "<menu-bar> <Virtual Envs>"))
+(add-hook 'pyvenv-mode-hook
+	  (lambda ()
+	    (define-key
+	      pyvenv-mode-map
+	      (kbd "<menu-bar> <Virtual Envs>") 'nil)))
