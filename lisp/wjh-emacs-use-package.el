@@ -8,6 +8,67 @@
 (require 'bind-key)   
 
 
+;; 27 Apr 2017 - new mail config
+;; Based on a bizarre hybrid of the following sites:
+;; + http://pragmaticemacs.com/emacs/master-your-inbox-with-mu4e-and-org-mode/
+;; + http://www.ict4g.net/adolfo/notes/2014/12/27/EmacsIMAP.html
+;; + https://github.com/cocreature/dotfiles/blob/master/emacs/.emacs.d/emacs.org
+;; + http://www.djcbsoftware.nl/code/mu/mu4e/Contexts.html
+(use-package mu4e
+  :load-path "/usr/local/Cellar/mu/0.9.18/share/emacs/site-lisp/mu/mu4e"
+  :commands mu4e
+  :config
+  ;; (setq mu4e-get-mail-command "/usr/local/bin/mbsync -a")
+  ;; Get mail manually to start with - when things are working, switch to the above
+  (setq mu4e-get-mail-command t)
+  ;; a  list of user's e-mail addresses
+  (setq mu4e-user-mail-address-list
+	'("whenney@gmail.com" "will@henney.org" "w.henney@irya.unam.mx"))
+  ;; Different set-ups for different accounts
+  (setq mu4e-contexts
+	`(,(make-mu4e-context
+	    :name "icloud"
+	    :enter-func (lambda () (mu4e-message "Switch to icloud context"))
+	    :match-func (lambda (msg)
+			  (when msg
+			    (s-prefix? "/icloud/" (mu4e-message-field msg :maildir))))
+	    :vars '((user-mail-address . "deprecated@icloud.com")
+		    (mu4e-sent-folder . "/icloud/Sent Messages")
+		    (mu4e-drafts-folder . "/icloud/Drafts")
+		    (mu4e-trash-folder . "/icloud/Deleted Messages")))
+	  ,(make-mu4e-context
+	    :name "gmail"
+	    :enter-func (lambda () (mu4e-message "Switch to gmail context"))
+	    :match-func (lambda (msg)
+			  (when msg
+			    (s-prefix? "/gmail/" (mu4e-message-field msg :maildir))))
+	    :vars '((user-mail-address . "whenney@gmail.com")
+		    (mu4e-sent-folder . "/gmail/sent")
+		    (mu4e-drafts-folder . "/gmail/drafts")
+		    (mu4e-trash-folder . "/gmail/trash")
+		    (mu4e-sent-messages-behavior . delete)
+		    ))
+	  ))
+  (setq mu4e-html2text-command "/usr/local/bin/w3m -t 2 -graph -S -T text/html")
+  ;; (setq mu4e-html2text-command 'mu4e-shr2text)
+  (setq mu4e-view-show-addresses t)
+  (setq mu4e-headers-include-related t)
+  (setq mu4e-headers-show-threads nil)
+  (setq mu4e-headers-skip-duplicates t)
+  (setq mu4e-split-view 'horizontal)
+  (setq
+   user-full-name  "William Henney"
+   mu4e-compose-signature ""
+   mu4e-compose-signature-auto-include nil
+   mu4e-attachment-dir "~/Downloads")
+  (setq mu4e-maildir-shortcuts
+	'(("/gmail/inbox"     . ?g)
+	  ("/icloud/inbox"       . ?i)))
+  )
+
+
+
+
 ;; 25 Sep 2016 - do the opposite of fill
 (use-package unfill
   :ensure t)
@@ -27,7 +88,7 @@
 ;; Skipping for now 16 Jan 2017, maybe partially reinstate later
 
 
-;; 21 Jun 2015 - fancy-narrow
+;; 21 Jun 20s1t5x e-t nfoancy-narrow
 (use-package fancy-narrow
   :ensure t
   :config
@@ -56,6 +117,9 @@
 ;; A copy can be found in a Secure Note in my 1Password vault
 (load "wjh-private-stuff")
 
+(use-package paradox
+  :ensure t)
+
 (use-package swiper
   :ensure t
   :config
@@ -67,6 +131,13 @@
   (global-set-key (kbd "C-c C-r") 'ivy-resume)
   (setq magit-completing-read-function 'ivy-completing-read)
   (setq projectile-completion-system 'ivy))
+
+(use-package counsel
+  ;; 27 Apr 2017 - I don't bind anything here yet
+  :ensure t)
+(use-package ivy-hydra
+  :ensure t)
+
 
 (use-package ace-window
   :ensure t

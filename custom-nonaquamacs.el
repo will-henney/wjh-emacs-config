@@ -88,6 +88,8 @@
  '(org-table ((t (:inherit (fixed-pitch unspecified) :family "Input Mono Compressed" :foreground "PaleTurquoise1" :height 1.0))))
  '(org-tag ((t (:foreground "gray60" :slant italic :weight thin :height 1.0))))
  '(planner-completed-task-face ((t (:foreground "gray50" :strike-through t))) t)
+ '(popup-menu-mouse-face ((t (:background "#D0BF8F" :foreground "#000000"))))
+ '(popup-tip-face ((t (:background "gray40" :foreground "DarkOliveGreen1" :height 0.8))))
  '(region ((t (:background "gold4" :foreground "#dcdccc"))))
  '(secondary-selection ((((class color) (min-colors 88) (background light)) (:background "#fed"))))
  '(sh-heredoc ((t (:foreground "tan1"))))
@@ -124,7 +126,7 @@
       (plain-tex-mode texinfo-mode ams-tex-mode)
       :help "Run plain TeX")
      (#("LaTeX" 0 1
-	(idx 1))
+	(idx 3))
       "%`%l%(mode)%' %t" TeX-run-TeX nil
       (latex-mode doctex-mode)
       :help "Run LaTeX")
@@ -144,39 +146,39 @@
       (context-mode)
       :help "Run ConTeXt until completion")
      (#("BibTeX" 0 1
-	(idx 2))
+	(idx 4))
       "bibtex %s" TeX-run-BibTeX nil t :help "Run BibTeX")
      (#("View" 0 1
-	(idx 3))
+	(idx 5))
       "%V" TeX-run-discard-or-function t t :help "Run Viewer")
      (#("Print" 0 1
-	(idx 4))
+	(idx 6))
       "%p" TeX-run-command t t :help "Print the file")
      (#("Queue" 0 1
-	(idx 5))
+	(idx 7))
       "%q" TeX-run-background nil t :help "View the printer queue" :visible TeX-queue-command)
      (#("File" 0 1
-	(idx 6))
+	(idx 8))
       "%(o?)dvips %d -o %f " TeX-run-command t t :help "Generate PostScript file")
      (#("Index" 0 1
-	(idx 7))
+	(idx 9))
       "makeindex %s" TeX-run-command nil t :help "Create index file")
      (#("Check" 0 1
-	(idx 8))
+	(idx 10))
       "lacheck %s" TeX-run-compile nil
       (latex-mode)
       :help "Check LaTeX file for correctness")
      (#("Spell" 0 1
-	(idx 9))
+	(idx 11))
       "(TeX-ispell-document \"\")" TeX-run-function nil t :help "Spell-check the document")
      (#("Clean" 0 1
-	(idx 10))
+	(idx 12))
       "TeX-clean" TeX-run-function nil t :help "Delete generated intermediate files")
      (#("Clean All" 0 1
-	(idx 11))
+	(idx 13))
       "(TeX-clean t)" TeX-run-function nil t :help "Delete generated intermediate and output files")
      (#("Other" 0 1
-	(idx 12))
+	(idx 14))
       "" TeX-run-command t t :help "Run an arbitrary command"))))
  '(TeX-font-list
    (quote
@@ -246,6 +248,8 @@
  '(elpy-modules
    (quote
     (elpy-module-company elpy-module-eldoc elpy-module-flymake elpy-module-pyvenv elpy-module-yasnippet elpy-module-sane-defaults)))
+ '(git-messenger:show-detail t)
+ '(git-messenger:use-magit-popup t)
  '(line-spacing 4)
  '(magit-push-always-verify nil)
  '(org-agenda-files
@@ -285,7 +289,7 @@
  '(org-tags-column 50)
  '(package-selected-packages
    (quote
-    (elfeed-org auto-org-md julia-mode zenburn-theme yaml-mode w3m virtualenv unfill undo-tree synonyms svg-mode-line-themes stripe-buffer spotlight sparkline smex smartscan smartparens smart-mode-line rainbow-mode projectile prodigy pinboard persistent-scratch paradox pallet org-trello org-plus-contrib org-magit org-dotemacs org-bullets org-bookmark-heading ob-ipython nose names multiple-cursors markdown-mode magithub magit-svn lispy latex-extra langtool key-chord idomenu ido-vertical-mode ibuffer-vc hungry-delete htmlize helm-dash helm-bibtex guide-key google-this golden-ratio god-mode gitty git-messenger git-gutter ggtags fuzzy fold-dwim-org flx-ido fancy-narrow expand-region esxml elpy elnode ein easy-kill-extras dired-details diminish deft csv-mode crosshairs creole-mode conda color-identifiers-mode bibslurp bf-mode auto-complete alert airplay ack-and-a-half achievements ace-jump-mode)))
+    (ivy-hydra counsel mu4e org-pomodoro org-table-sticky-header org-edit-latex elfeed-org auto-org-md julia-mode zenburn-theme yaml-mode w3m virtualenv unfill undo-tree synonyms svg-mode-line-themes stripe-buffer spotlight sparkline smex smartscan smartparens smart-mode-line rainbow-mode projectile prodigy pinboard persistent-scratch paradox pallet org-trello org-plus-contrib org-magit org-dotemacs org-bullets org-bookmark-heading ob-ipython nose names multiple-cursors markdown-mode magithub magit-svn lispy latex-extra langtool key-chord idomenu ido-vertical-mode ibuffer-vc hungry-delete htmlize helm-dash helm-bibtex guide-key google-this golden-ratio god-mode gitty git-messenger git-gutter ggtags fuzzy fold-dwim-org flx-ido fancy-narrow expand-region esxml elpy elnode ein easy-kill-extras dired-details diminish deft csv-mode crosshairs creole-mode conda color-identifiers-mode bibslurp bf-mode auto-complete alert airplay ack-and-a-half achievements ace-jump-mode)))
  '(paradox-automatically-star t)
  '(pinboard-url "http://feeds.pinboard.in/json/u:deprecated/?count=10")
  '(recentf-exclude
@@ -337,5 +341,8 @@
      (org-use-property-inheritance . t)
      (system-time-locale . "en_GB.ISO8859-1"))))
  '(show-paren-mode nil)
+ '(shr-color-visible-distance-min 20)
+ '(shr-color-visible-luminance-min 60)
+ '(shr-use-fonts nil)
  '(text-mode-hook (quote (turn-on-visual-line-mode)))
  '(visible-bell t))
