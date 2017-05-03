@@ -507,7 +507,7 @@
 ;; 02 May 2017 - Makes header stick around
 (use-package org-sticky-header :ensure t
   :config
-  (add-hook 'org-mode-hook (org-sticky-header-mode))
+  (add-hook 'org-mode-hook 'org-sticky-header-mode)
   (setq org-sticky-header-full-path 'reversed)
   (setq org-sticky-header-heading-star "⸭")
   (setq org-sticky-header-outline-path-reversed-separator " 🚦 ")
@@ -515,7 +515,6 @@
   (([header-line swipe-left] . wjh/backward-heading)
    ([header-line swipe-right] . wjh/forward-heading)
    ([header-line swipe-up] . wjh/up-heading)
-   ([header-line swipe-down] . wjh/next-heading)
    ([header-line swipe-down] . wjh/next-heading)
    ([header-line down-mouse-1] . wjh/this-heading)
    )
