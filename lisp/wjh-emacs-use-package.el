@@ -578,6 +578,10 @@ when a file is dopped on Emacs window."
   (define-key projectile-mode-map [?\s-f] 'projectile-find-file)
   (define-key projectile-mode-map [?\s-g] 'projectile-grep))
 
+;; 03 May 2017 - Use Ag for searching in project (executable must be
+;; installed, e.g. ,via homebrew)
+(use-package ag :ensure t)
+
 ;; projectile recommends use of flx-ido
 (use-package flx-ido
   :ensure t

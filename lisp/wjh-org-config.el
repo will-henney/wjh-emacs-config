@@ -455,3 +455,38 @@
 ;; 23 Sep 2016 - try out integration with org bookmarks
 ;; and turned on org-bookmark-jump-indirect 
 (use-package org-bookmark-heading :ensure t)
+
+(defun wjh/backward-heading (arg)
+  "Like `org-backward-heading-same-level` but ensure at top of buffer"
+  (interactive "p")
+  (org-backward-heading-same-level arg)
+  (recenter 0)
+  )
+(defun wjh/forward-heading (arg)
+  "Like `org-forward-heading-same-level` but ensure at top of buffer"
+  (interactive "p")
+  (org-forward-heading-same-level arg)
+  (recenter 0)
+  )
+(defun wjh/next-heading (arg)
+  "Like `org-next-visible-heading` but ensure at top of buffer"
+  (interactive "p")
+  (org-next-visible-heading arg)
+  (recenter 0)
+  )
+
+
+;; 02 May 2017 - Makes header stick around
+(use-package org-sticky-header :ensure t
+  :config
+  (add-hook 'org-mode-hook (org-sticky-header-mode))
+  (setq org-sticky-header-full-path 'reversed)
+  (setq org-sticky-header-heading-star "⸭")
+  (setq org-sticky-header-outline-path-reversed-separator "🚦")
+  :bind
+  (([header-line swipe-left] . wjh/backward-heading)
+   ([header-line swipe-right] . wjh/forward-heading)
+   ([header-line swipe-up] . outline-up-heading)
+   ([header-line swipe-down] . wjh/next-heading)
+   )
+  )

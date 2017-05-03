@@ -18,9 +18,10 @@
 
 ;; 26 Oct 2013 - tweak scrolling behavior
 ;; Copied from http://zeekat.nl/articles/making-emacs-work-for-me.html
+;; Revisited 03 May 2017 - get rid of scroll-margin
 (setq redisplay-dont-pause t
-      scroll-margin 1
-      scroll-step 1
+      scroll-margin 0
+      scroll-step 0
       scroll-conservatively 10000
       scroll-preserve-screen-position 1)
 

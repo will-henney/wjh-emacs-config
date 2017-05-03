@@ -46,6 +46,7 @@
  '(git-gutter:deleted ((t (:foreground "#CC9393" :weight bold))))
  '(git-gutter:modified ((t (:foreground "#DC8CC3" :weight bold))))
  '(git-gutter:unchanged ((t (:background "yellow" :foreground "#DCDCCC" :weight bold))))
+ '(header-line ((t (:foreground "#F0DFAF" :background "#2B2B2B" :box (:line-width -1 :style released-button)))))
  '(helm-selection ((t (:background "#204060" :foreground "white" :underline nil :weight bold))) nil "Third attempt at getting this right.  Inverse video wasn't working; made me thing it was a heading.  Hopefully this will be easier to spot.")
  '(helm-source-header ((t (:background "#2B2B2B" :foreground "seashell4" :inverse-video t :box nil :underline nil :weight bold))))
  '(highlight ((t (:background "coral4"))))
@@ -289,7 +290,7 @@
  '(org-tags-column 50)
  '(package-selected-packages
    (quote
-    (ivy-hydra counsel mu4e org-pomodoro org-table-sticky-header org-edit-latex elfeed-org auto-org-md julia-mode zenburn-theme yaml-mode w3m virtualenv unfill undo-tree synonyms svg-mode-line-themes stripe-buffer spotlight sparkline smex smartscan smartparens smart-mode-line rainbow-mode projectile prodigy pinboard persistent-scratch paradox pallet org-trello org-plus-contrib org-magit org-dotemacs org-bullets org-bookmark-heading ob-ipython nose names multiple-cursors markdown-mode magithub magit-svn lispy latex-extra langtool key-chord idomenu ido-vertical-mode ibuffer-vc hungry-delete htmlize helm-dash helm-bibtex guide-key google-this golden-ratio god-mode gitty git-messenger git-gutter ggtags fuzzy fold-dwim-org flx-ido fancy-narrow expand-region esxml elpy elnode ein easy-kill-extras dired-details diminish deft csv-mode crosshairs creole-mode conda color-identifiers-mode bibslurp bf-mode auto-complete alert airplay ack-and-a-half achievements ace-jump-mode)))
+    (ag org-sticky-header ivy-hydra counsel mu4e org-pomodoro org-table-sticky-header org-edit-latex elfeed-org auto-org-md julia-mode zenburn-theme yaml-mode w3m virtualenv unfill undo-tree synonyms svg-mode-line-themes stripe-buffer spotlight sparkline smex smartscan smartparens smart-mode-line rainbow-mode projectile prodigy pinboard persistent-scratch paradox pallet org-trello org-plus-contrib org-magit org-dotemacs org-bullets org-bookmark-heading ob-ipython nose names multiple-cursors markdown-mode magithub magit-svn lispy latex-extra langtool key-chord idomenu ido-vertical-mode ibuffer-vc hungry-delete htmlize helm-dash helm-bibtex guide-key google-this golden-ratio god-mode gitty git-messenger git-gutter ggtags fuzzy fold-dwim-org flx-ido fancy-narrow expand-region esxml elpy elnode ein easy-kill-extras dired-details diminish deft csv-mode crosshairs creole-mode conda color-identifiers-mode bibslurp bf-mode auto-complete alert airplay ack-and-a-half achievements ace-jump-mode)))
  '(paradox-automatically-star t)
  '(pinboard-url "http://feeds.pinboard.in/json/u:deprecated/?count=10")
  '(recentf-exclude
