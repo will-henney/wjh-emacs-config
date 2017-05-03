@@ -456,24 +456,52 @@
 ;; and turned on org-bookmark-jump-indirect 
 (use-package org-bookmark-heading :ensure t)
 
-(defun wjh/backward-heading (arg)
-  "Like `org-backward-heading-same-level` but ensure at top of buffer"
+(defun wjh/up-heading (arg)
+  "Like `outline-up-heading` but for heading at top of window"
   (interactive "p")
+  (move-to-window-line 0)
+  (outline-up-heading arg)
+  (recenter 0)
+  )
+(defun wjh/this-heading (arg)
+  "Like `wjh/up-heading` but go to the current heading, not parent"
+  (interactive "p")
+  (wjh/up-heading 0)
+  )
+(defun wjh/backward-heading (arg)
+  "Like `org-backward-heading-same-level` but for heading at top of window"
+  (interactive "p")
+  (move-to-window-line 0)
   (org-backward-heading-same-level arg)
   (recenter 0)
   )
 (defun wjh/forward-heading (arg)
-  "Like `org-forward-heading-same-level` but ensure at top of buffer"
+  "Like `org-forward-heading-same-level` but for heading at top of window"
   (interactive "p")
+  (move-to-window-line 0)
   (org-forward-heading-same-level arg)
   (recenter 0)
   )
 (defun wjh/next-heading (arg)
-  "Like `org-next-visible-heading` but ensure at top of buffer"
+  "Like `org-next-visible-heading` but for heading at top of window"
   (interactive "p")
+  (move-to-window-line 0)
   (org-next-visible-heading arg)
   (recenter 0)
   )
+
+;; 03 May 2017 - This is to get things to look nice for
+;; org-sticky-header-mode.  We use a condensed font so as to be able
+;; more of the reversed path on the screen
+(set-face-attribute 'header-line nil
+		    :background "#2B2B2B"
+		    :foreground "#F0DFAF"
+		    :box '(:line-width 5 :color "#2B2B2B")
+		    :slant 'italic
+		    :height 0.95
+		    :family "Input Mono Compressed"
+		    :underline nil :overline nil
+		    )
 
 
 ;; 02 May 2017 - Makes header stick around
@@ -482,11 +510,13 @@
   (add-hook 'org-mode-hook (org-sticky-header-mode))
   (setq org-sticky-header-full-path 'reversed)
   (setq org-sticky-header-heading-star "⸭")
-  (setq org-sticky-header-outline-path-reversed-separator "🚦")
+  (setq org-sticky-header-outline-path-reversed-separator " 🚦 ")
   :bind
   (([header-line swipe-left] . wjh/backward-heading)
    ([header-line swipe-right] . wjh/forward-heading)
-   ([header-line swipe-up] . outline-up-heading)
+   ([header-line swipe-up] . wjh/up-heading)
    ([header-line swipe-down] . wjh/next-heading)
+   ([header-line swipe-down] . wjh/next-heading)
+   ([header-line down-mouse-1] . wjh/this-heading)
    )
   )
