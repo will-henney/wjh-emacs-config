@@ -507,10 +507,11 @@
 ;; 02 May 2017 - Makes header stick around
 (use-package org-sticky-header :ensure t
   :config
-  (add-hook 'org-mode-hook 'org-sticky-header-mode)
   (setq org-sticky-header-full-path 'reversed)
   (setq org-sticky-header-heading-star "⸭")
   (setq org-sticky-header-outline-path-reversed-separator " 🚦 ")
+  :init
+  (add-hook 'org-mode-hook (lambda () (org-sticky-header-mode 1)))
   :bind
   (([header-line swipe-left] . wjh/backward-heading)
    ([header-line swipe-right] . wjh/forward-heading)
