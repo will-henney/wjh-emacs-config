@@ -71,6 +71,8 @@
 
 ;; 25 Sep 2016 - do the opposite of fill
 (use-package unfill
+  :bind
+  (("M-Q" . unfill-paragraph))
   :ensure t)
 
 
