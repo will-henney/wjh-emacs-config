@@ -126,7 +126,7 @@
       (plain-tex-mode texinfo-mode ams-tex-mode)
       :help "Run plain TeX")
      (#("LaTeX" 0 1
-	(idx 3))
+	(idx 1))
       "%`%l%(mode)%' %t" TeX-run-TeX nil
       (latex-mode doctex-mode)
       :help "Run LaTeX")
@@ -146,39 +146,39 @@
       (context-mode)
       :help "Run ConTeXt until completion")
      (#("BibTeX" 0 1
-	(idx 4))
+	(idx 2))
       "bibtex %s" TeX-run-BibTeX nil t :help "Run BibTeX")
      (#("View" 0 1
-	(idx 5))
+	(idx 3))
       "%V" TeX-run-discard-or-function t t :help "Run Viewer")
      (#("Print" 0 1
-	(idx 6))
+	(idx 4))
       "%p" TeX-run-command t t :help "Print the file")
      (#("Queue" 0 1
-	(idx 7))
+	(idx 5))
       "%q" TeX-run-background nil t :help "View the printer queue" :visible TeX-queue-command)
      (#("File" 0 1
-	(idx 8))
+	(idx 6))
       "%(o?)dvips %d -o %f " TeX-run-command t t :help "Generate PostScript file")
      (#("Index" 0 1
-	(idx 9))
+	(idx 7))
       "makeindex %s" TeX-run-command nil t :help "Create index file")
      (#("Check" 0 1
-	(idx 10))
+	(idx 8))
       "lacheck %s" TeX-run-compile nil
       (latex-mode)
       :help "Check LaTeX file for correctness")
      (#("Spell" 0 1
-	(idx 11))
+	(idx 9))
       "(TeX-ispell-document \"\")" TeX-run-function nil t :help "Spell-check the document")
      (#("Clean" 0 1
-	(idx 12))
+	(idx 10))
       "TeX-clean" TeX-run-function nil t :help "Delete generated intermediate files")
      (#("Clean All" 0 1
-	(idx 13))
+	(idx 11))
       "(TeX-clean t)" TeX-run-function nil t :help "Delete generated intermediate and output files")
      (#("Other" 0 1
-	(idx 14))
+	(idx 12))
       "" TeX-run-command t t :help "Run an arbitrary command"))))
  '(TeX-font-list
    (quote
@@ -289,7 +289,7 @@
  '(org-tags-column 50)
  '(package-selected-packages
    (quote
-    (ag org-sticky-header ivy-hydra counsel mu4e org-pomodoro org-table-sticky-header org-edit-latex elfeed-org auto-org-md julia-mode zenburn-theme yaml-mode w3m virtualenv unfill undo-tree synonyms svg-mode-line-themes stripe-buffer spotlight sparkline smex smartscan smartparens smart-mode-line rainbow-mode projectile prodigy pinboard persistent-scratch paradox pallet org-trello org-plus-contrib org-magit org-dotemacs org-bullets org-bookmark-heading ob-ipython nose names multiple-cursors markdown-mode magithub magit-svn lispy latex-extra langtool key-chord idomenu ido-vertical-mode ibuffer-vc hungry-delete htmlize helm-dash helm-bibtex guide-key google-this golden-ratio god-mode gitty git-messenger git-gutter ggtags fuzzy fold-dwim-org flx-ido fancy-narrow expand-region esxml elpy elnode ein easy-kill-extras dired-details diminish deft csv-mode crosshairs creole-mode conda color-identifiers-mode bibslurp bf-mode auto-complete alert airplay ack-and-a-half achievements ace-jump-mode)))
+    (quelpa-use-package ag org-sticky-header ivy-hydra counsel mu4e org-pomodoro org-table-sticky-header org-edit-latex elfeed-org auto-org-md julia-mode zenburn-theme yaml-mode w3m virtualenv unfill undo-tree synonyms svg-mode-line-themes stripe-buffer spotlight sparkline smex smartscan smartparens smart-mode-line rainbow-mode projectile prodigy pinboard persistent-scratch paradox pallet org-trello org-plus-contrib org-magit org-dotemacs org-bullets org-bookmark-heading ob-ipython nose names multiple-cursors markdown-mode magithub magit-svn lispy latex-extra langtool key-chord idomenu ido-vertical-mode ibuffer-vc hungry-delete htmlize helm-dash helm-bibtex guide-key google-this golden-ratio god-mode gitty git-messenger git-gutter ggtags fuzzy fold-dwim-org flx-ido fancy-narrow expand-region esxml elpy elnode ein easy-kill-extras dired-details diminish deft csv-mode crosshairs creole-mode conda color-identifiers-mode bibslurp bf-mode auto-complete alert airplay ack-and-a-half achievements ace-jump-mode)))
  '(paradox-automatically-star t)
  '(pinboard-url "http://feeds.pinboard.in/json/u:deprecated/?count=10")
  '(recentf-exclude

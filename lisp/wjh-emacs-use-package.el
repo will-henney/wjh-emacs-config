@@ -8,6 +8,14 @@
 (require 'bind-key)   
 
 
+;; 12 May 2017 - try out quelpa for getting non-elpa versions of
+;; packages directly from github and other sources
+(use-package quelpa-use-package
+  :ensure t
+  :init (setq quelpa-update-melpa-p nil))
+
+
+
 ;; 27 Apr 2017 - new mail config
 ;; Based on a bizarre hybrid of the following sites:
 ;; + http://pragmaticemacs.com/emacs/master-your-inbox-with-mu4e-and-org-mode/
@@ -107,7 +115,8 @@
   :config
   (global-set-key (kbd "C-:") 'avy-goto-char)
   ;; Docs suggest C-' but I use that for shell-switcher
-  (global-set-key (kbd "C-\"") 'avy-goto-char-2)
+  ;; Now that I don't use helm, I can use C-. instead
+  (global-set-key (kbd "C-.") 'avy-goto-char-2)
   (global-set-key (kbd "M-g e") 'avy-goto-word-0)
   (global-set-key (kbd "M-g w") 'avy-goto-word-1)
   (global-set-key (kbd "M-g g") 'avy-goto-line)

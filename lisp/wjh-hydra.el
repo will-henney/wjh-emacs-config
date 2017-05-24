@@ -115,7 +115,7 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
   ("P" mc/skip-to-previous-like-this)
   ("M-p" mc/unmark-previous-like-this)
   ("q" nil))
-(global-set-key (kbd "s-m") 'multiple-cursors-hydra/)
+(global-set-key (kbd "s-m") 'multiple-cursors-hydra/body)
 
 ;; Origami for code folding
 
