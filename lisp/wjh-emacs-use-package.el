@@ -14,6 +14,9 @@
   :ensure t
   :init (setq quelpa-update-melpa-p nil))
 
+;; Original motivation was to use the org-mode master branch
+;; But I haven't got round to this yet
+;; Example here: https://emacs.stackexchange.com/a/26510/1980
 
 
 ;; 27 Apr 2017 - new mail config
