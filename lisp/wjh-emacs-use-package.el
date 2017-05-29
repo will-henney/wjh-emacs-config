@@ -139,12 +139,16 @@
   :config
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
+  
   ;; 22 Nov 2016 - I prefer the regular isearch to swiper I think
   ;; (global-set-key "\C-s" 'swiper)
   ;; (global-set-key "\C-r" 'swiper)
   (global-set-key (kbd "C-c C-r") 'ivy-resume)
   (setq magit-completing-read-function 'ivy-completing-read)
-  (setq projectile-completion-system 'ivy))
+  (setq projectile-completion-system 'ivy)
+  :bind (("C-c v" . ivy-push-view)
+	 ("C-c V" . ivy-pop-view))
+  )
 
 (use-package counsel
   ;; 27 Apr 2017 - I don't bind anything here yet
