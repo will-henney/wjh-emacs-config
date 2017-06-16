@@ -520,3 +520,13 @@
    ([header-line down-mouse-1] . wjh/this-heading)
    )
   )
+
+
+;; 09 Jun 2017 - bindings to make source block navigation and editing
+;; more frictionless, suggested by Grant Rettke
+;; mailplane://whenney%40gmail.com/#label/_lists%2Forg/15c7e59721ea3fa1
+;; https://mail.google.com/mail/?authuser=whenney%40gmail.com&pcd=2#label/_lists%2Forg/15c7e59721ea3fa1
+(define-key org-mode-map (kbd "s-j") #'org-babel-next-src-block)
+(define-key org-mode-map (kbd "s-k") #'org-babel-previous-src-block)
+(define-key org-mode-map (kbd "s-l") #'org-edit-src-code)
+(define-key org-src-mode-map (kbd "s-l") #'org-edit-src-exit)
