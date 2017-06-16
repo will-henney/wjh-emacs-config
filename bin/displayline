@@ -36,13 +36,16 @@ shopt -s extglob
 [[ "${file:0:1}" == "/" ]] || file="${PWD}/${file}"
 [[ "${source}" == "" || "${source:0:1}" == "/" ]] || source="${PWD}/${source}"
 
+# WJH 16 Jun 2017: If $activate is set, only bring one window to the
+# front, not all the Skim windows.  This is so that it is possible to
+# comfortably work side by side with an emacs window and a Skim window
+
 # run AppleScript
 /usr/bin/osascript << EOF
   set theLine to $line as integer
   set theFile to POSIX file "$file"
   set thePath to POSIX path of (theFile as alias)
   tell application "Skim"
-    if $activate then activate
     if $revert then
       try
         set theDocs to get documents whose path is thePath
@@ -57,4 +60,8 @@ shopt -s extglob
       tell front document to go to TeX line theLine from theSource showing reading bar $bar
     end if
   end tell
+  if $activate then
+      delay 0.01
+      do shell script "open -a Skim"
+  end if
 EOF

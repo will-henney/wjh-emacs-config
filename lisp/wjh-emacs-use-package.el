@@ -500,15 +500,14 @@
   ;; 16 Jun 2017: remove -g option 
   (setq TeX-view-program-selection '((output-pdf "PDF Viewer")))
   (setq TeX-view-program-list
-	'(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b %n %o %b")))
+	'(("PDF Viewer" "/Users/will/.emacs.d/bin/displayline -b %n %o %b")))
   ;; See also
   ;; http://stackoverflow.com/questions/7899845/emacs-synctex-skim-how-to-correctly-set-up-syncronization-none-of-the-exi
   (add-hook 'TeX-mode-hook
 	    (lambda ()
 	      (add-to-list 'TeX-output-view-style
 			   '("^pdf$" "."
-			     "/Applications/Skim.app/Contents/SharedSupport/displayline -b %n %o %b")))
-	    )
+			     "/Users/will/.emacs.d/bin/displayline -b %n %o %b"))))
   ;; Extras for LaTeX editing 29 Mar 2013
   ;; Code copied from tex.stackexchange
   ;; http://tex.stackexchange.com/questions/27241/entering-math-mode-in-auctex-using-and
