@@ -530,3 +530,14 @@
 (define-key org-mode-map (kbd "s-k") #'org-babel-previous-src-block)
 (define-key org-mode-map (kbd "s-l") #'org-edit-src-code)
 (define-key org-src-mode-map (kbd "s-l") #'org-edit-src-exit)
+
+;; 16 Jun 2017 - extra space above and below headings
+(defun wjh/propertize-newline-of-next-org-heading ()
+  (interactive)
+  (outline-next-heading)
+  (setq start (point))
+  (end-of-line)
+  (setq end (1+ (point)))
+  (put-text-property start end 'line-height '(1.7 2.0))
+  )
+(bind-key "H-e" 'wjh/propertize-newline-of-next-org-heading)
