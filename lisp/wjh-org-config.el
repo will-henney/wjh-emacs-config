@@ -541,3 +541,22 @@
   (put-text-property start end 'line-height '(1.7 2.0))
   )
 (bind-key "H-e" 'wjh/propertize-newline-of-next-org-heading)
+
+
+;; 23 Jun 2017 - try and improve workflow
+
+;; Allow refile to more places (from Sacha Chua
+;; http://sachachua.com/blog/2015/02/learn-take-notes-efficiently-org-mode/)
+(setq org-refile-targets '((org-agenda-files . (:maxlevel . 6))))
+
+
+;;  Org capture templates 
+(setq org-capture-templates
+      '(("l" "A link, for reading later." entry
+	 (file+headline "notes.org" "Reading List")
+	 "* %:description\n%U\n\n%a\n\n%:initial"
+	 :empty-lines 1)
+	("t" "Todo" entry (file+headline "notes.org" "Tasks")
+	 "* TODO %?\n%i\n%a")
+	("j" "Journal" entry (file+datetree "JOURNAL.org")
+	 "* %?\nEntered on %U\n%i\n%A")))
