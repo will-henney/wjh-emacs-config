@@ -129,7 +129,7 @@
 (global-set-key "\C-cte" 'wjh-org-table-export)
 
 ;; where to keep all the files
-(setq org-directory "~/Org/")
+(setq org-directory "~/Dropbox/Org/")
 
 ;; Make sure that links to image files are opened by "open" not by emacs
 ;; This can be overridden with C-u
@@ -560,3 +560,38 @@
 	 "* TODO %?\n%i\n%a")
 	("j" "Journal" entry (file+datetree "JOURNAL.org")
 	 "* %?\nEntered on %U\n%i\n%A")))
+
+
+;; 26 Jun 2017
+
+;; use ivy to insert a link to a heading in the current document
+;; based on `worf-goto`
+(defun bjm/worf-insert-internal-link ()
+  "Use ivy to insert a link to a heading in the current `org-mode' document. Code is based on `worf-goto'."
+  (interactive)
+  (let ((cands (worf--goto-candidates)))
+    (ivy-read "Heading: " cands
+              :action 'bjm/worf-insert-internal-link-action)))
+
+
+(defun bjm/worf-insert-internal-link-action (x)
+  "Insert link for `bjm/worf-insert-internal-link'"
+  ;; go to heading
+  (save-excursion
+    (goto-char (cdr x))
+    ;; store link
+    (call-interactively 'org-store-link)
+    )
+  ;; return to original point and insert link
+  (org-insert-last-stored-link 1)
+  ;; org-insert-last-stored-link adds a newline so delete this
+  (delete-backward-char 1)
+  )
+
+(use-package worf
+  :ensure t
+  :config
+  
+  :bind
+  (("s-[" . bjm/worf-insert-internal-link))
+  )
