@@ -25,6 +25,63 @@
       scroll-conservatively 10000
       scroll-preserve-screen-position 1)
 
+;; 01 Aug 2017: More fiddling with the scrolling behavior.  I want to
+;; see if I can get the best possble behavior with a track pad for the
+;; two cases of line-by-line or pixel-by-pixel scrolling
+(defun use-line-based-scrolling ()
+  "Optimize settings for scrolling by line (not pixel)"
+  (interactive)
+  ;; Turn off smooth scroll if we are using the "Mac port"
+  (when (boundp 'mac-mouse-wheel-smooth-scroll)
+    (setq mac-mouse-wheel-smooth-scroll nil))
+  ;; And also turn off the pixel-scroll-mode if present
+  (when (boundp 'pixel-scroll-mode) (pixel-scroll-mode 0))
+  
+  ;; 01 Aug 2017: The following is copied from comment by
+  ;; SteveJobzniak from this issue thread
+  ;; https://github.com/d12frosted/homebrew-emacs-plus/issues/10
+  
+  ;; Optimize mouse wheel scrolling for smooth-scrolling trackpad use.
+  ;; Trackpads send a lot more scroll events than regular mouse wheels,
+  ;; so the scroll amount and acceleration must be tuned to smooth it out.
+  (setq
+   ;; Completely disable mouse wheel acceleration to avoid speeding away.
+   mouse-wheel-progressive-speed nil
+   ;; The most important setting of all! Make each scroll-event move 2 lines at
+   ;; a time (instead of 5 at default). Simply hold down shift to move twice as
+   ;; fast, or hold down control to move 3x as fast. Perfect for trackpads.
+   mouse-wheel-scroll-amount '(1 ((shift) . 3) ((control) . 5))))
+
+
+(defun use-pixel-based-scrolling ()
+  "Optimize settings for scrolling by pixel"
+  (interactive)
+  (if (not (boundp 'mac-mouse-wheel-smooth-scroll))
+      (error "Pixel-based scrolling unavailable in this emacs build")
+    (setq mac-mouse-wheel-smooth-scroll t)
+    (setq
+     mouse-wheel-progressive-speed nil
+     ;; Holding down shift or control reverts to line-based scrolling
+     mouse-wheel-scroll-amount '(5 ((shift) . 1) ((control) . 2)))))
+
+(require 'pixel-scroll)
+(defun use-elisp-pixel-based-scrolling ()
+  "Based on pixel-scroll library with snap-to-line"
+  (interactive)
+  (pixel-scroll-mode 1)
+  (setq pixel-resolution-fine-flag nil)
+  (setq mouse-wheel-scroll-amount '(1 ((shift) . 3) ((control) . 5)))
+  )
+
+(defun use-elisp-fine-pixel-based-scrolling ()
+  "Based on pixel-scroll library with no snap"
+  (interactive)
+  (pixel-scroll-mode 1)
+  (setq pixel-resolution-fine-flag t)
+  (setq mouse-wheel-scroll-amount '(3 ((shift) . 10) ((control) . 30) ((meta) . 100)))
+  )
+
+
 ;; 28 May 2016 - backups and auto-saves and minibuffer history
 ;; Make sure we don't litter the file system
 ;; Put everything under ~/.emacs.d/

@@ -9,7 +9,7 @@
   "Add pkg directory to load path."
   (add-to-list 'load-path (concat wjh-local-lisp-dir "/" pkg)))
 
-
+ 
 
 
 ;; 25 Sep 2016 - do the opposite of fill
