@@ -201,7 +201,10 @@
   ;; Use hunspell if available 
   (when (executable-find "hunspell")
     (setq-default ispell-program-name "hunspell")
-    (setq ispell-really-hunspell t))
+    (setq ispell-really-hunspell t)
+    (setq ispell-extra-args '("-a" "-i" "utf-8"))
+    )
+  (setq ispell-dictionary "default")
   (global-set-key [s-down-mouse-1] 'flyspell-correct-word))
 
 
@@ -210,7 +213,7 @@
   :ensure t
   :config
   (setq langtool-language-tool-jar 
-	"/usr/local/Cellar/languagetool/2.8/libexec/languagetool-commandline.jar"
+	"/usr/local/Cellar/languagetool/3.8/libexec/languagetool-commandline.jar"
 	langtool-mother-tongue "en"
 	langtool-disabled-rules '("WHITESPACE_RULE"
 				  "EN_UNPAIRED_BRACKETS"
@@ -398,7 +401,7 @@
 ;; google-line and google-region functions, bound as w, s, l and r,
 ;; respectively. They all do a search for what's under point.
 
-;; If the google-wrap-in-quotes variable is t, than searches are
+;; If the google-wrap-in-quotes variable is t, then searches are
 ;; enclosed by double quotes (default is NOT). If a prefix argument is
 ;; given to any of the functions, invert the effect of
 ;; google-wrap-in-quotes.
@@ -652,7 +655,7 @@ when a file is dopped on Emacs window."
 ;; Let's use org-mode!
 (use-package org
   :ensure t
-  ;; :ensure org-extra
+  ;; :ensure org-plus-contrib
   :pin org
   :config (load "wjh-org-config"))
 

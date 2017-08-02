@@ -557,7 +557,7 @@
 	 "* %:description\n%U\n\n%a\n\n%:initial"
 	 :empty-lines 1)
 	("t" "Todo" entry (file+headline "notes.org" "Tasks")
-	 "* TODO %?\n%i\n%a")
+	 "* TODO %?\n:LOGBOOK:\n- Created on %U\n:END:\n%i\n%a")
 	("j" "Journal" entry (file+datetree "JOURNAL.org")
 	 "* %?\nEntered on %U\n%i\n%A")))
 
