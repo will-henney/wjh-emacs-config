@@ -83,30 +83,58 @@
     (with-selected-window window
       (next-buffer))))
 
-(defun wjh/beginning-of-buffer ()
+(defun wjh/beginning-of-buffer (event)
   "Like `beginning-of-buffer' but with fancy animation"
-  (interactive "^")
-  (progn
+  (interactive "^e")
+  (let ((window (posn-window (event-start event))))
     (mac-start-animation nil :type 'swipe :direction 'up :duration 0.5)
-    (beginning-of-buffer)
-    )
-  )
-(defun wjh/end-of-buffer ()
-  "Like `end-of-buffer' but with fancy animation"
-  (interactive "^")
-  (progn
-    (mac-start-animation nil :type 'swipe :direction 'down :duration 0.5)
-    (end-of-buffer)
-    )
-  )
+    (with-selected-window window
+      (beginning-of-buffer))))
 
-(global-set-key [swipe-up] 'wjh/beginning-of-buffer)
-(global-set-key [swipe-down] 'wjh/end-of-buffer)
+(defun wjh/end-of-buffer (event)
+  "Like `end-of-buffer' but with fancy animation"
+  (interactive "^e")
+  (let ((window (posn-window (event-start event))))
+    (mac-start-animation nil :type 'swipe :direction 'down :duration 0.5)
+    (with-selected-window window
+      (end-of-buffer))))
+
+(defun wjh/scroll-down (event)
+  "Like `scroll-down' but animated and acting on window where mouse is"
+  (interactive "^e")
+  (let ((window (posn-window (event-start event))))
+    (mac-start-animation nil
+			 :type 'swipe
+			 :direction 'down
+			 :duration 0.3)
+    (with-selected-window window
+      (cua-scroll-down))))
+
+(defun wjh/scroll-up (event)
+  "Like `scroll-up' but animated and acting on window where mouse is"
+  (interactive "^e")
+  (let ((window (posn-window (event-start event))))
+    (mac-start-animation nil
+			 :type 'swipe
+			 :direction 'up
+			 :duration 0.3)
+    (with-selected-window window
+      (cua-scroll-up))))
+
+(global-set-key [swipe-up] 'wjh/scroll-up)
+(global-set-key [swipe-down] 'wjh/scroll-down)
+
+(global-set-key [C-swipe-up] 'wjh/beginning-of-buffer)
+(global-set-key [C-swipe-down] 'wjh/end-of-buffer)
+
 (global-set-key [swipe-left] 'wjh/previous-buffer)
 (global-set-key [swipe-right] 'wjh/next-buffer)
 
 (defun wjh/drop-event (event)
-  "Replacement for `mac-mwheel-scroll' so that 2-finger left/right swipes are ignored"
+  "Dummy replacement for `mac-mwheel-scroll' that does nothing
+
+Bind to `wheel-left`, `wheel-right` so as to ignore 2-finger
+left/right swipes"
   (interactive (list last-input-event))
   nil)
 (global-set-key [wheel-left] 'wjh/drop-event)
