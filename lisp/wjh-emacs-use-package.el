@@ -204,9 +204,13 @@
     (setq ispell-really-hunspell t)
     (setq ispell-extra-args '("-a" "-i" "utf-8"))
     )
-  (setq ispell-dictionary "default")
-  (global-set-key [s-down-mouse-1] 'flyspell-correct-word))
+  (setq ispell-dictionary "default"))
 
+
+;; (global-set-key [s-down-mouse-1] 'flyspell-correct-word)
+;; This is a more general solution for emulating middle mouse clicks
+;; Found here: https://emacs.stackexchange.com/a/20948/1980
+(define-key key-translation-map (kbd "<s-mouse-1>") (kbd "<mouse-2>"))
 
 ;; Use langtool 
 (use-package langtool
