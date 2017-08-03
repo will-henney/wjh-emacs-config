@@ -19,11 +19,43 @@
 ;; 26 Oct 2013 - tweak scrolling behavior
 ;; Copied from http://zeekat.nl/articles/making-emacs-work-for-me.html
 ;; Revisited 03 May 2017 - get rid of scroll-margin
-(setq redisplay-dont-pause t
-      scroll-margin 0
-      scroll-step 0
-      scroll-conservatively 10000
-      scroll-preserve-screen-position 1)
+
+(defun wjh/utra-conservative-scrolling ()
+  (interactive)
+  (setq
+   scroll-margin 0
+   scroll-step 0
+   scroll-conservatively 10000
+   scroll-preserve-screen-position 1))
+
+(defun wjh/utra-aggressive-scrolling ()
+  (interactive)
+  (setq
+   scroll-margin 2
+   scroll-step 0
+   scroll-conservatively 0
+   scroll-down-aggressively 0.95
+   scroll-up-aggressively 0.95
+   scroll-preserve-screen-position nil))
+
+
+(defun wjh/scroll-1-pixel-down ()
+  (interactive)
+  (set-window-vscroll nil (1+  (window-vscroll nil t)) t))
+(defun wjh/scroll-1-pixel-up ()
+  (interactive)
+  (set-window-vscroll nil (1-  (window-vscroll nil t)) t))
+(global-set-key (kbd "H-j") 'wjh/scroll-1-pixel-down)
+(global-set-key (kbd "H-k") 'wjh/scroll-1-pixel-up)
+
+;; (wjh/utra-aggressive-scrolling)
+(wjh/utra-conservative-scrolling)
+
+(defun wjh/bind-to-noop-wheel-left-right ()
+  "Bind all horizontal scroll wheel events to do nothing"
+  (dolist (modstring '("" "C-" "S-"))
+    (dolist (keystring '("wheel-left" "wheel-right"))
+      (global-set-key (kbd (format "<%s%s>" modstring keystring)) 'wjh/drop-event))))
 
 ;; 01 Aug 2017: More fiddling with the scrolling behavior.  I want to
 ;; see if I can get the best possble behavior with a track pad for the
@@ -33,23 +65,26 @@
   (interactive)
   ;; Turn off smooth scroll if we are using the "Mac port"
   (when (boundp 'mac-mouse-wheel-smooth-scroll)
-    (setq mac-mouse-wheel-smooth-scroll nil))
+    (setq mac-mouse-wheel-smooth-scroll nil)
+    ;; Stop using mac-mwheel-scroll in term/mac-win.el
+    (mac-mouse-wheel-mode -1)
+    ;; Deactivating mac-mouse-wheel-mode nukes all wheel bindings, so
+    ;; we must restore these to avoid spurious minibuffer chatter
+    (wjh/bind-to-noop-wheel-left-right)
+    ;; Start using mwheel-scroll in mwheel.el
+    (mouse-wheel-mode 1)
+    )
   ;; And also turn off the pixel-scroll-mode if present
   (when (boundp 'pixel-scroll-mode) (pixel-scroll-mode 0))
-  
-  ;; 01 Aug 2017: The following is copied from comment by
+  ;; 01 Aug 2017: The following is inspired by a comment by
   ;; SteveJobzniak from this issue thread
   ;; https://github.com/d12frosted/homebrew-emacs-plus/issues/10
-  
-  ;; Optimize mouse wheel scrolling for smooth-scrolling trackpad use.
-  ;; Trackpads send a lot more scroll events than regular mouse wheels,
-  ;; so the scroll amount and acceleration must be tuned to smooth it out.
   (setq
-   ;; Completely disable mouse wheel acceleration to avoid speeding away.
+   ;; Progressive speed runs away far too fast, so disable
    mouse-wheel-progressive-speed nil
-   ;; The most important setting of all! Make each scroll-event move 2 lines at
-   ;; a time (instead of 5 at default). Simply hold down shift to move twice as
-   ;; fast, or hold down control to move 3x as fast. Perfect for trackpads.
+   ;; Make each scroll-event move 1 line at a time (instead of default
+   ;; 5). Hold down shift to move 3x, or hold down control to move 5x
+   ;; as fast. Perfect for trackpads.
    mouse-wheel-scroll-amount '(1 ((shift) . 3) ((control) . 5))))
 
 
@@ -57,8 +92,11 @@
   "Optimize settings for scrolling by pixel"
   (interactive)
   (if (not (boundp 'mac-mouse-wheel-smooth-scroll))
-      (error "Pixel-based scrolling unavailable in this emacs build")
+      (use-elisp-pixel-based-scrolling)	; fall-back for vanilla emacs builds
     (setq mac-mouse-wheel-smooth-scroll t)
+    (mouse-wheel-mode -1)
+    (mac-mouse-wheel-mode 1)
+    (wjh/bind-to-noop-wheel-left-right)
     (setq
      mouse-wheel-progressive-speed nil
      ;; Holding down shift or control reverts to line-based scrolling
@@ -74,7 +112,7 @@
   )
 
 (defun use-elisp-fine-pixel-based-scrolling ()
-  "Based on pixel-scroll library with no snap"
+  "Based on pixel-scroll library with no snap (very slow)"
   (interactive)
   (pixel-scroll-mode 1)
   (setq pixel-resolution-fine-flag t)
