@@ -211,13 +211,23 @@
     (setq ispell-really-hunspell t)
     (setq ispell-extra-args '("-a" "-i" "utf-8"))
     )
-  (setq ispell-dictionary "default"))
+  (setq ispell-dictionary "default")
+  (setq ispell-local-dictionary-alist
+	`(("default"
+	   "[[:alpha:]]"
+	   "[^[:alpha:]]"
+	   "[']"
+	   t
+	   ("-d" "en_US,en_GB-large")
+	   nil
+	   utf-8)))
+  ;; 10 Aug 2017: restore this since the next bit doesn't work
+  (define-key flyspell-mouse-map [s-down-mouse-1] 'flyspell-correct-word))
 
 
-;; (global-set-key [s-down-mouse-1] 'flyspell-correct-word)
 ;; This is a more general solution for emulating middle mouse clicks
 ;; Found here: https://emacs.stackexchange.com/a/20948/1980
-(define-key key-translation-map (kbd "<s-mouse-1>") (kbd "<mouse-2>"))
+;; (define-key key-translation-map (kbd "<s-down-mouse-1>") (kbd "<down-mouse-2>"))
 
 ;; Use langtool 
 (use-package langtool
@@ -722,15 +732,15 @@ when a file is dopped on Emacs window."
 	      ;; 28 Jul 2014 - I don't like the "... omitting ..."
 	      ;; messages.  They get in the way.
 	      (dired-omit-mode 1)
-	      (turn-on-auto-revert-mode)
 	      ))
+  (add-hook 'dired-mode-hook #'turn-on-auto-revert-mode)
   (customize-set-value 'auto-revert-verbose nil
 		       "Prevent any auto-revert messages from
 		     obscuring the minibuffer at crucial times!")
   ;; 08 Dec 2014 - Installed GNU coreutils from Homebrew - try using ls from that
   (when (executable-find "gls")
     (setq insert-directory-program "gls"))
-  (setq dired-guess-shell-alist-user      ;quess shell command by file ext
+  (setq dired-guess-shell-alist-user  ;quess shell command by file ext
 	'(("\\.pdf\\'" "open" "open -a Adobe\\ Reader")
 	  ("\\.png\\'" "open")
 	  ("\\.jpg\\'" "open")
@@ -832,3 +842,7 @@ prefix argument set OTHER-WINDOW true."
   ;; + "C-x u" visualize (use arrows to navigate tree)
   )
 
+
+;; 10 Aug 2017 - suggest functions when writing elisp
+(use-package suggest
+  :ensure t)
