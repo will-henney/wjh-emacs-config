@@ -1,0 +1,146 @@
+* Experimental code for pixel and line-based scrolling
+** Different policies for when to auto-scroll the buffer
++ These determine what happen when cursor (point) movement commands are in danger of moving the point out of the visible portion of the buffer
++ "Default Aggressive", which is similar to the default Emacs behavior, will scroll the window so as to place the point close to the center of the window
++ "Ultra Conservative" will just scroll enough to keep point visible
++ "Ultra Aggressive" will scroll 
+#+BEGIN_SRC emacs-lisp
+(defun wjh/ultra-conservative-scrolling ()
+  (interactive)
+  (setq
+   scroll-margin 0
+   scroll-step 0
+   scroll-conservatively 10000
+   scroll-preserve-screen-position 1))
+
+(defun wjh/ultra-aggressive-scrolling ()
+  (interactive)
+  (setq
+   scroll-margin 2
+   scroll-step 0
+   scroll-conservatively 0
+   scroll-down-aggressively 0.95
+   scroll-up-aggressively 0.95
+   scroll-preserve-screen-position nil))
+
+(defun wjh/default-aggressive-scrolling ()
+  (interactive)
+  (setq
+   scroll-margin 1
+   scroll-step 0
+   scroll-conservatively 0
+   scroll-down-aggressively 0.5
+   scroll-up-aggressively 0.5
+   scroll-preserve-screen-position nil))
+
+;; (wjh/ultra-aggressive-scrolling)
+;; (wjh/default-aggressive-scrolling)
+(wjh/ultra-conservative-scrolling)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+;; 03 Aug 2017 - Playing with pixel-based scrolling
+
+;; Primitives to move by 1 pixel
+(defun wjh/pxscroll-vscroll-1px-down ()
+  (interactive)
+  (set-window-vscroll nil (1+  (window-vscroll nil t)) t))
+(defun wjh/pxscroll-vscroll-1px-up ()
+  (interactive)
+  (set-window-vscroll nil (1-  (window-vscroll nil t)) t))
+
+;; 
+(defun wjh/pxscroll-scroll-down-line ()
+  (interactive)
+  (let ((height (default-line-height)))
+       (dotimes (n height) (wjh/pxscroll-vscroll-1px-down))))
+(defun wjh/pxscroll-scroll-up-line ()
+  (interactive)
+  (let ((height (default-line-height)))
+       (dotimes (n height) (wjh/pxscroll-vscroll-1px-up))))
+
+;; Why doesn't this work?  It is fine if I run each line by hand, but
+;; not when I call the function Answer: this is what
+;; pixel-scroll-down-and-set-window-vscroll in pixel-scroll.el is for
+(defun wjh/pxscroll-increase-vscroll-1-line-inplace ()
+  (setq ovscroll (window-vscroll nil t))
+  (set-window-vscroll nil 0 t)
+  (scroll-down 1)
+  (set-window-vscroll nil (+ (default-line-height) ovscroll) t))
+
+(global-set-key (kbd "H-j") 'wjh/pxscroll-vscroll-1px-down)
+(global-set-key (kbd "H-k") 'wjh/pxscroll-vscroll-1px-up)
+
+(global-set-key (kbd "H-J") 'wjh/vscroll-default-line-height-down)
+(global-set-key (kbd "H-K") 'wjh/vscroll-default-line-height-up)
+
+
+(defun wjh/bind-to-noop-wheel-left-right ()
+  "Bind all horizontal scroll wheel events to do nothing"
+  (dolist (modstring '("" "C-" "S-"))
+    (dolist (keystring '("wheel-left" "wheel-right"))
+      (global-set-key (kbd (format "<%s%s>" modstring keystring)) 'wjh/drop-event))))
+
+;; 01 Aug 2017: More fiddling with the scrolling behavior.  I want to
+;; see if I can get the best possble behavior with a track pad for the
+;; two cases of line-by-line or pixel-by-pixel scrolling
+(defun use-line-based-scrolling ()
+  "Optimize settings for scrolling by line (not pixel)"
+  (interactive)
+  ;; Turn off smooth scroll if we are using the "Mac port"
+  (when (boundp 'mac-mouse-wheel-smooth-scroll)
+    (setq mac-mouse-wheel-smooth-scroll nil)
+    ;; Stop using mac-mwheel-scroll in term/mac-win.el
+    (mac-mouse-wheel-mode -1)
+    ;; Deactivating mac-mouse-wheel-mode nukes all wheel bindings, so
+    ;; we must restore these to avoid spurious minibuffer chatter
+    (wjh/bind-to-noop-wheel-left-right)
+    ;; Start using mwheel-scroll in mwheel.el
+    (mouse-wheel-mode 1)
+    )
+  ;; And also turn off the pixel-scroll-mode if present
+  (when (boundp 'pixel-scroll-mode) (pixel-scroll-mode 0))
+  ;; 01 Aug 2017: The following is inspired by a comment by
+  ;; SteveJobzniak from this issue thread
+  ;; https://github.com/d12frosted/homebrew-emacs-plus/issues/10
+  (setq
+   ;; Progressive speed runs away far too fast, so disable
+   mouse-wheel-progressive-speed nil
+   ;; Make each scroll-event move 1 line at a time (instead of default
+   ;; 5). Hold down shift to move 3x, or hold down control to move 5x
+   ;; as fast. Perfect for trackpads.
+   mouse-wheel-scroll-amount '(1 ((shift) . 3) ((control) . 5))))
+
+
+(defun use-pixel-based-scrolling ()
+  "Optimize settings for scrolling by pixel"
+  (interactive)
+  (if (not (boundp 'mac-mouse-wheel-smooth-scroll))
+      (use-elisp-pixel-based-scrolling)	; fall-back for vanilla emacs builds
+    (setq mac-mouse-wheel-smooth-scroll t)
+    (mouse-wheel-mode -1)
+    (mac-mouse-wheel-mode 1)
+    (wjh/bind-to-noop-wheel-left-right)
+    (setq
+     mouse-wheel-progressive-speed nil
+     ;; Holding down shift or control reverts to line-based scrolling
+     mouse-wheel-scroll-amount '(5 ((shift) . 1) ((control) . 2)))))
+
+(require 'pixel-scroll)
+(defun use-elisp-pixel-based-scrolling ()
+  "Based on pixel-scroll library with snap-to-line"
+  (interactive)
+  (pixel-scroll-mode 1)
+  (setq pixel-resolution-fine-flag nil)
+  (setq mouse-wheel-scroll-amount '(1 ((shift) . 3) ((control) . 5)))
+  )
+
+(defun use-elisp-fine-pixel-based-scrolling ()
+  "Based on pixel-scroll library with no snap (very slow)"
+  (interactive)
+  (pixel-scroll-mode 1)
+  (setq pixel-resolution-fine-flag t)
+  (setq mouse-wheel-scroll-amount '(3 ((shift) . 10) ((control) . 30) ((meta) . 100)))
+  )
+
+#+END_SRC

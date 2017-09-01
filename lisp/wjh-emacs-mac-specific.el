@@ -87,7 +87,7 @@
   "Like `beginning-of-buffer' but with fancy animation"
   (interactive "^e")
   (let ((window (posn-window (event-start event))))
-    (mac-start-animation nil :type 'swipe :direction 'up :duration 0.5)
+    (mac-start-animation window :type 'swipe :direction 'up :duration 0.5)
     (with-selected-window window
       (beginning-of-buffer))))
 
@@ -95,7 +95,7 @@
   "Like `end-of-buffer' but with fancy animation"
   (interactive "^e")
   (let ((window (posn-window (event-start event))))
-    (mac-start-animation nil :type 'swipe :direction 'down :duration 0.5)
+    (mac-start-animation window :type 'swipe :direction 'down :duration 0.5)
     (with-selected-window window
       (end-of-buffer))))
 
@@ -103,10 +103,12 @@
   "Like `scroll-down' but animated and acting on window where mouse is"
   (interactive "^e")
   (let ((window (posn-window (event-start event))))
-    (mac-start-animation nil
+    (mac-start-animation window
 			 :type 'swipe
 			 :direction 'down
-			 :duration 0.3)
+			 :width 3
+			 :opacity 0.5
+			 :duration 0.4)
     (with-selected-window window
       (cua-scroll-down))))
 
@@ -114,10 +116,12 @@
   "Like `scroll-up' but animated and acting on window where mouse is"
   (interactive "^e")
   (let ((window (posn-window (event-start event))))
-    (mac-start-animation nil
+    (mac-start-animation window
 			 :type 'swipe
 			 :direction 'up
-			 :duration 0.3)
+			 :width 3
+			 :opacity 0.5
+			 :duration 0.4)
     (with-selected-window window
       (cua-scroll-up))))
 

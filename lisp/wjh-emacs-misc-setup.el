@@ -20,7 +20,7 @@
 ;; Copied from http://zeekat.nl/articles/making-emacs-work-for-me.html
 ;; Revisited 03 May 2017 - get rid of scroll-margin
 
-(defun wjh/utra-conservative-scrolling ()
+(defun wjh/ultra-conservative-scrolling ()
   (interactive)
   (setq
    scroll-margin 0
@@ -28,7 +28,7 @@
    scroll-conservatively 10000
    scroll-preserve-screen-position 1))
 
-(defun wjh/utra-aggressive-scrolling ()
+(defun wjh/ultra-aggressive-scrolling ()
   (interactive)
   (setq
    scroll-margin 2
@@ -38,18 +38,55 @@
    scroll-up-aggressively 0.95
    scroll-preserve-screen-position nil))
 
+(defun wjh/default-aggressive-scrolling ()
+  (interactive)
+  (setq
+   scroll-margin 1
+   scroll-step 0
+   scroll-conservatively 0
+   scroll-down-aggressively 0.5
+   scroll-up-aggressively 0.5
+   scroll-preserve-screen-position nil))
 
-(defun wjh/scroll-1-pixel-down ()
+;; (wjh/ultra-aggressive-scrolling)
+;; (wjh/default-aggressive-scrolling)
+(wjh/ultra-conservative-scrolling)
+
+;; 03 Aug 2017 - Playing with pixel-based scrolling
+
+;; Primitives to move by 1 pixel
+(defun wjh/pxscroll-vscroll-1px-down ()
   (interactive)
   (set-window-vscroll nil (1+  (window-vscroll nil t)) t))
-(defun wjh/scroll-1-pixel-up ()
+(defun wjh/pxscroll-vscroll-1px-up ()
   (interactive)
   (set-window-vscroll nil (1-  (window-vscroll nil t)) t))
-(global-set-key (kbd "H-j") 'wjh/scroll-1-pixel-down)
-(global-set-key (kbd "H-k") 'wjh/scroll-1-pixel-up)
 
-;; (wjh/utra-aggressive-scrolling)
-(wjh/utra-conservative-scrolling)
+;; 
+(defun wjh/pxscroll-scroll-down-line ()
+  (interactive)
+  (let ((height (default-line-height)))
+       (dotimes (n height) (wjh/pxscroll-vscroll-1px-down))))
+(defun wjh/pxscroll-scroll-up-line ()
+  (interactive)
+  (let ((height (default-line-height)))
+       (dotimes (n height) (wjh/pxscroll-vscroll-1px-up))))
+
+;; Why doesn't this work?  It is fine if I run each line by hand, but
+;; not when I call the function Answer: this is what
+;; pixel-scroll-down-and-set-window-vscroll in pixel-scroll.el is for
+(defun wjh/pxscroll-increase-vscroll-1-line-inplace ()
+  (setq ovscroll (window-vscroll nil t))
+  (set-window-vscroll nil 0 t)
+  (scroll-down 1)
+  (set-window-vscroll nil (+ (default-line-height) ovscroll) t))
+
+(global-set-key (kbd "H-j") 'wjh/pxscroll-vscroll-1px-down)
+(global-set-key (kbd "H-k") 'wjh/pxscroll-vscroll-1px-up)
+
+(global-set-key (kbd "H-J") 'wjh/vscroll-default-line-height-down)
+(global-set-key (kbd "H-K") 'wjh/vscroll-default-line-height-up)
+
 
 (defun wjh/bind-to-noop-wheel-left-right ()
   "Bind all horizontal scroll wheel events to do nothing"
