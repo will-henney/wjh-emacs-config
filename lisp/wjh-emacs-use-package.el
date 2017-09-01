@@ -152,7 +152,14 @@
 
 (use-package counsel
   ;; 27 Apr 2017 - I don't bind anything here yet
-  :ensure t)
+  :ensure t
+  ;; 01 Sep 2017 - add default bindings
+  :bind (("M-x" . counsel-M-x)
+	 ("C-x C-f" . counsel-find-file)
+	 ("C-h v" . counsel-describe-variable)
+	 ("C-h f" . counsel-describe-function)
+	 ("C-c u" . counsel-unicode-char)))
+
 (use-package ivy-hydra
   :ensure t)
 
