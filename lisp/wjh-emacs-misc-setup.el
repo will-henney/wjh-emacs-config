@@ -320,6 +320,12 @@ narrowed."
 ;; binding
 (global-set-key (kbd "C-c F") 'recentf-open-files)
 
+;; WJH 01 Sep 2017 - need better way to do emphasis, etc in org files
+;; This will actually work anywhere, but will always use the org
+;; syntax. TODO: write a more general function that adapts to the
+;; current major mode (org, markdown, latex, etc)
+(global-set-key (kbd "C-c e") 'org-emphasize)
+
 
 ;; WJH 26 Jul 2012
 ;; Use spotlight instead of locate
