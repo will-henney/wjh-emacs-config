@@ -134,6 +134,18 @@
 (use-package paradox
   :ensure t)
 
+(use-package all-the-icons
+  :ensure t)
+;; After install for first time, we need to install the fonts with M-x all-the-icons-install-fonts
+(use-package all-the-icons-dired
+  :ensure t
+  :config
+  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
+
+(use-package all-the-icons-ivy
+  :ensure t
+  :config (all-the-icons-ivy-setup))
+
 (use-package swiper
   :ensure t
   :config
@@ -158,11 +170,16 @@
 	 ("C-x C-f" . counsel-find-file)
 	 ("C-h v" . counsel-describe-variable)
 	 ("C-h f" . counsel-describe-function)
+	 ("C-c g" . counsel-rg)
 	 ("C-c u" . counsel-unicode-char)))
 
 (use-package ivy-hydra
   :ensure t)
 
+(use-package counsel-projectile
+  :ensure t
+  :config
+  (counsel-projectile-on))
 
 (use-package ace-window
   :ensure t
