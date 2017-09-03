@@ -212,7 +212,6 @@
  '(debug-on-error t)
  '(default-input-method "spanish-prefix")
  '(diary-file "~/.emacs.d/diary")
- '(dired-details-hidden-string "• ")
  '(dired-omit-verbose nil)
  '(easy-kill-alist
    (quote

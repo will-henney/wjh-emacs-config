@@ -174,15 +174,7 @@
 ;; After installing for first time (only), we need to also install the
 ;; fonts via M-x all-the-icons-install-fonts
 
-;; Use the icons for dired
-;; 
-;; TODO: Unfortunately, there is a bad interaction with dired-details,
-;; so that we get a bizarre extra box when the dired buffer is in
-;; "hidden" mode
-(use-package all-the-icons-dired
-  :ensure t
-  :config
-  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
+;; See below for the application of this to dired
 
 ;; Use the icons for ivy
 ;;
@@ -846,6 +838,19 @@ prefix argument set OTHER-WINDOW true."
   :ensure t
   :config
   (dired-details-install))
+
+;; Use the all-the-icons for dired
+;; 
+;; There was a bad interaction with dired-details, so that we get
+;; bizarre extra boxes or icons when the dired buffer is in "hidden"
+;; mode.  SOLVED (03 Sep 2017): by just setting the "hidden" indicator
+;; to the empty string (you don't need it if you have the icons)
+(use-package all-the-icons-dired
+  :ensure t
+  :config
+  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+  (setq dired-details-hidden-string ""))
+
 
 
 (use-package ido
