@@ -290,7 +290,7 @@
  '(org-tags-column 50)
  '(package-selected-packages
    (quote
-    (all-the-icons-ivy all-the-icons-dired all-the-icons counsel-projectile suggest e2wm org-extra org-contacts worf quelpa-use-package ag org-sticky-header ivy-hydra counsel mu4e org-pomodoro org-table-sticky-header org-edit-latex elfeed-org auto-org-md julia-mode zenburn-theme yaml-mode w3m virtualenv unfill undo-tree synonyms svg-mode-line-themes stripe-buffer spotlight sparkline smex smartscan smartparens smart-mode-line rainbow-mode projectile prodigy pinboard persistent-scratch paradox pallet org-trello org-plus-contrib org-magit org-dotemacs org-bullets org-bookmark-heading ob-ipython nose names multiple-cursors markdown-mode magithub magit-svn lispy latex-extra langtool key-chord idomenu ido-vertical-mode ibuffer-vc hungry-delete htmlize helm-dash helm-bibtex guide-key google-this golden-ratio god-mode gitty git-messenger git-gutter ggtags fuzzy fold-dwim-org flx-ido fancy-narrow expand-region esxml elpy elnode ein easy-kill-extras dired-details diminish deft csv-mode crosshairs creole-mode conda color-identifiers-mode bibslurp bf-mode auto-complete alert airplay ack-and-a-half achievements ace-jump-mode)))
+    (quelpa package-build spanish-simple-prefix header2 all-the-icons-ivy all-the-icons-dired all-the-icons counsel-projectile suggest e2wm org-extra org-contacts worf quelpa-use-package ag org-sticky-header ivy-hydra counsel mu4e org-pomodoro org-table-sticky-header org-edit-latex elfeed-org auto-org-md julia-mode zenburn-theme yaml-mode w3m virtualenv unfill undo-tree synonyms svg-mode-line-themes stripe-buffer spotlight sparkline smex smartscan smartparens smart-mode-line rainbow-mode projectile prodigy pinboard persistent-scratch paradox pallet org-trello org-plus-contrib org-magit org-dotemacs org-bullets org-bookmark-heading ob-ipython nose names multiple-cursors markdown-mode magithub magit-svn lispy latex-extra langtool key-chord idomenu ido-vertical-mode ibuffer-vc hungry-delete htmlize helm-dash helm-bibtex guide-key google-this golden-ratio god-mode gitty git-messenger git-gutter ggtags fuzzy fold-dwim-org flx-ido fancy-narrow expand-region esxml elpy elnode ein easy-kill-extras dired-details diminish deft csv-mode crosshairs creole-mode conda color-identifiers-mode bibslurp bf-mode auto-complete alert airplay ack-and-a-half achievements ace-jump-mode)))
  '(paradox-automatically-star t)
  '(pinboard-url "http://feeds.pinboard.in/json/u:deprecated/?count=10")
  '(recentf-exclude
@@ -307,7 +307,35 @@
     (" hl-p" " Undo-Tree" " MRev" " Projectile" " Google" " Guide" " Helm" " Ind" " GG" " OCDL")))
  '(safe-local-variable-values
    (quote
-    ((TeX-master . quadrics-bowshock)
+    ((eval when
+	   (and
+	    (buffer-file-name)
+	    (file-regular-p
+	     (buffer-file-name))
+	    (string-match-p "^[^.]"
+			    (buffer-file-name)))
+	   (unless
+	       (featurep
+		(quote package-build))
+	     (let
+		 ((load-path
+		   (cons "../package-build" load-path)))
+	       (require
+		(quote package-build))))
+	   (package-build-minor-mode)
+	   (set
+	    (make-local-variable
+	     (quote package-build-working-dir))
+	    (expand-file-name "../working/"))
+	   (set
+	    (make-local-variable
+	     (quote package-build-archive-dir))
+	    (expand-file-name "../packages/"))
+	   (set
+	    (make-local-variable
+	     (quote package-build-recipes-dir))
+	    default-directory))
+     (TeX-master . quadrics-bowshock)
      (eval add-hook
 	   (quote find-file-hook)
 	   (lambda nil

@@ -9,14 +9,45 @@
 
 
 ;; 12 May 2017 - try out quelpa for getting non-elpa versions of
-;; packages directly from github and other sources
+;; packages directly from github and local files
+(if (require 'quelpa nil t)
+    (quelpa-self-upgrade)
+  (with-temp-buffer
+    (url-insert-file-contents
+     "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
+    (eval-buffer)))
+
 (use-package quelpa-use-package
   :ensure t
   :init (setq quelpa-update-melpa-p nil))
 
+;; Quelpa uses MELPA's recipe format (see
+;; https://github.com/melpa/melpa), but with the addition of
+;; additional fetchers, for example "file" for single-file packages
+;; from local .el files
+(use-package spanish-simple-prefix
+  :quelpa ((spanish-simple-prefix
+	    :fetcher file
+	    :path "~/.emacs.d/lisp/spanish-simple-prefix.el")
+	   :update t)
+  :config (setq default-input-method "spanish-simple-prefix"))
+
+;; Note that the package file needs to have header comments that
+;; conform to the conventional format for Emacs libraries, see
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Library-Headers.html
+;; One easy way to do that is to use `make-header` from header2.el
+
 ;; Original motivation was to use the org-mode master branch
 ;; But I haven't got round to this yet
 ;; Example here: https://emacs.stackexchange.com/a/26510/1980
+
+;; (use-package org
+;;   :quelpa (org :fetcher git
+;; 	       ))
+
+;; 02 Sep 2017 - utility functions for writing your own elisp packages
+(use-package header2
+  :ensure t)
 
 
 ;; 27 Apr 2017 - new mail config
@@ -101,7 +132,7 @@
 ;; Skipping for now 16 Jan 2017, maybe partially reinstate later
 
 
-;; 21 Jun 20s1t5x e-t nfoancy-narrow
+;; 21 Jun 2015 - fancy-narrow
 (use-package fancy-narrow
   :ensure t
   :config
@@ -134,17 +165,52 @@
 (use-package paradox
   :ensure t)
 
+;; 01 Sep 2017
+;; all-the-icons uses special icon fonts, so that the icons behave a
+;; lot better (scale with surrounding text, can have properties, etc)
+
 (use-package all-the-icons
   :ensure t)
-;; After install for first time, we need to install the fonts with M-x all-the-icons-install-fonts
+;; After installing for first time (only), we need to also install the
+;; fonts via M-x all-the-icons-install-fonts
+
+;; Use the icons for dired
+;; 
+;; TODO: Unfortunately, there is a bad interaction with dired-details,
+;; so that we get a bizarre extra box when the dired buffer is in
+;; "hidden" mode
 (use-package all-the-icons-dired
   :ensure t
   :config
   (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 
+;; Use the icons for ivy
+;;
+;; TODO: There is a strange space between the icon and the completion
+;; candidate
 (use-package all-the-icons-ivy
   :ensure t
   :config (all-the-icons-ivy-setup))
+
+;; Quick patches to fix spacing of icons in above package
+(defun all-the-icons-ivy--buffer-transformer (b s)
+  "Return a candidate string for buffer B named S preceded by an icon.
+Try to find the icon for the buffer's B `major-mode'.
+If that fails look for an icon for the mode that the `major-mode' is derived from."
+  (let* ((mode (buffer-local-value 'major-mode b))
+	 (icon (or (all-the-icons-ivy--icon-for-mode mode)
+		   (all-the-icons-ivy--icon-for-mode (get mode 'derived-mode-parent))
+		   (all-the-icons-octicon "eye"))))
+    (format "%s %s"
+            (propertize "@" 'display icon)
+            (all-the-icons-ivy--buffer-propertize b s))))
+
+(defun all-the-icons-ivy-file-transformer (s)
+  "Return a candidate string for filename S preceded by an icon."
+  (format "%s %s"
+          (propertize "@" 'display (all-the-icons-icon-for-file s))
+          s))
+
 
 (use-package swiper
   :ensure t
