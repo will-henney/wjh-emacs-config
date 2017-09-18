@@ -760,6 +760,22 @@ when a file is dopped on Emacs window."
   :quelpa ((org :fetcher git :url "http://orgmode.org/org-mode.git") :update t)
   :config (load "wjh-org-config"))
 
+;; 04 Sep 2017 - this will grab all my files from the
+;; `org-dropbox-note-dir` and file them in an org datetree file.
+;;
+;; So, I could use Workflow or something on iOS to save snippets to
+;; this folder, then they will be picked up by Org
+(use-package org-dropbox
+  :ensure t
+  :config
+  (setq org-dropbox-note-dir "~/Dropbox/org-dropbox-inbox/")
+  (setq org-notes-datetree-file "~/Dropbox/Org/org-dropbox-datetree.org"))
+
+;; 04 Sep 2017 - inserts the filesystem subtree for a given directory
+;;
+;; This is an old package (last release 2009), but I want to check if
+;; it still works
+(use-package org-fstree :ensure t)
 
 
 ;; misc packages
