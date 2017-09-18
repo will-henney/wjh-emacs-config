@@ -755,6 +755,11 @@ when a file is dopped on Emacs window."
   :pin org
   :config (load "wjh-org-config"))
 
+;; 04 Sep 2017 - Try and use org master branch via quelpa
+(use-package org
+  :quelpa ((org :fetcher git :url "http://orgmode.org/org-mode.git") :update t)
+  :config (load "wjh-org-config"))
+
 
 
 ;; misc packages
