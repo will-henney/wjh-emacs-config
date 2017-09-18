@@ -223,8 +223,8 @@ If that fails look for an icon for the mode that the `major-mode' is derived fro
 (use-package counsel
   ;; 27 Apr 2017 - I don't bind anything here yet
   :ensure t
-  ;; 01 Sep 2017 - add default bindings
-  :bind (("M-x" . counsel-M-x)
+  ;; 01 Sep 2017 - add default bindings ∰ 😻 💣
+  :bind (("M-x" . counsel-M-x) 
 	 ("C-x C-f" . counsel-find-file)
 	 ("C-h v" . counsel-describe-variable)
 	 ("C-h f" . counsel-describe-function)
@@ -404,7 +404,9 @@ If that fails look for an icon for the mode that the `major-mode' is derived fro
 (use-package smex
   :ensure t
   :config
-  (global-set-key (kbd "M-x") 'smex)
+  ;; 18 Sep 2017 - Disable default binding because I use ivy/counsel now
+  ;; (global-set-key (kbd "M-x") 'smex)
+  (global-set-key (kbd "C-c C-c C-c M-x") 'smex)
   (global-set-key (kbd "M-X") 'smex-major-mode-commands)
   ;; This is your old M-x.
   (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command))
