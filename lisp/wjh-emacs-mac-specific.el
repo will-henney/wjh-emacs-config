@@ -38,6 +38,19 @@
 ;; consistency with other apps
 (global-set-key (kbd "s-`") 'other-frame)
 
+;; emacs-25.2-mac-6.6 (2017-08-24) adds mac-send-action function
+;; 19 Sep 2017: Use it to implement ⌘ H and ⎇ ⌘ H functionality
+(when (functionp 'mac-send-action)
+  (defun wjh/mac-hide-emacs ()
+    "Hide the Emacs application"
+    (interactive)
+    (mac-send-action 'hide))
+  (defun wjh/mac-hide-others ()
+    "Hide all the other applications"
+    (interactive)
+    (mac-send-action 'hideOtherApplications))
+  (global-set-key (kbd "s-h") 'wjh/mac-hide-emacs)
+  (global-set-key (kbd "M-s-h") 'wjh/mac-hide-others))
 
 ;; Thirdly - use Fn key as hyper
 (setq mac-function-modifier 'hyper)
