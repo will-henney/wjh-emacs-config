@@ -820,17 +820,20 @@ when a file is dopped on Emacs window."
 ;; 29 Nov 2010 dired-x
 (use-package dired-x
   :config
-  (add-hook 'dired-load-hook
-	    (lambda ()
-	      (load "dired-x")
-	      ;; Set dired-x global variables here.  For example:
-	      ;; (setq dired-guess-shell-gnutar "gtar")
-	      ;; (setq dired-x-hands-off-my-keys nil)
-	      (setq dired-omit-verbose nil)
-	      ;; 28 Jul 2014 - I don't like the "... omitting ..."
-	      ;; messages.  They get in the way.
-	      (dired-omit-mode 1)
-	      ))
+  (add-hook
+   'dired-load-hook
+   (lambda ()
+     (load "dired-x")
+     ;; 28 Jul 2014 - I don't like the "... omitting ..."
+     ;; messages.  They get in the way.
+     (setq dired-omit-verbose nil)
+     ;; 18 Sep 2017 - This is good for when you have frame split in
+     ;; two windows with different directpries in each.  Move and copy
+     ;; commands will default to the directory in the other window
+     ;;
+     ;; Discovered in Emacs Rocks Epsiode 16: http://emacsrocks.com/e16.html
+     (setq dired-dwim-target t)
+     (dired-omit-mode 1)))
   (add-hook 'dired-mode-hook #'turn-on-auto-revert-mode)
   (customize-set-value 'auto-revert-verbose nil
 		       "Prevent any auto-revert messages from
