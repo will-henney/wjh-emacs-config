@@ -147,6 +147,18 @@
 (global-set-key [swipe-left] 'wjh/previous-buffer)
 (global-set-key [swipe-right] 'wjh/next-buffer)
 
+
+;; 19 Sep 2017 - THIS DOESN'T WORK
+;; Try to get an animation on going to full screen
+;; Unfortunately, you don't see anything
+
+;; (defun wjh/animate-on-fullscreen (event)
+;;   (interactive "e")
+;;   (let ((window (posn-window (event-start event))))
+;;     (mac-start-animation window :type 'dissolve ':duration 4.0)
+;;     (mac-mouse-turn-on-fullscreen event)))
+;; (global-set-key (kbd "<C-magnify-up>") 'wjh/animate-on-fullscreen)
+
 (defun wjh/drop-event (event)
   "Dummy replacement for `mac-mwheel-scroll' that does nothing
 
