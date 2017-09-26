@@ -1,4 +1,3 @@
-
 """
 Interpolate eight colors between two limits
 """

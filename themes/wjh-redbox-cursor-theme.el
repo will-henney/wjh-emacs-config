@@ -1,4 +1,3 @@
-
 (deftheme wjh-redbox-cursor
   "Created 2011-11-04.")
 (custom-theme-set-variables

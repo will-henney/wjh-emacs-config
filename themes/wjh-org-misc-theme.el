@@ -1,4 +1,3 @@
-
 (deftheme wjh-org-misc
   "Miscellaneous tweaks to org-mode configuration")
 (custom-theme-set-variables

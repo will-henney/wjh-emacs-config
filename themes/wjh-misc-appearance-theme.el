@@ -1,4 +1,3 @@
-
 (deftheme wjh-misc-appearance
   "An attempt to de-uglify emacs")
 (custom-theme-set-variables
@@ -16,7 +15,6 @@
                                (internal-border-width . 0))))
  '(tabbar-mode nil nil (tabbar) "We don't want no stinking tab bars")
  '(show-paren-mode nil nil nil "Stop the blinking blinking")
- '(text-mode-hook (quote (smart-spacing-mode turn-on-word-wrap)))
  '(blink-cursor-mode nil nil nil "More blinking blinking - kill it")
  '(one-buffer-one-frame-mode nil nil nil "Sigh")
  '(size-indication-mode t nil nil

@@ -1,4 +1,3 @@
-
 (deftheme wjh-org-faces
   "Created 2011-11-04.")
 (custom-theme-set-faces

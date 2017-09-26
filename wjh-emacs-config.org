@@ -88,12 +88,12 @@ A theme called FOO is defined in a file =FOO-theme.el=, which has the following 
 I should really make a Yasnippet snippet out of this. 
 
 ** Latex faces
+   :PROPERTIES:
+   :header-args: :tangle   themes/wjh-latex-faces-theme.el
+   :END:
    :LOGBOOK:
    CLOCK: [2011-11-07 Mon 22:30]--[2011-11-07 Mon 23:11] =>  0:41
    CLOCK: [2011-11-07 Mon 12:42]--[2011-11-07 Mon 13:00] =>  0:18
-   :END:
-   :PROPERTIES:
-   :tangle:   themes/wjh-latex-faces-theme.el
    :END:
 
 + Using Menlo, just to see if I can get used to it.  /Update:/ No, it is horrible - go back to Monaco for now
@@ -134,12 +134,12 @@ I should really make a Yasnippet snippet out of this.
 #+end_src
 
 ** Org faces
+   :PROPERTIES:
+   :header-args: :tangle   themes/wjh-org-faces-theme.el
+   :END:
    :LOGBOOK:
    CLOCK: [2011-11-07 Mon 12:31]--[2011-11-07 Mon 12:42] =>  0:11
    CLOCK: [2011-11-05 Sat 20:48]--[2011-11-05 Sat 21:18] =>  0:30
-   :END:
-   :PROPERTIES:
-   :tangle:   themes/wjh-org-faces-theme.el
    :END:
 
 The main thing that we do here is to make the faces for tables and source blocks inherit from =fixed-pitch=. This is especially necessary if you change the default text font to be varible pitch. There are advantages to this, even if you use a fixed pitch default font. In my case, I use monaco as the default, but =fixed-pitch= is set to courier, which looks more "code-y" and helps set off the source blocks. 
@@ -210,12 +210,12 @@ Each =org-level-N= faces inherits from the corresponding =outline-N= face, so we
 #+end_src
 
 *** Python script for choosing a color scheme
+    :PROPERTIES:
+    :header-args: :tangle   no
+    :END:
     :LOGBOOK:
     CLOCK: [2011-11-10 Thu 10:06]--[2011-11-10 Thu 11:07] =>  1:01
     CLOCK: [2011-11-09 Wed 10:32]--[2011-11-09 Wed 13:10] =>  2:38
-    :END:
-    :PROPERTIES:
-    :tangle:   no
     :END:
 
 #+srcname: choose-org-colors.py
@@ -356,7 +356,7 @@ Text eight
 
 ** Redbox cursor
    :PROPERTIES:
-   :tangle:   themes/wjh-redbox-cursor-theme.el
+   :header-args: :tangle   themes/wjh-redbox-cursor-theme.el
    :END:
 Use a nice red hollow box for the cursor. This is a good compromise between visibility and not getting in the way. Strangely, it is the background color that needs to be set to red (I use =OrangeRed1=). The foreground colour seems to have no effect. 
 
@@ -380,6 +380,9 @@ In non-selected windows, I use a horizontal bar instead.
 #+end_src
 
 ** Org misc
+   :PROPERTIES:
+   :header-args: :tangle   themes/wjh-org-misc-theme.el
+   :END:
    :LOGBOOK:
    CLOCK: [2011-11-07 Mon 23:11]--[2011-11-08 Tue 00:11] =>  1:00
    - Note taken on [2011-11-06 Sun 14:03] \\
@@ -387,9 +390,6 @@ In non-selected windows, I use a horizontal bar instead.
    CLOCK: [2011-11-05 Sat 21:21]--[2011-11-05 Sat 21:35] =>  0:14
    - Note taken on [2011-11-05 Sat 21:22] \\
      Trying to get timestamps to go into LOGBOOK drawer.  Why is this not working?
-   :END:
-   :PROPERTIES:
-   :tangle:   themes/wjh-org-misc-theme.el
    :END:
 
 So, these customizations have nothing to do with faces.  It might be better to put them in normal configuration files, rather than a custom theme.  It isn't as if I am going to turn them on and off.  
@@ -410,13 +410,13 @@ So, these customizations have nothing to do with faces.  It might be better to p
 #+end_src
 
 ** Miscellaneous appearance
+   :PROPERTIES:
+   :header-args: :tangle  themes/wjh-misc-appearance-theme.el
+   :END:
    :LOGBOOK:
    CLOCK: [2013-04-22 Mon 08:05]--[2013-04-22 Mon 09:05] =>  1:00
    CLOCK: [2011-11-08 Tue 11:29]--[2011-11-08 Tue 11:29] =>  0:00
    CLOCK: [2011-11-08 Tue 10:28]--[2011-11-08 Tue 11:28] =>  1:00 
-   :END:
-   :PROPERTIES:
-   :tangle:   themes/wjh-misc-appearance-theme.el
    :END:
 
 
@@ -456,7 +456,6 @@ Remove extraneous chrome and try to de-uglify buttons and highlighting and the l
                                  (internal-border-width . 0))))
    '(tabbar-mode nil nil (tabbar) "We don't want no stinking tab bars")
    '(show-paren-mode nil nil nil "Stop the blinking blinking")
-   '(text-mode-hook (quote (smart-spacing-mode turn-on-word-wrap)))
    '(blink-cursor-mode nil nil nil "More blinking blinking - kill it")
    '(one-buffer-one-frame-mode nil nil nil "Sigh")
    '(size-indication-mode t nil nil
