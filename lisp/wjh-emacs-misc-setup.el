@@ -368,9 +368,7 @@ This will actually use spotlight instead of locate, so it only works on OS X"
 (add-hook 'c++-mode-hook '(lambda () (set-variable 'tab-width 4)))
 
 ;; Turn on word wrapping in text and derived modes
-(add-hook 'text-mode-hook '(lambda () 
-			     (turn-on-visual-line-mode)
-			     ))
+(add-hook 'text-mode-hook #'turn-on-visual-line-mode)
 
 (add-hook 'LaTeX-mode-hook '(lambda () 
 			      (set-variable 'line-spacing 5)

@@ -276,26 +276,53 @@ If that fails look for an icon for the mode that the `major-mode' is derived fro
 
 
 ;; 03 Dec 2014 - spelling and grammar
-;; Inspired by https://joelkuiper.eu/spellcheck_emacs
+
+;; 26 Sep 2017: Big effort to get my spelling configuration sorted
+
+(defun clean-hunspell-config ()
+  "Attempt to auto-setup the hunspell dicts for ispell
+
+This relies on ispell automatically parsing the hunspell .aff
+files to populate the dictionary alist.  But then we have
+problems with apostrophes at the emacs word recognition
+level (although they work fine in hunspell itself). This is
+because the othercars parameter is not set properly. "
+  (setenv "LANG" "en_US.UTF-8")
+  (setq ispell-dictionary "en_US,en_GB-large")
+  (ispell-set-spellchecker-params)
+  (ispell-hunspell-add-multi-dic "en_US,en_GB-large"))
+
+(defun hackish-hunspell-config ()
+  "Set up `ispell-local-dictionary-alist` by hand
+
+I didn't want to mess with the alist directly, but there seems to
+be no choice.  Otherwise, words with internal apostrophes are not
+recognised."
+  (setenv "LANG" "en_US.UTF-8")
+  (setq ispell-dictionary "english")
+  (setq ispell-local-dictionary-alist
+	`(("english" "[[:alpha:]]" "[^[:alpha:]]" "[0-9’']" t
+	   ("-d" "en_US,en_GB-large") nil utf-8)
+	  ("es_MX" "[[:alpha:]]" "[^[:alpha:]]" "[0-9]" t
+	   ("-d" "es_MX") nil utf-8)))
+  ;; If I don't do an explicit ispell-change-dictionary, then the
+  ;; dictionary ends up being nil, which is no good
+  (ispell-change-dictionary "english"))
+
+;; Old version inspired by https://joelkuiper.eu/spellcheck_emacs
+;; 
+;; New version worked out on my own mainly, with some inspiration from
+;; http://gromnitsky.blogspot.mx/2016/09/emacs-251-hunspell.html
+;; although some of those recommendations didn't work 
 (use-package flyspell
   :ensure t
   :config
   ;; Use hunspell if available 
   (when (executable-find "hunspell")
-    (setq-default ispell-program-name "hunspell")
+    (setq-default ispell-program-name (executable-find "hunspell"))
     (setq ispell-really-hunspell t)
-    (setq ispell-extra-args '("-a" "-i" "utf-8"))
+    (hackish-hunspell-config)
     )
-  (setq ispell-dictionary "default")
-  (setq ispell-local-dictionary-alist
-	`(("default"
-	   "[[:alpha:]]"
-	   "[^[:alpha:]]"
-	   "[']"
-	   t
-	   ("-d" "en_US,en_GB-large")
-	   nil
-	   utf-8)))
   ;; 10 Aug 2017: restore this since the next bit doesn't work
   (define-key flyspell-mouse-map [s-down-mouse-1] 'flyspell-correct-word))
 
@@ -304,32 +331,65 @@ If that fails look for an icon for the mode that the `major-mode' is derived fro
 ;; Found here: https://emacs.stackexchange.com/a/20948/1980
 ;; (define-key key-translation-map (kbd "<s-down-mouse-1>") (kbd "<down-mouse-2>"))
 
-;; Use langtool 
+
+;; 25 Sep 2017 - try out guess-language for auto-switching between
+;; English and Spanish.  Note that it only really works with flyspell,
+;; so we turn that on too.
+(use-package guess-language
+  :ensure t
+  :init
+  (add-hook 'text-mode-hook #'guess-language-mode)
+  (add-hook 'text-mode-hook #'flyspell-mode)
+  :config
+  (setq guess-language-langcodes '((en . ("english" nil))
+				   (es . ("es_MX" nil)))
+	guess-language-languages '(en es)
+	guess-language-min-paragraph-length 8)
+  :diminish guess-language-mode)
+
+;; 25 Sep 2017 - typo.el is not for typographic errors, but rather for
+;; smart quotes and the like.  Adds a lot of bindings on "C-c 8"
+;; suffix
+(use-package typo
+  :ensure t
+  :config
+  (typo-global-mode 1)
+  (add-hook 'text-mode-hook 'typo-mode))
+
+
+;; Use langtool for grammar analysis (where did I get this from?)
 (use-package langtool
   :ensure t
   :config
-  (setq langtool-language-tool-jar 
-	"/usr/local/Cellar/languagetool/3.8/libexec/languagetool-commandline.jar"
-	langtool-mother-tongue "en"
-	langtool-disabled-rules '("WHITESPACE_RULE"
-				  "EN_UNPAIRED_BRACKETS"
-				  "COMMA_PARENTHESIS_WHITESPACE"
-				  "EN_QUOTES"))
-  (global-set-key "\C-x4w" 'langtool-check)
-  (global-set-key "\C-x4W" 'langtool-check-done)
-  (global-set-key "\C-x4l" 'langtool-switch-default-language)
-  (global-set-key "\C-x44" 'langtool-show-message-at-point)
-  (global-set-key "\C-x4C" 'langtool-correct-buffer)
-  (defun langtool-autoshow-detail-popup (overlays)
-    (when (require 'popup nil t)
-      ;; Do not interrupt current popup
-      (unless (or popup-instances
-		  ;; suppress popup after type `C-g' .
-		  (memq last-command '(keyboard-quit)))
-	(let ((msg (langtool-details-error-message overlays)))
-	  (popup-tip msg)))))
-  (setq langtool-autoshow-message-function
-	'langtool-autoshow-detail-popup))
+  (when (executable-find "languagetool")
+    (setq langtool-version
+	  (nth 2 (split-string
+		  (shell-command-to-string "languagetool --version"))))
+    (setq langtool-language-tool-jar 
+	  (format
+	   "/usr/local/Cellar/languagetool/%s/libexec/languagetool-commandline.jar"
+	   langtool-version)
+	  langtool-mother-tongue "en"
+	  langtool-disabled-rules '("WHITESPACE_RULE"
+				    "DASH_RULE"
+				    "EN_UNPAIRED_BRACKETS"
+				    "COMMA_PARENTHESIS_WHITESPACE"
+				    "EN_QUOTES"))
+    (global-set-key "\C-x4w" 'langtool-check)
+    (global-set-key "\C-x4W" 'langtool-check-done)
+    (global-set-key "\C-x4l" 'langtool-switch-default-language)
+    (global-set-key "\C-x44" 'langtool-show-message-at-point)
+    (global-set-key "\C-x4C" 'langtool-correct-buffer)
+    (defun langtool-autoshow-detail-popup (overlays)
+      (when (require 'popup nil t)
+	;; Do not interrupt current popup
+	(unless (or popup-instances
+		    ;; suppress popup after type `C-g' .
+		    (memq last-command '(keyboard-quit)))
+	  (let ((msg (langtool-details-error-message overlays)))
+	    (popup-tip msg)))))
+    (setq langtool-autoshow-message-function
+	  'langtool-autoshow-detail-popup)))
 
 
 ;; 27 Aug 2014 - popup git commit messages
