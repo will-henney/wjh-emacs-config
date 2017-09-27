@@ -316,6 +316,11 @@ recognised."
 ;; although some of those recommendations didn't work 
 (use-package flyspell
   :ensure t
+  :init
+  (add-hook 'text-mode-hook #'flyspell-mode)
+  ;; In programming modes, flyspell is only activated in comments snd
+  ;; strings
+  (add-hook 'prog-mode-hook #'flyspell-prog-mode)
   :config
   ;; Use hunspell if available 
   (when (executable-find "hunspell")
@@ -334,17 +339,20 @@ recognised."
 
 ;; 25 Sep 2017 - try out guess-language for auto-switching between
 ;; English and Spanish.  Note that it only really works with flyspell,
-;; so we turn that on too.
+;; so we turn that on in the previous section.
 (use-package guess-language
   :ensure t
   :init
-  (add-hook 'text-mode-hook #'guess-language-mode)
-  (add-hook 'text-mode-hook #'flyspell-mode)
+  ;; Turns out not to be a good idea in latex mode, since it keeps
+  ;; thinking that command arguments are spanish.  So ... we will not
+  ;; start it automatically any more.
+  ;; 
+  ;; (add-hook 'text-mode-hook #'guess-language-mode)
   :config
   (setq guess-language-langcodes '((en . ("english" nil))
 				   (es . ("es_MX" nil)))
 	guess-language-languages '(en es)
-	guess-language-min-paragraph-length 8)
+	guess-language-min-paragraph-length 20)
   :diminish guess-language-mode)
 
 ;; 25 Sep 2017 - typo.el is not for typographic errors, but rather for
