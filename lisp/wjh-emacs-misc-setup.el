@@ -217,7 +217,7 @@
 ;;   ))
  
 ;; allow emacsclient processes to connect
-;;(server-start) disabled for now
+(server-start)
 
 ;; diary/calendar stuff
 (setq mark-diary-entries-in-calendar t)
