@@ -67,6 +67,22 @@
 (global-set-key "\C-cC" 'org-capture)
 
 
+;; WJH 04 Oct 2017 - I got fed up of typing C-u C-c C-v C-t C-c C-v
+;; C-n C-c C-c all of the time!
+(defun wjh/tangle-then-eval-next-src-block ()
+  "Tangle the current block, then run the next one.
+This supports the workflow of saving each python script to a
+file, then running it with a shell command in the following
+block."
+  (interactive)
+  (org-babel-tangle-single-block 1)
+  (org-babel-next-src-block)
+  (org-babel-execute-src-block))
+(global-set-key (kbd "C-c x") 'wjh/tangle-then-eval-next-src-block)
+
+
+
+
 ;; Toggling various features
 (global-set-key "\C-ctp" 'org-toggle-pretty-entities)
 (global-set-key "\C-cti" 'org-toggle-inline-images)
