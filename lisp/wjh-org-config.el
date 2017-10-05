@@ -69,16 +69,17 @@
 
 ;; WJH 04 Oct 2017 - I got fed up of typing C-u C-c C-v C-t C-c C-v
 ;; C-n C-c C-c all of the time!
-(defun wjh/tangle-then-eval-next-src-block ()
+(defun wjh/tangle-this-then-execute-next-src-block ()
   "Tangle the current block, then run the next one.
 This supports the workflow of saving each python script to a
 file, then running it with a shell command in the following
 block."
   (interactive)
-  (org-babel-tangle-single-block 1)
+  ;; Simulate a single C-u prefix to tangle current block only
+  (org-babel-tangle '(4))
   (org-babel-next-src-block)
   (org-babel-execute-src-block))
-(global-set-key (kbd "C-c x") 'wjh/tangle-then-eval-next-src-block)
+(global-set-key (kbd "C-c x") 'wjh/tangle-this-then-execute-next-src-block)
 
 
 
