@@ -362,7 +362,11 @@ recognised."
   :ensure t
   :config
   (typo-global-mode 1)
-  (add-hook 'text-mode-hook 'typo-mode))
+  ;; 16 Oct 2017 - turned this off, since it annoyingly hijacks the
+  ;; quote keys, but we keep the typo-global-mode because that is more
+  ;; useful (C-c 8 bindings)
+  ;; (add-hook 'text-mode-hook 'typo-mode)
+  )
 
 
 ;; Use langtool for grammar analysis (where did I get this from?)
@@ -811,10 +815,15 @@ when a file is dopped on Emacs window."
 
 ;; Trying something new 10 Mar 2013: https://github.com/jorgenschaefer/elpy/wiki
 (load "wjh-python-elpy-config")
-;; And also try out emacs ipython notebook
-(use-package ein
+
+;; And try and set up better treatment of doc strings
+(use-package python-docstring
   :ensure t
-  )
+  :config
+  (add-hook 'python-mode-hook (lambda () (python-docstring-mode t))))
+
+;; And also try out emacs ipython notebook
+(use-package ein :ensure t)
 
 
 ;; 22 Sep 2011 - also put org early on

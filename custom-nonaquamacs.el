@@ -85,7 +85,7 @@
  '(org-meta-line ((t (:inherit (fixed-pitch org-block-background) :foreground "gray60" :weight light))))
  '(org-property-value ((t (:inherit fixed-pitch))) t)
  '(org-special-keyword ((t (:inherit (font-lock-keyword-face fixed-pitch) :foreground "#a5a565" :slant italic :weight normal))))
- '(org-table ((t (:inherit (fixed-pitch unspecified) :family "Input Mono Compressed" :foreground "PaleTurquoise1" :height 1.0))))
+ '(org-table ((t (:inherit (fixed-pitch unspecified) :family "Input Mono Condensed" :foreground "PaleTurquoise1" :height 1.0))))
  '(org-tag ((t (:foreground "gray60" :slant italic :weight thin :height 1.0))))
  '(planner-completed-task-face ((t (:foreground "gray50" :strike-through t))) t)
  '(popup-menu-mouse-face ((t (:background "#D0BF8F" :foreground "#000000"))))
@@ -289,7 +289,7 @@
  '(org-tags-column 50)
  '(package-selected-packages
    (quote
-    (typo guess-language web-mode org-fstree org-dropbox header2 all-the-icons-ivy all-the-icons-dired all-the-icons counsel-projectile suggest e2wm org-extra org-contacts worf quelpa-use-package ag org-sticky-header ivy-hydra counsel mu4e org-pomodoro org-table-sticky-header org-edit-latex elfeed-org auto-org-md julia-mode zenburn-theme yaml-mode w3m virtualenv unfill undo-tree synonyms svg-mode-line-themes stripe-buffer spotlight sparkline smex smartparens smart-mode-line rainbow-mode projectile prodigy pinboard persistent-scratch paradox pallet org-trello org-plus-contrib org-magit org-dotemacs org-bullets org-bookmark-heading ob-ipython nose names multiple-cursors markdown-mode magithub magit-svn lispy latex-extra langtool key-chord idomenu ido-vertical-mode ibuffer-vc hungry-delete htmlize helm-dash helm-bibtex guide-key google-this golden-ratio god-mode gitty git-messenger git-gutter ggtags fuzzy fold-dwim-org flx-ido fancy-narrow expand-region esxml elpy elnode easy-kill-extras dired-details diminish deft csv-mode crosshairs creole-mode conda color-identifiers-mode bibslurp bf-mode auto-complete alert airplay ack-and-a-half achievements ace-jump-mode)))
+    (python-docstring python-docstring-mode typo guess-language web-mode org-fstree org-dropbox header2 all-the-icons-ivy all-the-icons-dired all-the-icons counsel-projectile suggest e2wm org-extra org-contacts worf quelpa-use-package ag org-sticky-header ivy-hydra counsel mu4e org-pomodoro org-table-sticky-header org-edit-latex elfeed-org auto-org-md julia-mode zenburn-theme yaml-mode w3m virtualenv unfill undo-tree synonyms svg-mode-line-themes stripe-buffer spotlight sparkline smex smartparens smart-mode-line rainbow-mode projectile prodigy pinboard persistent-scratch paradox pallet org-trello org-plus-contrib org-magit org-dotemacs org-bullets org-bookmark-heading ob-ipython nose names multiple-cursors markdown-mode magithub magit-svn lispy latex-extra langtool key-chord idomenu ido-vertical-mode ibuffer-vc hungry-delete htmlize helm-dash helm-bibtex guide-key google-this golden-ratio god-mode gitty git-messenger git-gutter ggtags fuzzy fold-dwim-org flx-ido fancy-narrow expand-region esxml elpy elnode easy-kill-extras dired-details diminish deft csv-mode crosshairs creole-mode conda color-identifiers-mode bibslurp bf-mode auto-complete alert airplay ack-and-a-half achievements ace-jump-mode)))
  '(paradox-automatically-star t)
  '(pinboard-url "http://feeds.pinboard.in/json/u:deprecated/?count=10")
  '(recentf-exclude
@@ -306,7 +306,8 @@
     (" hl-p" " Undo-Tree" " MRev" " Projectile" " Google" " Guide" " Helm" " Ind" " GG" " OCDL")))
  '(safe-local-variable-values
    (quote
-    ((eval when
+    ((TeX-master . dusty-bow-wave)
+     (eval when
 	   (and
 	    (buffer-file-name)
 	    (file-regular-p
