@@ -3,7 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#3f3f3f" :foreground "#dcdccc" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight light :height 130 :width normal :foundry "nil" :family "Source Code Pro"))))
+ '(default ((t (:inherit nil :stipple nil :background "#3f3f3f" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight light :height 130 :width normal :foundry "nil" :family "Source Code Pro"))))
  '(TeX-fold-folded-face ((t (:foreground "#8faeb0"))))
  '(ace-jump-face-background ((t (:foreground "gray60"))))
  '(ace-jump-face-foreground ((t (:foreground "orange"))))
@@ -40,7 +40,7 @@
  '(font-lock-keyword-face ((t (:inherit fixed-pitch :foreground "SlateGray2" :weight normal))))
  '(font-lock-string-face ((t (:foreground "pale goldenrod" :slant italic))))
  '(font-lock-type-face ((t (:foreground "#ccdddd" :weight light))))
- '(font-lock-variable-name-face ((t (:inherit fixed-pitch :foreground "#dfaf8f"))))
+ '(font-lock-variable-name-face ((t (:inherit fixed-pitch :foreground "#ffcf8f"))))
  '(fringe ((t (:background "#484848" :foreground "gray50"))))
  '(git-gutter:added ((t (:foreground "#7F9F7F" :weight bold))))
  '(git-gutter:deleted ((t (:foreground "#CC9393" :weight bold))))
@@ -85,7 +85,7 @@
  '(org-meta-line ((t (:inherit (fixed-pitch org-block-background) :foreground "gray60" :weight light))))
  '(org-property-value ((t (:inherit fixed-pitch))) t)
  '(org-special-keyword ((t (:inherit (font-lock-keyword-face fixed-pitch) :foreground "#a5a565" :slant italic :weight normal))))
- '(org-table ((t (:inherit (fixed-pitch unspecified) :family "Input Mono Condensed" :foreground "PaleTurquoise1" :height 1.0))))
+ '(org-table ((t (:inherit (fixed-pitch unspecified) :family "Input Mono Compressed" :foreground "PaleTurquoise1" :height 1.0))))
  '(org-tag ((t (:foreground "gray60" :slant italic :weight thin :height 1.0))))
  '(planner-completed-task-face ((t (:foreground "gray50" :strike-through t))) t)
  '(popup-menu-mouse-face ((t (:background "#D0BF8F" :foreground "#000000"))))
@@ -248,6 +248,7 @@
  '(elpy-modules
    (quote
     (elpy-module-company elpy-module-eldoc elpy-module-flymake elpy-module-pyvenv elpy-module-yasnippet elpy-module-sane-defaults)))
+ '(fortune-dir "/usr/local/share/games/fortunes/")
  '(git-messenger:show-detail t)
  '(git-messenger:use-magit-popup t)
  '(line-spacing 4)
@@ -273,6 +274,7 @@
  '(org-export-babel-evaluate nil)
  '(org-export-backends (quote (ascii beamer html icalendar latex md org)))
  '(org-export-dispatch-use-expert-ui t)
+ '(org-export-use-babel nil)
  '(org-id-link-to-org-use-id (quote create-if-interactive-and-no-custom-id))
  '(org-log-into-drawer t)
  '(org-mac-grab-Firefox-app-p nil)

@@ -10,12 +10,13 @@
 
 ;; 12 May 2017 - try out quelpa for getting non-elpa versions of
 ;; packages directly from github and local files
-(if (require 'quelpa nil t)
-    (quelpa-self-upgrade)
-  (with-temp-buffer
-    (url-insert-file-contents
-     "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
-    (eval-buffer)))
+(ignore-errors
+  (if (require 'quelpa nil t)
+      (quelpa-self-upgrade)
+    (with-temp-buffer
+      (url-insert-file-contents
+       "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
+      (eval-buffer))))
 
 (use-package quelpa-use-package
   :ensure t
@@ -236,8 +237,9 @@ If that fails look for an icon for the mode that the `major-mode' is derived fro
 
 (use-package counsel-projectile
   :ensure t
-  :config
-  (counsel-projectile-on))
+  ;; :config
+  ;; (counsel-projectile-on)
+  )
 
 (use-package ace-window
   :ensure t
