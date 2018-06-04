@@ -75,8 +75,11 @@ This supports the workflow of saving each python script to a
 file, then running it with a shell command in the following
 block."
   (interactive)
-  ;; Simulate a single C-u prefix to tangle current block only
+  ;; Make sure we have exited the dedicated source buffer
+  (when org-src-mode (org-edit-src-exit))
+  ;; Tangle only the current block - we do this by simulating a single C-u prefix
   (org-babel-tangle '(4))
+  ;; Assume the next block is the shell command to run the current block's tangled file
   (org-babel-next-src-block)
   (org-babel-execute-src-block))
 (global-set-key (kbd "C-c x") 'wjh/tangle-this-then-execute-next-src-block)
@@ -516,7 +519,7 @@ block."
 		    :box '(:line-width 5 :color "#2B2B2B")
 		    :slant 'italic
 		    :height 0.95
-		    :family "Input Mono Compressed"
+		    :family "Input Mono Condensed"
 		    :underline nil :overline nil
 		    )
 
