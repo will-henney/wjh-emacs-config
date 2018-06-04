@@ -8,20 +8,18 @@
   :config
   (elpy-enable)
   (setq python-check-command "pyflakes")
-  (elpy-use-ipython)
-  ;; 31 Jan 2017 - With ipython 5, we need to switch over to a simple
-  ;; prompt.  This is because they have ditched readline in favor of
-  ;; prompt_toolkit, which doesn't work in emacs inferior python
-  ;; buffers
-  (setq python-shell-interpreter-args "--simple-prompt"
-	python-shell-completion-native-enable nil)
-  
+  (setq python-shell-interpreter "jupyter"
+	python-shell-interpreter-args "console --simple-prompt"
+	python-shell-prompt-detect-failure-warning nil)
+  (add-to-list 'python-shell-completion-native-disabled-interpreters
+               "jupyter")
   ;; 08 Aug 2014 WJH Choose a backend
   ;; Jedi works fine but is not so good at documentation lookup
   ;;(setq elpy-rpc-backend "jedi")
   ;; Rope is supposedly better in that regard - so let's try it
   ;; 08 Aug 2014 WJH - problems with hanging in large dirs
-  (setq elpy-rpc-backend "rope")
+  ;; 26 Apr 2018 WJH - 
+  (setq elpy-rpc-backend "jedi")
   ;; WJH 08 Nov 2013 - we prefer to use these for smartscan
   (define-key elpy-mode-map (kbd "M-n") nil)
   (define-key elpy-mode-map (kbd "M-p") nil)
