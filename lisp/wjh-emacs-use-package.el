@@ -1,6 +1,11 @@
 ;; Third party add-on packages that are not shipped with Emacs
 ;; 16 Jan 2017 : Ported to John Wiegley's use-package
 
+;;* TODO: 06 Sep 2018 : port my setup over to straight.el
+;;* https://github.com/raxod502/straight.el
+;;* This can replace package.el and elpa and parts of use-package
+
+
 ;; (eval-when-compile
 ;;   (require 'use-package))
 (require 'use-package)
@@ -218,8 +223,7 @@ If that fails look for an icon for the mode that the `major-mode' is derived fro
   (setq magit-completing-read-function 'ivy-completing-read)
   (setq projectile-completion-system 'ivy)
   :bind (("C-c v" . ivy-push-view)
-	 ("C-c V" . ivy-pop-view))
-  )
+	 ("C-c V" . ivy-pop-view)))
 
 (use-package counsel
   ;; 27 Apr 2017 - I don't bind anything here yet
@@ -262,7 +266,8 @@ If that fails look for an icon for the mode that the `major-mode' is derived fro
   :ensure t
   :config
   (setq deft-directory "~/Dropbox/Notes")
-  (setq deft-extension "org")
+  (setq deft-default-extension "org")
+  (setq deft-extensions '("org" "txt" "text" "md" "markdown"))
   (setq deft-text-mode 'org-mode)
   (setq deft-use-filename-as-title t)
   (setq deft-use-filter-string-for-filename t)
@@ -830,11 +835,11 @@ when a file is dopped on Emacs window."
 
 ;; 22 Sep 2011 - also put org early on
 ;; Let's use org-mode!
-(use-package org
-  :ensure t
-  ;; :ensure org-plus-contrib
-  :pin org
-  :config (load "wjh-org-config"))
+;; (use-package org
+;;   :ensure t
+;;   ;; :ensure org-plus-contrib
+;;   :pin org
+;;   :config (load "wjh-org-config"))
 
 ;; 04 Sep 2017 - Try and use org master branch via quelpa
 (use-package org
@@ -851,6 +856,13 @@ when a file is dopped on Emacs window."
   :config
   (setq org-dropbox-note-dir "~/Dropbox/org-dropbox-inbox/")
   (setq org-notes-datetree-file "~/Dropbox/Org/org-dropbox-datetree.org"))
+
+;; 14 Oct 2018 - try out John Kit chin's org-ref
+;; 15 Oct 2018 - it was nice, but it makes emacs *realLy* slow
+;; (use-package org-ref
+;;   :ensure t
+;;   :config
+;;   (setq org-ref-completion-library 'org-ref-ivy-cite))
 
 ;; 04 Sep 2017 - inserts the filesystem subtree for a given directory
 ;;
