@@ -817,7 +817,13 @@ when a file is dopped on Emacs window."
 ;; 31 Aug 2012: Magit is magic!
 (use-package magit
   :ensure t
-  :bind ("C-c i" . magit-status))
+  :bind ("C-c i" . magit-status)
+  :config
+  (setq magit-repository-directories
+	`((,(expand-file-name "~/Dropbox") . 5)
+	  (,(expand-file-name "~/Source") . 1)
+	  (,(expand-file-name "~/Family") . 1)
+	  (,(expand-file-name "~/Work") . 5))))
 
 
 ;; Trying something new 10 Mar 2013: https://github.com/jorgenschaefer/elpy/wiki
