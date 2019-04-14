@@ -968,10 +968,16 @@ prefix argument set OTHER-WINDOW true."
 ;; bizarre extra boxes or icons when the dired buffer is in "hidden"
 ;; mode.  SOLVED (03 Sep 2017): by just setting the "hidden" indicator
 ;; to the empty string (you don't need it if you have the icons)
+
+(defun wjh/maybe-all-the-icons-dired-mode ()
+  "Turn on `all-the-icons-dired-mode` if the directory is not too large"
+  (when (<= (count-lines 1 (buffer-size)) 300)
+    (all-the-icons-dired-mode 1)))
+
 (use-package all-the-icons-dired
   :ensure t
   :config
-  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+  (add-hook 'dired-after-readin-hook 'wjh/maybe-all-the-icons-dired-mode)
   (setq dired-details-hidden-string ""))
 
 
