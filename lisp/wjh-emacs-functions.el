@@ -191,3 +191,24 @@ recent first."
 (global-set-key (kbd "s-C-f") 'wjh/move-right-4)
 
 
+;; Functions to make numbers nicer
+(defun wjh/clean-float (a n)
+  "Round floating point number to n decimal places"
+  (let ((fmt (format "%%.%dg" n)))
+    (format fmt a)))
+
+;; Technique for replacing number at point is partially based on
+;; https://stackoverflow.com/questions/25188206/how-do-you-write-an-emacs-lisp-function-to-replace-a-word-at-point
+(defun wjh/convert-float-to-clean-form (p)
+  "Convert number at point to a nicer representation."
+  (interactive "p")
+  (let* ((bounds (if (use-region-p)
+                     (cons (region-beginning) (region-end))
+                   (bounds-of-thing-at-point 'sexp)))
+	 (precision (if (= p 1) 4 p))
+         (text (buffer-substring-no-properties (car bounds) (cdr bounds)))
+	 (newtext (wjh/clean-float (string-to-number text) precision)))
+    (when (and (/= (string-to-number text) 0) bounds)
+      (delete-region (car bounds) (cdr bounds))
+      (insert newtext))))
+(global-set-key (kbd "C-c w") 'wjh/convert-float-to-clean-form)
