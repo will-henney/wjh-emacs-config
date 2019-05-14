@@ -411,6 +411,18 @@ block."
 ;; 15 Nov 2009 - new speed commands in 6.33
 (setq org-use-speed-commands t)
 
+;; 17 Apr 2019 - replacement for the templates triggered by "<"
+(require 'org-tempo)
+(tempo-define-template "org-src_python"
+		       '("#+begin_src python" p  n
+			 n "#+end_src" )
+		       "<p" "Insert Python Block" 'org-tempo-tags)
+(tempo-define-template "org-src-named-python"
+		       '("#+name: " p  n
+			 "#+begin_src python"   n
+			 n "#+end_src" )
+		       "<P" "Insert Named Python Block" 'org-tempo-tags)
+
 ;; 15 Nov 2009 - ubiquitous org entry
 ;; (require 'org-mac-protocol)
 
@@ -458,15 +470,21 @@ block."
 
 ;; 29 Apr 2013 - try out org-mac-link-grabber
 ;; (require 'org-mac-link-grabber)
-(add-hook 'org-mode-hook (lambda ()
-  ;; (define-key org-mode-map (kbd "C-c gl") 'omlg-grab-link)
-  (define-key org-mode-map [(control meta return)] 'org-insert-heading-respect-content)
-  (define-key org-mode-map "<"
-    (lambda () (interactive)
-      (if (looking-back "^")
-	  (hydra-org-template/body)
-	(self-insert-command 1))))
-  ))
+(add-hook 'org-mode-hook
+	  (lambda ()
+	    ;; (define-key org-mode-map (kbd "C-c gl") 'omlg-grab-link)
+	    (define-key org-mode-map
+	      [(control meta return)] 'org-insert-heading-respect-content)
+	    ;; 17 Apr 2019 Remove this hydra binding, since the
+	    ;; functionality has changed and it now is probably
+	    ;; unnecessary
+	    ;; 
+	    ;; (define-key org-mode-map "<"
+	    ;;   (lambda () (interactive)
+	    ;;     (if (looking-back "^")
+	    ;; 	  (hydra-org-template/body)
+	    ;; 	(self-insert-command 1))))
+	    ))
 
 ;; 13 Oct 2013 - no, I didn't like this
 ;; ;; 12 Aug 2013 - try out Org-Trello integration

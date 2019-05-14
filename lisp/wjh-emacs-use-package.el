@@ -825,6 +825,10 @@ when a file is dopped on Emacs window."
 	  (,(expand-file-name "~/Family") . 1)
 	  (,(expand-file-name "~/Work") . 5))))
 
+
+;; 14 May 2019 - add TODO section to magit buffer
+(use-package magit-todos :ensure t)
+
 
 ;; Trying something new 10 Mar 2013: https://github.com/jorgenschaefer/elpy/wiki
 (load "wjh-python-elpy-config")

@@ -2,6 +2,9 @@
 
 
 ;; Org mode
+;; 
+;; 17 Apr 2019 - note, this is now longer used since I am trying out
+;; org-tempo, which replaces this functionality
 (defhydra hydra-org-template (:color blue :hint nil)
   "
 _c_enter  _q_uote     _e_macs-lisp    _L_aTeX:
