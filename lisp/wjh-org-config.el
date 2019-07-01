@@ -399,7 +399,7 @@ block."
    (shell . t)
    (calc . t)
    (ipython . t)
-   (jupyter . t)
+   ;; (jupyter . t)
    ))
 
 ;; 28 Jul 2014 - Finally get round to turning off confirmation

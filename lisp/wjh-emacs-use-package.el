@@ -846,12 +846,12 @@ when a file is dopped on Emacs window."
 (use-package simple-httpd
   :quelpa ((simple-httpd :fetcher github :repo "skeeto/emacs-web-server")
 	   :upgrade t))
-(use-package zmq
-  :quelpa ((zmq :fetcher github :repo "dzop/emacs-zmq")
-	   :upgrade t))
-(use-package jupyter
-  :quelpa ((jupyter :fetcher github :repo "dzop/emacs-jupyter")
-	   :upgrade t))
+;; (use-package zmq
+;;   :quelpa ((zmq :fetcher github :repo "dzop/emacs-zmq")
+;; 	   ))
+;; (use-package jupyter
+;;   :quelpa ((jupyter :fetcher github :repo "dzop/emacs-jupyter")
+;; 	   :upgrade t))
 
 ;; And also try out emacs ipython notebook
 (use-package ein :ensure t)
