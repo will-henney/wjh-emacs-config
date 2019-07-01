@@ -8,8 +8,10 @@
   :config
   (elpy-enable)
   (setq python-check-command "pyflakes")
+  ;; 01 Jul 2019 fix incompatibililty with jupyter on macos
   (setq python-shell-interpreter "jupyter"
 	python-shell-interpreter-args "console --simple-prompt"
+	elpy-shell-echo-output nil
 	python-shell-prompt-detect-failure-warning nil)
   (add-to-list 'python-shell-completion-native-disabled-interpreters
                "jupyter")
