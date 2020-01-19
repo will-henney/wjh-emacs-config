@@ -34,7 +34,7 @@
  '(font-latex-title-2-face ((t (:inherit font-latex-title-3-face :height 1.05))) t)
  '(font-latex-title-3-face ((t (:inherit font-latex-title-4-face :height 1.05))) t)
  '(font-latex-warning-face ((t (:foreground "#e5786d" :weight normal))))
- '(font-lock-comment-face ((t (:foreground "ivory4" :slant italic))))
+ '(font-lock-comment-face ((t (:foreground "ivory3" :slant italic))))
  '(font-lock-constant-face ((t (:foreground "#cFfBcF"))))
  '(font-lock-function-name-face ((t (:inherit fixed-pitch :foreground "#cccccc" :weight normal))))
  '(font-lock-keyword-face ((t (:inherit fixed-pitch :foreground "SlateGray2" :weight normal))))
@@ -87,7 +87,7 @@
  '(org-ref-cite-face ((t (:inherit org-link :foreground "medium sea green"))))
  '(org-ref-label-face ((t (:inherit org-link :foreground "indian red"))))
  '(org-special-keyword ((t (:inherit (font-lock-keyword-face fixed-pitch) :foreground "#a5a565" :slant italic :weight normal))))
- '(org-table ((t (:inherit (fixed-pitch unspecified) :family "Input Mono Compressed" :foreground "PaleTurquoise1" :height 1.0))))
+ '(org-table ((t (:inherit (fixed-pitch unspecified) :family "Victor Mono Thin" :foreground "PaleTurquoise1" :height 1.0))))
  '(org-tag ((t (:foreground "gray60" :slant italic :weight thin :height 1.0))))
  '(planner-completed-task-face ((t (:foreground "gray50" :strike-through t))) t)
  '(popup-menu-mouse-face ((t (:background "#D0BF8F" :foreground "#000000"))))
@@ -298,7 +298,7 @@
  '(org-tags-column 50)
  '(package-selected-packages
    (quote
-    (magit-todos emacs-websocket jupyter org-ref ivy-prescient prescient python-docstring python-docstring-mode typo guess-language web-mode org-fstree org-dropbox header2 all-the-icons-ivy all-the-icons-dired all-the-icons counsel-projectile suggest e2wm org-extra org-contacts worf quelpa-use-package ag org-sticky-header ivy-hydra counsel mu4e org-pomodoro org-table-sticky-header org-edit-latex elfeed-org auto-org-md julia-mode zenburn-theme yaml-mode w3m virtualenv unfill undo-tree synonyms svg-mode-line-themes stripe-buffer spotlight sparkline smex smartparens smart-mode-line rainbow-mode projectile prodigy pinboard persistent-scratch paradox pallet org-trello org-plus-contrib org-magit org-dotemacs org-bullets org-bookmark-heading ob-ipython nose names multiple-cursors markdown-mode magithub magit-svn lispy latex-extra langtool key-chord idomenu ido-vertical-mode ibuffer-vc hungry-delete htmlize helm-dash helm-bibtex guide-key google-this golden-ratio god-mode gitty git-messenger git-gutter ggtags fuzzy fold-dwim-org flx-ido fancy-narrow expand-region esxml elpy elnode easy-kill-extras dired-details diminish deft csv-mode crosshairs creole-mode conda color-identifiers-mode bibslurp bf-mode auto-complete alert airplay ack-and-a-half achievements ace-jump-mode)))
+    (edit-indirect magit-todos emacs-websocket jupyter org-ref ivy-prescient prescient python-docstring python-docstring-mode typo guess-language web-mode org-fstree org-dropbox header2 all-the-icons-ivy all-the-icons-dired all-the-icons counsel-projectile suggest e2wm org-extra org-contacts worf quelpa-use-package ag org-sticky-header ivy-hydra counsel mu4e org-pomodoro org-table-sticky-header org-edit-latex elfeed-org auto-org-md julia-mode zenburn-theme yaml-mode w3m virtualenv unfill undo-tree synonyms svg-mode-line-themes stripe-buffer spotlight sparkline smex smartparens smart-mode-line rainbow-mode projectile prodigy pinboard persistent-scratch paradox pallet org-trello org-plus-contrib org-magit org-dotemacs org-bullets org-bookmark-heading ob-ipython nose names multiple-cursors markdown-mode magithub magit-svn lispy latex-extra langtool key-chord idomenu ido-vertical-mode ibuffer-vc hungry-delete htmlize helm-dash helm-bibtex guide-key google-this golden-ratio god-mode gitty git-messenger git-gutter ggtags fuzzy fold-dwim-org flx-ido fancy-narrow expand-region esxml elpy elnode easy-kill-extras dired-details diminish deft csv-mode crosshairs creole-mode conda color-identifiers-mode bibslurp bf-mode auto-complete alert airplay ack-and-a-half achievements ace-jump-mode)))
  '(paradox-automatically-star t)
  '(pinboard-url "http://feeds.pinboard.in/json/u:deprecated/?count=10")
  '(recentf-exclude
