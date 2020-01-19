@@ -13,6 +13,8 @@
 	python-shell-interpreter-args "console --simple-prompt"
 	elpy-shell-echo-output nil
 	python-shell-prompt-detect-failure-warning nil)
+  (advice-add 'run-python
+	      :after (lambda (_ _ _) (python-shell-send-string "import readline")))  
   (add-to-list 'python-shell-completion-native-disabled-interpreters
                "jupyter")
   ;; 08 Aug 2014 WJH Choose a backend

@@ -15,13 +15,13 @@
 
 ;; 12 May 2017 - try out quelpa for getting non-elpa versions of
 ;; packages directly from github and local files
-(ignore-errors
-  (if (require 'quelpa nil t)
-      (quelpa-self-upgrade)
-    (with-temp-buffer
-      (url-insert-file-contents
-       "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
-      (eval-buffer))))
+;; (ignore-errors
+;;   (if (require 'quelpa nil t)
+;;       (quelpa-self-upgrade)
+;;     (with-temp-buffer
+;;       (url-insert-file-contents
+;;        "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
+;;       (eval-buffer))))
 
 (use-package quelpa-use-package
   :ensure t
@@ -842,10 +842,10 @@ when a file is dopped on Emacs window."
 ;; 16 Apr 2019 - Try out emacs-jupyter
 (use-package websocket
   :quelpa ((websocket :fetcher github :repo "ahyatt/emacs-websocket")
-	   :upgrade t))
+	   :upgrade nil))
 (use-package simple-httpd
   :quelpa ((simple-httpd :fetcher github :repo "skeeto/emacs-web-server")
-	   :upgrade t))
+	   :upgrade nil))
 ;; (use-package zmq
 ;;   :quelpa ((zmq :fetcher github :repo "dzop/emacs-zmq")
 ;; 	   ))
