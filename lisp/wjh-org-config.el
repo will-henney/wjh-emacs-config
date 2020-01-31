@@ -261,8 +261,8 @@ block."
 
 
 ;;; Support for magit links in org buffers
-;;; https://github.com/sigma/org-magit
-(use-package org-magit
+;;; https://github.com/magit/orgit (updated 30 Jan 2020)
+(use-package orgit
   :ensure t)
 ;; (wjh-add-to-load-path "org-magit")
 ;; (require 'org-magit)
@@ -412,16 +412,17 @@ block."
 (setq org-use-speed-commands t)
 
 ;; 17 Apr 2019 - replacement for the templates triggered by "<"
-(require 'org-tempo)
-(tempo-define-template "org-src_python"
-		       '("#+begin_src python" p  n
-			 n "#+end_src" )
-		       "<p" "Insert Python Block" 'org-tempo-tags)
-(tempo-define-template "org-src-named-python"
-		       '("#+name: " p  n
-			 "#+begin_src python"   n
-			 n "#+end_src" )
-		       "<P" "Insert Named Python Block" 'org-tempo-tags)
+;; 30 Jan 2020 - REMOVED (I don't use this any more)
+;; (require 'org-tempo)
+;; (tempo-define-template "org-src_python"
+;; 		       '("#+begin_src python" p  n
+;; 			 n "#+end_src" )
+;; 		       "<p" "Insert Python Block" 'org-tempo-tags)
+;; (tempo-define-template "org-src-named-python"
+;; 		       '("#+name: " p  n
+;; 			 "#+begin_src python"   n
+;; 			 n "#+end_src" )
+;; 		       "<P" "Insert Named Python Block" 'org-tempo-tags)
 
 ;; 15 Nov 2009 - ubiquitous org entry
 ;; (require 'org-mac-protocol)

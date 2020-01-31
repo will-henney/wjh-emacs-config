@@ -7,6 +7,9 @@
   ;; :pin elpy
   :config
   (elpy-enable)
+  ;; WJH 30 Jan 2020 - Set default environment for anaconda
+  (with-demoted-errors "Elpy WJH configuration error:"
+    (pyvenv-activate (expand-file-name "~/miniconda3/envs/science")))
   (setq python-check-command "pyflakes")
   ;; 01 Jul 2019 fix incompatibililty with jupyter on macos
   (setq python-shell-interpreter "jupyter"

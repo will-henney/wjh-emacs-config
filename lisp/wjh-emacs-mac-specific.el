@@ -169,6 +169,7 @@ left/right swipes"
 (global-set-key [wheel-left] 'wjh/drop-event)
 (global-set-key [wheel-right] 'wjh/drop-event)
 
+;; 30 Jan 2020 OSOLETED by exec-path-from-shell.py - see wjh-emacs-use-package.el
 ;; Sort out my PATH variables at last
 ;; Copied from this gist:
 ;; https://gist.github.com/bradleywright/2046593
@@ -181,16 +182,16 @@ left/right swipes"
 ;;
 ;; Basically apps launched from Finder inherit their environment from
 ;; a .plist file rather than the shell environment.
-(defun set-exec-path-from-shell-PATH ()
-  "Sets the exec-path to the same value used by the user shell"
-  (let ((path-from-shell
-         (replace-regexp-in-string
-          "[[:space:]\n]*$" ""
-          (shell-command-to-string "$SHELL -l -c 'echo $PATH'"))))
-    (setenv "PATH" path-from-shell)
-    (setq exec-path (split-string path-from-shell path-separator))))
-;; call function now
-(set-exec-path-from-shell-PATH)
+;; (defun set-exec-path-from-shell-PATH ()
+;;   "Sets the exec-path to the same value used by the user shell"
+;;   (let ((path-from-shell
+;;          (replace-regexp-in-string
+;;           "[[:space:]\n]*$" ""
+;;           (shell-command-to-string "$SHELL -l -c 'echo $PATH'"))))
+;;     (setenv "PATH" path-from-shell)
+;;     (setq exec-path (split-string path-from-shell path-separator))))
+;; ;; call function now
+;; (set-exec-path-from-shell-PATH)
 
 ;; 05 Mar 2014 - Clean up the menu-bar.  The idea here is to eliminate
 ;; top-level menus that I almost never would want to use.  The only

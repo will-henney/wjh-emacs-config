@@ -9,8 +9,12 @@
 ;; (eval-when-compile
 ;;   (require 'use-package))
 (require 'use-package)
-(require 'diminish)
-(require 'bind-key)   
+
+;; On first run on a ne machines, diminish and bindkey neet to be installed
+(use-package diminish
+  :ensure t)
+(use-package bind-key
+  :ensure t)
 
 
 ;; 12 May 2017 - try out quelpa for getting non-elpa versions of
@@ -52,8 +56,9 @@
 ;; 	       ))
 
 ;; 02 Sep 2017 - utility functions for writing your own elisp packages
-(use-package header2
-  :ensure t)
+;; 19 Jan 2020 - Cannot seem to install this package
+;; (use-package header2
+;;   :ensure t)
 
 
 ;; 27 Apr 2017 - new mail config
@@ -591,10 +596,11 @@ recognised."
 
 
 ;; 04 Nov 2013 - try out anchored transpose, for swapping two regions around a static part
-(use-package anchored-transpose
-  :ensure t
-  :config
-  (global-set-key [?\C-x ?t] 'anchored-transpose))
+;; 19 Jan 2020 - This packages has been dropped from MELPA because it comes from emacs-wiki
+;; (use-package anchored-transpose
+;;   :ensure t
+;;   :config
+;;   (global-set-key [?\C-x ?t] 'anchored-transpose))
 ;; Test of anchored transpose: 
 ;;
 ;; FROM: I want this phrase but not that word.
@@ -830,6 +836,16 @@ when a file is dopped on Emacs window."
 (use-package magit-todos :ensure t)
 
 
+;; 30 Jan 2020 - this package is magical - it seems to sort out my
+;; conda problems. It also supersedes the
+;; `set-exec-path-from-shell-PATH` function I had in
+;; wjh-emacs-mac-specific.el
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (exec-path-from-shell-initialize))
+
+
 ;; Trying something new 10 Mar 2013: https://github.com/jorgenschaefer/elpy/wiki
 (load "wjh-python-elpy-config")
 
@@ -866,9 +882,16 @@ when a file is dopped on Emacs window."
 ;;   :config (load "wjh-org-config"))
 
 ;; 04 Sep 2017 - Try and use org master branch via quelpa
-(use-package org
-  :quelpa ((org :fetcher git :url "http://orgmode.org/org-mode.git") :update t)
-  :config (load "wjh-org-config"))
+;; 20 Jan 2020 - comment out for now since repo is down
+(load "wjh-org-config")
+;; (with-demoted-errors "Org-mode update error: %S"
+;;   (use-package org
+;;     :quelpa ((org
+;; 	      :fetcher git
+;; 	      :url "https://code.orgmode.org/bzg/org-mode.git")
+;; 	     :update t)
+;;     :config (load "wjh-org-config")))
+
 
 ;; 04 Sep 2017 - this will grab all my files from the
 ;; `org-dropbox-note-dir` and file them in an org datetree file.
@@ -892,7 +915,8 @@ when a file is dopped on Emacs window."
 ;;
 ;; This is an old package (last release 2009), but I want to check if
 ;; it still works
-(use-package org-fstree :ensure t)
+;; 20 Jan 2020 - Not on MELPA any more, so disabled
+;; (use-package org-fstree :ensure t)
 
 
 ;; misc packages
@@ -975,10 +999,8 @@ prefix argument set OTHER-WINDOW true."
   (global-set-key (kbd "C-^") 'wjh/dired-jump)
   (global-set-key (kbd "M-6") 'wjh/dired-jump))
 
-(use-package dired-details
-  :ensure t
-  :config
-  (dired-details-install))
+;; dired-details mode is obsolete - functionality is now built in
+(add-hook 'dired-mode-hook 'dired-hide-details-mode)
 
 ;; Use the all-the-icons for dired
 ;; 
