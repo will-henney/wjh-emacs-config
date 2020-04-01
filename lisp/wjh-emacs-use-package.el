@@ -51,9 +51,13 @@
 ;; But I haven't got round to this yet
 ;; Example here: https://emacs.stackexchange.com/a/26510/1980
 
-;; (use-package org
-;;   :quelpa (org :fetcher git
-;; 	       ))
+(use-package org
+  :quelpa (org :fetcher git)
+  )
+
+;; 31 Mar 2020 - Try out this, looks good: https://github.com/alphapapa/org-sidebar
+(use-package org-sidebar
+  :quelpa (org-sidebar :fetcher github :repo "alphapapa/org-sidebar"))
 
 ;; 02 Sep 2017 - utility functions for writing your own elisp packages
 ;; 19 Jan 2020 - Cannot seem to install this package
