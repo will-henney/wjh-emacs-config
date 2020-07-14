@@ -55,6 +55,12 @@
   :quelpa (org :fetcher git)
   )
 
+
+;; 14 Jul 2020 - org-roam
+(make-directory "~/org-roam")
+(setq org-roam-directory "~/org-roam")
+(add-hook 'after-init-hook 'org-roam-mode)
+
 ;; 31 Mar 2020 - Try out this, looks good: https://github.com/alphapapa/org-sidebar
 (use-package org-sidebar
   :quelpa (org-sidebar :fetcher github :repo "alphapapa/org-sidebar"))
@@ -126,6 +132,12 @@
 
 
 
+;; 14 Jul 2020 - spotlight
+(use-package spotlight
+  :bind
+  (("s-SPC" . spotlight))
+  :ensure t)
+
 ;; 25 Sep 2016 - do the opposite of fill
 (use-package unfill
   :bind

@@ -199,6 +199,9 @@ recent first."
 
 ;; Technique for replacing number at point is partially based on
 ;; https://stackoverflow.com/questions/25188206/how-do-you-write-an-emacs-lisp-function-to-replace-a-word-at-point
+;; 17 Apr 2020 - need to make this better - use the following regex:
+;; "\b-?[1-9](?:\.\d+)?[Ee][-+]?\d+\b" taken from
+;; http://regexlib.com/Search.aspx?k=scientific%20notation&AspxAutoDetectCookieSupport=1
 (defun wjh/convert-float-to-clean-form (p)
   "Convert number at point to a nicer representation."
   (interactive "p")
