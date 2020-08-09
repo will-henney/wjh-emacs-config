@@ -57,7 +57,6 @@
 
 
 ;; 14 Jul 2020 - org-roam
-(make-directory "~/org-roam")
 (setq org-roam-directory "~/org-roam")
 (add-hook 'after-init-hook 'org-roam-mode)
 

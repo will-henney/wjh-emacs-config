@@ -7,6 +7,10 @@
   ;; :pin elpy
   :config
   (elpy-enable)
+  ;; WJH 08 Aug 2020 - Run black to clean up formatting on save
+  (add-hook 'elpy-mode-hook (lambda ()
+			      (add-hook 'before-save-hook
+					'elpy-black-fix-code nil t)))
   ;; WJH 30 Jan 2020 - Set default environment for anaconda
   (with-demoted-errors "Elpy WJH configuration error:"
     (pyvenv-activate (expand-file-name "~/miniconda3/envs/science")))
