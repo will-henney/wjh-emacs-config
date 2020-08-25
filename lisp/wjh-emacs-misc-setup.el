@@ -1,6 +1,14 @@
 ;; Other stuff
 
 
+;; 24 Aug 2020 - Use mouse when in terminal emacs - useful when connecting from iPad!
+(unless (display-graphic-p)
+  (xterm-mouse-mode)
+  (global-set-key [mouse-4] (lambda () (interactive) (scroll-down 1)))
+  (global-set-key [mouse-5] (lambda () (interactive) (scroll-up 1))))
+
+
+
 ;; 04 Apr 2015 - so we never lose text copied from external application
 ;; Based on some discussion thread on reddit
 (setq save-interprogram-paste-before-kill t)
