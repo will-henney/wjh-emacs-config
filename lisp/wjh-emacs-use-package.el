@@ -166,11 +166,12 @@
   :ensure t)
 
 
+;; 26 Aug 2020 - DISABLE lispy mode since I suspect that it might be causing hangs
 ;; 21 Jun 2015 - lispy mode (another abo-abo package)
-(use-package lispy
-  :ensure t
-  :config
-  (add-hook 'emacs-lisp-mode-hook (lambda () (lispy-mode 1))))
+;; (use-package lispy
+;;   :ensure t
+;;   :config
+;;   (add-hook 'emacs-lisp-mode-hook (lambda () (lispy-mode 1))))
 
 
 
