@@ -55,6 +55,10 @@
   :quelpa (org :fetcher git)
   )
 
+;; 02 Sep 2020 - use ox-hugo for my new blog
+(use-package ox-hugo
+  :ensure t
+  :after ox)
 
 ;; 14 Jul 2020 - org-roam
 (setq org-roam-directory "~/org-roam")
