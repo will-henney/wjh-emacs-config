@@ -1,9 +1,10 @@
-(defun wjh/insert-current-date ()
+(defun wjh/insert-current-date (arg)
   "Insert the current date in format \"dd MONTH yyyy\" at point."
-  (interactive)
-  (insert (format-time-string "%d %b %Y" (current-time))))
+  (interactive "p")
+  (let* ((wjh/time-format (if (= arg 4) "%d %b %Y" "%Y-%m-%d")))
+    (insert (format-time-string wjh/time-format (current-time))))
+  )
 (global-set-key "\C-cd" 'wjh/insert-current-date)
-
 
 ;; This is no longer necessary in emacs 22+ since we have input methods, 
 ;; which are much better
