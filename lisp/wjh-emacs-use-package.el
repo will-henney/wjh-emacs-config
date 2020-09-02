@@ -930,6 +930,19 @@ when a file is dopped on Emacs window."
 ;; 	     :update t)
 ;;     :config (load "wjh-org-config")))
 
+;; 2020-08-26 - Try and patch bibtex mode command to stop errors
+;; during bibtex-parse-buffers-stealthily
+(use-package bibtex
+  :config
+  (defsubst bibtex-type-in-head ()
+    "Extract BibTeX type in head."
+    ;; WJH 2020-08-26 - allow for possibility that match-beginning or
+    ;; match-end might return nil
+    (buffer-substring-no-properties
+     (1+ (or (match-beginning bibtex-type-in-head) 0))
+     (or (match-end bibtex-type-in-head) 1))))
+
+
 
 ;; 04 Sep 2017 - this will grab all my files from the
 ;; `org-dropbox-note-dir` and file them in an org datetree file.
