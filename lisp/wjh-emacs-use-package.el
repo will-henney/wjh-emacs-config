@@ -70,6 +70,28 @@
 ;;   :ensure t)
 
 
+;; Yaml mode is included in emacs, but there is a newer version on github
+;; This incorporates code for outline mode from this issue: https://github.com/yoshiki/yaml-mode/issues/25
+(use-package yaml-mode
+  :ensure t
+  :mode (".yaml$")
+  :hook
+  (yaml-mode . yaml-mode-outline-hook)
+
+  :init
+  (defun yaml-outline-level ()
+    "Return the outline level based on the indentation, hardcoded at 2 spaces."
+    (s-count-matches "[ ]\\{2\\}" (match-string 0)))
+
+  (defun yaml-mode-outline-hook ()
+    (outline-minor-mode)
+    (setq outline-regexp
+	  "^\\([ ]\\{2\\}\\)*\\([-] \\)?\\([\"][^\"]*[\"]\\|[a-zA-Z0-9_-]*\\):")
+    (setq outline-level 'yaml-outline-level))
+  )
+
+
+
 ;; 27 Apr 2017 - new mail config
 ;; Based on a bizarre hybrid of the following sites:
 ;; + http://pragmaticemacs.com/emacs/master-your-inbox-with-mu4e-and-org-mode/
