@@ -195,39 +195,38 @@
 ;; all-the-icons uses special icon fonts, so that the icons behave a
 ;; lot better (scale with surrounding text, can have properties, etc)
 
-(use-package all-the-icons
-  :ensure t)
-;; After installing for first time (only), we need to also install the
-;; fonts via M-x all-the-icons-install-fonts
+(when (display-graphic-p)
+  (use-package all-the-icons
+    :ensure t)
+  ;; After installing for first time (only), we need to also install the
+  ;; fonts via M-x all-the-icons-install-fonts
 
-;; See below for the application of this to dired
+  ;; See below for the application of this to dired
 
-;; Use the icons for ivy
-;;
-;; TODO: There is a strange space between the icon and the completion
-;; candidate
-(use-package all-the-icons-ivy
-  :ensure t
-  :config (all-the-icons-ivy-setup))
-
-;; Quick patches to fix spacing of icons in above package
-(defun all-the-icons-ivy--buffer-transformer (b s)
-  "Return a candidate string for buffer B named S preceded by an icon.
+  ;; Use the icons for ivy
+  ;;
+  ;; TODO: There is a strange space between the icon and the completion
+  ;; candidate
+  (use-package all-the-icons-ivy
+    :ensure t
+    :config (all-the-icons-ivy-setup))
+  ;; Quick patches to fix spacing of icons in above package
+  (defun all-the-icons-ivy--buffer-transformer (b s)
+    "Return a candidate string for buffer B named S preceded by an icon.
 Try to find the icon for the buffer's B `major-mode'.
 If that fails look for an icon for the mode that the `major-mode' is derived from."
-  (let* ((mode (buffer-local-value 'major-mode b))
-	 (icon (or (all-the-icons-ivy--icon-for-mode mode)
-		   (all-the-icons-ivy--icon-for-mode (get mode 'derived-mode-parent))
-		   (all-the-icons-octicon "eye"))))
+    (let* ((mode (buffer-local-value 'major-mode b))
+	   (icon (or (all-the-icons-ivy--icon-for-mode mode)
+		     (all-the-icons-ivy--icon-for-mode (get mode 'derived-mode-parent))
+		     (all-the-icons-octicon "eye"))))
+      (format "%s %s"
+	      (propertize "@" 'display icon)
+	      (all-the-icons-ivy--buffer-propertize b s))))
+  (defun all-the-icons-ivy-file-transformer (s)
+    "Return a candidate string for filename S preceded by an icon."
     (format "%s %s"
-            (propertize "@" 'display icon)
-            (all-the-icons-ivy--buffer-propertize b s))))
-
-(defun all-the-icons-ivy-file-transformer (s)
-  "Return a candidate string for filename S preceded by an icon."
-  (format "%s %s"
-          (propertize "@" 'display (all-the-icons-icon-for-file s))
-          s))
+	    (propertize "@" 'display (all-the-icons-icon-for-file s))
+	    s)))
 
 
 (use-package swiper
@@ -587,11 +586,12 @@ recognised."
 
 
 ;; 04 Nov 2013 - try out google-this
+(setq google-this-keybind (kbd "C-x g"))
 (use-package google-this
   :ensure t
   :config
   (google-this-mode 1)
-  (global-set-key (kbd "C-x g") 'google-this-mode-submap))
+  )
 ;; To start a blank search, do google-search ("C-c / RET" or "C-x g
 ;; RET"). If you want more control of what "under point" means for the
 ;; google-this command, there are the google-word, google-symbol,
@@ -1024,16 +1024,17 @@ prefix argument set OTHER-WINDOW true."
 ;; mode.  SOLVED (03 Sep 2017): by just setting the "hidden" indicator
 ;; to the empty string (you don't need it if you have the icons)
 
-(defun wjh/maybe-all-the-icons-dired-mode ()
-  "Turn on `all-the-icons-dired-mode` if the directory is not too large"
-  (when (<= (count-lines 1 (buffer-size)) 300)
-    (all-the-icons-dired-mode 1)))
+(when (display-graphic-p)
+  (defun wjh/maybe-all-the-icons-dired-mode ()
+    "Turn on `all-the-icons-dired-mode` if the directory is not too large"
+    (when (<= (count-lines 1 (buffer-size)) 300)
+      (all-the-icons-dired-mode 1)))
 
-(use-package all-the-icons-dired
-  :ensure t
-  :config
-  (add-hook 'dired-after-readin-hook 'wjh/maybe-all-the-icons-dired-mode)
-  (setq dired-details-hidden-string ""))
+  (use-package all-the-icons-dired
+    :ensure t
+    :config
+    (add-hook 'dired-after-readin-hook 'wjh/maybe-all-the-icons-dired-mode)
+    (setq dired-details-hidden-string "")))
 
 
 
