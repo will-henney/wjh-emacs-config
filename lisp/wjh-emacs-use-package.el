@@ -10,7 +10,7 @@
 ;;   (require 'use-package))
 (require 'use-package)
 
-;; On first run on a ne machines, diminish and bindkey neet to be installed
+;; On first run on a new machine, diminish and bindkey neet to be installed
 (use-package diminish
   :ensure t)
 (use-package bind-key
@@ -72,6 +72,17 @@
 ;; 19 Jan 2020 - Cannot seem to install this package
 ;; (use-package header2
 ;;   :ensure t)
+
+;; 02 Sep 2020 - A better *help* buffer
+;; https://github.com/Wilfred/helpful
+(use-package helpful
+  :ensure t
+  :bind
+  ;; Rebind 
+  (("C-h f" . helpful-callable)
+   ("C-h v" . helpful-variable)
+   ("C-h k" . helpful-key))
+  )
 
 
 ;; Yaml mode is included in emacs, but there is a newer version on github
