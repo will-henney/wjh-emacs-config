@@ -1,5 +1,6 @@
 (defun wjh/insert-current-date (arg)
-  "Insert the current date in format \"dd MONTH yyyy\" at point."
+  "Insert the current date in format \"yyyy-mm-dd\" at point.
+With a prefix argument, use the format \"dd MONTH yyyy\" instead."
   (interactive "p")
   (let* ((wjh/time-format (if (= arg 4) "%d %b %Y" "%Y-%m-%d")))
     (insert (format-time-string wjh/time-format (current-time))))
