@@ -352,9 +352,9 @@ problems with apostrophes at the emacs word recognition
 level (although they work fine in hunspell itself). This is
 because the othercars parameter is not set properly. "
   (setenv "LANG" "en_US.UTF-8")
-  (setq ispell-dictionary "en_US,en_GB-large")
+  (setq ispell-dictionary "en_US,es_MX,en_GB-large")
   (ispell-set-spellchecker-params)
-  (ispell-hunspell-add-multi-dic "en_US,en_GB-large"))
+  (ispell-hunspell-add-multi-dic "en_US,es_MX,en_GB-large"))
 
 (defun hackish-hunspell-config ()
   "Set up `ispell-local-dictionary-alist` by hand
@@ -390,7 +390,8 @@ recognised."
   (when (executable-find "hunspell")
     (setq-default ispell-program-name (executable-find "hunspell"))
     (setq ispell-really-hunspell t)
-    (hackish-hunspell-config)
+    (clean-hunspell-config)
+    ;; (hackish-hunspell-config)
     )
   ;; 10 Aug 2017: restore this since the next bit doesn't work
   (define-key flyspell-mouse-map [s-down-mouse-1] 'flyspell-correct-word))
