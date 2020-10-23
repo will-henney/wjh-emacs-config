@@ -60,6 +60,11 @@
   :ensure t
   :after ox)
 
+;; 2020-10-22 - use ox-gfm to export github-flavored markdown
+(use-package ox-gfm
+  :ensure t
+  :after ox)
+
 ;; 14 Jul 2020 - org-roam
 (setq org-roam-directory "~/org-roam")
 (add-hook 'after-init-hook 'org-roam-mode)
