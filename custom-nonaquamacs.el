@@ -302,7 +302,7 @@
  '(pinboard-url "http://feeds.pinboard.in/json/u:deprecated/?count=10")
  '(python-check-command "black")
  '(recentf-exclude
-   '("/\\(\\(\\(COMMIT\\|NOTES\\|PULLREQ\\|TAG\\)_EDIT\\|MERGE_\\|\\)MSG\\|BRANCH_DESCRIPTION\\)\\'" "\\.cask"))
+   '("/\\(\\(\\(COMMIT\\|NOTES\\|PULLREQ\\|TAG\\)_EDIT\\|MERGE_\\|\\)MSG\\|BRANCH_DESCRIPTION\\)\\'" "\\.cask" "\\.emacs\\.d/elpa" "ido\\.last"))
  '(recentf-max-menu-items 50)
  '(recentf-mode t)
  '(recentf-show-file-shortcuts-flag nil)

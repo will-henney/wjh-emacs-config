@@ -189,6 +189,9 @@ block."
 		    :underline nil :overline nil
 		    :foreground "gray60" :weight 'light)
 
+;; 2020-10-23 Revert the changed default in org 9.4
+(setq org-fontify-done-headline nil)
+
 ;;iimage
 (use-package iimage
   :ensure t
