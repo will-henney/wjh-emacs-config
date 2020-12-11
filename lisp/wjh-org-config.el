@@ -239,8 +239,11 @@ block."
 
 ;; export latex equations
 (setq org-export-with-LaTeX-fragments t)
-;; minor mode for editing LaTeX
-(add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+
+;; 2020-10-24 - finally get round to disabling cdlatex - I never use
+;; it and it just gets in the way
+;; ;; minor mode for editing LaTeX
+;; (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
 
 ;; (setq org-export-latex-packages-alist '(( "" "arev" t )))
 ;; This uses a tt font - we want to change it to Monaco eventually, see TODO.org

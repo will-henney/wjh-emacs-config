@@ -73,6 +73,7 @@
  '(nxml-element-local-name ((t (:inherit font-lock-function-name-face :foreground "lemon chiffon" :slant italic :weight bold))))
  '(org-block ((t (:inherit fixed-pitch :background "gray27" :weight ultra-light :height 1.0))))
  '(org-block-background ((t (:inherit fixed-pitch :background "gray18"))))
+ '(org-column-title ((t (:inherit org-level-1 :background "#2B2B2B" :underline t :weight bold))))
  '(org-date ((t (:inherit org-table :foreground "#c2a9c2" :underline t))))
  '(org-formula ((t (:inherit org-table :foreground "LightSalmon1"))))
  '(org-indent ((t (:foreground "#3f3f3f"))))
@@ -297,7 +298,7 @@
  '(org-tag-faces '(("noexport" . "#33bb44")))
  '(org-tags-column 50)
  '(package-selected-packages
-   '(ox-gfm helpful ox-hugo org-roam org-sidebar org-ql map peg ov org-super-agenda ts ht exec-path-from-shell orgit edit-indirect magit-todos emacs-websocket jupyter org-ref ivy-prescient prescient python-docstring python-docstring-mode typo guess-language web-mode org-fstree org-dropbox header2 all-the-icons-ivy all-the-icons-dired all-the-icons counsel-projectile suggest e2wm org-extra org-contacts worf quelpa-use-package ag org-sticky-header ivy-hydra counsel mu4e org-pomodoro org-table-sticky-header org-edit-latex elfeed-org auto-org-md julia-mode zenburn-theme yaml-mode w3m virtualenv unfill undo-tree synonyms svg-mode-line-themes stripe-buffer spotlight sparkline smex smartparens smart-mode-line rainbow-mode projectile prodigy pinboard persistent-scratch paradox pallet org-trello org-plus-contrib org-magit org-dotemacs org-bullets org-bookmark-heading ob-ipython nose names multiple-cursors markdown-mode magithub magit-svn lispy latex-extra langtool key-chord idomenu ido-vertical-mode ibuffer-vc hungry-delete htmlize helm-dash helm-bibtex guide-key google-this golden-ratio god-mode gitty git-messenger git-gutter ggtags fuzzy fold-dwim-org flx-ido fancy-narrow expand-region esxml elpy elnode easy-kill-extras dired-details diminish deft csv-mode crosshairs creole-mode conda color-identifiers-mode bibslurp bf-mode auto-complete alert airplay ack-and-a-half achievements ace-jump-mode))
+   '(all-the-icons-ivy-rich all-the-icons-ibuffer all-the-icons-ibuffer-mode ox-gfm helpful ox-hugo org-roam org-sidebar org-ql map peg ov org-super-agenda ts ht exec-path-from-shell orgit edit-indirect magit-todos emacs-websocket jupyter org-ref ivy-prescient prescient python-docstring python-docstring-mode typo guess-language web-mode org-fstree org-dropbox header2 all-the-icons-ivy all-the-icons-dired all-the-icons counsel-projectile suggest e2wm org-extra org-contacts worf quelpa-use-package ag org-sticky-header ivy-hydra counsel mu4e org-pomodoro org-table-sticky-header org-edit-latex elfeed-org auto-org-md julia-mode zenburn-theme yaml-mode w3m virtualenv unfill undo-tree synonyms svg-mode-line-themes stripe-buffer spotlight sparkline smex smartparens smart-mode-line rainbow-mode projectile prodigy pinboard persistent-scratch paradox pallet org-trello org-plus-contrib org-magit org-dotemacs org-bullets org-bookmark-heading ob-ipython nose names multiple-cursors markdown-mode magithub magit-svn lispy latex-extra langtool key-chord idomenu ido-vertical-mode ibuffer-vc hungry-delete htmlize helm-dash helm-bibtex guide-key google-this golden-ratio god-mode gitty git-messenger git-gutter ggtags fuzzy fold-dwim-org flx-ido fancy-narrow expand-region esxml elpy elnode easy-kill-extras dired-details diminish deft csv-mode crosshairs creole-mode conda color-identifiers-mode bibslurp bf-mode auto-complete alert airplay ack-and-a-half achievements ace-jump-mode))
  '(paradox-automatically-star t)
  '(pinboard-url "http://feeds.pinboard.in/json/u:deprecated/?count=10")
  '(python-check-command "black")
@@ -368,4 +369,6 @@
  '(shr-color-visible-luminance-min 60)
  '(shr-use-fonts nil)
  '(use-dialog-box nil)
- '(visible-bell t))
+ '(visible-bell t)
+ '(whitespace-style
+   '(face trailing tabs spaces newline empty indentation space-after-tab space-before-tab space-mark tab-mark newline-mark)))

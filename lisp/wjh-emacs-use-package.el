@@ -234,44 +234,6 @@
 (use-package paradox
   :ensure t)
 
-;; 01 Sep 2017
-;; all-the-icons uses special icon fonts, so that the icons behave a
-;; lot better (scale with surrounding text, can have properties, etc)
-
-(when (display-graphic-p)
-  (use-package all-the-icons
-    :ensure t)
-  ;; After installing for first time (only), we need to also install the
-  ;; fonts via M-x all-the-icons-install-fonts
-
-  ;; See below for the application of this to dired
-
-  ;; Use the icons for ivy
-  ;;
-  ;; TODO: There is a strange space between the icon and the completion
-  ;; candidate
-  (use-package all-the-icons-ivy
-    :ensure t
-    :config (all-the-icons-ivy-setup))
-  ;; Quick patches to fix spacing of icons in above package
-  (defun all-the-icons-ivy--buffer-transformer (b s)
-    "Return a candidate string for buffer B named S preceded by an icon.
-Try to find the icon for the buffer's B `major-mode'.
-If that fails look for an icon for the mode that the `major-mode' is derived from."
-    (let* ((mode (buffer-local-value 'major-mode b))
-	   (icon (or (all-the-icons-ivy--icon-for-mode mode)
-		     (all-the-icons-ivy--icon-for-mode (get mode 'derived-mode-parent))
-		     (all-the-icons-octicon "eye"))))
-      (format "%s %s"
-	      (propertize "@" 'display icon)
-	      (all-the-icons-ivy--buffer-propertize b s))))
-  (defun all-the-icons-ivy-file-transformer (s)
-    "Return a candidate string for filename S preceded by an icon."
-    (format "%s %s"
-	    (propertize "@" 'display (all-the-icons-icon-for-file s))
-	    s)))
-
-
 (use-package swiper
   :ensure t
   :config
@@ -319,6 +281,65 @@ If that fails look for an icon for the mode that the `major-mode' is derived fro
   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
   (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this))
+
+
+;; This form is for packages that only work in GUI emacs, not in a terminal
+(when (display-graphic-p)
+  ;; 01 Sep 2017
+  ;; all-the-icons uses special icon fonts, so that the icons behave a
+  ;; lot better (scale with surrounding text, can have properties, etc)
+  (use-package all-the-icons
+    :ensure t)
+  ;; After installing for first time (only), we need to also install the
+  ;; fonts via M-x all-the-icons-install-fonts
+
+  ;; See below for the application of this to dired
+
+  (use-package all-the-icons-ibuffer
+    :ensure t
+    :init (all-the-icons-ibuffer-mode 1))
+
+  ;; Use the icons for ivy
+  ;;
+  ;; TODO: There is a strange space between the icon and the completion
+  ;; candidate
+  (use-package all-the-icons-ivy
+    :ensure t
+    :config (all-the-icons-ivy-setup))
+  ;; Quick patches to fix spacing of icons in above package
+  (defun all-the-icons-ivy--buffer-transformer (b s)
+    "Return a candidate string for buffer B named S preceded by an icon.
+Try to find the icon for the buffer's B `major-mode'.
+If that fails look for an icon for the mode that the `major-mode' is derived from."
+    (let* ((mode (buffer-local-value 'major-mode b))
+	   (icon (or (all-the-icons-ivy--icon-for-mode mode)
+		     (all-the-icons-ivy--icon-for-mode (get mode 'derived-mode-parent))
+		     (all-the-icons-octicon "eye"))))
+      (format "%s %s"
+	      (propertize "@" 'display icon)
+	      (all-the-icons-ivy--buffer-propertize b s))))
+  (defun all-the-icons-ivy-file-transformer (s)
+    "Return a candidate string for filename S preceded by an icon."
+    (format "%s %s"
+	    (propertize "@" 'display (all-the-icons-icon-for-file s))
+	    s))
+
+  ;; 2020-10-25 - try out fancier ivy stuff with ivy-rich
+  (use-package all-the-icons-ivy-rich
+    :ensure t
+    :init (all-the-icons-ivy-rich-mode 1))
+  (use-package ivy-rich
+    :ensure t
+    :init
+    (ivy-rich-mode 1)
+    (setq ivy-rich-path-style 'abbrev)
+    (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line))
+  )
+
+;; 2020-10-25 - make sure the underline never gets too close to the letters
+;; This makes a big difference for the better with ivy and in other cases too
+;; Not sure if this is the best place to put this configuration
+(setq underline-minimum-offset 5)
 
 
 ;; 20 Jun 2015
@@ -882,7 +903,7 @@ when a file is dopped on Emacs window."
 ;; 31 Aug 2012: Magit is magic!
 (use-package magit
   :ensure t
-  :bind ("C-c i" . magit-status)
+  :bind ("C-c m" . magit-file-dispatch)
   :config
   (setq magit-repository-directories
 	`((,(expand-file-name "~/Dropbox") . 5)
