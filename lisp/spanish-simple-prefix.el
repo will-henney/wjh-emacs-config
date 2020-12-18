@@ -64,6 +64,9 @@
   diaeresis  |   ''   | ''u -> ü
     tilde    |   '    | 'n -> ñ
    symbol    |   '    | '> -> »   '< -> «   '! -> ¡   '? -> ¿
+
+To get a literal ', type a following space: \"' \" 
+(the space will be eaten) or type three in a row: \"'''\"
 " nil t nil nil nil nil nil nil nil nil t)
 
 (quail-define-rules

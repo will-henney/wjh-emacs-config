@@ -65,9 +65,10 @@
   :ensure t
   :after ox)
 
+;; 2020-12-11 - DISABLED org-roam because it gave an error (and I don't use it)
 ;; 14 Jul 2020 - org-roam
 (setq org-roam-directory "~/org-roam")
-(add-hook 'after-init-hook 'org-roam-mode)
+;; (add-hook 'after-init-hook 'org-roam-mode)
 
 ;; 31 Mar 2020 - Try out this, looks good: https://github.com/alphapapa/org-sidebar
 (use-package org-sidebar
@@ -78,6 +79,21 @@
 ;; (use-package header2
 ;;   :ensure t)
 
+;; 2020-12-18 - Beacon mode to temporarily highlight where cursor is
+(use-package beacon
+  :ensure t
+  :config (beacon-mode 1)
+  )
+
+;; 2020-12-18 - This is so that the line is properly centered when we
+;; do back-sync to a LaTeX buffer from the PDF in Skim.app
+(defun wjh/recenter-latex-window ()
+  "Recenter, but only for latex buffer windows"
+  (when (and (equal (window-buffer) (current-buffer))
+	     (equal major-mode 'latex-mode))
+    (recenter)))
+(add-hook 'server-visit-hook 'wjh/recenter-latex-window)
+
 ;; 02 Sep 2020 - A better *help* buffer
 ;; https://github.com/Wilfred/helpful
 (use-package helpful
@@ -903,7 +919,7 @@ when a file is dopped on Emacs window."
 ;; 31 Aug 2012: Magit is magic!
 (use-package magit
   :ensure t
-  :bind ("C-c m" . magit-file-dispatch)
+  :bind ("C-c G" . magit-file-dispatch)
   :config
   (setq magit-repository-directories
 	`((,(expand-file-name "~/Dropbox") . 5)
