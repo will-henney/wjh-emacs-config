@@ -34,15 +34,15 @@
   ;; WJH 08 Nov 2013 - we prefer to use these for smartscan
   (define-key elpy-mode-map (kbd "M-n") nil)
   (define-key elpy-mode-map (kbd "M-p") nil)
-  ;; Use the fn key instead
-  (define-key elpy-mode-map (kbd "H-n") 'elpy-nav-forward-definition)
-  (define-key elpy-mode-map (kbd "H-p") 'elpy-nav-backward-definition)
+  ;; Use the Shift-Meta key instead 
+  (define-key elpy-mode-map (kbd "M-N") 'elpy-nav-forward-definition)
+  (define-key elpy-mode-map (kbd "M-P") 'elpy-nav-backward-definition)
 
   ;; WJH 11 Dec 2014 - fix conflict with smartparens
   (define-key elpy-mode-map (kbd "C-<right>") nil)
   (define-key elpy-mode-map (kbd "C-<left>") nil)
-  (define-key elpy-mode-map (kbd "H-<right>") 'elpy-nav-forward-block)
-  (define-key elpy-mode-map (kbd "H-<left>") 'elpy-nav-backward-block)
+  (define-key elpy-mode-map (kbd "S-C-<right>") 'elpy-nav-forward-block)
+  (define-key elpy-mode-map (kbd "S-C-<left>") 'elpy-nav-backward-block)
 
   ;; Will's fancy new auto-switcher for virtual environments
   (defvar wjh/elpy-virtual-environment nil 
