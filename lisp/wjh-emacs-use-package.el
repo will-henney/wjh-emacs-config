@@ -74,6 +74,18 @@
 (use-package org-sidebar
   :quelpa (org-sidebar :fetcher github :repo "alphapapa/org-sidebar"))
 
+
+;; 2021-04-27 - Try out org-attach-screenshot
+(use-package org-attach-screenshot
+  :ensure t
+  :bind ("s-*" . org-attach-screenshot)
+  :config (setq org-attach-screenshot-dirfunction
+		(lambda () 
+		  (progn (assert (buffer-file-name))
+			 (concat (file-name-sans-extension (buffer-file-name))
+				 "_att")))
+		org-attach-screenshot-command-line "screencapture -s %f"))
+
 ;; 02 Sep 2017 - utility functions for writing your own elisp packages
 ;; 19 Jan 2020 - Cannot seem to install this package
 ;; (use-package header2
@@ -785,11 +797,14 @@ recognised."
 	'(("PDF Viewer" "/Users/will/.emacs.d/bin/displayline -b %n %o %b")))
   ;; See also
   ;; http://stackoverflow.com/questions/7899845/emacs-synctex-skim-how-to-correctly-set-up-syncronization-none-of-the-exi
-  (add-hook 'TeX-mode-hook
-	    (lambda ()
-	      (add-to-list 'TeX-output-view-style
-			   '("^pdf$" "."
-			     "/Users/will/.emacs.d/bin/displayline -b %n %o %b"))))
+  
+  ;; 2021-05-01 - remove this because it no longer works 
+  ;; (add-hook 'TeX-mode-hook
+  ;; 	    (lambda ()
+  ;; 	      (add-to-list 'TeX-output-view-style
+  ;; 			   '("^pdf$" "."
+  ;; 			     "/Users/will/.emacs.d/bin/displayline -b %n %o %b"))))
+
   ;; Extras for LaTeX editing 29 Mar 2013
   ;; Code copied from tex.stackexchange
   ;; http://tex.stackexchange.com/questions/27241/entering-math-mode-in-auctex-using-and
@@ -952,12 +967,19 @@ when a file is dopped on Emacs window."
   (add-hook 'python-mode-hook (lambda () (python-docstring-mode t))))
 
 ;; 16 Apr 2019 - Try out emacs-jupyter
-(use-package websocket
-  :quelpa ((websocket :fetcher github :repo "ahyatt/emacs-websocket")
-	   :upgrade nil))
-(use-package simple-httpd
-  :quelpa ((simple-httpd :fetcher github :repo "skeeto/emacs-web-server")
-	   :upgrade nil))
+(use-package jupyter
+  :ensure t)
+
+;; 2021-02-03 - Try tree-sitter, mainly to get fontified f-strings,
+;; but it may have other advantages too
+(use-package tree-sitter
+  :ensure t
+  :config
+  (global-tree-sitter-mode)
+  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
+  )
+(use-package tree-sitter-langs :ensure t)
+
 ;; (use-package zmq
 ;;   :quelpa ((zmq :fetcher github :repo "dzop/emacs-zmq")
 ;; 	   ))
