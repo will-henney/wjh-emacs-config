@@ -946,6 +946,13 @@ when a file is dopped on Emacs window."
 ;; 14 May 2019 - add TODO section to magit buffer
 (use-package magit-todos :ensure t)
 
+;; 2021-08-05 - try out dired-git-info
+(use-package dired-git-info
+  :ensure t
+  :config
+  (with-eval-after-load 'dired
+    (define-key dired-mode-map ")" 'dired-git-info-mode)))
+
 
 ;; 30 Jan 2020 - this package is magical - it seems to sort out my
 ;; conda problems. It also supersedes the
