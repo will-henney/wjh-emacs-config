@@ -66,7 +66,7 @@
  '(markdown-header-face ((t (:inherit org-level-1 :weight bold))))
  '(markdown-italic-face ((t (:slant italic))))
  '(markdown-link-face ((t (:inherit org-link))))
- '(markdown-url-face ((t (:inherit font-lock-string-face :foreground "dark gray" :height 0.6))))
+ '(markdown-url-face ((t (:inherit font-lock-string-face :foreground "dark gray" :height 0.8))))
  '(menu ((t (:background "#00000" :foreground "#808080"))))
  '(minibuffer-prompt ((t (:foreground "LightBlue1"))))
  '(mode-line ((t (:inherit variable-pitch :background "#201010" :foreground "white" :inverse-video nil :box (:line-width -1 :style released-button)))))
@@ -264,7 +264,7 @@
  '(line-spacing 4)
  '(magit-push-always-verify nil)
  '(org-agenda-files
-   '("~/Dropbox/Teresa-Turtle/doc/teresa-turtle.org" "~/Work/Bowshocks/Jorge/bowshock-shape/Stellar-Bowshocks-2017/stellar-bowshocks.org" "~/Dropbox/Org/notes.org" "~/Dropbox/Notes/will-macbook-config.org" "~/Dropbox/Notes/workflow.org" "~/Dropbox/Notes/apple accounts.org" "~/Dropbox/Notes/paper projects 2015.org" "~/Dropbox/Org/pub-orion-atlas/index.org" "~/Dropbox/Family/Matthew-Money/matt-loan.org"))
+   '("~/Dropbox/Teaching/Computacional/curso-computacional.org" "~/Dropbox/Teresa-Turtle/doc/teresa-turtle.org" "~/Work/Bowshocks/Jorge/bowshock-shape/Stellar-Bowshocks-2017/stellar-bowshocks.org" "~/Dropbox/Org/notes.org" "~/Dropbox/Notes/will-macbook-config.org" "~/Dropbox/Notes/workflow.org" "~/Dropbox/Notes/apple accounts.org" "~/Dropbox/Notes/paper projects 2015.org" "~/Dropbox/Org/pub-orion-atlas/index.org" "~/Dropbox/Family/Matthew-Money/matt-loan.org"))
  '(org-attach-directory "~/Dropbox/Org-Attach")
  '(org-attach-id-dir "~/Dropbox/Org-Attach")
  '(org-attach-method 'ln)
