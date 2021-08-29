@@ -75,6 +75,20 @@
   :quelpa (org-sidebar :fetcher github :repo "alphapapa/org-sidebar"))
 
 
+;; 2021-08-25 - Try out google-translate
+(use-package google-translate
+  :ensure t
+  :init
+  (require 'google-translate)
+  (require 'google-translate-smooth-ui)
+  :custom
+  (google-translate-backend-method 'curl)
+  :config (require 'google-translate-smooth-ui)
+  (defun google-translate--search-tkk () "Search TKK." (list 430675 2721866130))
+  (setq google-translate-translation-directions-alist '(("en" . "es") ("es" . "en")))
+  :bind (("C-c z" . 'google-translate-smooth-translate))
+  )
+
 ;; 2021-04-27 - Try out org-attach-screenshot
 (use-package org-attach-screenshot
   :ensure t

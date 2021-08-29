@@ -305,7 +305,7 @@
  '(org-tag-faces '(("noexport" . "#33bb44")))
  '(org-tags-column 50)
  '(package-selected-packages
-   '(dired-git-info org-attach-screenshot auctex tree-sitter-langs tree-sitter beacon all-the-icons-ivy-rich all-the-icons-ibuffer all-the-icons-ibuffer-mode ox-gfm helpful ox-hugo org-roam org-sidebar org-ql map peg ov org-super-agenda ts ht exec-path-from-shell orgit edit-indirect magit-todos emacs-websocket jupyter org-ref ivy-prescient prescient python-docstring python-docstring-mode typo guess-language web-mode org-fstree org-dropbox header2 all-the-icons-ivy all-the-icons-dired all-the-icons counsel-projectile suggest e2wm org-extra org-contacts worf quelpa-use-package ag org-sticky-header ivy-hydra counsel mu4e org-pomodoro org-table-sticky-header org-edit-latex elfeed-org auto-org-md julia-mode zenburn-theme yaml-mode w3m virtualenv unfill undo-tree synonyms svg-mode-line-themes stripe-buffer spotlight sparkline smex smartparens smart-mode-line rainbow-mode projectile prodigy pinboard persistent-scratch paradox pallet org-trello org-plus-contrib org-magit org-dotemacs org-bullets org-bookmark-heading ob-ipython nose names multiple-cursors markdown-mode magithub magit-svn lispy latex-extra langtool key-chord idomenu ido-vertical-mode ibuffer-vc hungry-delete htmlize helm-dash helm-bibtex guide-key google-this golden-ratio god-mode gitty git-messenger git-gutter ggtags fuzzy fold-dwim-org flx-ido fancy-narrow expand-region esxml elpy elnode easy-kill-extras dired-details diminish deft csv-mode crosshairs creole-mode conda color-identifiers-mode bibslurp bf-mode auto-complete alert airplay ack-and-a-half achievements ace-jump-mode))
+   '(google-translate-default-ui google-translate-smooth-ui google-translate dired-git-info org-attach-screenshot auctex tree-sitter-langs tree-sitter beacon all-the-icons-ivy-rich all-the-icons-ibuffer all-the-icons-ibuffer-mode ox-gfm helpful ox-hugo org-roam org-sidebar org-ql map peg ov org-super-agenda ts ht exec-path-from-shell orgit edit-indirect magit-todos emacs-websocket jupyter org-ref ivy-prescient prescient python-docstring python-docstring-mode typo guess-language web-mode org-fstree org-dropbox header2 all-the-icons-ivy all-the-icons-dired all-the-icons counsel-projectile suggest e2wm org-extra org-contacts worf quelpa-use-package ag org-sticky-header ivy-hydra counsel mu4e org-pomodoro org-table-sticky-header org-edit-latex elfeed-org auto-org-md julia-mode zenburn-theme yaml-mode w3m virtualenv unfill undo-tree synonyms svg-mode-line-themes stripe-buffer spotlight sparkline smex smartparens smart-mode-line rainbow-mode projectile prodigy pinboard persistent-scratch paradox pallet org-trello org-plus-contrib org-magit org-dotemacs org-bullets org-bookmark-heading ob-ipython nose names multiple-cursors markdown-mode magithub magit-svn lispy latex-extra langtool key-chord idomenu ido-vertical-mode ibuffer-vc hungry-delete htmlize helm-dash helm-bibtex guide-key google-this golden-ratio god-mode gitty git-messenger git-gutter ggtags fuzzy fold-dwim-org flx-ido fancy-narrow expand-region esxml elpy elnode easy-kill-extras dired-details diminish deft csv-mode crosshairs creole-mode conda color-identifiers-mode bibslurp bf-mode auto-complete alert airplay ack-and-a-half achievements ace-jump-mode))
  '(paradox-automatically-star t)
  '(pinboard-url "http://feeds.pinboard.in/json/u:deprecated/?count=10")
  '(python-check-command "black")
@@ -319,7 +319,26 @@
  '(rm-excluded-modes
    '(" hl-p" " Undo-Tree" " MRev" " Projectile" " Google" " Guide" " Helm" " Ind" " GG" " OCDL"))
  '(safe-local-variable-values
-   '((TeX-master . dusty-bow-wave)
+   '((eval defun wjh/jupytext-sync nil "Bi-directional sync between markdown and jupyter notebook"
+	   (shell-command
+	    (format "jupytext --sync %s.md"
+		    (file-name-base
+		     (buffer-file-name)))))
+     (eval add-hook 'before-revert-hook `wjh/jupytext-sync nil t)
+     (eval add-hook 'after-save-hook `wjh/jupytext-sync nil t)
+     (eval defun wjh/jupytext-sync nil "Bi-directional sync between markdown and jupyter notebook"
+	   (shell-command
+	    (format "jupytext --sync %s.ipynb"
+		    (file-name-base
+		     (buffer-file-name)))))
+     (eval add-hook 'after-save-hook
+	   (lambda nil
+	     (shell-command
+	      (format "jupytext --sync %s.ipynb"
+		      (file-name-base
+		       (buffer-file-name)))))
+	   nil t)
+     (TeX-master . dusty-bow-wave)
      (eval when
 	   (and
 	    (buffer-file-name)
