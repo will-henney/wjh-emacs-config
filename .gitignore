@@ -50,3 +50,5 @@ quelpa
 /semanticdb/
 /org-roam.db
 /.#ido.last
+/transient/
+/forge-database.sqlite

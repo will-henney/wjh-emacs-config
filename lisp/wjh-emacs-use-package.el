@@ -75,6 +75,10 @@
   :quelpa (org-sidebar :fetcher github :repo "alphapapa/org-sidebar"))
 
 
+;; 2021-09-03 Applescript support
+(use-package applescript-mode
+  :ensure t)
+
 ;; 2021-08-25 - Try out google-translate
 (use-package google-translate
   :ensure t
@@ -956,6 +960,13 @@ when a file is dopped on Emacs window."
 	  (,(expand-file-name "~/Family") . 1)
 	  (,(expand-file-name "~/Work") . 5))))
 
+;; 2021-10-15: integration of magit and github
+(use-package forge
+  :ensure t
+  :after magit
+  :config
+  (setq auth-sources '("~/.authinfo"))
+  )
 
 ;; 14 May 2019 - add TODO section to magit buffer
 (use-package magit-todos :ensure t)
