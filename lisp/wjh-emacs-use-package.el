@@ -65,6 +65,11 @@
   :ensure t
   :after ox)
 
+;; 2022-01-24 - use ox-pandoc to get self\contained html with images
+(use-package ox-pandoc
+  :ensure t
+  :after ox)
+
 ;; 2020-12-11 - DISABLED org-roam because it gave an error (and I don't use it)
 ;; 14 Jul 2020 - org-roam
 (setq org-roam-directory "~/org-roam")

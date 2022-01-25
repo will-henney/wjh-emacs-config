@@ -69,7 +69,7 @@
  '(markdown-link-face ((t (:inherit org-link))))
  '(markdown-url-face ((t (:inherit font-lock-string-face :foreground "dark gray" :height 0.8))))
  '(menu ((t (:background "#00000" :foreground "#808080"))))
- '(minibuffer-prompt ((t (:foreground "LightBlue1"))))
+ '(minibuffer-prompt ((t (:foreground "gold" :weight ultra-bold))))
  '(mode-line ((t (:inherit variable-pitch :background "#201010" :foreground "white" :inverse-video nil :box (:line-width -1 :style released-button)))))
  '(mode-line-buffer-id ((t (:inherit sml/filename :weight bold))))
  '(mode-line-inactive ((t (:inherit mode-line :background "gray20" :inverse-video nil :box nil :weight light :height 1.0))))
@@ -269,6 +269,8 @@
  '(magit-push-always-verify nil)
  '(org-agenda-files
    '("~/Dropbox/Teaching/Computacional/curso-computacional.org" "~/Dropbox/Teresa-Turtle/doc/teresa-turtle.org" "~/Work/Bowshocks/Jorge/bowshock-shape/Stellar-Bowshocks-2017/stellar-bowshocks.org" "~/Dropbox/Org/notes.org" "~/Dropbox/Notes/will-macbook-config.org" "~/Dropbox/Notes/workflow.org" "~/Dropbox/Notes/apple accounts.org" "~/Dropbox/Notes/paper projects 2015.org" "~/Dropbox/Org/pub-orion-atlas/index.org" "~/Dropbox/Family/Matthew-Money/matt-loan.org"))
+ '(org-agenda-text-search-extra-files
+   '(agenda-archives "/Users/will/Dropbox/OrionWest/alba-orion-west.org" "/Users/will/Dropbox/Teresa-Owl/teresa-owl.org"))
  '(org-attach-directory "~/Dropbox/Org-Attach")
  '(org-attach-id-dir "~/Dropbox/Org-Attach")
  '(org-attach-method 'ln)
@@ -290,6 +292,7 @@
  '(org-export-use-babel nil)
  '(org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id)
  '(org-image-actual-width '(500))
+ '(org-link-file-path-type 'relative)
  '(org-link-use-indirect-buffer-for-internals t)
  '(org-log-into-drawer t)
  '(org-mac-grab-Firefox-app-p nil)
@@ -310,7 +313,7 @@
  '(org-tag-faces '(("noexport" . "#33bb44")))
  '(org-tags-column 50)
  '(package-selected-packages
-   '(ghub forge applescript-mode applescript apples google-translate-default-ui google-translate-smooth-ui google-translate dired-git-info org-attach-screenshot auctex tree-sitter-langs tree-sitter beacon all-the-icons-ivy-rich all-the-icons-ibuffer all-the-icons-ibuffer-mode ox-gfm helpful ox-hugo org-roam org-sidebar org-ql map peg ov org-super-agenda ts ht exec-path-from-shell orgit edit-indirect magit-todos emacs-websocket jupyter org-ref ivy-prescient prescient python-docstring python-docstring-mode typo guess-language web-mode org-fstree org-dropbox header2 all-the-icons-ivy all-the-icons-dired all-the-icons counsel-projectile suggest e2wm org-extra org-contacts worf quelpa-use-package ag org-sticky-header ivy-hydra counsel mu4e org-pomodoro org-table-sticky-header org-edit-latex elfeed-org auto-org-md julia-mode zenburn-theme yaml-mode w3m virtualenv unfill undo-tree synonyms svg-mode-line-themes stripe-buffer spotlight sparkline smex smartparens smart-mode-line rainbow-mode projectile prodigy pinboard persistent-scratch paradox pallet org-trello org-plus-contrib org-magit org-dotemacs org-bullets org-bookmark-heading ob-ipython nose names multiple-cursors markdown-mode magithub magit-svn lispy latex-extra langtool key-chord idomenu ido-vertical-mode ibuffer-vc hungry-delete htmlize helm-dash helm-bibtex guide-key google-this golden-ratio god-mode gitty git-messenger git-gutter ggtags fuzzy fold-dwim-org flx-ido fancy-narrow expand-region esxml elpy elnode easy-kill-extras dired-details diminish deft csv-mode crosshairs creole-mode conda color-identifiers-mode bibslurp bf-mode auto-complete alert airplay ack-and-a-half achievements ace-jump-mode))
+   '(ox-pandoc ghub forge applescript-mode applescript apples google-translate-default-ui google-translate-smooth-ui google-translate dired-git-info org-attach-screenshot auctex tree-sitter-langs tree-sitter beacon all-the-icons-ivy-rich all-the-icons-ibuffer all-the-icons-ibuffer-mode ox-gfm helpful ox-hugo org-roam org-sidebar org-ql map peg ov org-super-agenda ts ht exec-path-from-shell orgit edit-indirect magit-todos emacs-websocket jupyter org-ref ivy-prescient prescient python-docstring python-docstring-mode typo guess-language web-mode org-fstree org-dropbox header2 all-the-icons-ivy all-the-icons-dired all-the-icons counsel-projectile suggest e2wm org-extra org-contacts worf quelpa-use-package ag org-sticky-header ivy-hydra counsel mu4e org-pomodoro org-table-sticky-header org-edit-latex elfeed-org auto-org-md julia-mode zenburn-theme yaml-mode w3m virtualenv unfill undo-tree synonyms svg-mode-line-themes stripe-buffer spotlight sparkline smex smartparens smart-mode-line rainbow-mode projectile prodigy pinboard persistent-scratch paradox pallet org-trello org-plus-contrib org-magit org-dotemacs org-bullets org-bookmark-heading ob-ipython nose names multiple-cursors markdown-mode magithub magit-svn lispy latex-extra langtool key-chord idomenu ido-vertical-mode ibuffer-vc hungry-delete htmlize helm-dash helm-bibtex guide-key google-this golden-ratio god-mode gitty git-messenger git-gutter ggtags fuzzy fold-dwim-org flx-ido fancy-narrow expand-region esxml elpy elnode easy-kill-extras dired-details diminish deft csv-mode crosshairs creole-mode conda color-identifiers-mode bibslurp bf-mode auto-complete alert airplay ack-and-a-half achievements ace-jump-mode))
  '(paradox-automatically-star t)
  '(pinboard-url "http://feeds.pinboard.in/json/u:deprecated/?count=10")
  '(python-check-command "black")
