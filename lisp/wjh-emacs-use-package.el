@@ -65,7 +65,7 @@
   :ensure t
   :after ox)
 
-;; 2022-01-24 - use ox-pandoc to get self\contained html with images
+;; 2022-01-24 - use ox-pandoc to get self-contained HTML with images
 (use-package ox-pandoc
   :ensure t
   :after ox)
