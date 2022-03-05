@@ -685,19 +685,23 @@ recognised."
 
 ;; 04 Nov 2013 - try out guide key
 ;; 16 Jan 2017 - No longer use my custom version since it is obsolete
-(use-package guide-key
-  :ensure t
-  :config
-  (guide-key-mode 1)  ; Enable guide-key-mode
-  (setq guide-key/guide-key-sequence '("C-x" "C-c"))
-  (setq guide-key/recursive-key-sequence-flag t)
-  (setq guide-key/popup-window-position 'bottom)
-  (setq guide-key/idle-delay 2.0)
-  (defun guide-key/my-hook-function-for-org-mode ()
-    (guide-key/add-local-guide-key-sequence "C-c")
-    (guide-key/add-local-guide-key-sequence "C-c C-x")
-    (guide-key/add-local-highlight-command-regexp "org-"))
-  (add-hook 'org-mode-hook 'guide-key/my-hook-function-for-org-mode))
+;; 2022-03-05 - Turn this off completely since it is causing weird
+;; errors if I stop to think too long after typing C-c sometimes. I
+;; can always type C-h after a key if I want to know what sequences
+;; can start with it
+;; (use-package guide-key
+;;   :ensure t
+;;   :config
+;;   (guide-key-mode 1)  ; Enable guide-key-mode
+;;   (setq guide-key/guide-key-sequence '("C-x" "C-c"))
+;;   (setq guide-key/recursive-key-sequence-flag t)
+;;   (setq guide-key/popup-window-position 'bottom)
+;;   (setq guide-key/idle-delay 2.0)
+;;   (defun guide-key/my-hook-function-for-org-mode ()
+;;     (guide-key/add-local-guide-key-sequence "C-c")
+;;     (guide-key/add-local-guide-key-sequence "C-c C-x")
+;;     (guide-key/add-local-highlight-command-regexp "org-"))
+;;   (add-hook 'org-mode-hook 'guide-key/my-hook-function-for-org-mode))
 
 
 
