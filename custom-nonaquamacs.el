@@ -3,7 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#3f3f3f" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight light :height 130 :width normal :foundry "nil" :family "Source Code Pro"))))
+ '(default ((t (:inherit nil :extend nil :stipple nil :background "#3f3f3f" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight light :height 150 :width normal :foundry "nil" :family "Source Code Pro"))))
  '(TeX-fold-folded-face ((t (:foreground "#8faeb0"))))
  '(ace-jump-face-background ((t (:foreground "gray60"))))
  '(ace-jump-face-foreground ((t (:foreground "orange"))))
@@ -40,6 +40,7 @@
  '(font-lock-constant-face ((t (:foreground "#cFfBcF"))))
  '(font-lock-function-name-face ((t (:inherit fixed-pitch :foreground "#cccccc" :weight normal))))
  '(font-lock-keyword-face ((t (:inherit fixed-pitch :foreground "SlateGray2" :weight normal))))
+ '(font-lock-preprocessor-face ((t (:foreground "DarkSeaGreen1"))) nil "Green rather than blue so that it show up on the projector")
  '(font-lock-string-face ((t (:foreground "pale goldenrod" :slant italic))))
  '(font-lock-type-face ((t (:foreground "#ccdddd" :weight light))))
  '(font-lock-variable-name-face ((t (:inherit fixed-pitch :foreground "#ffcf8f"))))
@@ -50,8 +51,8 @@
  '(git-gutter:unchanged ((t (:background "yellow" :foreground "#DCDCCC" :weight bold))))
  '(helm-selection ((t (:background "#204060" :foreground "white" :underline nil :weight bold))) nil "Third attempt at getting this right.  Inverse video wasn't working; made me thing it was a heading.  Hopefully this will be easier to spot.")
  '(helm-source-header ((t (:background "#2B2B2B" :foreground "seashell4" :inverse-video t :box nil :underline nil :weight bold))))
- '(highlight-indentation-current-column-face ((t (:background "gray30"))) t)
- '(highlight-indentation-face ((t (:underline "gray40"))) t)
+ '(highlight-indentation-current-column-face ((t (:background "gray30"))))
+ '(highlight-indentation-face ((t (:underline "gray40"))))
  '(hl-line ((t (:inherit highlight :background "#603838"))))
  '(imenu-list-entry-face ((t (:height 0.6 :width expanded))))
  '(imenu-list-entry-face-0 ((t (:inherit imenu-list-entry-face :foreground "gray90"))))
@@ -212,8 +213,11 @@
      (output-pdf "osx-open")
      (output-html "xdg-open")))
  '(ag-arguments '("--smart-case" "--stats" "--search-zip"))
+ '(beacon-blink-when-point-moves-vertically 10)
+ '(beacon-blink-when-window-scrolls nil)
  '(blink-matching-paren nil)
  '(calendar-date-style 'european)
+ '(company-idle-delay nil)
  '(csv-align-style 'auto)
  '(cua-enable-cua-keys nil)
  '(cua-enable-cursor-indications nil)
@@ -257,7 +261,7 @@
 ")
      (98 buffer-file-name nil)))
  '(elpy-modules
-   '(elpy-module-company elpy-module-eldoc elpy-module-flymake elpy-module-pyvenv elpy-module-yasnippet elpy-module-sane-defaults))
+   '(elpy-module-company elpy-module-eldoc elpy-module-flymake elpy-module-pyvenv elpy-module-highlight-indentation elpy-module-sane-defaults))
  '(elpy-shell-cell-boundary-regexp "^# %%.*$")
  '(elpy-shell-codecell-beginning-regexp "^# %%.*$")
  '(elpy-shell-echo-output 'when-shell-not-visible)
@@ -268,7 +272,7 @@
  '(line-spacing 4)
  '(magit-push-always-verify nil)
  '(org-agenda-files
-   '("~/Dropbox/Teaching/Computacional/curso-computacional.org" "~/Dropbox/Teresa-Turtle/doc/teresa-turtle.org" "~/Work/Bowshocks/Jorge/bowshock-shape/Stellar-Bowshocks-2017/stellar-bowshocks.org" "~/Dropbox/Org/notes.org" "~/Dropbox/Notes/will-macbook-config.org" "~/Dropbox/Notes/workflow.org" "~/Dropbox/Notes/apple accounts.org" "~/Dropbox/Notes/paper projects 2015.org" "~/Dropbox/Org/pub-orion-atlas/index.org" "~/Dropbox/Family/Matthew-Money/matt-loan.org"))
+   '("~/Dropbox/Metal-Permitted/metal-permitted.org" "~/Dropbox/Teaching/Computacional/curso-computacional.org" "~/Dropbox/Teresa-Turtle/doc/teresa-turtle.org" "~/Work/Bowshocks/Jorge/bowshock-shape/Stellar-Bowshocks-2017/stellar-bowshocks.org" "~/Dropbox/Org/notes.org" "~/Dropbox/Notes/will-macbook-config.org" "~/Dropbox/Notes/workflow.org" "~/Dropbox/Notes/apple accounts.org" "~/Dropbox/Notes/paper projects 2015.org" "~/Dropbox/Org/pub-orion-atlas/index.org" "~/Dropbox/Family/Matthew-Money/matt-loan.org"))
  '(org-agenda-text-search-extra-files
    '(agenda-archives "/Users/will/Dropbox/OrionWest/alba-orion-west.org" "/Users/will/Dropbox/Teresa-Owl/teresa-owl.org"))
  '(org-attach-directory "~/Dropbox/Org-Attach")

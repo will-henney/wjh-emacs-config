@@ -1070,11 +1070,11 @@ when a file is dopped on Emacs window."
 ;;
 ;; So, I could use Workflow or something on iOS to save snippets to
 ;; this folder, then they will be picked up by Org
-(use-package org-dropbox
-  :ensure t
-  :config
-  (setq org-dropbox-note-dir "~/Dropbox/org-dropbox-inbox/")
-  (setq org-notes-datetree-file "~/Dropbox/Org/org-dropbox-datetree.org"))
+;; (use-package org-dropbox
+;;   :ensure t
+;;   :config
+;;   (setq org-dropbox-note-dir "~/Dropbox/org-dropbox-inbox/")
+;;   (setq org-notes-datetree-file "~/Dropbox/Org/org-dropbox-datetree.org"))
 
 ;; 14 Oct 2018 - try out John Kit chin's org-ref
 ;; 15 Oct 2018 - it was nice, but it makes emacs *realLy* slow

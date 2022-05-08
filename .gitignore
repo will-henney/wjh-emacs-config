@@ -52,3 +52,4 @@ quelpa
 /.#ido.last
 /transient/
 /forge-database.sqlite
+/eln-cache/
