@@ -58,7 +58,7 @@ otherwise start a new shell."
 ;; 24 Sep 2016 - Greatly simplify this function by dynamically
 ;; rebinding `insert` (previously, I had just copied and edited
 ;; 2022-05-09 - Remove the rebinding of `insert' since it did not work
-;; any more, now that I am using Native Compilatio.  On the other
+;; any more, now that I am using Native Compilation.  On the other
 ;; hand, it does not seem to be necessary any more either.
 (defun wjh/mouse-drag-secondary-pasting (start-event)
   "Drag out a secondary selection, then paste it at the current point.
