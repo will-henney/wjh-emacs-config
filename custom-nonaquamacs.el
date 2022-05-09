@@ -417,5 +417,6 @@
  '(shr-use-fonts nil)
  '(use-dialog-box nil)
  '(visible-bell t)
+ '(warning-suppress-types '((comp)))
  '(whitespace-style
    '(face trailing tabs spaces newline empty indentation space-after-tab space-before-tab space-mark tab-mark newline-mark)))

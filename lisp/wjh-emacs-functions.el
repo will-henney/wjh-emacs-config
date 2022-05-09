@@ -56,21 +56,34 @@ otherwise start a new shell."
 (require 'mouse-copy)
 
 ;; 24 Sep 2016 - Greatly simplify this function by dynamically
-;; rebinding `insert` (previously, I had just copied and edited 
+;; rebinding `insert` (previously, I had just copied and edited
+;; 2022-05-09 - Remove the rebinding of `insert' since it did not work
+;; any more, now that I am using Native Compilatio.  On the other
+;; hand, it does not seem to be necessary any more either.
 (defun wjh/mouse-drag-secondary-pasting (start-event)
   "Drag out a secondary selection, then paste it at the current point.
 
 Just the same as the `mouse-drag-secondary-pasting` from
-mouse-copy.el, with two exceptions: (1) It behaves the same way
-as `yank' with respect to text properties (as in not copying
-invisible properties that you probably don't want), and (2) it
-deactivates the secondary selection when it has finished."
+mouse-copy.el, with one exception: it deactivates the secondary
+selection when it has finished."
   (interactive "e")
-  ;; Temporarily redefine `insert` - based on discussion at
-  ;; http://endlessparentheses.com/understanding-letf-and-how-it-replaces-flet.html
-  (cl-letf (((symbol-function 'insert) #'insert-for-yank-1))
-    (mouse-drag-secondary-pasting start-event))
+  (mouse-drag-secondary-pasting start-event)
   (delete-overlay mouse-secondary-overlay))
+
+;; (defun wjh/mouse-drag-secondary-pasting (start-event)
+;;   "Drag out a secondary selection, then paste it at the current point.
+
+;; Just the same as the `mouse-drag-secondary-pasting` from
+;; mouse-copy.el, with two exceptions: (1) It behaves the same way
+;; as `yank' with respect to text properties (as in not copying
+;; invisible properties that you probably don't want), and (2) it
+;; deactivates the secondary selection when it has finished."
+;;   (interactive "e")
+;;   ;; Temporarily redefine `insert` - based on discussion at
+;;   ;; http://endlessparentheses.com/understanding-letf-and-how-it-replaces-flet.html
+;;   (cl-letf (((symbol-function 'insert) #'insert-for-yank-1))
+;;     (mouse-drag-secondary-pasting start-event))
+;;   (delete-overlay mouse-secondary-overlay))
 
 (global-set-key [M-down-mouse-1] 'wjh/mouse-drag-secondary-pasting)
 ;; TODO 18 Feb 2016 - re-write this function too
