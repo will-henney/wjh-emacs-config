@@ -12,6 +12,7 @@
  '(aw-leading-char-face ((t (:foreground "gold" :weight ultra-bold :height 1.5))))
  '(button ((t (:underline nil :slant oblique :weight semi-bold))))
  '(col-highlight ((t (:background "#603838"))))
+ '(company-echo-common ((t (:foreground "gold"))))
  '(custom-button ((((type x w32 mac) (class color)) (:background "lightgrey" :foreground "black" :box (:line-width 2 :color "gray95")))))
  '(custom-button-mouse ((((type x w32 mac) (class color)) (:background "#ddc4bf" :foreground "black" :box (:line-width 2 :color "gray95")))))
  '(custom-button-pressed ((((type x w32 mac) (class color)) (:background "#ddc4bf" :foreground "black" :box (:line-width 2 :style pressed-button)))))
@@ -217,6 +218,8 @@
  '(beacon-blink-when-window-scrolls nil)
  '(blink-matching-paren nil)
  '(calendar-date-style 'european)
+ '(company-frontends
+   '(company-echo-strip-common-frontend company-echo-metadata-frontend company-preview-if-just-one-frontend))
  '(company-idle-delay nil)
  '(csv-align-style 'auto)
  '(cua-enable-cua-keys nil)

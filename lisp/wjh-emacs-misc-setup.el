@@ -184,13 +184,14 @@
         search-ring
         regexp-search-ring))
 
+;; 2022-05-10 - Stop using autocomplete since it is conflicting with company mode
 ;; 26 Oct 2013 - autocomplete
-(use-package fuzzy :ensure t)
-(use-package auto-complete :ensure t)
-(setq ac-auto-show-menu t
-      ac-quick-help-delay 0.5
-      ac-use-fuzzy t)
-(global-auto-complete-mode +1)
+;; (use-package fuzzy :ensure t)
+;; (use-package auto-complete :ensure t)
+;; (setq ac-auto-show-menu t
+;;       ac-quick-help-delay 0.5
+;;       ac-use-fuzzy t)
+;; (global-auto-complete-mode +1)
 
 ;; 07 Jun 2013 switch to variable pich for text modes
 ;; 28 Nov 2013: turned it off again - more trouble than it was worth
