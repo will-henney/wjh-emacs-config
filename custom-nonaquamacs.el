@@ -269,6 +269,7 @@
  '(elpy-shell-codecell-beginning-regexp "^# %%.*$")
  '(elpy-shell-echo-output 'when-shell-not-visible)
  '(elpy-syntax-check-command "black")
+ '(elpy-test-runner 'elpy-test-pytest-runner)
  '(fortune-dir "/usr/local/share/games/fortunes/")
  '(git-messenger:show-detail t)
  '(git-messenger:use-magit-popup t)
