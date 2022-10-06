@@ -227,7 +227,7 @@
 ;; 14 Jul 2020 - spotlight
 (use-package spotlight
   :bind
-  (("s-SPC" . spotlight))
+  (("C-s-SPC" . spotlight))
   :ensure t)
 
 ;; 25 Sep 2016 - do the opposite of fill
@@ -664,7 +664,10 @@ recognised."
   (global-set-key [remap kill-ring-save] 'easy-kill)
   ;; Replace C-M-@ (need a better keybinding!  Note that C-M-SPACE is
   ;; taken by Alfred on my Macbook
-  (global-set-key [remap mark-sexp] 'easy-mark))
+  (global-set-key [remap mark-sexp] 'easy-mark)
+  ;; Now I have a better binding. I have moved spotlight to "C-s-SPC"
+  (global-set-key (kbd "s-SPC") 'easy-mark)
+  )
 
 ;; Now the mappings for easy-mark-extras
 (use-package easy-kill-extras

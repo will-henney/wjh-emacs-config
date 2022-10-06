@@ -37,6 +37,8 @@
 ;; we already have C-` set to this, but bind it to ⌘-` as well, for
 ;; consistency with other apps
 (global-set-key (kbd "s-`") 'other-frame)
+(global-set-key (kbd "s-,") )
+()
 
 ;; emacs-25.2-mac-6.6 (2017-08-24) adds mac-send-action function
 ;; 19 Sep 2017: Use it to implement ⌘ H and ⎇ ⌘ H functionality
