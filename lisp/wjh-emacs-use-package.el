@@ -918,10 +918,11 @@ when a file is dopped on Emacs window."
   (setq projectile-switch-project-action 'projectile-dired)
   (setq projectile-remember-window-configs t) 
   (setq projectile-find-dir-includes-top-level t)
-  (define-key projectile-mode-map [?\s-d] 'projectile-find-dir)
+  ;; (define-key projectile-mode-map [?\s-d] 'projectile-find-dir)
   (define-key projectile-mode-map [?\s-p] 'hydra-projectile/body)
-  (define-key projectile-mode-map [?\s-f] 'projectile-find-file)
-  (define-key projectile-mode-map [?\s-g] 'projectile-grep))
+  ;; (define-key projectile-mode-map [?\s-f] 'projectile-find-file)
+  ;; (define-key projectile-mode-map [?\s-g] 'projectile-grep)
+  )
 
 ;; 03 May 2017 - Use Ag for searching in project (executable must be
 ;; installed, e.g. ,via homebrew)

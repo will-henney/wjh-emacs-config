@@ -84,9 +84,6 @@ block."
   (org-babel-execute-src-block))
 (global-set-key (kbd "C-c x") 'wjh/tangle-this-then-execute-next-src-block)
 
-
-
-
 ;; Toggling various features
 (global-set-key "\C-ctp" 'org-toggle-pretty-entities)
 (global-set-key "\C-cti" 'org-toggle-inline-images)
@@ -575,7 +572,28 @@ block."
 (define-key org-mode-map (kbd "s-j") #'org-babel-next-src-block)
 (define-key org-mode-map (kbd "s-k") #'org-babel-previous-src-block)
 (define-key org-mode-map (kbd "s-l") #'org-edit-src-code)
+;; 2022-10-06 Try out a better binding for editing source blocks with
+;; Command-comma, although it turns out that 5 years ago I already had
+;; done something similar with Command-l
+(defun wjh/insert-org-src-template ()
+  "Like `org-insert-structure-template` but specialised to source block"
+  (interactive)
+  (org-insert-structure-template "src")
+  )
+(defun wjh/org-babel-tangle-single-block ()
+  "Like `org-babel-tangle` but only tangle the block containing point"
+  (interactive)
+  (org-babel-tangle '(4))
+  )
+
+(define-key org-mode-map (kbd "s-,") 'wjh/insert-org-src-template)
+(define-key org-mode-map (kbd "s-t") 'wjh/org-babel-tangle-single-block)
+(define-key org-mode-map (kbd "s-d") #'org-babel-demarcate-block)
+(define-key org-mode-map (kbd "s-i") #'org-babel-view-src-block-info)
+
 (define-key org-src-mode-map (kbd "s-l") #'org-edit-src-exit)
+(define-key org-src-mode-map (kbd "s-,") #'org-edit-src-exit)
+
 
 ;; 16 Jun 2017 - extra space above and below headings
 (defun wjh/propertize-newline-of-next-org-heading ()

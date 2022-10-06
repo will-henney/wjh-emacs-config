@@ -37,8 +37,12 @@
 ;; we already have C-` set to this, but bind it to ⌘-` as well, for
 ;; consistency with other apps
 (global-set-key (kbd "s-`") 'other-frame)
-(global-set-key (kbd "s-,") )
-()
+
+;; 2022-10-06 Use Command key with numbers as an alias for C-x NUMBER
+(global-set-key (kbd "s-4") 'ctl-x-4-prefix)
+(global-set-key (kbd "s-1") 'delete-other-windows)
+(global-set-key (kbd "s-2") 'split-window-below)
+(global-set-key (kbd "s-3") 'split-window-right)
 
 ;; emacs-25.2-mac-6.6 (2017-08-24) adds mac-send-action function
 ;; 19 Sep 2017: Use it to implement ⌘ H and ⎇ ⌘ H functionality
