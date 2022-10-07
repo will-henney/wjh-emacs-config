@@ -764,6 +764,32 @@ recognised."
 ;; Use electric-pair-mode instead
 (electric-pair-mode)
 
+;; 2022-10-07 Now that I am not using smartparens mode, I have found
+;; that I was depending on it more than I thought! So, I need to
+;; replace some of its functionality with more lightweight
+;; solutions. For instance, wrapping the region with delimiters in org
+;; mode. Here is a solution using wrap-region that I have stolen from
+;; Pragmatic Emacs
+(use-package wrap-region
+  :ensure t
+  :config
+  (wrap-region-add-wrappers
+   '(("*" "*" nil org-mode)
+     ("~" "~" nil org-mode)
+     ("/" "/" nil org-mode)
+     ("=" "=" "+" org-mode)
+     ("_" "_" nil org-mode)
+     ("`" "`" nil (markdown-mode ruby-mode python-mode))
+     ;; ("\\(" "\\)" (org-mode latex-mode))
+     ;; ("\\[" "\\]" (org-mode latex-mode))
+     ("$" "$" nil (org-mode latex-mode))))
+  (add-hook 'org-mode-hook 'wrap-region-mode)
+  (add-hook 'latex-mode-hook 'wrap-region-mode))
+
+;; 2022-10-07 The other feature from smartparens that I would
+;; occasionally use is the horrendously named slurping and barfing to
+;; move material in ad out of delimiters. I could maybe try out puni
+;; for that, which seems a cleaner design than smartparens
 
 ;; 03 Nov 2013 - try out smartscan
 ;; (why does everything have to be smart these days?!)
