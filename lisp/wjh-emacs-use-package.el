@@ -79,6 +79,33 @@
 (use-package org-sidebar
   :quelpa (org-sidebar :fetcher github :repo "alphapapa/org-sidebar"))
 
+;; 2023-03-26 Try out Github Copilot
+;;
+;; 2023-03-27 I now have a separate file for this since the setup is a
+;; bit involved. It is heavily based on (i.e. ripped off from)
+;; https://github.com/rksm/copilot-emacsd
+(load "wjh-copilot-load-and-config")
+
+;; 
+
+;; Paradox uses a private github token and ChatGPT uses a private API
+;; key, which are stored in the following file. It should NOT be
+;; committed to any public repo. A copy can be found in a Secure Note
+;; in my 1Password vault
+(load "wjh-private-stuff")
+
+;; 2023-03-26 Try out a ChatGPT package
+;;
+;; - This is one of the simpler ones: https://github.com/karthink/gptel
+;; - It uses the GPT-3 API to generate text
+;; - It does require having an API key, which is stored in the file above
+;; - To activate in its own buffer, use `M-x gptel' (C-u to force a new session)
+;; - To activate on region in the current buffer, use `M-x gptel-send'
+(use-package gptel
+  :ensure t
+  :config
+  (setq gptel-default-mode 'org-mode)
+  )
 
 ;; 2021-09-03 Applescript support
 (use-package applescript-mode
@@ -276,11 +303,6 @@
   (global-set-key (kbd "M-g g") 'avy-goto-line)
   (avy-setup-default))
 
-
-;; Paradox uses a private github token
-;; The following file should NOT be commited to any pulic repo
-;; A copy can be found in a Secure Note in my 1Password vault
-(load "wjh-private-stuff")
 
 (use-package paradox
   :ensure t)
@@ -788,7 +810,7 @@ recognised."
 
 ;; 2022-10-07 The other feature from smartparens that I would
 ;; occasionally use is the horrendously named slurping and barfing to
-;; move material in ad out of delimiters. I could maybe try out puni
+;; move material in and out of delimiters. I could maybe try out puni
 ;; for that, which seems a cleaner design than smartparens
 
 ;; 03 Nov 2013 - try out smartscan
