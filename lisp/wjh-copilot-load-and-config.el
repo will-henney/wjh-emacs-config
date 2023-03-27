@@ -1,16 +1,25 @@
 ;; Configuration for zerolfx/copilot.el
 ;; Heavily based on https://github.com/rksm/copilot-emacsd
-;; 
-;; The only changes I have made are to remove all the references to
-;; company mode since I do not use it and to use quelpa to the load
-;; the package from github. Also, finesse some of the key bindings to
-;; work with my keyboard.
+;;
+;; The only changes I have made are as follows
+;; - Removed all references to company mode
+;; - Used quelpa to load the package from GitHub
+;; - Modified key bindings to work with PgDn/PgUp on my keyboard
+;; - Enabled compatibility with org-cycle.
+;; - Changed the global binding to M-C-<tab> instead of M-C-<return>
+;;   to avoid collision with org-insert-heading-respect-content
 
+;; WJH 2023-03-27: It looks like the following function is never
+;; called. Instead the command indent-for-tab-command is advised to
+;; check copilot first. So I have extended the same treatment to
+;; org-cycle. See bindings in the :config section at the bottom of
+;; this file.
 (defun rk/copilot-tab ()
   "Tab command that will complete with copilot if a completion is
 available. Otherwise will tab-indent."
   (interactive)
   (or (copilot-accept-completion)
+      (org-cycle)
       (indent-for-tab-command)))
 
 (defun rk/copilot-complete-or-accept ()
@@ -63,7 +72,7 @@ cleared, make sure the overlay doesn't come back too soon."
   "Modes in which copilot is inconvenient.")
 
 (defvar rk/copilot-manual-mode nil
-  "When `t' will only show completions when manually triggered, e.g. via M-C-<return>.")
+  "When `t' will only show completions when manually triggered, e.g. via M-C-<tab>.")
 
 (defvar rk/copilot-enable-for-org t
   "Should copilot be enabled for org-mode buffers?")
@@ -125,8 +134,8 @@ annoying, sometimes be useful, that's why this can be handly."
   (define-key copilot-mode-map (kbd "M-C-<right>") #'copilot-accept-completion-by-word)
   (define-key copilot-mode-map (kbd "M-C-<down>") #'copilot-accept-completion-by-line)
 
-  ;; global keybindings
-  (define-key global-map (kbd "M-C-<return>") #'rk/copilot-complete-or-accept)
+  ;; global keybindings that are always active
+  (define-key global-map (kbd "M-C-<tab>") #'rk/copilot-complete-or-accept)
   (define-key global-map (kbd "M-C-<escape>") #'rk/copilot-change-activation)
 
   ;; Do copilot-quit when pressing C-g
@@ -136,6 +145,7 @@ annoying, sometimes be useful, that's why this can be handly."
   ;; shown. This means we leave the normal functionality intact.
   (advice-add 'right-char :around #'rk/copilot-complete-if-active)
   (advice-add 'indent-for-tab-command :around #'rk/copilot-complete-if-active)
+  (advice-add 'org-cycle :around #'rk/copilot-complete-if-active)
 
   ;; deactivate copilot for certain modes
   (add-to-list 'copilot-enable-predicates #'rk/copilot-enable-predicate)

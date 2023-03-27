@@ -79,11 +79,23 @@
 (use-package org-sidebar
   :quelpa (org-sidebar :fetcher github :repo "alphapapa/org-sidebar"))
 
-;; 2023-03-26 Try out Github Copilot
+;; 2023-03-26 Try out GitHub Copilot
 ;;
 ;; 2023-03-27 I now have a separate file for this since the setup is a
 ;; bit involved. It is heavily based on (i.e. ripped off from)
 ;; https://github.com/rksm/copilot-emacsd
+;;
+;; Global keybindings are as follows:
+;; - `C-M-ESC' to cycle between the three modes: auto, manual, off
+;; - `C-M-TAB' to manually trigger a completion
+;;
+;; Additional keybindings active when completion is offered:
+;; - `TAB' to accept completion
+;; - `C-g' to cancel completion
+;; - `C-M-right' to accept completion by word
+;; - `C-M-down' to accept completion by line
+;; - `C-M-PgDn' to ask for next completion
+;; - `C-M-PgUp' to ask for previous completion
 (load "wjh-copilot-load-and-config")
 
 ;; 
