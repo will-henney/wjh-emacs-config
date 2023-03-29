@@ -393,17 +393,17 @@ block."
 ;; requires R and ess-mode
 ;; active Babel languages
 (use-package ob-ipython :ensure t)
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((ruby . t)
-   (python . t)
-   (gnuplot . t)
-   (latex . t)
-   (shell . t)
-   (calc . t)
-;;   (ipython . t)
-   (jupyter . t)
-   ))
+(with-demoted-errors "Error during org-babel-do-load-languages: %S"
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((ruby . t)
+     (python . t)
+     (gnuplot . t)
+     (latex . t)
+     (shell . t)
+     (calc . t)
+     (jupyter . t)
+     )))
 
 ;; 28 Jul 2014 - Finally get round to turning off confirmation
 ;;        
