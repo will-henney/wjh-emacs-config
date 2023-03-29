@@ -96,8 +96,13 @@
 ;; - `C-M-down' to accept completion by line
 ;; - `C-M-PgDn' to ask for next completion
 ;; - `C-M-PgUp' to ask for previous completion
-(load "wjh-copilot-load-and-config")
-
+;;
+;; Note that I have to wrap this in a `with-demoted-errors' because it
+;; tends to trigger some error with the native compilation stuff. I
+;; don't know why, and it does not seem to affect the functionality of
+;; the package.
+(with-demoted-errors "Error loading wjh-copilot-load-and-config: %S"
+  (load "wjh-copilot-load-and-config"))
 ;; 
 
 ;; Paradox uses a private github token and ChatGPT uses a private API
