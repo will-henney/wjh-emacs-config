@@ -1100,6 +1100,13 @@ when a file is dopped on Emacs window."
 ;; And also try out emacs ipython notebook
 (use-package ein :ensure t)
 
+;; 2023-04-03 - try out GhostText, which has browser extensions that
+;; can communicate with Emacs. The Emacs side is handled by the
+;; atomic-chrome package
+(use-package atomic-chrome :ensure t
+  :config
+  (atomic-chrome-start-server))
+
 
 ;; 22 Sep 2011 - also put org early on
 ;; Let's use org-mode!
