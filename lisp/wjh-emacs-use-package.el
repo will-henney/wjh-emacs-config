@@ -1107,6 +1107,29 @@ when a file is dopped on Emacs window."
   :config
   (atomic-chrome-start-server))
 
+;; 2023-04-04 alert.el can be use by detached instead of dbus, since the latter did not work out of box
+(use-package alert
+  :ensure t
+  :custom
+  (alert-default-style 'osx-notifier))
+;; 2023-04-04 -try out detached for running detached processes using
+;; dtach (which is installed with homebrew)
+(use-package detached
+  :ensure t
+  :init
+  (detached-init)
+  :bind (;; Replace `async-shell-command' with `detached-shell-command'
+         ([remap async-shell-command] . detached-shell-command)
+         ;; Replace `compile' with `detached-compile'
+         ([remap compile] . detached-compile)
+         ([remap recompile] . detached-compile-recompile)
+         ;; Replace built in completion of sessions with `consult'
+         ([remap detached-open-session] . detached-consult-session))
+  :custom ((detached-show-output-on-attach t)
+           (detached-terminal-data-command system-type)
+	   (detached-notification-function #'detached-extra-alert-notification))
+  :bind-keymap ("C-c m" . detached-embark-action-map))
+
 
 ;; 22 Sep 2011 - also put org early on
 ;; Let's use org-mode!
