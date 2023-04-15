@@ -120,8 +120,9 @@
 ;; - To activate on region in the current buffer, use `M-x gptel-send'
 (use-package gptel
   :ensure t
-  :config
-  (setq gptel-default-mode 'org-mode)
+  :custom
+  (gptel-default-mode 'org-mode)
+  (gptel-model "gpt-3.5-turbo")
   )
 
 ;; 2021-09-03 Applescript support

@@ -65,7 +65,8 @@ cleared, make sure the overlay doesn't come back too soon."
                               comint-mode
                               compilation-mode
                               debugger-mode
-			      ivy-mode	; WJH 2021-03-29
+			      ivy-mode	; WJH 2023-03-29
+			      dired-mode
                               dired-mode-hook
                               compilation-mode-hook
                               flutter-mode-hook
