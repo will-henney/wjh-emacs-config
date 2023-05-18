@@ -66,6 +66,9 @@ cleared, make sure the overlay doesn't come back too soon."
                               compilation-mode
                               debugger-mode
 			      ivy-mode	; WJH 2023-03-29
+			      magit-diff-mode ; WJH 2023-04-26
+			      magit-mode      ; WJH 2023-04-26
+			      info-mode	      ; WJH 2023-05-18
 			      dired-mode
                               dired-mode-hook
                               compilation-mode-hook
