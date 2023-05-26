@@ -214,3 +214,9 @@ left/right swipes"
 	    (define-key
 	      pyvenv-mode-map
 	      (kbd "<menu-bar> <Virtual Envs>") 'nil)))
+
+
+;; 2023-05-26 This is a more sensible default, so scrolling does not
+;; get stuck in org mode buffers
+(setq mac-mouse-wheel-smooth-scroll nil)
+
