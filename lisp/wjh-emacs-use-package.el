@@ -125,6 +125,10 @@
   (gptel-model "gpt-3.5-turbo")
   )
 
+;; 2023-05-29 Try out quarto
+(use-package quarto-mode
+  :ensure t
+  )
 ;; 2021-09-03 Applescript support
 (use-package applescript-mode
   :ensure t)
