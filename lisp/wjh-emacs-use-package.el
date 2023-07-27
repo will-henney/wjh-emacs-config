@@ -369,6 +369,23 @@
   :config
   (global-set-key (kbd "C-x o") 'ace-window))
 
+;; 2023-07-26 - try out moving the minibuffer to center of screen
+(use-package ivy-posframe
+  :ensure t
+  :config
+  (setq ivy-posframe-display-functions-alist
+	'((t . ivy-posframe-display)))
+  ;; The following function is by https://github.com/thomasheartman
+  ;; and is copied from the github issue
+  ;; https://github.com/tumashu/ivy-posframe/issues/105#issuecomment-750370286
+  (defun my-ivy-posframe-get-size ()
+    "Set the ivy-posframe size according to the current frame."
+    (let ((height (or ivy-posframe-height (or ivy-height 10)))
+          (width (min (or ivy-posframe-width 200) (round (* .75 (frame-width))))))
+      (list :height height :width width :min-height height :min-width width)))
+  (setq ivy-posframe-size-function 'my-ivy-posframe-get-size)
+  (ivy-posframe-mode 1))
+
 (use-package multiple-cursors
   :ensure t
   :config
