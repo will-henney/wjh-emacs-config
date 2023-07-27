@@ -386,12 +386,11 @@
   (setq ivy-posframe-size-function 'my-ivy-posframe-get-size)
   (ivy-posframe-mode 1))
 
+;; Do the same for hydra
 (use-package hydra-posframe
   :quelpa (hydra-posframe :fetcher github :repo "Ladicle/hydra-posframe")
   :hook (after-init . hydra-posframe-mode))
-(use-package hydra-posframe
-  :quelpa (hydra-posframe :fetcher github :repo "Ladicle/hydra-posframe")
-  :hook (after-init . hydra-posframe-mode))
+;; And the same for magit
 (use-package transient-posframe
   :quelpa (transient-posframe :fetcher github :repo "yanghaoxie/transient-posframe")
   :config
