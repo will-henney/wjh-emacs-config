@@ -572,6 +572,15 @@ block."
 (define-key org-mode-map (kbd "s-j") #'org-babel-next-src-block)
 (define-key org-mode-map (kbd "s-k") #'org-babel-previous-src-block)
 (define-key org-mode-map (kbd "s-l") #'org-edit-src-code)
+
+;; 2023-07-27 - some extra bindings for navigation
+(define-key org-mode-map (kbd "s-<left>") #'org-backward-element)
+(define-key org-mode-map (kbd "s-<right>") #'org-forward-element)
+(define-key org-mode-map (kbd "s-<up>") #'org-up-element)
+(define-key org-mode-map (kbd "s-<down>") #'org-down-element)
+(define-key org-mode-map (kbd "M-s-<left>") #'org-backward-paragraph)
+(define-key org-mode-map (kbd "M-s-<right>") #'org-forward-paragraph)
+
 ;; 2022-10-06 Try out a better binding for editing source blocks with
 ;; Command-comma, although it turns out that 5 years ago I already had
 ;; done something similar with Command-l

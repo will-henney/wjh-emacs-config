@@ -381,7 +381,7 @@
   (defun my-ivy-posframe-get-size ()
     "Set the ivy-posframe size according to the current frame."
     (let ((height (or ivy-posframe-height (or ivy-height 10)))
-          (width (min (or ivy-posframe-width 200) (round (* .75 (frame-width))))))
+          (width (min (or ivy-posframe-width 200) (round (* .95 (frame-width))))))
       (list :height height :width width :min-height height :min-width width)))
   (setq ivy-posframe-size-function 'my-ivy-posframe-get-size)
   (ivy-posframe-mode 1))
@@ -862,6 +862,11 @@ recognised."
 ;; occasionally use is the horrendously named slurping and barfing to
 ;; move material in and out of delimiters. I could maybe try out puni
 ;; for that, which seems a cleaner design than smartparens
+;; Use puni-mode globally and disable it for term-mode.
+
+;; 2023-07-27 - Try out puni mode to see if I like it
+(load "wjh-puni-config")
+
 
 ;; 03 Nov 2013 - try out smartscan
 ;; (why does everything have to be smart these days?!)
