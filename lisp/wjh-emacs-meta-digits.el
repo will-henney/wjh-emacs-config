@@ -20,6 +20,7 @@
 ;; 1:! (Mnemonic: BANG for magic git!)
 ;; Magit status on current project
 (global-set-key (kbd "M-1") 'wjh/magit-status)
+(global-set-key (kbd "s-g") 'wjh/magit-status) ; alternate binding
 ;; 2:@ (Mnemonic: AT project)
 ;; Switch to another project using projectile
 (global-set-key (kbd "M-2") 'projectile-switch-project)
@@ -35,6 +36,7 @@
 ;; 6:^ (Mnemonic: CARET by analogy with dired buffer binding)
 ;; Go to dired buffer of enclosing directory
 (global-set-key (kbd "M-6") 'wjh/dired-jump)
+(global-set-key (kbd "s-y") 'wjh/dired-jump) ; Alternative binding
 ;; 7:& (Mnemonic: AMPERSAND starts with same letter)
 ;; Regexp search through emacs functions, variables, etc
 (global-set-key (kbd "M-7") 'apropos)
