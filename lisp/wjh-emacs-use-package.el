@@ -75,6 +75,15 @@
 (setq org-roam-directory "~/org-roam")
 ;; (add-hook 'after-init-hook 'org-roam-mode)
 
+;; 2023-07-29 - Try out move-text
+(use-package move-text
+  :ensure t
+  :bind (
+	 ("M-s-j" . 'move-text-up)
+	 ("M-s-k" . 'move-text-down)
+	 )
+  )
+
 ;; 31 Mar 2020 - Try out this, looks good: https://github.com/alphapapa/org-sidebar
 (use-package org-sidebar
   :quelpa (org-sidebar :fetcher github :repo "alphapapa/org-sidebar"))
