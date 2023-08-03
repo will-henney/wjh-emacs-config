@@ -597,7 +597,8 @@ block."
 
 (define-key org-mode-map (kbd "s-,") 'wjh/insert-org-src-template)
 (define-key org-mode-map (kbd "s-t") 'wjh/org-babel-tangle-single-block)
-(define-key org-mode-map (kbd "s-d") #'org-babel-demarcate-block)
+;; 2023-08-03 remove this since it interferes with duplicate line
+;; (define-key org-mode-map (kbd "s-d") #'org-babel-demarcate-block)
 (define-key org-mode-map (kbd "s-i") #'org-babel-view-src-block-info)
 
 (define-key org-src-mode-map (kbd "s-l") #'org-edit-src-exit)
