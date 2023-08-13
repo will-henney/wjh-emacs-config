@@ -120,7 +120,7 @@
  '(tree-sitter-hl-face:embedded ((t (:inherit default :weight semi-bold))))
  '(tree-sitter-hl-face:operator ((t (:inherit tree-sitter-hl-face:keyword :weight bold))))
  '(tree-sitter-hl-face:property ((t (:inherit font-lock-constant-face))))
- '(tree-sitter-hl-face:punctuation\.special ((t (:inherit tree-sitter-hl-face:keyword :slant normal :weight light))))
+ '(tree-sitter-hl-face:punctuation.special ((t (:inherit tree-sitter-hl-face:keyword :slant normal :weight light))))
  '(variable-pitch ((t (:height 1.1 :width normal :family "San Francisco"))))
  '(w3m-anchor ((t (:foreground "gray70" :underline t :weight bold))) t)
  '(w3m-arrived-anchor ((t (:foreground "gray60" :underline t :weight normal))) t)
@@ -239,35 +239,21 @@
  '(diary-file "~/.emacs.d/diary")
  '(dired-omit-verbose nil)
  '(easy-kill-alist
-   '((94 backward-line-edge "
-")
-     (36 forward-line-edge "
-")
-     (66 buffer "
-
-")
-     (60 buffer-before-point "
-
-")
-     (62 buffer-after-point "
-
-")
+   '((94 backward-line-edge "\12")
+     (36 forward-line-edge "\12")
+     (66 buffer "\12\12")
+     (60 buffer-before-point "\12\12")
+     (62 buffer-after-point "\12\12")
      (70 string-up-to-char-forward "")
      (116 string-to-char-backward "")
      (84 string-up-to-char-backward "")
      (119 word " ")
-     (115 sexp "
-")
-     (108 list "
-")
-     (102 filename "
-")
-     (100 defun "
-
-")
+     (115 sexp "\12")
+     (108 list "\12")
+     (102 filename "\12")
+     (100 defun "\12\12")
      (68 defun-name " ")
-     (101 line "
-")
+     (101 line "\12")
      (98 buffer-file-name nil)))
  '(elpy-modules
    '(elpy-module-company elpy-module-eldoc elpy-module-flymake elpy-module-pyvenv elpy-module-highlight-indentation elpy-module-sane-defaults))
@@ -281,6 +267,7 @@
  '(git-messenger:use-magit-popup t)
  '(line-spacing 4)
  '(magit-push-always-verify nil)
+ '(magit-todos-insert-after '(bottom) nil nil "Changed by setter of obsolete option `magit-todos-insert-at'")
  '(org-agenda-files
    '("~/Dropbox/Metal-Permitted/metal-permitted.org" "~/Dropbox/Teaching/Computacional/curso-computacional.org" "~/Dropbox/Teresa-Turtle/doc/teresa-turtle.org" "~/Work/Bowshocks/Jorge/bowshock-shape/Stellar-Bowshocks-2017/stellar-bowshocks.org" "~/Dropbox/Org/notes.org" "~/Dropbox/Notes/will-macbook-config.org" "~/Dropbox/Notes/workflow.org" "~/Dropbox/Notes/apple accounts.org" "~/Dropbox/Notes/paper projects 2015.org" "~/Dropbox/Org/pub-orion-atlas/index.org" "~/Dropbox/Family/Matthew-Money/matt-loan.org"))
  '(org-agenda-text-search-extra-files
@@ -288,6 +275,7 @@
  '(org-attach-directory "~/Dropbox/Org-Attach")
  '(org-attach-id-dir "~/Dropbox/Org-Attach")
  '(org-attach-method 'ln)
+ '(org-bookmark-heading-jump-indirect nil)
  '(org-bookmark-jump-indirect nil)
  '(org-clock-into-drawer "LOGBOOK")
  '(org-clock-string-limit 30)
@@ -337,7 +325,7 @@
  '(org-tag-faces '(("noexport" . "#33bb44")))
  '(org-tags-column 50)
  '(package-selected-packages
-   '(move-text puni transient-posframe hydra-posframe ivy-posframe quarto-mode quarto detached atomic-chrome gptel copilot editorconfig wrap-region ox-pandoc ghub forge applescript-mode applescript apples google-translate-default-ui google-translate-smooth-ui google-translate dired-git-info org-attach-screenshot auctex tree-sitter-langs tree-sitter beacon all-the-icons-ivy-rich all-the-icons-ibuffer all-the-icons-ibuffer-mode ox-gfm helpful ox-hugo org-roam org-sidebar org-ql map peg ov org-super-agenda ts ht exec-path-from-shell orgit edit-indirect magit-todos emacs-websocket jupyter org-ref ivy-prescient prescient python-docstring python-docstring-mode typo guess-language web-mode org-fstree org-dropbox header2 all-the-icons-ivy all-the-icons-dired all-the-icons counsel-projectile suggest e2wm org-extra org-contacts worf quelpa-use-package ag org-sticky-header ivy-hydra counsel mu4e org-pomodoro org-table-sticky-header org-edit-latex elfeed-org auto-org-md julia-mode zenburn-theme yaml-mode w3m virtualenv unfill undo-tree synonyms svg-mode-line-themes stripe-buffer spotlight sparkline smex smartparens smart-mode-line rainbow-mode projectile prodigy pinboard persistent-scratch paradox pallet org-trello org-plus-contrib org-magit org-dotemacs org-bullets org-bookmark-heading ob-ipython nose names multiple-cursors markdown-mode magithub magit-svn lispy latex-extra langtool key-chord idomenu ido-vertical-mode ibuffer-vc hungry-delete htmlize helm-dash helm-bibtex guide-key google-this golden-ratio god-mode gitty git-messenger git-gutter ggtags fuzzy fold-dwim-org flx-ido fancy-narrow expand-region esxml elpy elnode easy-kill-extras dired-details diminish deft csv-mode crosshairs creole-mode conda color-identifiers-mode bibslurp bf-mode auto-complete alert airplay ack-and-a-half achievements ace-jump-mode))
+   '(emacsql move-text puni transient-posframe hydra-posframe ivy-posframe quarto-mode quarto detached atomic-chrome copilot editorconfig wrap-region applescript-mode applescript apples google-translate-default-ui google-translate-smooth-ui dired-git-info org-attach-screenshot auctex beacon all-the-icons-ivy-rich all-the-icons-ibuffer all-the-icons-ibuffer-mode peg exec-path-from-shell edit-indirect emacs-websocket org-ref ivy-prescient prescient python-docstring-mode typo web-mode org-fstree org-dropbox header2 all-the-icons-ivy all-the-icons-dired all-the-icons counsel-projectile e2wm org-extra org-contacts quelpa-use-package ag org-sticky-header counsel mu4e org-pomodoro org-table-sticky-header org-edit-latex elfeed-org auto-org-md julia-mode w3m virtualenv synonyms svg-mode-line-themes stripe-buffer spotlight sparkline smex rainbow-mode prodigy pinboard pallet org-trello org-plus-contrib org-magit org-dotemacs org-bullets ob-ipython nose magithub magit-svn latex-extra idomenu htmlize helm-dash helm-bibtex guide-key google-this golden-ratio god-mode gitty git-messenger git-gutter ggtags fold-dwim-org flx-ido fancy-narrow expand-region esxml elpy elnode easy-kill-extras dired-details diminish deft csv-mode crosshairs creole-mode conda color-identifiers-mode bibslurp bf-mode auto-complete alert airplay ack-and-a-half achievements ace-jump-mode))
  '(paradox-automatically-star t)
  '(pinboard-url "http://feeds.pinboard.in/json/u:deprecated/?count=10")
  '(python-check-command "black")

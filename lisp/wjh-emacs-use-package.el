@@ -51,9 +51,10 @@
 ;; But I haven't got round to this yet
 ;; Example here: https://emacs.stackexchange.com/a/26510/1980
 
-(use-package org
-  :quelpa (org :fetcher git)
-  )
+;; 2023-08-13 - I think I can save headaches by just using the built-in version of org-mode
+;; (use-package org
+;;   :quelpa (org :fetcher git)
+;;   )
 
 ;; 02 Sep 2020 - use ox-hugo for my new blog
 (use-package ox-hugo

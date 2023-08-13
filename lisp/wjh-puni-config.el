@@ -2,7 +2,25 @@
 (use-package puni
   :ensure t
   :defer t
-  ;; Extra key bindings
+  ;; These are the default puny bindings - see https://github.com/AmaiKinono/puni
+  ;; 
+  ;; Navigation
+  ;; 
+  ;; puni-forward-sexp	C-M-f
+  ;; puni-backward-sexp	C-M-b
+  ;; puni-beginning-of-sexp	C-M-a
+  ;; puni-end-of-sexp	C-M-e
+  ;; 
+  ;; Deletion
+  ;; 
+  ;; puni-forward-delete-char	C-d
+  ;; puni-backward-delete-char	DEL
+  ;; puni-forward-kill-word	M-d
+  ;; puni-backward-kill-word	M-DEL
+  ;; puni-kill-line	C-k
+  ;; puni-backward-kill-line	C-S-k
+  ;; 
+  ;; My personal extra key bindings
   :bind (("C-M-=" . puni-expand-region)
 	 ("C-M-]" . puni-slurp-forward)
 	 ("C-M-[" . puni-slurp-backward)
@@ -10,6 +28,7 @@
 	 ("C-M-{" . puni-barf-backward)
 	 ("C-M-|" . puni-split)
 	 ("C-M-^" . puni-splice)
+	 ("C-M-_" . puni-squeeze)
 	 )
   :init
   ;; The autoloads of Puni are set up so you can enable `puni-mode` or
@@ -35,7 +54,7 @@
                        ("k" . puni-kill-line)
                        ("K" . puni-backward-kill-line)
 		       ("=" . puni-expand-region)
-		       ("q" . puni-squeeze)
+		       ("_" . puni-squeeze)
                        ("]" . puni-slurp-forward)
                        ("[" . puni-slurp-backward)
                        ("}" . puni-barf-forward)

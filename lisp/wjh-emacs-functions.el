@@ -237,7 +237,7 @@ recent first."
 ;; 2023-04-04: Duplicate line function to mimic behavior of Cmd-D in
 ;; JetBrains editors. This is copied from
 ;; https://stackoverflow.com/a/998472/353062
-(defun duplicate-line (arg)
+(defun so/duplicate-line (arg)
   "Duplicate current line, leaving point in lower line."
   (interactive "*p")
 
@@ -271,4 +271,6 @@ recent first."
 
   ;; put the point in the lowest line and return
   (next-line arg))
-(global-set-key (kbd "s-d") 'duplicate-line)
+
+;; 2023-08-12 - we do not need this any more in 29.1 since there is built in function
+(global-set-key (kbd "s-d") 'duplicate-dwim)

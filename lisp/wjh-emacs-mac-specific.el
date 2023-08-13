@@ -221,3 +221,6 @@ left/right swipes"
 ;; get stuck in org mode buffers
 (setq mac-mouse-wheel-smooth-scroll nil)
 
+;; 2023-08-12 New drag options in 29.1 but I can't get them to work 🙁
+(setq mouse-drag-and-drop-region-cross-program t)
+(setq mouse-drag-mode-line-buffer t)
