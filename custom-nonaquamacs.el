@@ -301,6 +301,8 @@
      ("pdf" . default)
      ("png" . default)
      ("jpg" . default)))
+ '(org-format-latex-header
+   "\\documentclass{article}\12\\usepackage[usenames]{color}\12\\usepackage{amsmath}\12\\usepackage[T1]{fontenc}\12\\usepackage[nomath]{lmodern}\12\\renewcommand{\\rmdefault}{lmvtt}\12\\usepackage[eulergreek]{mathastext}\12\\MathastextEulerScale{0.92}\12\\usepackage[mathscr]{eucal}\12\\AtBeginDocument{\\large}\12\\pagestyle{empty}             % do not remove\12[PACKAGES]\12[DEFAULT-PACKAGES]\12% The settings below are copied from fullpage.sty\12\\usepackage{geometry}\12\\geometry{letterpaper,margin=1in}\12")
  '(org-goto-interface 'outline)
  '(org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id)
  '(org-image-actual-width '(500))
@@ -312,6 +314,7 @@
  '(org-modules
    '(org-bbdb org-bibtex org-docview org-gnus org-id org-info org-inlinetask org-irc org-mhe org-protocol org-rmail))
  '(org-pretty-entities t)
+ '(org-preview-latex-default-process 'dvisvgm)
  '(org-ref-completion-library 'org-ref-ivy-cite)
  '(org-ref-insert-cite-function 'org-ref-ivy-insert-cite-link)
  '(org-ref-insert-label-function 'org-ref-ivy-insert-label-link)

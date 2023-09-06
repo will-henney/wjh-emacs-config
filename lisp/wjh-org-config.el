@@ -263,6 +263,20 @@ block."
 ")
 
 
+;; 2023-09-05 - use SVG for latex fragments
+(setq org-preview-latex-default-process 'dvisvgm) ;No blur when scaling
+;; Allow scaling of latex fragments during font zoominng
+;; Source: https://www.reddit.com/r/orgmode/comments/165zeuu/delighted_by_org_svg_preview/
+(defun my/resize-org-latex-overlays ()
+  (cl-loop for o in (car (overlay-lists))
+     if (eq (overlay-get o 'org-overlay-type) 'org-latex-overlay)
+     do (plist-put (cdr (overlay-get o 'display))
+		   :scale (* 1.0 (expt text-scale-mode-step
+				text-scale-mode-amount)))))
+(add-hook 'text-scale-mode-hook #'my/resize-org-latex-overlays)
+
+
+
 ;;; Support for magit links in org buffers
 ;;; https://github.com/magit/orgit (updated 30 Jan 2020)
 (use-package orgit
