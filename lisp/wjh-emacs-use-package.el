@@ -653,6 +653,11 @@ recognised."
   :config
   (setq calc-settings-file "/Users/will/.emacs.d/calc-settings.el"))
 
+;; 2023-10-28 Try out literate-calc-mode
+(use-package literate-calc-mode
+  :ensure t)
+
+
 
 ;; 14 Apr 2014 - Use ibuffer and ibuffer-vc
 (use-package ibuffer
@@ -1409,15 +1414,39 @@ prefix argument set OTHER-WINDOW true."
   (keyfreq-autosave-mode 1))
 
 
-(use-package undo-tree
+;; 2023-11-28: try undo-fu and vundo as replacements for undo-tree
+(use-package undo-fu
   :ensure t
   :config
-  (global-undo-tree-mode)
-  ;; Basic Usage: 
-  ;; + "C-/" undo
-  ;; + "C-?" redo
-  ;; + "C-x u" visualize (use arrows to navigate tree)
-  )
+  (setq undo-fu-allow-undo-in-region t)
+  (global-set-key (kbd "C-/")   'undo-fu-only-undo)
+  (global-set-key (kbd "C-?")   'undo-fu-only-redo))
+(use-package vundo
+  :ensure t
+  :config
+  (set-face-attribute 'vundo-default nil :family "SFMono")
+  ;; Use "medium white circle" and "medium black circle" since they
+  ;; are more likely to have the same size
+  (setq vundo-glyph-alist
+	'((selected-node . ?⚫)
+	  (node . ?⚪)
+	  (horizontal-stem . ?─)
+	  (vertical-stem . ?│)
+	  (branch . ?├)
+	  (last-branch . ?└)))
+  (setq vundo-compact-display t)
+  (global-set-key (kbd "C-x u")   'vundo))
+
+;; (use-package undo-tree
+;;   :ensure t
+;;   :config
+;;   (setq undo-tree-auto-save-history nil)
+;;   (global-undo-tree-mode)
+;;   ;; Basic Usage: 
+;;   ;; + "C-/" undo
+;;   ;; + "C-?" redo
+;;   ;; + "C-x u" visualize (use arrows to navigate tree)
+;;   )
 
 
 ;; 10 Aug 2017 - suggest functions when writing elisp
