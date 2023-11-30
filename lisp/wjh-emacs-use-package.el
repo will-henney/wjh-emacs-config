@@ -89,6 +89,13 @@
 (use-package org-sidebar
   :quelpa (org-sidebar :fetcher github :repo "alphapapa/org-sidebar"))
 
+;; 2023-11-30 Try shellcheck
+;; Based on this blog post: https://amitp.blogspot.com/2023/10/emacs-and-shellcheck.html
+(use-package flymake
+  :bind (("s-e" . flymake-show-project-diagnostics)))
+(use-package sh-script
+  :hook (sh-mode . flymake-mode))
+
 ;; 2023-03-26 Try out GitHub Copilot
 ;;
 ;; 2023-03-27 I now have a separate file for this since the setup is a
