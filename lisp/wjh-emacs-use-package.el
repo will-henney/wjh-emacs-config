@@ -82,7 +82,7 @@
   :bind (
 	 ("M-s-j" . 'move-text-up)
 	 ("M-s-k" . 'move-text-down)
-	 )
+	 )  
   )
 
 ;; 31 Mar 2020 - Try out this, looks good: https://github.com/alphapapa/org-sidebar
