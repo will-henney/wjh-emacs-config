@@ -89,12 +89,34 @@
 (use-package org-sidebar
   :quelpa (org-sidebar :fetcher github :repo "alphapapa/org-sidebar"))
 
+;; 2023-12-13 - Some random packages spotted on reddit
+
+;; This shows inline overlay with result when doing C-c C-e in lisp buffer
+(use-package eros
+  :ensure t
+  :config (eros-mode 1)
+  )
+
+;; This inserts the delimiters \(...\) and \[...\] when typing the $
+;; sign in latex and org buffers
+(use-package math-delimiters
+  :quelpa (math-delimiters :fetcher github :repo "oantolin/math-delimiters")
+  :config
+  ;; Note that I have removed $ from the configuration of wrap-region
+  ;; so as not to interfere with this
+  (with-eval-after-load 'org
+    (define-key org-mode-map "$" #'math-delimiters-insert))
+  (with-eval-after-load 'tex              ; for AUCTeX
+    (define-key TeX-mode-map "$" #'math-delimiters-insert)))
+
 ;; 2023-11-30 Try shellcheck
 ;; Based on this blog post: https://amitp.blogspot.com/2023/10/emacs-and-shellcheck.html
 (use-package flymake
   :bind (("s-e" . flymake-show-project-diagnostics)))
+
 (use-package sh-script
   :hook (sh-mode . flymake-mode))
+
 
 ;; 2023-03-26 Try out GitHub Copilot
 ;;
@@ -876,7 +898,8 @@ recognised."
      ("`" "`" nil (markdown-mode ruby-mode python-mode))
      ;; ("\\(" "\\)" (org-mode latex-mode))
      ;; ("\\[" "\\]" (org-mode latex-mode))
-     ("$" "$" nil (org-mode latex-mode))))
+     ;; ("$" "$" nil (org-mode latex-mode))
+,     ))
   (add-hook 'org-mode-hook 'wrap-region-mode)
   (add-hook 'latex-mode-hook 'wrap-region-mode))
 
