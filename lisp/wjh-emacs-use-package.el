@@ -91,13 +91,13 @@
 
 ;; 2023-12-13 - Some random packages spotted on reddit
 
-;; This shows inline overlay with result when doing C-c C-e in lisp buffer
+;; 2023-12-13 - Eros shows inline overlay with result when doing C-c C-e in lisp buffer
 (use-package eros
   :ensure t
   :config (eros-mode 1)
   )
 
-;; This inserts the delimiters \(...\) and \[...\] when typing the $
+;; 2023-12-13 - This inserts the delimiters \(...\) and \[...\] when typing the $
 ;; sign in latex and org buffers
 (use-package math-delimiters
   :quelpa (math-delimiters :fetcher github :repo "oantolin/math-delimiters")
@@ -108,6 +108,11 @@
     (define-key org-mode-map "$" #'math-delimiters-insert))
   (with-eval-after-load 'tex              ; for AUCTeX
     (define-key TeX-mode-map "$" #'math-delimiters-insert)))
+
+;; 2023-12-14 - Dirvish is an "improved" version of dired
+(use-package dirvish
+  :ensure t
+  :config (dirvish-override-dired-mode))
 
 ;; 2023-11-30 Try shellcheck
 ;; Based on this blog post: https://amitp.blogspot.com/2023/10/emacs-and-shellcheck.html
