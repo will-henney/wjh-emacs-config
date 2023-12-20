@@ -89,6 +89,25 @@
 (use-package org-sidebar
   :quelpa (org-sidebar :fetcher github :repo "alphapapa/org-sidebar"))
 
+;; 2023-12-20 - This 
+(use-package ultra-scroll-mac
+  :if (eq window-system 'mac)
+  :quelpa (ultra-scroll-mac :fetcher github :repo "jdtsmith/ultra-scroll-mac")
+  :load-path "~/code/emacs/ultra-scroll-mac" ; if you git clone'd
+  :init
+  (setq scroll-conservatively 101) ; important for jumbo images
+  :config
+  (ultra-scroll-mac-mode 1))
+
+;; 2023-12-20 - speedrect builds on rectangle-mark-mode with single key bindings
+;;
+;; For instance, activate rectangle-mark-mode via C-x SPACE and then
+;; grow the rectangle with the arrow keys, or alternatively use
+;; C-M-<mouse-1> to drag out the rectangle
+(use-package speedrect
+  :ensure t
+  :quelpa (speedrect :fetcher github :repo "jdtsmith/speedrect"))
+
 ;; 2023-12-13 - Some random packages spotted on reddit
 
 ;; 2023-12-13 - Eros shows inline overlay with result when doing C-c C-e in lisp buffer
@@ -904,7 +923,7 @@ recognised."
      ;; ("\\(" "\\)" (org-mode latex-mode))
      ;; ("\\[" "\\]" (org-mode latex-mode))
      ;; ("$" "$" nil (org-mode latex-mode))
-,     ))
+     ))
   (add-hook 'org-mode-hook 'wrap-region-mode)
   (add-hook 'latex-mode-hook 'wrap-region-mode))
 
