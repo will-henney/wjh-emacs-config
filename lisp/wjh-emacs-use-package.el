@@ -76,6 +76,21 @@
 (setq org-roam-directory "~/org-roam")
 ;; (add-hook 'after-init-hook 'org-roam-mode)
 
+
+;; 2024-03-13 - Try out vterm for a better terminal emulator
+(use-package vterm
+  :ensure t
+  :bind (
+	 ("C-c v" . vterm)
+	 )
+  :config
+  (define-key vterm-mode-map (kbd "C-y") #'vterm-yank)
+  (define-key vterm-mode-map (kbd "M-y") #'vterm-yank-pop)
+  (define-key vterm-mode-map (kbd "C-q") #'vterm-send-next-key)
+  (setq vterm-shell "/bin/zsh")
+  (setq vterm-always-compile-module t)
+  )
+
 ;; 2023-07-29 - Try out move-text
 (use-package move-text
   :ensure t
@@ -84,16 +99,32 @@
 	 ("M-s-k" . 'move-text-down)
 	 )  
   )
+;; 2024-02-06 -  Try out selected-window-accent-mode
+;; TURNED OFF 2024-02-06 - Did not like
+;; (use-package selected-window-accent-mode
+;;   :quelpa (selected-window-accent-mode :fetcher github :repo "captainflasmr/selected-window-accent-mode")
+;;   :custom
+;;   (selected-window-accent-fringe-thickness 20)
+;;   (selected-window-accent-custom-color "#916941")
+;;   (selected-window-accent-mode-style 'tiling)
+;;   :config (selected-window-accent-mode -1))
 
 ;; 31 Mar 2020 - Try out this, looks good: https://github.com/alphapapa/org-sidebar
 (use-package org-sidebar
   :quelpa (org-sidebar :fetcher github :repo "alphapapa/org-sidebar"))
 
-;; 2023-12-20 - This 
+;; ;; 2023-12-20 - Paste images into org files
+;; (use-package org-mac-image-paste
+;;   :ensure t
+;;   ;; :load-path "~/.emacs.d/quelpa/build/org-mac-image-paste/"
+;;   :quelpa (org-mac-image-paste :fetcher github :repo "jdtsmith/org-mac-image-paste")
+;;   :config (org-mac-image-paste-mode 1)
+;;   :bind (:map org-mode-map ("<f6>" . org-mac-image-paste-refresh-this-node)))
+
+;; 2023-12-20 - This sorts out the smooth scrolling better
 (use-package ultra-scroll-mac
   :if (eq window-system 'mac)
   :quelpa (ultra-scroll-mac :fetcher github :repo "jdtsmith/ultra-scroll-mac")
-  :load-path "~/code/emacs/ultra-scroll-mac" ; if you git clone'd
   :init
   (setq scroll-conservatively 101) ; important for jumbo images
   :config
@@ -1307,6 +1338,7 @@ when a file is dopped on Emacs window."
 	      ("M-n" . comint-next-matching-input-from-input)))
 
 (use-package constants
+  :quelpa (constants :fetcher github :repo "cdominik/constants-for-Emacs")
   ;; :ensure t
   :commands (constants-insert constants-get constants-replace)
   :bind (("C-c c i" . constants-insert)
