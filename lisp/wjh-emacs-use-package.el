@@ -1174,7 +1174,10 @@ when a file is dopped on Emacs window."
 	`((,(expand-file-name "~/Dropbox") . 5)
 	  (,(expand-file-name "~/Source") . 1)
 	  (,(expand-file-name "~/Family") . 1)
-	  (,(expand-file-name "~/Work") . 5))))
+	  (,(expand-file-name "~/Work") . 5)))
+  (remove-hook 'server-switch-hook 'magit-commit-diff)
+  (remove-hook 'with-editor-filter-visit-hook 'magit-commit-diff)
+  )
 
 ;; 2021-10-15: integration of magit and github
 (use-package forge
