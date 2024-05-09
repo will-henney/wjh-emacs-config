@@ -33,17 +33,29 @@
 (global-set-key (kbd "s-c") 'kill-ring-save-keep-highlight)
 (global-set-key (kbd "s-v") 'cua-paste)
 (global-set-key (kbd "s-a") 'mark-whole-buffer)
- 
+;; 2024-05-08 - add undo/redo bindings on Cmd-Z and Cmd-Shift-Z, but
+;; do it in a way that is agnostic as to which undo system we are
+;; using by looking up the current binding for C-/ and C-?
+(global-set-key (kbd "s-z") (keymap-lookup (current-global-map) "C-/"))
+(global-set-key (kbd "s-Z") (keymap-lookup (current-global-map) "C-?"))
+
 ;; we already have C-` set to this, but bind it to ⌘-` as well, for
 ;; consistency with other apps
 (global-set-key (kbd "s-`") 'other-frame)
 
-;; 2022-10-06 Use Command key with numbers as an alias for C-x NUMBER
+;; 2022-10-06 - Use Command key with numbers as an alias for C-x NUMBER
+;; 2024-05-08 - Also add keypad number bindings explicitly, since they
+;;              do not get translated automatically
 (global-set-key (kbd "s-4") 'ctl-x-4-prefix)
+(global-set-key (kbd "s-<kp-4>") 'ctl-x-4-prefix)
 (global-set-key (kbd "s-1") 'delete-other-windows)
+(global-set-key (kbd "s-<kp-1>") 'delete-other-windows)
 (global-set-key (kbd "s-2") 'split-window-below)
+(global-set-key (kbd "s-<kp-2>") 'split-window-below)
 (global-set-key (kbd "s-3") 'split-window-right)
+(global-set-key (kbd "s-<kp-3>") 'split-window-right)
 (global-set-key (kbd "s-0") 'delete-window)
+(global-set-key (kbd "s-<kp-0>") 'delete-window)
 
 ;; emacs-25.2-mac-6.6 (2017-08-24) adds mac-send-action function
 ;; 19 Sep 2017: Use it to implement ⌘ H and ⎇ ⌘ H functionality
