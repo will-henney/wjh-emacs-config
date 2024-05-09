@@ -17,6 +17,7 @@
  '(custom-button ((((type x w32 mac) (class color)) (:background "lightgrey" :foreground "black" :box (:line-width 2 :color "gray95")))))
  '(custom-button-mouse ((((type x w32 mac) (class color)) (:background "#ddc4bf" :foreground "black" :box (:line-width 2 :color "gray95")))))
  '(custom-button-pressed ((((type x w32 mac) (class color)) (:background "#ddc4bf" :foreground "black" :box (:line-width 2 :style pressed-button)))))
+ '(dirvish-hl-line ((t (:background "firebrick" :extend t :inherit highlight))))
  '(elpy-codecell-boundary ((t (:weight bold :background "gray20"))))
  '(emacs-wiki-header-1 ((t (:inherit nil :weight bold :height 1.15))) t)
  '(emacs-wiki-header-2 ((t (:inherit nil :weight bold :height 1.1))) t)
