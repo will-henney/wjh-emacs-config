@@ -429,6 +429,10 @@
   (global-set-key (kbd "M-g g") 'avy-goto-line)
   (avy-setup-default))
 
+(use-package casual-avy
+  :ensure t
+  :bind ("s-." . casual-avy-tmenu))
+
 
 (use-package paradox
   :ensure t)
@@ -639,6 +643,9 @@ recognised."
   ;; strings
   (add-hook 'prog-mode-hook #'flyspell-prog-mode)
   :config
+  ;; 2024-05-31 - I only ever use the C-; binding, so I'm going to
+  ;; remove the C-. one so that I can use it with avy instead
+  (keymap-unset flyspell-mode-map "C-." t)
   ;; Use hunspell if available 
   (when (executable-find "hunspell")
     (setq-default ispell-program-name (executable-find "hunspell"))
