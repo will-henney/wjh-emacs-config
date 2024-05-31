@@ -77,6 +77,16 @@
 ;; (add-hook 'after-init-hook 'org-roam-mode)
 
 
+;; 2024-05-30 - try out org-download
+(use-package org-download
+  :ensure t
+  :config
+  (setq org-download-method 'directory)
+  (setq org-download-heading-lvl 0)
+  (setq org-download-timestamp "%Y%m%d-%H%M%S_")
+  (add-hook 'dired-mode-hook 'org-download-enable)
+  )
+
 ;; 2024-03-13 - Try out vterm for a better terminal emulator
 (use-package vterm
   :ensure t
