@@ -477,32 +477,34 @@
   :config
   (global-set-key (kbd "C-x o") 'ace-window))
 
+;; 2024-06-01 - Disable all posframe nonsense - it is too slow for one thing
+;; 
 ;; 2023-07-26 - try out moving the minibuffer to center of screen
-(use-package ivy-posframe
-  :ensure t
-  :config
-  (setq ivy-posframe-display-functions-alist
-	'((t . ivy-posframe-display)))
-  ;; The following function is by https://github.com/thomasheartman
-  ;; and is copied from the github issue
-  ;; https://github.com/tumashu/ivy-posframe/issues/105#issuecomment-750370286
-  (defun my-ivy-posframe-get-size ()
-    "Set the ivy-posframe size according to the current frame."
-    (let ((height (or ivy-posframe-height (or ivy-height 10)))
-          (width (min (or ivy-posframe-width 200) (round (* .95 (frame-width))))))
-      (list :height height :width width :min-height height :min-width width)))
-  (setq ivy-posframe-size-function 'my-ivy-posframe-get-size)
-  (ivy-posframe-mode 1))
+;; (use-package ivy-posframe
+;;   :ensure t
+;;   :config
+;;   (setq ivy-posframe-display-functions-alist
+;; 	'((t . ivy-posframe-display)))
+;;   ;; The following function is by https://github.com/thomasheartman
+;;   ;; and is copied from the github issue
+;;   ;; https://github.com/tumashu/ivy-posframe/issues/105#issuecomment-750370286
+;;   (defun my-ivy-posframe-get-size ()
+;;     "Set the ivy-posframe size according to the current frame."
+;;     (let ((height (or ivy-posframe-height (or ivy-height 10)))
+;;           (width (min (or ivy-posframe-width 200) (round (* .95 (frame-width))))))
+;;       (list :height height :width width :min-height height :min-width width)))
+;;   (setq ivy-posframe-size-function 'my-ivy-posframe-get-size)
+;;   (ivy-posframe-mode 1))
 
-;; Do the same for hydra
-(use-package hydra-posframe
-  :quelpa (hydra-posframe :fetcher github :repo "Ladicle/hydra-posframe")
-  :hook (after-init . hydra-posframe-mode))
-;; And the same for magit
-(use-package transient-posframe
-  :quelpa (transient-posframe :fetcher github :repo "yanghaoxie/transient-posframe")
-  :config
-  (transient-posframe-mode))
+;; ;; Do the same for hydra
+;; (use-package hydra-posframe
+;;   :quelpa (hydra-posframe :fetcher github :repo "Ladicle/hydra-posframe")
+;;   :hook (after-init . hydra-posframe-mode))
+;; ;; And the same for magit
+;; (use-package transient-posframe
+;;   :quelpa (transient-posframe :fetcher github :repo "yanghaoxie/transient-posframe")
+;;   :config
+;;   (transient-posframe-mode))
 
 
 (use-package multiple-cursors
@@ -511,8 +513,25 @@
   (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-  (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this))
+  (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+  (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
+  (global-set-key (kbd "C-S-<mouse-3>") 'mc/mark-all-like-this-dwim)
+  )
 
+;; 2024-05-31 - Additional bindings when region is active
+(use-package region-bindings-mode
+  :ensure t
+  :config
+  (region-bindings-mode-enable)
+  (define-key region-bindings-mode-map "a" 'mc/mark-all-like-this)
+  (define-key region-bindings-mode-map "p" 'mc/mark-previous-like-this)
+  (define-key region-bindings-mode-map "n" 'mc/mark-next-like-this)
+  (define-key region-bindings-mode-map "m" 'mc/mark-more-like-this-extended)
+  (define-key region-bindings-mode-map "u" 'mc/unmark-next-like-this)
+  (define-key region-bindings-mode-map "U" 'mc/unmark-previous-like-this)
+  (define-key region-bindings-mode-map "s" 'mc/skip-to-next-like-this)
+  (define-key region-bindings-mode-map "S" 'mc/skip-to-previous-like-this)
+  )
 
 ;; This form is for packages that only work in GUI emacs, not in a terminal
 (when (display-graphic-p)
@@ -841,7 +860,9 @@ recognised."
 (use-package expand-region
   :ensure t
   :config
-  (global-set-key (kbd "C-=") 'er/expand-region))
+  (global-set-key (kbd "C-=") 'er/expand-region)
+  (global-set-key (kbd "C-~") 'er/expand-region)
+  )
 
 ;; 28 Jan 2015 - Similar to expand-region, but possibly even better.
 ;; Let's try out easy-kill!
