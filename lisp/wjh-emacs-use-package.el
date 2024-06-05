@@ -56,6 +56,12 @@
 ;;   :quelpa (org :fetcher git)
 ;;   )
 
+;; 2024-06-04 - Try again with getting org from upstream
+(use-package org
+  :ensure t
+  )
+
+
 ;; 02 Sep 2020 - use ox-hugo for my new blog
 (use-package ox-hugo
   :ensure t
