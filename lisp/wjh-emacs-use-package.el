@@ -263,10 +263,10 @@
   :bind ("s-*" . org-attach-screenshot)
   :config (setq org-attach-screenshot-dirfunction
 		(lambda () 
-		  (progn (assert (buffer-file-name))
+		  (progn (cl-assert (buffer-file-name))
 			 (concat (file-name-sans-extension (buffer-file-name))
 				 "_att")))
-		org-attach-screenshot-command-line "screencapture -s %f"))
+		org-attach-screenshot-command-line "get-cleanshot-screenshot %f"))
 
 ;; 02 Sep 2017 - utility functions for writing your own elisp packages
 ;; 19 Jan 2020 - Cannot seem to install this package
@@ -526,19 +526,21 @@
   )
 
 ;; 2024-05-31 - Additional bindings when region is active
-(use-package region-bindings-mode
-  :ensure t
-  :config
-  (region-bindings-mode-enable)
-  (define-key region-bindings-mode-map "a" 'mc/mark-all-like-this)
-  (define-key region-bindings-mode-map "p" 'mc/mark-previous-like-this)
-  (define-key region-bindings-mode-map "n" 'mc/mark-next-like-this)
-  (define-key region-bindings-mode-map "m" 'mc/mark-more-like-this-extended)
-  (define-key region-bindings-mode-map "u" 'mc/unmark-next-like-this)
-  (define-key region-bindings-mode-map "U" 'mc/unmark-previous-like-this)
-  (define-key region-bindings-mode-map "s" 'mc/skip-to-next-like-this)
-  (define-key region-bindings-mode-map "S" 'mc/skip-to-previous-like-this)
-  )
+;; 2024-09-16 - No No No!!! This is terrible!!! It stops me from being
+;; able to select text then just type to repace it.
+;; (use-package region-bindings-mode
+;;   :ensure t
+;;   :config
+;;   (region-bindings-mode-enable)
+;;   (define-key region-bindings-mode-map "a" 'mc/mark-all-like-this)
+;;   (define-key region-bindings-mode-map "p" 'mc/mark-previous-like-this)
+;;   (define-key region-bindings-mode-map "n" 'mc/mark-next-like-this)
+;;   (define-key region-bindings-mode-map "m" 'mc/mark-more-like-this-extended)
+;;   (define-key region-bindings-mode-map "u" 'mc/unmark-next-like-this)
+;;   (define-key region-bindings-mode-map "U" 'mc/unmark-previous-like-this)
+;;   (define-key region-bindings-mode-map "s" 'mc/skip-to-next-like-this)
+;;   (define-key region-bindings-mode-map "S" 'mc/skip-to-previous-like-this)
+;;   )
 
 ;; This form is for packages that only work in GUI emacs, not in a terminal
 (when (display-graphic-p)

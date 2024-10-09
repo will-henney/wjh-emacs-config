@@ -1,0 +1,66 @@
+#!/bin/zsh
+
+# Use CleanShot X to get a screenshot and save it with a given filename
+
+# Usage: get-cleanshot-x.sh <full-path-to-output-filename>
+
+# Copyright: William Henney, 2024
+#
+# License: MIT
+#
+# HISTORY:
+# 
+# 2024-10-08: Minimal working version, hardcodes returning to Emacs
+# 2024-10-09: Now returns to application it was called from.
+#             Copies rather than moves the file.
+#
+# TODO:
+# - Deal with converting between image formats in case of mismatch
+# - Refactor to use variables for CleanShot folder path and file prefix
+# - Add more command line arguments for setting max_iters, type of
+#   screenshot, etc.
+
+# Get path to save image from first command line argument
+save_path=$1
+
+# Maximum number of iterations to wait for screenshot to appear
+# Each iteration is 1 second
+max_iters=60
+
+# Command to get screenshot
+cmd="open 'cleanshot://capture-area?action=save'"
+
+# Get name of current application so we can return to it
+frontApp=$(osascript -e 'tell application "System Events" to set frontApp to name of first application process whose frontmost is true')
+# echo "Front app: $frontApp"
+
+# Get the name of the latest screenshot file
+# This may depend on your CleanShot X settings
+old_screenshot="$(ls -t $HOME/Desktop/CleanShot* | head -n 1)"
+
+# Start the CleanShot X process
+eval "$cmd"
+# Wait for the new file to appear
+for i in {1..$max_iters}; do
+	new_screenshot=$(ls -t $HOME/Desktop/CleanShot* | head -n 1)
+	if [[ $new_screenshot != "$old_screenshot" ]]; then
+		break
+	fi
+	sleep 1
+done
+
+# Exit the script if we exceeded the max number of iterations
+if [[ $i -eq $max_iters ]]; then
+    echo "Failed to get screenshot after $max_iters second wait"
+    exit 1
+else
+    # Otherwise, copy the file to the requested path ...
+    cp "$new_screenshot" "$save_path"
+    # (we keep CleanShot's version in case we want to annotate it later)
+fi
+
+# ... and return to previous application
+osascript -e "tell application \"$frontApp\" to activate"
+ 
+
+

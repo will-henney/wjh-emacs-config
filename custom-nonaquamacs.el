@@ -96,7 +96,7 @@
  '(org-level-8 ((t (:inherit bold :foreground "#f8f8ff" :height 1.2))))
  '(org-link ((t (:foreground "#D0BF8F" :underline "#888" :slant italic))))
  '(org-meta-line ((t (:inherit (fixed-pitch org-block-background) :foreground "gray60" :weight light))))
- '(org-property-value ((t (:inherit fixed-pitch))) t)
+ '(org-property-value ((t (:inherit fixed-pitch))))
  '(org-ref-cite-face ((t (:inherit org-link :foreground "medium sea green"))))
  '(org-ref-label-face ((t (:inherit org-link :foreground "indian red"))))
  '(org-special-keyword ((t (:inherit (font-lock-keyword-face fixed-pitch) :foreground "#a5a565" :slant italic :weight normal))))
@@ -269,6 +269,7 @@
  '(git-messenger:use-magit-popup t)
  '(line-spacing 4)
  '(magit-push-always-verify nil)
+ '(magit-section-visibility-indicator '(" ... " . t))
  '(magit-todos-insert-after '(bottom) nil nil "Changed by setter of obsolete option `magit-todos-insert-at'")
  '(org-agenda-files
    '("~/Dropbox/muse-hii-regions/docs/README-2021.org" "/Users/will/Dropbox/Metal-Permitted/metal-permitted.org" "/Users/will/Dropbox/Teaching/Computacional/curso-computacional.org" "/Users/will/Dropbox/Teresa-Turtle/doc/teresa-turtle.org" "/Users/will/Work/Bowshocks/Jorge/bowshock-shape/Stellar-Bowshocks-2017/stellar-bowshocks.org" "/Users/will/Dropbox/Org/notes.org" "/Users/will/Dropbox/Notes/will-macbook-config.org" "/Users/will/Dropbox/Notes/workflow.org" "/Users/will/Dropbox/Notes/apple accounts.org" "/Users/will/Dropbox/Notes/paper projects 2015.org" "/Users/will/Dropbox/Org/pub-orion-atlas/index.org" "/Users/will/Dropbox/Family/Matthew-Money/matt-loan.org"))
@@ -330,7 +331,7 @@
  '(org-tag-faces '(("noexport" . "#33bb44")))
  '(org-tags-column 50)
  '(package-selected-packages
-   '(org-plus-contrib org region-bindings-mode casual-avy org-download constants vterm selected-window-accent-mode visual-fill-column org-mac-image-paste ultra-scroll-mac speedrect dirvish math-delimiters eros org-modern undo-fu transient-posframe hydra-posframe ivy-posframe quarto-mode quarto detached atomic-chrome copilot editorconfig wrap-region applescript-mode applescript apples google-translate-default-ui google-translate-smooth-ui dired-git-info org-attach-screenshot auctex beacon all-the-icons-ivy-rich all-the-icons-ibuffer all-the-icons-ibuffer-mode peg exec-path-from-shell emacs-websocket org-ref ivy-prescient prescient python-docstring-mode typo web-mode org-fstree org-dropbox header2 all-the-icons-ivy all-the-icons-dired all-the-icons counsel-projectile e2wm org-extra org-contacts quelpa-use-package ag org-sticky-header counsel mu4e org-pomodoro org-table-sticky-header org-edit-latex elfeed-org auto-org-md julia-mode w3m virtualenv synonyms svg-mode-line-themes stripe-buffer spotlight sparkline smex rainbow-mode prodigy pinboard pallet org-trello org-magit org-dotemacs org-bullets ob-ipython nose magithub magit-svn latex-extra idomenu htmlize helm-dash helm-bibtex guide-key google-this golden-ratio god-mode gitty git-messenger git-gutter ggtags fold-dwim-org fancy-narrow esxml elnode dired-details diminish deft crosshairs creole-mode conda color-identifiers-mode bibslurp bf-mode alert airplay ack-and-a-half achievements ace-jump-mode))
+   '(magit org-plus-contrib org region-bindings-mode casual-avy org-download constants vterm selected-window-accent-mode visual-fill-column org-mac-image-paste ultra-scroll-mac speedrect dirvish math-delimiters eros org-modern undo-fu transient-posframe hydra-posframe ivy-posframe quarto-mode quarto detached atomic-chrome copilot editorconfig wrap-region applescript-mode applescript apples google-translate-default-ui google-translate-smooth-ui dired-git-info org-attach-screenshot auctex beacon all-the-icons-ivy-rich all-the-icons-ibuffer all-the-icons-ibuffer-mode peg exec-path-from-shell emacs-websocket org-ref ivy-prescient prescient python-docstring-mode typo web-mode org-fstree org-dropbox header2 all-the-icons-ivy all-the-icons-dired all-the-icons counsel-projectile e2wm org-extra org-contacts quelpa-use-package ag org-sticky-header counsel mu4e org-pomodoro org-table-sticky-header org-edit-latex elfeed-org auto-org-md julia-mode w3m virtualenv synonyms svg-mode-line-themes stripe-buffer spotlight sparkline smex rainbow-mode prodigy pinboard pallet org-trello org-magit org-dotemacs org-bullets ob-ipython nose magithub magit-svn latex-extra idomenu htmlize helm-dash helm-bibtex guide-key google-this golden-ratio god-mode gitty git-messenger git-gutter ggtags fold-dwim-org fancy-narrow esxml elnode dired-details diminish deft crosshairs creole-mode conda color-identifiers-mode bibslurp bf-mode alert airplay ack-and-a-half achievements ace-jump-mode))
  '(paradox-automatically-star t)
  '(pinboard-url "http://feeds.pinboard.in/json/u:deprecated/?count=10")
  '(python-check-command "black")
@@ -424,6 +425,7 @@
      (org-src-preserve-indentation . t)
      (org-use-property-inheritance . t)
      (system-time-locale . "en_GB.ISO8859-1")))
+ '(sentence-end-double-space nil)
  '(show-paren-mode nil)
  '(shr-color-visible-distance-min 20)
  '(shr-color-visible-luminance-min 60)
