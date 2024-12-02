@@ -592,7 +592,7 @@ block."
 ;; https://mail.google.com/mail/?authuser=whenney%40gmail.com&pcd=2#label/_lists%2Forg/15c7e59721ea3fa1
 (define-key org-mode-map (kbd "s-j") #'org-babel-next-src-block)
 (define-key org-mode-map (kbd "s-k") #'org-babel-previous-src-block)
-(define-key org-mode-map (kbd "s-l") #'org-edit-src-code)
+(define-key org-mode-map (kbd "s-l") #'org-edit-special)
 
 ;; 2023-07-27 - some extra bindings for navigation
 (define-key org-mode-map (kbd "s-<left>") #'org-backward-element)
