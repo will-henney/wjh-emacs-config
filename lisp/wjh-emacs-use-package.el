@@ -170,8 +170,9 @@
   :config
   ;; Note that I have removed $ from the configuration of wrap-region
   ;; so as not to interfere with this
+  ;; WJH 2024-12-10 Changed from $ to C-$ to not annoy me in table formulae
   (with-eval-after-load 'org
-    (define-key org-mode-map "$" #'math-delimiters-insert))
+    (define-key org-mode-map (kbd "C-$") #'math-delimiters-insert))
   (with-eval-after-load 'tex              ; for AUCTeX
     (define-key TeX-mode-map "$" #'math-delimiters-insert)))
 

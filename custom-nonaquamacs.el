@@ -267,7 +267,7 @@
  '(fortune-dir "/usr/local/share/games/fortunes/")
  '(git-messenger:show-detail t)
  '(git-messenger:use-magit-popup t)
- '(line-spacing 4)
+ '(line-spacing 6)
  '(magit-push-always-verify nil)
  '(magit-section-visibility-indicator '(" ... " . t))
  '(magit-todos-insert-after '(bottom) nil nil "Changed by setter of obsolete option `magit-todos-insert-at'")

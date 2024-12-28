@@ -156,8 +156,9 @@ annoying, sometimes be useful, that's why this can be handly."
   (add-to-list 'copilot-enable-predicates #'rk/copilot-enable-predicate)
   (add-to-list 'copilot-disable-predicates #'rk/copilot-disable-predicate))
 
-(eval-after-load 'copilot
-  '(progn
-     (global-copilot-mode)))
+;; TEMPORARILY DISABLED 2024-12-10 to prevent startup errors
+;; (eval-after-load 'copilot
+;;   '(progn
+;;      (global-copilot-mode)))
 
 (copilot-login)
