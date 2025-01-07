@@ -413,10 +413,11 @@
 
 
 ;; 21 Jun 2015 - fancy-narrow
-(use-package fancy-narrow
-  :ensure t
-  :config
-  (fancy-narrow-mode))
+;; 2024-12-27 - disable this since it breaks on my new laptop
+;; (use-package fancy-narrow
+;;   :ensure t
+;;   :config
+;;   (fancy-narrow-mode))
 
 
 ;; 20 Jun 2015 - Lots of packages by Oleh Krehel (abo-abo)
@@ -1257,7 +1258,8 @@ when a file is dopped on Emacs window."
 
 
 ;; Trying something new 10 Mar 2013: https://github.com/jorgenschaefer/elpy/wiki
-(load "wjh-python-elpy-config")
+;; 2024-12-31 Try a more minimalist config while investigating bugs
+(load "wjh-python-elpy-minimalist-config")
 
 ;; And try and set up better treatment of doc strings
 (use-package python-docstring
@@ -1301,8 +1303,9 @@ when a file is dopped on Emacs window."
   :ensure t
   :custom
   (alert-default-style 'osx-notifier))
-;; 2023-04-04 -try out detached for running detached processes using
+;; 2023-04-04 - try out detached for running detached processes using
 ;; dtach (which is installed with homebrew)
+;; 2025-01-06 - forgot I was using this until it didn't work on new laptop - fixed now
 (use-package detached
   :ensure t
   :init
