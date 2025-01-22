@@ -100,7 +100,9 @@
 ;; Customize the animations for 3-finger swiping left/right and up/down
 ;;
 (defun wjh/previous-buffer (event)
-  "Like `previous-buffer', but operate on the window where EVENT occurred."
+  "Like `previous-buffer', but operate on the window where EVENT occurred.
+This is the same as `mac-previous-buffer' in mac-win.el but with
+a different animation style"
   (interactive "e")
   (let ((window (posn-window (event-start event))))
     (mac-start-animation window :type 'swipe :direction 'right)
@@ -108,7 +110,9 @@
       (previous-buffer))))
 
 (defun wjh/next-buffer (event)
-  "Like `next-buffer', but operate on the window where EVENT occurred."
+  "Like `next-buffer', but operate on the window where EVENT occurred.
+This is the same as `mac-next-buffer' in mac-win.el but with
+a different animation style."
   (interactive "e")
   (let ((window (posn-window (event-start event))))
     (mac-start-animation window :type 'swipe :direction 'left)
@@ -157,14 +161,64 @@
     (with-selected-window window
       (cua-scroll-up))))
 
-(global-set-key [swipe-up] 'wjh/scroll-up)
-(global-set-key [swipe-down] 'wjh/scroll-down)
+;; WJH 2025-01-22 - I used chatgpt to help me write a more general
+;; solution. I first asked "Can you help me write an emacs lisp macro
+;; that will wrap an arbitrary function so that the function acts in
+;; the window where the mouse pointer is", but I had to ask several
+;; follow up questions to nudge it to give me something that worked
+(defmacro with-event-window (event &rest body)
+  "Execute BODY in the window corresponding to EVENT."
+  `(let ((window (posn-window (event-start ,event)))) ; Get the window from the event
+     (if (windowp window)
+         (with-selected-window window
+           ,@body)
+       (message "Event did not occur over a valid window."))))
 
-(global-set-key [C-swipe-up] 'wjh/beginning-of-buffer)
-(global-set-key [C-swipe-down] 'wjh/end-of-buffer)
+;; WJH 2025-01-21 = I never used these because they are confusing and ugly
+;; (global-set-key [swipe-up] 'wjh/scroll-up)
+;; (global-set-key [swipe-down] 'wjh/scroll-down)
 
+;; Function by Ian Kelling from Stack Overflow
+;; https://stackoverflow.com/questions/3393834/how-to-move-forward-and-backward-in-emacs-mark-ring
+(defun unpop-to-mark-command ()
+  "Unpop off mark ring. Does nothing if mark ring is empty."
+  (interactive)
+      (when mark-ring
+        (setq mark-ring (cons (copy-marker (mark-marker)) mark-ring))
+        (set-marker (mark-marker) (car (last mark-ring)) (current-buffer))
+        (when (null (mark t)) (ding))
+        (setq mark-ring (nbutlast mark-ring))
+        (goto-char (marker-position (car (last mark-ring))))))
+
+;; Define a bunch of wrapped commands that work on the buffer under
+;; the mouse pointer, rather than the selected buffer. This is so we
+;; can use the swipe gestures in other windows without having to
+;; explicitly click into them first.
+(defun pop-to-mark-under-mouse (event)
+  (interactive "e") (with-event-window event (pop-to-mark-command)))
+(defun unpop-to-mark-under-mouse (event)
+  (interactive "e") (with-event-window event (unpop-to-mark-command)))
+
+  
+;; WJH 2025-01-21 - vertical swipes to go back and forward in the mark ring
+(global-set-key [swipe-up] 'pop-to-mark-under-mouse)
+(global-set-key [swipe-down] 'unpop-to-mark-under-mouse)
+;; TODO - port all the other functions to use the with-event-window macro
+
+
+;; Shift swipes to go to top/bottom of buffer
+(global-set-key [S-swipe-up] 'wjh/beginning-of-buffer)
+(global-set-key [S-swipe-down] 'wjh/end-of-buffer)
+;; Control swipes to go to enclosing folder in dired or toggle full frame
+(global-set-key [C-swipe-up] 'wjh/dired-jump)
+(global-set-key [C-swipe-down] 'toggle-frame-fullscreen)
+
+;; Back and forth through buffers with swipe animations 
 (global-set-key [swipe-left] 'wjh/previous-buffer)
 (global-set-key [swipe-right] 'wjh/next-buffer)
+;; Shifted version uses default sliding animations
+(global-set-key [S-swipe-left] 'mac-previous-buffer)
+(global-set-key [S-swipe-right] 'mac-next-buffer)
 
 
 ;; 19 Sep 2017 - THIS DOESN'T WORK
