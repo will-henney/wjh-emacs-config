@@ -95,6 +95,14 @@
 
 
 
+(defun wjh/dired-open-file-at-point ()
+  "Run the shell command 'open' on the file at point in dired mode."
+  (interactive)
+  (let ((file (dired-get-file-for-visit)))
+    (if file
+        (start-process "dired-open-file" nil "open" file)
+      (message "No file at point"))))
+(define-key dired-mode-map (kbd "s-o") 'wjh/dired-open-file-at-point)
 
 ;;
 ;; Customize the animations for 3-finger swiping left/right and up/down
@@ -209,9 +217,17 @@ a different animation style."
 ;; Shift swipes to go to top/bottom of buffer
 (global-set-key [S-swipe-up] 'wjh/beginning-of-buffer)
 (global-set-key [S-swipe-down] 'wjh/end-of-buffer)
-;; Control swipes to go to enclosing folder in dired or toggle full frame
+
+;; Control swipes to go to enclosing folder in dired and return
 (global-set-key [C-swipe-up] 'wjh/dired-jump)
-(global-set-key [C-swipe-down] 'toggle-frame-fullscreen)
+(defun wjh/swipe-as-return ()
+  "Call the function bound to the RET key."
+  (interactive)
+  (call-interactively (key-binding (kbd "RET"))))
+;; (global-set-key [C-swipe-down] 'toggle-frame-fullscreen)
+;; The idea is that this can be used in dired buffer to open file at
+;; point, but it might also be useful in other contexts
+(global-set-key [C-swipe-down] 'wjh/swipe-as-return)
 
 ;; Back and forth through buffers with swipe animations 
 (global-set-key [swipe-left] 'wjh/previous-buffer)
