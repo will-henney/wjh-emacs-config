@@ -1007,6 +1007,16 @@ recognised."
   (add-hook 'org-mode-hook 'wrap-region-mode)
   (add-hook 'latex-mode-hook 'wrap-region-mode))
 
+;; 2025-01-22 - See also math-delimiter package above, which deals
+;; with this for latex. Type $ or $$ to get \(...\) or \[...\]
+;; 2025-01-22 - But I also want to be able to type the parentheses directly, so I do this
+(defun my-electric-pairs ()
+  "Add math-mode delimiters to electric pairs."
+  (setq-local electric-pair-pairs '((?\( . ?\))))
+  (setq-local electric-pair-text-pairs electric-pair-pairs))
+
+(add-hook 'LaTeX-mode-hook #'my-electric-pairs)
+
 ;; 2022-10-07 The other feature from smartparens that I would
 ;; occasionally use is the horrendously named slurping and barfing to
 ;; move material in and out of delimiters. I could maybe try out puni
