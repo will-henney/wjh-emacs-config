@@ -231,7 +231,34 @@ recent first."
       (when (and (/= (string-to-number text) 0) bounds)
 	(delete-region (car bounds) (cdr bounds))
 	(insert newtext)))))
-(global-set-key (kbd "C-c w") 'wjh/convert-float-to-clean-form)
+
+;; 2025-04-06 New version with help of ChatGPT that actually works!!
+(defun reformat-float-at-point (&optional decimal-places)
+  "Reformat the floating point number at point to DECIMAL-PLACES (default 3).
+Preserves scientific notation if originally present."
+  (interactive "P")
+  (let ((decimals (or decimal-places 3))
+        (float-regexp
+         ;; Matches floats like 123.456, -0.01, 1e-5, 2.0E+10, etc.
+         "\\b[-+]?[0-9]*\\.?[0-9]+\\([eE][-+]?[0-9]+\\)?\\b"))
+    (save-excursion
+      ;; Move to the beginning of the float match
+      (skip-chars-backward "0-9.eE+-")
+      (if (re-search-forward float-regexp (line-end-position) t)
+          (let* ((start (match-beginning 0))
+                 (end (match-end 0))
+                 (str (buffer-substring-no-properties start end))
+                 (is-sci (string-match-p "[eE]" str))
+                 (num (string-to-number str))
+                 (new-str (if is-sci
+                              (format (concat "%." (number-to-string decimals) "e") num)
+                            (format (concat "%." (number-to-string decimals) "f") num))))
+            (delete-region start end)
+            (goto-char start)
+            (insert new-str))
+        (message "No float found at point.")))))
+;; (global-set-key (kbd "C-c w") 'wjh/convert-float-to-clean-form)
+(global-set-key (kbd "C-c w") 'reformat-float-at-point)
 
 
 ;; 2023-04-04: Duplicate line function to mimic behavior of Cmd-D in
