@@ -61,6 +61,17 @@
   :ensure t
   )
 
+;; 2025-04-21 - Fish mode
+(use-package fish-mode
+  :ensure t
+  :config (setq fish-enable-auto-indent t)
+  :mode ("\\.fish$"))
+(use-package ob-fish
+  :ensure t
+  :quelpa (ob-fish :fetcher github :repo "takeokunn/ob-fish")
+  )
+;; This is added to 'org-babel-load-languages in wjh-org-config.el
+
 
 ;; 02 Sep 2020 - use ox-hugo for my new blog
 (use-package ox-hugo

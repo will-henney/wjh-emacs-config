@@ -424,6 +424,7 @@ block."
      (shell . t)
      (calc . t)
      (jupyter . t)
+     (fish . t)
      )))
 
 ;; 28 Jul 2014 - Finally get round to turning off confirmation
@@ -625,6 +626,8 @@ block."
 (define-key org-src-mode-map (kbd "s-l") #'org-edit-src-exit)
 (define-key org-src-mode-map (kbd "s-,") #'org-edit-src-exit)
 
+;; 2025-04-06 - alternative binding for cycling between plain list types
+(define-key org-mode-map (kbd "s--") 'org-ctrl-c-minus)
 
 ;; 16 Jun 2017 - extra space above and below headings
 (defun wjh/propertize-newline-of-next-org-heading ()
