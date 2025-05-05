@@ -270,7 +270,9 @@
 ;; 24 Sep 2016 - don't ask redundantly which buffer to kill
 ;; Borrowed from suggestion by Ben Maughan
 ;; http://pragmaticemacs.com/emacs/dont-kill-buffer-kill-this-buffer-instead/
-(global-set-key (kbd "C-x k") 'kill-this-buffer)
+;; 2025-05-04 - kill-this-buffer only works when bound to a mouse click
+;;              in Emacs 30, so use kill-current-buffer instead
+(global-set-key (kbd "C-x k") 'kill-current-buffer)
 
 ;; 08 Aug 2010 Miscellaneous tweaks to editing commands
 (require 'misc)
@@ -397,3 +399,6 @@ This will actually use spotlight instead of locate, so it only works on OS X"
 ;; WJH 06 Oct 2016 - saner behavior for prettified symbols
 (setq prettify-symbols-unprettify-at-point 'right-edge)
 (global-prettify-symbols-mode)
+
+;; WJH 2025-05-04 - better soft-wrapping behavior new in Emacs 30.1
+(global-visual-wrap-prefix-mode)
