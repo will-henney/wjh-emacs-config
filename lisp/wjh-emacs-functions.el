@@ -233,32 +233,93 @@ recent first."
 	(insert newtext)))))
 
 ;; 2025-04-06 New version with help of ChatGPT that actually works!!
-(defun reformat-float-at-point (&optional decimal-places)
-  "Reformat the floating point number at point to DECIMAL-PLACES (default 3).
-Preserves scientific notation if originally present."
+(defun reformat-float-at-point-or-region (&optional decimal-places)
+  "Reformat float(s) at point or in region to DECIMAL-PLACES (default 4).
+Preserves scientific notation unless a negative prefix argument is given,
+in which case it forces standard float format.
+
+If a float rounds to 0, or is large (> 1e6), it is shown in scientific notation.
+If called at point (no region), the cursor position is preserved relative to the float."
   (interactive "P")
-  (let ((decimals (or decimal-places 3))
-        (float-regexp
-         ;; Matches floats like 123.456, -0.01, 1e-5, 2.0E+10, etc.
-         "\\b[-+]?[0-9]*\\.?[0-9]+\\([eE][-+]?[0-9]+\\)?\\b"))
-    (save-excursion
-      ;; Move to the beginning of the float match
-      (skip-chars-backward "0-9.eE+-")
-      (if (re-search-forward float-regexp (line-end-position) t)
-          (let* ((start (match-beginning 0))
-                 (end (match-end 0))
-                 (str (buffer-substring-no-properties start end))
-                 (is-sci (string-match-p "[eE]" str))
-                 (num (string-to-number str))
-                 (new-str (if is-sci
-                              (format (concat "%." (number-to-string decimals) "e") num)
-                            (format (concat "%." (number-to-string decimals) "f") num))))
-            (delete-region start end)
-            (goto-char start)
-            (insert new-str))
-        (message "No float found at point.")))))
+  (let* ((raw-arg decimal-places)
+         (is-negative (or (and (numberp raw-arg) (< raw-arg 0))
+                          (eq raw-arg '-)))
+         (decimals (cond
+                    ((eq raw-arg '-) 4)
+                    ((numberp raw-arg) (abs raw-arg))
+                    (t 4)))
+         (force-standard is-negative)
+         (float-regexp "\\b[-+]?[0-9]*\\.?[0-9]+\\([eE][-+]?[0-9]+\\)?\\b"))
+
+    (cl-labels
+        ((format-float
+          (match-str num)
+          (let* ((original-sci (string-match-p "[eE]" match-str))
+                 (rounded-fmt (format (concat "%." (number-to-string decimals) "f") num))
+                 (rounded-zero (string= rounded-fmt
+                                        (format (concat "%." (number-to-string decimals) "f") 0.0)))
+                 (large-num (> (abs num) 1e6))
+                 (use-sci (or
+                           (and (not force-standard)
+                                (or original-sci rounded-zero large-num)))))
+            (if use-sci
+                (format (concat "%." (number-to-string decimals) "e") num)
+              rounded-fmt))))
+
+      (if (use-region-p)
+          ;; Region active: operate on all matches in region
+          (let ((start (region-beginning))
+                (end (copy-marker (region-end))))
+            (save-excursion
+              (goto-char start)
+              (while (re-search-forward float-regexp end t)
+                (let* ((match-str (match-string 0))
+                       (match-beg (match-beginning 0))
+                       (match-end (match-end 0))
+                       (num (string-to-number match-str))
+                       (formatted (format-float match-str num)))
+                  (goto-char match-beg)
+                  (delete-region match-beg match-end)
+                  (insert formatted)
+                  (set-marker end (+ end (- (length formatted) (length match-str))))
+                  (goto-char (+ match-beg (length formatted)))))))
+
+        ;; No region: operate on float at point, preserving point smartly
+        (let (match-str match-beg match-end num formatted point-char relative-pos)
+          (save-excursion
+            ;; Backtrack to ensure we're inside a number
+            (skip-chars-backward "0-9.eE+-")
+            (when (re-search-forward float-regexp (line-end-position) t)
+              (setq match-str (match-string 0))
+              (setq match-beg (match-beginning 0))
+              (setq match-end (match-end 0))
+              (setq num (string-to-number match-str))
+              ;; Capture character under point (safely)
+              (let* ((point-in-number (- (point) match-beg)))
+                (setq relative-pos (max 0 (min point-in-number (1- (length match-str)))))
+                (setq point-char (substring match-str relative-pos (1+ relative-pos))))
+              (setq formatted (format-float match-str num))))
+          (when (and match-beg formatted)
+            (let ((new-str formatted))
+              (goto-char match-beg)
+              (delete-region match-beg match-end)
+              (insert new-str)
+              ;; Try to restore point near the same character
+              (let ((target-pos nil))
+                (when (and point-char (string-match-p "[0-9]" point-char))
+                  (let ((rel (string-match (regexp-quote point-char) new-str)))
+                    (when rel
+                      (setq target-pos (+ match-beg rel)))))
+                ;; Fallback if not found
+                (goto-char (or target-pos (+ match-beg (length new-str))))))))))))
+
+;; This still has issues with preserving point
+  
+
+  
+
 ;; (global-set-key (kbd "C-c w") 'wjh/convert-float-to-clean-form)
-(global-set-key (kbd "C-c w") 'reformat-float-at-point)
+(global-set-key (kbd "C-c w") 'reformat-float-at-point-or-region)
 
 
 ;; 2023-04-04: Duplicate line function to mimic behavior of Cmd-D in
