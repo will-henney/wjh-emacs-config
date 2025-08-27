@@ -3,7 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :extend nil :stipple nil :background "#3f3f3f" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight light :height 150 :width normal :foundry "nil" :family "Source Code Pro"))))
+ '(default ((t (:inherit nil :extend nil :stipple nil :background "#3f3f3f" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight light :height 130 :width normal :foundry "nil" :family "Source Code Pro"))))
  '(TeX-fold-folded-face ((t (:foreground "#8faeb0"))))
  '(ace-jump-face-background ((t (:foreground "gray60"))))
  '(ace-jump-face-foreground ((t (:foreground "orange"))))
@@ -146,79 +146,49 @@
  '(LaTeX-command-style '(("" "%(PDF)%(latex) -shell-escape %S%(PDFout)")))
  '(TeX-command-list
    '(("TeX" "%(PDF)%(tex) %`%S%(PDFout)%(mode)%' %t" TeX-run-TeX nil
-      (plain-tex-mode texinfo-mode ams-tex-mode)
-      :help "Run plain TeX")
-     (#("LaTeX" 0 1
-	(idx 1))
-      "%`%l%(mode)%' %t" TeX-run-TeX nil
-      (latex-mode doctex-mode)
-      :help "Run LaTeX")
-     ("Makeinfo" "makeinfo %t" TeX-run-compile nil
-      (texinfo-mode)
+      (plain-tex-mode texinfo-mode ams-tex-mode) :help "Run plain TeX")
+     (#("LaTeX" 0 1 (idx 1)) "%`%l%(mode)%' %t" TeX-run-TeX nil
+      (latex-mode doctex-mode) :help "Run LaTeX")
+     ("Makeinfo" "makeinfo %t" TeX-run-compile nil (texinfo-mode)
       :help "Run Makeinfo with Info output")
      ("Makeinfo HTML" "makeinfo --html %t" TeX-run-compile nil
-      (texinfo-mode)
-      :help "Run Makeinfo with HTML output")
-     ("AmSTeX" "%(PDF)amstex %`%S%(PDFout)%(mode)%' %t" TeX-run-TeX nil
-      (ams-tex-mode)
-      :help "Run AMSTeX")
-     ("ConTeXt" "texexec --once --texutil %(execopts)%t" TeX-run-TeX nil
-      (context-mode)
-      :help "Run ConTeXt once")
+      (texinfo-mode) :help "Run Makeinfo with HTML output")
+     ("AmSTeX" "%(PDF)amstex %`%S%(PDFout)%(mode)%' %t" TeX-run-TeX
+      nil (ams-tex-mode) :help "Run AMSTeX")
+     ("ConTeXt" "texexec --once --texutil %(execopts)%t" TeX-run-TeX
+      nil (context-mode) :help "Run ConTeXt once")
      ("ConTeXt Full" "texexec %(execopts)%t" TeX-run-TeX nil
-      (context-mode)
-      :help "Run ConTeXt until completion")
-     (#("BibTeX" 0 1
-	(idx 2))
-      "bibtex %s" TeX-run-BibTeX nil t :help "Run BibTeX")
-     (#("View" 0 1
-	(idx 3))
-      "%V" TeX-run-discard-or-function t t :help "Run Viewer")
-     (#("Print" 0 1
-	(idx 4))
-      "%p" TeX-run-command t t :help "Print the file")
-     (#("Queue" 0 1
-	(idx 5))
-      "%q" TeX-run-background nil t :help "View the printer queue" :visible TeX-queue-command)
-     (#("File" 0 1
-	(idx 6))
-      "%(o?)dvips %d -o %f " TeX-run-command t t :help "Generate PostScript file")
-     (#("Index" 0 1
-	(idx 7))
-      "makeindex %s" TeX-run-command nil t :help "Create index file")
-     (#("Check" 0 1
-	(idx 8))
-      "lacheck %s" TeX-run-compile nil
-      (latex-mode)
-      :help "Check LaTeX file for correctness")
-     (#("Spell" 0 1
-	(idx 9))
-      "(TeX-ispell-document \"\")" TeX-run-function nil t :help "Spell-check the document")
-     (#("Clean" 0 1
-	(idx 10))
-      "TeX-clean" TeX-run-function nil t :help "Delete generated intermediate files")
-     (#("Clean All" 0 1
-	(idx 11))
-      "(TeX-clean t)" TeX-run-function nil t :help "Delete generated intermediate and output files")
-     (#("Other" 0 1
-	(idx 12))
-      "" TeX-run-command t t :help "Run an arbitrary command")))
+      (context-mode) :help "Run ConTeXt until completion")
+     (#("BibTeX" 0 1 (idx 2)) "bibtex %s" TeX-run-BibTeX nil t :help
+      "Run BibTeX")
+     (#("View" 0 1 (idx 3)) "%V" TeX-run-discard-or-function t t :help
+      "Run Viewer")
+     (#("Print" 0 1 (idx 4)) "%p" TeX-run-command t t :help
+      "Print the file")
+     (#("Queue" 0 1 (idx 5)) "%q" TeX-run-background nil t :help
+      "View the printer queue" :visible TeX-queue-command)
+     (#("File" 0 1 (idx 6)) "%(o?)dvips %d -o %f " TeX-run-command t t
+      :help "Generate PostScript file")
+     (#("Index" 0 1 (idx 7)) "makeindex %s" TeX-run-command nil t
+      :help "Create index file")
+     (#("Check" 0 1 (idx 8)) "lacheck %s" TeX-run-compile nil
+      (latex-mode) :help "Check LaTeX file for correctness")
+     (#("Spell" 0 1 (idx 9)) "(TeX-ispell-document \"\")"
+      TeX-run-function nil t :help "Spell-check the document")
+     (#("Clean" 0 1 (idx 10)) "TeX-clean" TeX-run-function nil t :help
+      "Delete generated intermediate files")
+     (#("Clean All" 0 1 (idx 11)) "(TeX-clean t)" TeX-run-function nil
+      t :help "Delete generated intermediate and output files")
+     (#("Other" 0 1 (idx 12)) "" TeX-run-command t t :help
+      "Run an arbitrary command")))
  '(TeX-font-list
-   '((98 "{\\bf " "}")
-     (99 "{\\sc " "}")
-     (101 "{\\em " "\\/}")
-     (105 "{\\it " "\\/}")
-     (114 "{\\rm " "}")
-     (115 "{\\sl " "\\/}")
-     (116 "{\\tt " "}")
-     (100 "" "" t)))
+   '((98 "{\\bf " "}") (99 "{\\sc " "}") (101 "{\\em " "\\/}")
+     (105 "{\\it " "\\/}") (114 "{\\rm " "}") (115 "{\\sl " "\\/}")
+     (116 "{\\tt " "}") (100 "" "" t)))
  '(TeX-view-program-list '(("osx-open" ((output-pdf "open %o")))))
  '(TeX-view-program-selection
-   '(((output-dvi style-pstricks)
-      "dvips and gv")
-     (output-dvi "xdvi")
-     (output-pdf "osx-open")
-     (output-html "xdg-open")))
+   '(((output-dvi style-pstricks) "dvips and gv") (output-dvi "xdvi")
+     (output-pdf "osx-open") (output-html "xdg-open")))
  '(ag-arguments '("--smart-case" "--stats" "--search-zip"))
  '(auth-source-debug 'trivia)
  '(beacon-blink-when-point-moves-vertically 10)
@@ -227,7 +197,8 @@
  '(calendar-date-style 'european)
  '(casual-avy-use-unicode-symbols t)
  '(company-frontends
-   '(company-echo-strip-common-frontend company-echo-metadata-frontend company-preview-if-just-one-frontend))
+   '(company-echo-strip-common-frontend company-echo-metadata-frontend
+					company-preview-if-just-one-frontend))
  '(company-idle-delay nil)
  '(csv-align-style 'auto)
  '(cua-enable-cua-keys nil)
@@ -235,30 +206,69 @@
  '(cua-enable-region-auto-help t)
  '(cua-mode t nil (cua-base))
  '(custom-safe-themes
-   '("fc1275617f9c8d1c8351df9667d750a8e3da2658077cfdda2ca281a2ebc914e0" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "cdc7555f0b34ed32eb510be295b6b967526dd8060e5d04ff0dce719af789f8e5" "3b819bba57a676edf6e4881bd38c777f96d1aa3b3b5bc21d8266fa5b0d0f1ebf" "f080eafb23304ce479fd2dd7fc4ea079c13f6cbbc812efb0f81cdecb7fdc850d" "82ea16d601b12a905c2927e8035581bb4f70a2f890033409cae7fbe30a1b5526" "756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" "3a727bdc09a7a141e58925258b6e873c65ccf393b2240c51553098ca93957723" "fdaf58f82897097e57726ef42c8905416feab1b2be9449a44ca7bb039229a7ed" "146d24de1bb61ddfa64062c29b5ff57065552a7c4019bee5d869e938782dfc2a" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" "b1471d88b39cad028bd621ae7ae1e8e3e3fca2c973f0dfe3fd6658c194a542ff" "cd70962b469931807533f5ab78293e901253f5eeb133a46c2965359f23bfb2ea" "a53714de04cd4fdb92ed711ae479f6a1d7d5f093880bfd161467c3f589725453" "16248150e4336572ff4aa21321015d37c3744a9eb243fbd1e934b594ff9cf394" "8eef22cd6c122530722104b7c82bc8cdbb690a4ccdd95c5ceec4f3efa5d654f5" "31bfef452bee11d19df790b82dea35a3b275142032e06c6ecdc98007bf12466c" "2f80d6ea18d147a6b4e5b54801317b7789531c691edecfa2ab0d2972bee6b36d" "216e6d0d3576e5c35785e68ca07b1c71f01ee4f3d80cb3b4da0ba55827bb3e5e" "d63e19a84fef5fa0341fa68814200749408ad4a321b6d9f30efc117aeaf68a2e" "427234e4b45350b4159575f1ac72860c32dce79bb57a29a196b9cfb9dd3554d9" "c5207e7b8cc960e08818b95c4b9a0c870d91db3eaf5959dd4eba09098b7f232b" "fc6e906a0e6ead5747ab2e7c5838166f7350b958d82e410257aeeb2820e8a07a" "4dacec7215677e4a258e4529fac06e0231f7cdd54e981d013d0d0ae0af63b0c8" "d7ea49a3541da1d2126ff82c5d785a91e1e4080d099deac4ae99a53be83480a5" "8bf124ada2acde39522584c4812cc3cc2aa755ba51aba1caa2906bbe0561876d" "1f8173499e6d20877e1bebe5dd38dd2d3fbabd639470fe167721310faf2d4176" "4dc62e151057bb86841266fbed96a8fe747526f4bffdd5a78f925636a6f97111" "dcf7981c260909e2c8ddf3a53c4e743d41dc7aee34672f716b950811ce452494" "24f5020c993255d839cfe4862abd1ca449bc08bb85b31b3b86e74e3a582157c4" "c44f55c9f3a1a22a04c79e8d9913cf253a636df001c38708959e1b088f66bbc6" "6ab401bc31eb56952f730431d5d170626a6473168ae3804993d7a3c6c63deccb" "94627767d7efa55450a01de9fc3f5dbdc2bbf5fefdb9e349d3104f73aa887983" "b9a15b6eeb68376185b844f79296bde16715f9dc7e2bf1086d53e84511257caa" "576582232148f332cc982731bea66111d2a5a62700b112a9571e7c5c3c3f986f" "b2c734313e61f23b7b098d92f76c1ab88f1f7b9e5b6abecb18f0d609c83b1164" "1318f8cbd4472f9bc8e7f8207db1c20416afd613a3d96ca8f240306acff18a97" "edeb867d8f2b9066ca06710934f3acd821c34a2e52236e8f5a0e80940f9b61bc" "3a23f53fd596e2519b3a192ec2a6dc6ffeacb6029be882132dd37c389325f00a" "b21f0693bcc8167ff9486a42a3d2cd167c53bcf2c57628f2843c7c664786bd67" "f92dcb95f019f51dba87fdabf1b1382b3ddfcd048f35fc9f555754c8331d38d8" "b6ae47764c75989bb5129de903d21fb7630eeabc559cd65cb30ee213bf6b1646" "93815fc47d9324a7761b56754bc46cd8b8544a60fca513e634dfa16b8c761400" default))
+   '("fc1275617f9c8d1c8351df9667d750a8e3da2658077cfdda2ca281a2ebc914e0"
+     "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa"
+     "cdc7555f0b34ed32eb510be295b6b967526dd8060e5d04ff0dce719af789f8e5"
+     "3b819bba57a676edf6e4881bd38c777f96d1aa3b3b5bc21d8266fa5b0d0f1ebf"
+     "f080eafb23304ce479fd2dd7fc4ea079c13f6cbbc812efb0f81cdecb7fdc850d"
+     "82ea16d601b12a905c2927e8035581bb4f70a2f890033409cae7fbe30a1b5526"
+     "756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e"
+     "3a727bdc09a7a141e58925258b6e873c65ccf393b2240c51553098ca93957723"
+     "fdaf58f82897097e57726ef42c8905416feab1b2be9449a44ca7bb039229a7ed"
+     "146d24de1bb61ddfa64062c29b5ff57065552a7c4019bee5d869e938782dfc2a"
+     "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f"
+     "b1471d88b39cad028bd621ae7ae1e8e3e3fca2c973f0dfe3fd6658c194a542ff"
+     "cd70962b469931807533f5ab78293e901253f5eeb133a46c2965359f23bfb2ea"
+     "a53714de04cd4fdb92ed711ae479f6a1d7d5f093880bfd161467c3f589725453"
+     "16248150e4336572ff4aa21321015d37c3744a9eb243fbd1e934b594ff9cf394"
+     "8eef22cd6c122530722104b7c82bc8cdbb690a4ccdd95c5ceec4f3efa5d654f5"
+     "31bfef452bee11d19df790b82dea35a3b275142032e06c6ecdc98007bf12466c"
+     "2f80d6ea18d147a6b4e5b54801317b7789531c691edecfa2ab0d2972bee6b36d"
+     "216e6d0d3576e5c35785e68ca07b1c71f01ee4f3d80cb3b4da0ba55827bb3e5e"
+     "d63e19a84fef5fa0341fa68814200749408ad4a321b6d9f30efc117aeaf68a2e"
+     "427234e4b45350b4159575f1ac72860c32dce79bb57a29a196b9cfb9dd3554d9"
+     "c5207e7b8cc960e08818b95c4b9a0c870d91db3eaf5959dd4eba09098b7f232b"
+     "fc6e906a0e6ead5747ab2e7c5838166f7350b958d82e410257aeeb2820e8a07a"
+     "4dacec7215677e4a258e4529fac06e0231f7cdd54e981d013d0d0ae0af63b0c8"
+     "d7ea49a3541da1d2126ff82c5d785a91e1e4080d099deac4ae99a53be83480a5"
+     "8bf124ada2acde39522584c4812cc3cc2aa755ba51aba1caa2906bbe0561876d"
+     "1f8173499e6d20877e1bebe5dd38dd2d3fbabd639470fe167721310faf2d4176"
+     "4dc62e151057bb86841266fbed96a8fe747526f4bffdd5a78f925636a6f97111"
+     "dcf7981c260909e2c8ddf3a53c4e743d41dc7aee34672f716b950811ce452494"
+     "24f5020c993255d839cfe4862abd1ca449bc08bb85b31b3b86e74e3a582157c4"
+     "c44f55c9f3a1a22a04c79e8d9913cf253a636df001c38708959e1b088f66bbc6"
+     "6ab401bc31eb56952f730431d5d170626a6473168ae3804993d7a3c6c63deccb"
+     "94627767d7efa55450a01de9fc3f5dbdc2bbf5fefdb9e349d3104f73aa887983"
+     "b9a15b6eeb68376185b844f79296bde16715f9dc7e2bf1086d53e84511257caa"
+     "576582232148f332cc982731bea66111d2a5a62700b112a9571e7c5c3c3f986f"
+     "b2c734313e61f23b7b098d92f76c1ab88f1f7b9e5b6abecb18f0d609c83b1164"
+     "1318f8cbd4472f9bc8e7f8207db1c20416afd613a3d96ca8f240306acff18a97"
+     "edeb867d8f2b9066ca06710934f3acd821c34a2e52236e8f5a0e80940f9b61bc"
+     "3a23f53fd596e2519b3a192ec2a6dc6ffeacb6029be882132dd37c389325f00a"
+     "b21f0693bcc8167ff9486a42a3d2cd167c53bcf2c57628f2843c7c664786bd67"
+     "f92dcb95f019f51dba87fdabf1b1382b3ddfcd048f35fc9f555754c8331d38d8"
+     "b6ae47764c75989bb5129de903d21fb7630eeabc559cd65cb30ee213bf6b1646"
+     "93815fc47d9324a7761b56754bc46cd8b8544a60fca513e634dfa16b8c761400"
+     default))
  '(debug-on-error t)
  '(default-input-method "spanish-prefix")
  '(diary-file "~/.emacs.d/diary")
  '(dired-omit-verbose nil)
  '(easy-kill-alist
-   '((94 backward-line-edge "\12")
-     (36 forward-line-edge "\12")
-     (66 buffer "\12\12")
-     (60 buffer-before-point "\12\12")
+   '((94 backward-line-edge "\12") (36 forward-line-edge "\12")
+     (66 buffer "\12\12") (60 buffer-before-point "\12\12")
      (62 buffer-after-point "\12\12")
      (70 string-up-to-char-forward "")
      (116 string-to-char-backward "")
-     (84 string-up-to-char-backward "")
-     (119 word " ")
-     (115 sexp "\12")
-     (108 list "\12")
-     (102 filename "\12")
-     (100 defun "\12\12")
-     (68 defun-name " ")
-     (101 line "\12")
+     (84 string-up-to-char-backward "") (119 word " ")
+     (115 sexp "\12") (108 list "\12") (102 filename "\12")
+     (100 defun "\12\12") (68 defun-name " ") (101 line "\12")
      (98 buffer-file-name nil)))
  '(elpy-modules
-   '(elpy-module-company elpy-module-eldoc elpy-module-flymake elpy-module-pyvenv elpy-module-highlight-indentation elpy-module-sane-defaults))
+   '(elpy-module-company elpy-module-eldoc elpy-module-flymake
+			 elpy-module-pyvenv
+			 elpy-module-highlight-indentation
+			 elpy-module-sane-defaults))
  '(elpy-shell-cell-boundary-regexp "^# %%.*$")
  '(elpy-shell-codecell-beginning-regexp "^# %%.*$")
  '(elpy-shell-echo-output 'when-shell-not-visible)
@@ -272,9 +282,21 @@
  '(magit-section-visibility-indicator '(" ... " . t))
  '(magit-todos-insert-after '(bottom) nil nil "Changed by setter of obsolete option `magit-todos-insert-at'")
  '(org-agenda-files
-   '("~/Dropbox/muse-hii-regions/docs/README-2021.org" "/Users/will/Dropbox/Metal-Permitted/metal-permitted.org" "/Users/will/Dropbox/Teaching/Computacional/curso-computacional.org" "/Users/will/Dropbox/Teresa-Turtle/doc/teresa-turtle.org" "/Users/will/Work/Bowshocks/Jorge/bowshock-shape/Stellar-Bowshocks-2017/stellar-bowshocks.org" "/Users/will/Dropbox/Org/notes.org" "/Users/will/Dropbox/Notes/will-macbook-config.org" "/Users/will/Dropbox/Notes/workflow.org" "/Users/will/Dropbox/Notes/apple accounts.org" "/Users/will/Dropbox/Notes/paper projects 2015.org" "/Users/will/Dropbox/Org/pub-orion-atlas/index.org" "/Users/will/Dropbox/Family/Matthew-Money/matt-loan.org"))
+   '("~/Dropbox/muse-hii-regions/docs/README-2021.org"
+     "/Users/will/Dropbox/Metal-Permitted/metal-permitted.org"
+     "/Users/will/Dropbox/Teaching/Computacional/curso-computacional.org"
+     "/Users/will/Dropbox/Teresa-Turtle/doc/teresa-turtle.org"
+     "/Users/will/Work/Bowshocks/Jorge/bowshock-shape/Stellar-Bowshocks-2017/stellar-bowshocks.org"
+     "/Users/will/Dropbox/Org/notes.org"
+     "/Users/will/Dropbox/Notes/will-macbook-config.org"
+     "/Users/will/Dropbox/Notes/workflow.org"
+     "/Users/will/Dropbox/Notes/apple accounts.org"
+     "/Users/will/Dropbox/Notes/paper projects 2015.org"
+     "/Users/will/Dropbox/Org/pub-orion-atlas/index.org"
+     "/Users/will/Dropbox/Family/Matthew-Money/matt-loan.org"))
  '(org-agenda-text-search-extra-files
-   '(agenda-archives "/Users/will/Dropbox/OrionWest/alba-orion-west.org" "/Users/will/Dropbox/Teresa-Owl/teresa-owl.org"))
+   '(agenda-archives "/Users/will/Dropbox/OrionWest/alba-orion-west.org"
+		     "/Users/will/Dropbox/Teresa-Owl/teresa-owl.org"))
  '(org-attach-directory "~/Dropbox/Org-Attach")
  '(org-attach-id-dir "~/Dropbox/Org-Attach")
  '(org-attach-method 'ln)
@@ -285,9 +307,9 @@
  '(org-default-notes-file "~/Dropbox/Org/notes.org")
  '(org-display-internal-link-with-indirect-buffer t)
  '(org-emphasis-alist
-   '(("*" bold "<b>" "</b>")
-     ("/" italic "<i>" "</i>")
-     ("_" underline "<span style=\"text-decoration:underline;\">" "</span>")
+   '(("*" bold "<b>" "</b>") ("/" italic "<i>" "</i>")
+     ("_" underline "<span style=\"text-decoration:underline;\">"
+      "</span>")
      ("=" org-code "<code>" "</code>" verbatim)
      ("~" org-verbatim "<code>" "</code>" verbatim)
      ("@" org-warning "<b>" "</b>")))
@@ -296,14 +318,9 @@
  '(org-export-dispatch-use-expert-ui t)
  '(org-export-use-babel nil)
  '(org-file-apps
-   '((auto-mode . emacs)
-     (directory . emacs)
-     ("out" . emacs)
-     ("dat" . emacs)
-     ("\\.x?html?\\'" . default)
-     ("pdf" . default)
-     ("png" . default)
-     ("jpg" . default)))
+   '((auto-mode . emacs) (directory . emacs) ("out" . emacs)
+     ("dat" . emacs) ("\\.x?html?\\'" . default) ("pdf" . default)
+     ("png" . default) ("jpg" . default)))
  '(org-format-latex-header
    "\\documentclass{article}\12\\usepackage[usenames]{color}\12\\usepackage{amsmath}\12\\usepackage[T1]{fontenc}\12\\usepackage[nomath]{lmodern}\12\\renewcommand{\\rmdefault}{lmvtt}\12\\usepackage[eulergreek]{mathastext}\12\\MathastextEulerScale{0.92}\12\\usepackage[mathscr]{eucal}\12\\AtBeginDocument{\\large}\12\\pagestyle{empty}             % do not remove\12[PACKAGES]\12[DEFAULT-PACKAGES]\12% The settings below are copied from fullpage.sty\12\\usepackage{geometry}\12\\geometry{letterpaper,margin=1in}\12")
  '(org-goto-interface 'outline)
@@ -315,7 +332,8 @@
  '(org-mac-grab-Firefox-app-p nil)
  '(org-mac-grab-Mail-app-p nil)
  '(org-modules
-   '(ol-bbdb ol-bibtex org-id ol-info org-inlinetask org-mouse org-protocol org-tempo))
+   '(ol-bbdb ol-bibtex org-id ol-info org-inlinetask org-mouse
+	     org-protocol org-tempo))
  '(org-pretty-entities t)
  '(org-preview-latex-default-process 'dvisvgm)
  '(org-ref-completion-library 'org-ref-ivy-cite)
@@ -331,18 +349,47 @@
  '(org-tag-faces '(("noexport" . "#33bb44")))
  '(org-tags-column 50)
  '(package-selected-packages
-   '(ob-fish magit org-plus-contrib org region-bindings-mode casual-avy org-download constants vterm selected-window-accent-mode visual-fill-column org-mac-image-paste ultra-scroll-mac speedrect dirvish math-delimiters eros org-modern undo-fu transient-posframe hydra-posframe ivy-posframe quarto-mode quarto detached atomic-chrome copilot editorconfig wrap-region applescript-mode applescript apples google-translate-default-ui google-translate-smooth-ui dired-git-info org-attach-screenshot auctex beacon all-the-icons-ivy-rich all-the-icons-ibuffer all-the-icons-ibuffer-mode peg exec-path-from-shell emacs-websocket org-ref ivy-prescient prescient python-docstring-mode typo web-mode org-fstree org-dropbox header2 all-the-icons-ivy all-the-icons-dired all-the-icons counsel-projectile e2wm org-extra org-contacts quelpa-use-package ag org-sticky-header counsel mu4e org-pomodoro org-table-sticky-header org-edit-latex elfeed-org auto-org-md julia-mode w3m virtualenv synonyms svg-mode-line-themes stripe-buffer spotlight sparkline smex rainbow-mode prodigy pinboard pallet org-trello org-magit org-dotemacs org-bullets ob-ipython nose magithub magit-svn latex-extra idomenu htmlize helm-dash helm-bibtex guide-key google-this golden-ratio god-mode gitty git-messenger git-gutter ggtags fold-dwim-org fancy-narrow esxml elnode dired-details diminish deft crosshairs creole-mode conda color-identifiers-mode bibslurp bf-mode alert airplay ack-and-a-half achievements ace-jump-mode))
+   '(ob-fish magit org-plus-contrib org region-bindings-mode casual-avy
+	     org-download constants vterm selected-window-accent-mode
+	     visual-fill-column org-mac-image-paste ultra-scroll-mac
+	     speedrect dirvish math-delimiters eros org-modern undo-fu
+	     transient-posframe hydra-posframe ivy-posframe
+	     quarto-mode quarto detached atomic-chrome copilot
+	     editorconfig wrap-region applescript-mode applescript
+	     apples google-translate-default-ui
+	     google-translate-smooth-ui dired-git-info
+	     org-attach-screenshot auctex beacon
+	     all-the-icons-ivy-rich all-the-icons-ibuffer
+	     all-the-icons-ibuffer-mode peg exec-path-from-shell
+	     emacs-websocket org-ref ivy-prescient prescient
+	     python-docstring-mode typo web-mode org-fstree
+	     org-dropbox header2 all-the-icons-ivy all-the-icons-dired
+	     all-the-icons counsel-projectile e2wm org-extra
+	     org-contacts quelpa-use-package ag org-sticky-header
+	     counsel mu4e org-pomodoro org-table-sticky-header
+	     org-edit-latex elfeed-org auto-org-md julia-mode w3m
+	     virtualenv synonyms svg-mode-line-themes stripe-buffer
+	     spotlight sparkline smex rainbow-mode prodigy pinboard
+	     pallet org-trello org-magit org-dotemacs org-bullets
+	     ob-ipython nose magithub magit-svn latex-extra idomenu
+	     htmlize helm-dash helm-bibtex guide-key google-this
+	     golden-ratio god-mode gitty git-messenger git-gutter
+	     ggtags fold-dwim-org fancy-narrow esxml elnode
+	     dired-details diminish deft crosshairs creole-mode conda
+	     color-identifiers-mode bibslurp bf-mode alert airplay
+	     ack-and-a-half achievements ace-jump-mode))
  '(paradox-automatically-star t)
  '(pinboard-url "http://feeds.pinboard.in/json/u:deprecated/?count=10")
  '(python-check-command "black")
  '(python-indent-guess-indent-offset-verbose nil)
  '(recentf-arrange-rules
-   '(("Elisp files (%d)" ".\\.el\\'")
-     ("Org files (%d)" ".\\.org\\'")
-     ("TeX files (%d)" ".\\.tex\\'")
-     ("Python files (%d)" ".\\.py\\'")))
+   '(("Elisp files (%d)" ".\\.el\\'") ("Org files (%d)" ".\\.org\\'")
+     ("TeX files (%d)" ".\\.tex\\'") ("Python files (%d)" ".\\.py\\'")))
  '(recentf-exclude
-   '("/git-rebase-todo\\'" "/\\(\\(\\(COMMIT\\|NOTES\\|PULLREQ\\|TAG\\)_EDIT\\|MERGE_\\|\\)MSG\\|BRANCH_DESCRIPTION\\)\\'" "\\.cask" "\\.emacs\\.d/elpa" "ido\\.last" "auto-save-list" "\\.emacs\\.d/bookmarks" "Library/Group\\ Containers"))
+   '("/git-rebase-todo\\'"
+     "/\\(\\(\\(COMMIT\\|NOTES\\|PULLREQ\\|TAG\\)_EDIT\\|MERGE_\\|\\)MSG\\|BRANCH_DESCRIPTION\\)\\'"
+     "\\.cask" "\\.emacs\\.d/elpa" "ido\\.last" "auto-save-list"
+     "\\.emacs\\.d/bookmarks" "Library/Group\\ Containers"))
  '(recentf-max-menu-items 250)
  '(recentf-max-saved-items nil)
  '(recentf-menu-filter 'recentf-arrange-by-rule)
@@ -350,53 +397,44 @@
  '(recentf-mode t)
  '(recentf-show-file-shortcuts-flag nil)
  '(rm-blacklist
-   '(" hl-p" " Undo-Tree" " MRev" " Projectile" " Google" " Guide" " Helm" " Ind" " GG" " OCDL"))
+   '(" hl-p" " Undo-Tree" " MRev" " Projectile" " Google" " Guide"
+     " Helm" " Ind" " GG" " OCDL"))
  '(rm-excluded-modes
-   '(" hl-p" " Undo-Tree" " MRev" " Projectile" " Google" " Guide" " Helm" " Ind" " GG" " OCDL"))
+   '(" hl-p" " Undo-Tree" " MRev" " Projectile" " Google" " Guide"
+     " Helm" " Ind" " GG" " OCDL"))
  '(safe-local-variable-values
-   '((eval defun wjh/jupytext-sync nil "Bi-directional sync between markdown and jupyter notebook"
+   '((eval defun wjh/jupytext-sync nil
+	   "Bi-directional sync between markdown and jupyter notebook"
 	   (shell-command
 	    (format "jupytext --sync %s.md"
-		    (file-name-base
-		     (buffer-file-name)))))
+		    (file-name-base (buffer-file-name)))))
      (eval add-hook 'before-revert-hook `wjh/jupytext-sync nil t)
      (eval add-hook 'after-save-hook `wjh/jupytext-sync nil t)
-     (eval defun wjh/jupytext-sync nil "Bi-directional sync between markdown and jupyter notebook"
+     (eval defun wjh/jupytext-sync nil
+	   "Bi-directional sync between markdown and jupyter notebook"
 	   (shell-command
 	    (format "jupytext --sync %s.ipynb"
-		    (file-name-base
-		     (buffer-file-name)))))
+		    (file-name-base (buffer-file-name)))))
      (eval add-hook 'after-save-hook
 	   (lambda nil
 	     (shell-command
 	      (format "jupytext --sync %s.ipynb"
-		      (file-name-base
-		       (buffer-file-name)))))
+		      (file-name-base (buffer-file-name)))))
 	   nil t)
      (TeX-master . dusty-bow-wave)
      (eval when
-	   (and
-	    (buffer-file-name)
-	    (file-regular-p
-	     (buffer-file-name))
-	    (string-match-p "^[^.]"
-			    (buffer-file-name)))
-	   (unless
-	       (featurep 'package-build)
-	     (let
-		 ((load-path
-		   (cons "../package-build" load-path)))
+	   (and (buffer-file-name) (file-regular-p (buffer-file-name))
+		(string-match-p "^[^.]" (buffer-file-name)))
+	   (unless (featurep 'package-build)
+	     (let ((load-path (cons "../package-build" load-path)))
 	       (require 'package-build)))
 	   (package-build-minor-mode)
-	   (set
-	    (make-local-variable 'package-build-working-dir)
-	    (expand-file-name "../working/"))
-	   (set
-	    (make-local-variable 'package-build-archive-dir)
-	    (expand-file-name "../packages/"))
-	   (set
-	    (make-local-variable 'package-build-recipes-dir)
-	    default-directory))
+	   (set (make-local-variable 'package-build-working-dir)
+		(expand-file-name "../working/"))
+	   (set (make-local-variable 'package-build-archive-dir)
+		(expand-file-name "../packages/"))
+	   (set (make-local-variable 'package-build-recipes-dir)
+		default-directory))
      (TeX-master . quadrics-bowshock)
      (eval add-hook 'find-file-hook
 	   (lambda nil
@@ -406,22 +444,22 @@
      (wjh/elpy-virtual-environment . "~/anaconda/envs/py27")
      (eval pyvenv-deactivate)
      (eval quote
-	   (pyvenv-activate
-	    (expand-file-name "~/anaconda/envs/py27")))
-     (eval pyvenv-activate
-	   (expand-file-name "~/anaconda/envs/py27"))
+	   (pyvenv-activate (expand-file-name "~/anaconda/envs/py27")))
+     (eval pyvenv-activate (expand-file-name "~/anaconda/envs/py27"))
      (lisp-backquote-indentation . t)
-     (org-format-latex-options :foreground "black" :background "white" :matchers
-			       '("begin")
-			       :scale 1.0)
+     (org-format-latex-options :foreground "black" :background "white"
+			       :matchers '("begin") :scale 1.0)
      (org-export-allow-bind-keywords . t)
      (eval font-lock-add-keywords nil
-	   `((,(concat "("
-		       (regexp-opt
-			'("sp-do-move-op" "sp-do-move-cl" "sp-do-put-op" "sp-do-put-cl" "sp-do-del-op" "sp-do-del-cl")
-			t)
-		       "\\_>")
-	      1 'font-lock-variable-name-face)))
+	   `
+	   ((,(concat "("
+		      (regexp-opt
+		       '("sp-do-move-op" "sp-do-move-cl"
+			 "sp-do-put-op" "sp-do-put-cl" "sp-do-del-op"
+			 "sp-do-del-cl")
+		       t)
+		      "\\_>")
+	     1 'font-lock-variable-name-face)))
      (org-src-preserve-indentation . t)
      (org-use-property-inheritance . t)
      (system-time-locale . "en_GB.ISO8859-1")))
@@ -434,4 +472,5 @@
  '(visible-bell t)
  '(warning-suppress-types '((use-package) (comp)))
  '(whitespace-style
-   '(face trailing tabs spaces newline empty indentation space-after-tab space-before-tab space-mark tab-mark newline-mark)))
+   '(face trailing tabs spaces newline empty indentation space-after-tab
+	  space-before-tab space-mark tab-mark newline-mark)))

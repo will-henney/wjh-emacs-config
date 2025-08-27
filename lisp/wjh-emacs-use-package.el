@@ -745,7 +745,7 @@ recognised."
 		  (shell-command-to-string "languagetool --version"))))
     (setq langtool-language-tool-jar 
 	  (format
-	   "/usr/local/Cellar/languagetool/%s/libexec/languagetool-commandline.jar"
+	   "/opt/homebrew/Cellar/languagetool/%s/libexec/languagetool-commandline.jar"
 	   langtool-version)
 	  langtool-mother-tongue "en"
 	  langtool-disabled-rules '("WHITESPACE_RULE"
@@ -756,7 +756,7 @@ recognised."
     (global-set-key "\C-x4w" 'langtool-check)
     (global-set-key "\C-x4W" 'langtool-check-done)
     (global-set-key "\C-x4l" 'langtool-switch-default-language)
-    (global-set-key "\C-x44" 'langtool-show-message-at-point)
+    (global-set-key "\C-x4M" 'langtool-show-message-at-point)
     (global-set-key "\C-x4C" 'langtool-correct-buffer)
     (defun langtool-autoshow-detail-popup (overlays)
       (when (require 'popup nil t)
