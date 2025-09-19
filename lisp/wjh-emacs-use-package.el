@@ -1277,6 +1277,11 @@ when a file is dopped on Emacs window."
   (remove-hook 'with-editor-filter-visit-hook 'magit-commit-diff)
   )
 
+;; 2025-09-19 - better diffs in magit
+(use-package magit-delta
+  :ensure t
+  :hook (magit-mode . magit-delta-mode))
+
 ;; 2021-10-15: integration of magit and github
 (use-package forge
   :ensure t
