@@ -21,7 +21,7 @@
   ;; puni-backward-kill-line	C-S-k
   ;; 
   ;; My personal extra key bindings
-  :bind (("C-M-=" . puni-expand-region)
+  :bind (("C-M-=" . puni-expand-region)	; similar to er/expand-region ("C-=")
 	 ("C-M-]" . puni-slurp-forward)
 	 ("C-M-[" . puni-slurp-backward)
 	 ("C-M-}" . puni-barf-forward)
@@ -29,6 +29,7 @@
 	 ("C-M-|" . puni-split)
 	 ("C-M-^" . puni-splice)
 	 ("C-M-_" . puni-squeeze)
+	 ("s-<backspace>" . puni-force-delete)
 	 )
   :init
   ;; The autoloads of Puni are set up so you can enable `puni-mode` or

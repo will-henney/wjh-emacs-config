@@ -349,35 +349,40 @@
  '(org-tag-faces '(("noexport" . "#33bb44")))
  '(org-tags-column 50)
  '(package-selected-packages
-   '(ob-fish magit org-plus-contrib org region-bindings-mode casual-avy
-	     org-download constants vterm selected-window-accent-mode
-	     visual-fill-column org-mac-image-paste ultra-scroll-mac
-	     speedrect dirvish math-delimiters eros org-modern undo-fu
-	     transient-posframe hydra-posframe ivy-posframe
-	     quarto-mode quarto detached atomic-chrome copilot
-	     editorconfig wrap-region applescript-mode applescript
-	     apples google-translate-default-ui
-	     google-translate-smooth-ui dired-git-info
-	     org-attach-screenshot auctex beacon
-	     all-the-icons-ivy-rich all-the-icons-ibuffer
-	     all-the-icons-ibuffer-mode peg exec-path-from-shell
-	     emacs-websocket org-ref ivy-prescient prescient
-	     python-docstring-mode typo web-mode org-fstree
-	     org-dropbox header2 all-the-icons-ivy all-the-icons-dired
-	     all-the-icons counsel-projectile e2wm org-extra
-	     org-contacts quelpa-use-package ag org-sticky-header
-	     counsel mu4e org-pomodoro org-table-sticky-header
-	     org-edit-latex elfeed-org auto-org-md julia-mode w3m
-	     virtualenv synonyms svg-mode-line-themes stripe-buffer
-	     spotlight sparkline smex rainbow-mode prodigy pinboard
-	     pallet org-trello org-magit org-dotemacs org-bullets
-	     ob-ipython nose magithub magit-svn latex-extra idomenu
-	     htmlize helm-dash helm-bibtex guide-key google-this
-	     golden-ratio god-mode gitty git-messenger git-gutter
-	     ggtags fold-dwim-org fancy-narrow esxml elnode
-	     dired-details diminish deft crosshairs creole-mode conda
-	     color-identifiers-mode bibslurp bf-mode alert airplay
-	     ack-and-a-half achievements ace-jump-mode))
+   '(ace-jump-mode achievements ack-and-a-half ag airplay alert
+		   all-the-icons all-the-icons-dired
+		   all-the-icons-ibuffer all-the-icons-ibuffer-mode
+		   all-the-icons-ivy all-the-icons-ivy-rich apples
+		   applescript applescript-mode atomic-chrome auctex
+		   auto-org-md beacon bf-mode bibslurp casual-avy
+		   color-identifiers-mode conda constants copilot
+		   counsel counsel-projectile creole-mode crosshairs
+		   deft detached diminish dired-details dired-git-info
+		   dirvish e2wm editorconfig elfeed-org elnode
+		   emacs-websocket eros esxml exec-path-from-shell
+		   fancy-narrow fold-dwim-org ggtags git-gutter
+		   git-messenger gitty god-mode golden-ratio
+		   google-this google-translate-default-ui
+		   google-translate-smooth-ui guide-key header2
+		   helm-bibtex helm-dash htmlize hydra-posframe
+		   idomenu ivy-posframe ivy-prescient julia-mode
+		   latex-extra magit magit-delta magit-svn magithub
+		   math-delimiters mu4e nose ob-fish ob-ipython org
+		   org-attach-screenshot org-bullets org-contacts
+		   org-dotemacs org-download org-dropbox
+		   org-edit-latex org-extra org-fstree
+		   org-mac-image-paste org-magit org-modern
+		   org-plus-contrib org-pomodoro org-ref
+		   org-sticky-header org-table-sticky-header
+		   org-trello pallet peg pinboard prescient prodigy
+		   python-docstring-mode quarto quarto-mode
+		   quelpa-use-package rainbow-mode
+		   region-bindings-mode selected-window-accent-mode
+		   smex sparkline speedrect spotlight stripe-buffer
+		   svg-mode-line-themes synonyms tex-parens
+		   transient-posframe typo ultra-scroll-mac undo-fu
+		   virtualenv visual-fill-column vterm w3m web-mode
+		   wrap-region))
  '(paradox-automatically-star t)
  '(pinboard-url "http://feeds.pinboard.in/json/u:deprecated/?count=10")
  '(python-check-command "black")

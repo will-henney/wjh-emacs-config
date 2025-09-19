@@ -8,9 +8,14 @@
 
 ;; (eval-when-compile
 ;;   (require 'use-package))
+
+;; Make sure package index is up-to-date
+(unless package-archive-contents
+  (package-refresh-contents))
+
 (require 'use-package)
 
-;; On first run on a new machine, diminish and bindkey neet to be installed
+;; On first run on a new machine, diminish and bindkey need to be installed
 (use-package diminish
   :ensure t)
 (use-package bind-key
@@ -59,6 +64,29 @@
 ;; 2024-06-04 - Try again with getting org from upstream
 (use-package org
   :ensure t
+  )
+
+
+;; 2025-09-16 - tex-parens should mean \(...\) and
+;; \begin{xx}..\end{xx} are treated as sexps in latex buffers, so
+;; everything will work better I hope
+(use-package tex-parens
+  :ensure t
+  :hook (TeX-mode . tex-parens-mode)
+  :bind
+  (:map
+   LaTeX-mode-map
+   ;; ...
+   ("C-c p =" . tex-parens-increase-delimiter-size)
+   ("C-c p -" . tex-parens-decrease-delimiter-size))
+  (:repeat-map
+   tex-parens-delimiter-size-repeat-map
+   ("=" . tex-parens-increase-delimiter-size)
+   ("-" . tex-parens-decrease-delimiter-size))
+  ;; ...
+  :config
+  ;; ...
+  (repeat-mode 1)  
   )
 
 ;; 2025-04-21 - Fish mode
