@@ -1119,6 +1119,19 @@ recognised."
 	  :help "Run latexmk on file")
 	TeX-command-list)
   (add-hook 'TeX-mode-hook '(lambda () (setq TeX-command-default "latexmk")))
+  ;; WJH 2025-09-20 - optimize recovery from errors with force rebuild
+  ;; Add a custom Force Rebuild command to AUCTeX dispatcher
+  (add-to-list 'TeX-command-list
+	       '("Force Rebuild"
+                 "latexmk -C && latexmk -pdf %t"
+                 TeX-run-TeX
+                 nil   ; ask for save? nil = yes
+                 t     ; run on main file only
+                 :help "Clean and fully rebuild document"))
+  
+  ;; Optional: make it the default for C-c C-c
+  ;; (setq TeX-command-default "Force Rebuild")
+  
   ;; use Skim as default pdf viewer
   ;; Skim's displayline is used for forward search (from .tex to .pdf)
   ;; option -b highlights the current line; option -g opens Skim in the background
