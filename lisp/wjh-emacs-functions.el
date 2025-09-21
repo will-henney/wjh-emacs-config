@@ -362,3 +362,35 @@ If called at point (no region), the cursor position is preserved relative to the
 
 ;; 2023-08-12 - we do not need this any more in 29.1 since there is built in function
 (global-set-key (kbd "s-d") 'duplicate-dwim)
+
+;; 2025-09-21 Fix annoyance of occur buffer showing up at the side
+;; First change default to only do vertical splits, however wide the window
+(setq split-width-threshold nil)
+;; Then make a function to toggle vertical/horizontal split (Written with help of ChatGPT)
+(defun toggle-window-split ()
+  "Toggle between vertical and horizontal layout for two windows."
+  (interactive)
+  (if (= (count-windows) 2)
+      (let* ((this-win-buffer (window-buffer))
+             (next-win-buffer (window-buffer (next-window)))
+             (this-win-edges (window-edges (selected-window)))
+             (next-win-edges (window-edges (next-window)))
+             (this-win-2nd (not (and (<= (car this-win-edges)
+                                         (car next-win-edges))
+                                     (<= (cadr this-win-edges)
+                                         (cadr next-win-edges)))))
+             (splitter
+              (if (= (car this-win-edges)
+                     (car (window-edges (next-window))))
+                  #'split-window-horizontally
+                #'split-window-vertically)))
+        (delete-other-windows)
+        (let ((first-win (selected-window)))
+          (funcall splitter)
+          (if this-win-2nd (other-window 1))
+          (set-window-buffer (selected-window) this-win-buffer)
+          (set-window-buffer (next-window) next-win-buffer)
+          (select-window first-win)))
+    (user-error "Can only toggle window split with exactly 2 windows")))
+;; And bind it to C-x PIPE (shift backslash on most keyboards)
+(global-set-key (kbd "C-x |") #'toggle-window-split)  ;; similar to built-in split keys 
