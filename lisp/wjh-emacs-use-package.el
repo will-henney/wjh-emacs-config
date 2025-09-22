@@ -1119,6 +1119,22 @@ recognised."
 	  :help "Run latexmk on file")
 	TeX-command-list)
   (add-hook 'TeX-mode-hook '(lambda () (setq TeX-command-default "latexmk")))
+
+  ;; WJH 2025-09-21
+  ;; Save all TeX-related buffers (tex/bib/sty/cls/bst/bbx/cbx/ist/clo/def)
+  (defun wjh-TeX-save-all-related (&rest _args)
+    (save-some-buffers
+     t
+     (lambda ()
+       (and buffer-file-name
+            (string-match-p
+             "\\.\\(tex\\|bib\\|sty\\|cls\\|bst\\|bbx\\|cbx\\|ist\\|clo\\|def\\)\\'"
+             buffer-file-name)))))
+
+  ;; Run before the common AUCTeX commands
+  (advice-add 'TeX-command-master  :before #'wjh-TeX-save-all-related)
+  (advice-add 'TeX-command-run-all :before #'wjh-TeX-save-all-related)
+  
   ;; WJH 2025-09-20 - optimize recovery from errors with force rebuild
   ;; Add a custom Force Rebuild command to AUCTeX dispatcher
   (add-to-list 'TeX-command-list
@@ -1128,7 +1144,7 @@ recognised."
                  nil   ; ask for save? nil = yes
                  t     ; run on main file only
                  :help "Clean and fully rebuild document"))
-  
+
   ;; Optional: make it the default for C-c C-c
   ;; (setq TeX-command-default "Force Rebuild")
   
