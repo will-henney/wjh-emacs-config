@@ -153,7 +153,7 @@ block."
 (global-set-key "\C-cte" 'wjh-org-table-export)
 
 ;; where to keep all the files
-(setq org-directory "~/Dropbox/Org/")
+(setq org-directory (expand-file-name "~"))
 
 ;; Make sure that links to image files are opened by "open" not by emacs
 ;; This can be overridden with C-u
@@ -413,7 +413,11 @@ block."
 ;; (require 'ob-R)
 ;; requires R and ess-mode
 ;; active Babel languages
-(use-package ob-ipython :ensure t)
+(use-package ob-ipython
+  :ensure t
+  :config
+  (setq ob-ipython-command "jupyter")
+  )
 (with-demoted-errors "Error during org-babel-do-load-languages: %S"
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -640,13 +644,31 @@ block."
   )
 (bind-key "H-e" 'wjh/propertize-newline-of-next-org-heading)
 
+;; 2025-10-14 - Improve the cross linking to other files
+(setq org-agenda-files (expand-file-name "~/.emacs.d/all-my-org-files.txt"))
+;; see id:A5A8238C-C673-4834-9134-29C187F31AE9
+
+;; And this is so that any new link that I create gets its ID registered straight away
+(with-eval-after-load 'org-id
+  (defun my/org-id-register-after-create (&rest _)
+    (when-let* ((file (buffer-file-name))
+                (id   (org-entry-get nil "ID")))
+      (org-id-add-location id file)
+      (org-id-locations-save)))
+  (advice-add 'org-id-get-create :after #'my/org-id-register-after-create))
+
+
+;; Add clickable links in source files
+(use-package orglink
+  :ensure t
+  :hook ((prog-mode . orglink-mode)
+         (text-mode . orglink-mode)))
 
 ;; 23 Jun 2017 - try and improve workflow
 
 ;; Allow refile to more places (from Sacha Chua
 ;; http://sachachua.com/blog/2015/02/learn-take-notes-efficiently-org-mode/)
 (setq org-refile-targets '((org-agenda-files . (:maxlevel . 6))))
-
 
 ;;  Org capture templates 
 (setq org-capture-templates

@@ -371,11 +371,11 @@
 		   org-attach-screenshot org-bullets org-contacts
 		   org-dotemacs org-download org-dropbox
 		   org-edit-latex org-extra org-fstree
-		   org-mac-image-paste org-magit org-modern
-		   org-plus-contrib org-pomodoro org-ref
+		   org-link-minor-mode org-mac-image-paste org-magit
+		   org-modern org-plus-contrib org-pomodoro org-ref
 		   org-sticky-header org-table-sticky-header
-		   org-trello pallet peg pinboard prescient prodigy
-		   python-docstring-mode quarto quarto-mode
+		   org-trello orglink pallet peg pinboard prescient
+		   prodigy python-docstring-mode quarto quarto-mode
 		   quelpa-use-package rainbow-mode
 		   region-bindings-mode selected-window-accent-mode
 		   smex sparkline speedrect spotlight stripe-buffer
@@ -408,7 +408,10 @@
    '(" hl-p" " Undo-Tree" " MRev" " Projectile" " Google" " Guide"
      " Helm" " Ind" " GG" " OCDL"))
  '(safe-local-variable-values
-   '((eval defun wjh/jupytext-sync nil
+   '((org-export-html-style
+      . "<link rel=stylesheet\12  href=\"temarios.css\"\12  type=\"text/css\">\12<meta HTTP-EQUIV=\"Refresh\" CONTENT=300>")
+     (system-time-locale . "es_MX.ISO8859-1")
+     (eval defun wjh/jupytext-sync nil
 	   "Bi-directional sync between markdown and jupyter notebook"
 	   (shell-command
 	    (format "jupytext --sync %s.md"

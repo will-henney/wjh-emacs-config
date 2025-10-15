@@ -15,6 +15,9 @@
 
 (require 'use-package)
 
+(use-package package-vc
+  :ensure t)
+
 ;; On first run on a new machine, diminish and bindkey need to be installed
 (use-package diminish
   :ensure t)
