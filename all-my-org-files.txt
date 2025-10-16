@@ -9,7 +9,6 @@
 /Users/will/Dropbox/Teaching/MIE/transcripts/MIE-07-13/MIE-07-13-transcript.org
 /Users/will/Dropbox/Teaching/MIE/transcripts/MIE-07-14/MIE-07-14-transcript.org
 /Users/will/Dropbox/eduardo-cii-permitted/docs/cii-permitted.org
-/Users/will/Library/Mobile Documents/com~apple~CloudDocs/Desktop/Old Firefox Data/66db0m9h.default-release-1723593765219/storage/default/https+++www.mozilla.org
 /Users/will/Dropbox/Presentations/2025-Academia-bubbles-presentation/2025-academia-talk.org
 /Users/will/Dropbox/Teaching/Sinodal/2025-05-Oskar-Arangure/oskar-doctorado.org
 /Users/will/Dropbox/Teaching/Sinodal/2024-12-doctorado/evaluaciones-doctorado-2024-12.org
@@ -162,7 +161,6 @@
 /Users/will/Work/ManuelOrion/manuel-notes.org
 /Users/will/Dropbox/orion-drl/docs/orion-drl-6814.org
 /Users/will/Dropbox/Referee/Bodensteiner2018/bodensteiner-report.org
-/Users/will/Dropbox/STIS-LV/stis-lv (William Henney's conflicted copy 2013-10-22).org
 /Users/will/Work/Muse-Hii-Data/SMC-N76/anna-smc-n76.org
 /Users/will/Dropbox/Papiit/2015-IN111215/18-final/IN111215-final.org
 /Users/will/Dropbox/Dani-COA-2022/dani-coa.org
@@ -173,7 +171,6 @@
 /Users/will/Work/Bowshocks/Jorge/bowshock-shape/papers/Papers1234/figs/projection-3d.org
 /Users/will/Dropbox/CTIC-2021/2022-08-11-ordinario/ctic-2022-08-11.org
 /Users/will/Work/Bowshocks/Jorge/bowshock-shape/papers/Papers1234/paper_ideas.org
-/Users/will/.emacs.d/backups/!Users!will!Work!Bowshocks!Jorge!bowshock-shape!Stellar-Bowshocks-2017!stellar-bowshocks.org.~1~
 /Users/will/Work/Bowshocks/Jorge/bowshock-shape/Stellar-Bowshocks-2017/mipsgal-quality-ratings.org
 /Users/will/Work/Bowshocks/Jorge/bowshock-shape/Quadric-shapes/quadric-projected-2017.org
 /Users/will/Work/Bowshocks/Jorge/bowshock-shape/Simulation-Shapes/simulation-shapes.org
@@ -371,7 +368,6 @@
 /Users/will/Dropbox/jwst-carina/jwst-carina.org
 /Users/will/Dropbox/JavierGVastro/PhD.Paper/analysis-for-discussion/brightness-fluctuations.org
 /Users/will/Dropbox/Caacfmi/2016-08/plenaria-2016-10.org
-/Users/will/Dropbox/catalog-paper (Symlink Backup Copy)/new-ll-table (William Henney's conflicted copy 2020-05-17).org
 /Users/will/Dropbox/Referee/Papiit2022/papiit-krongold-22.org
 /Users/will/Dropbox/emacs-bedrock/elpa/cape-1.5/CHANGELOG.org
 /Users/will/Dropbox/Nahiely-Will/Abundancias/AbundancesLV2.org
@@ -606,14 +602,12 @@
 /Users/will/Dropbox/irya-website-papers/irya-papers.org
 /Users/will/Dropbox/Teaching/Sinodal/2020-11-Sandino/sandino-thesis-2020.org
 /Users/will/Dropbox/Teaching/Sinodal/2019-01-doctorado/entrevistas-doctorado-2019.org
-/Users/will/.emacs.d/backups/!Users!will!Dropbox!Teaching!Sinodal!2023-05-Oskar-Arangure!oskar-maestria.org.~1~
 /Users/will/Dropbox/Teaching/Sinodal/RoyMatadamas/matadamas-voto.org
 /Users/will/Dropbox/Teaching/Sinodal/2018-04-Jackeline-Rechy/jackeline-examen.org
 /Users/will/Dropbox/Teaching/Sinodal/2021-12-Rogelio-Orozco/rogelio-candidatura (1).org
 /Users/will/Dropbox/Teaching/Sinodal/2021-12-Rogelio-Orozco/rogelio-candidatura.org
 /Users/will/Dropbox/Teaching/Sinodal/2024-03-Miguel-Jaquez/miguel-jaquez-tesis-doctorado.org
 /Users/will/Dropbox/Teaching/Sinodal/2018-09-AntonioCastellanos/antonio-castellanos-report-will.org
-/Users/will/.emacs.d/backups/!Users!will!Dropbox!Teaching!Sinodal!2024-12-doctorado!evaluaciones-doctorado-2024-12.org.~1~
 /Users/will/Dropbox/Teaching/Sinodal/2017-02-Juan-Rodriguez/juan-rodriguez-phd.org
 /Users/will/Dropbox/Teaching/Sinodal/2017-05-Rogelio-Medina/rogelio-medina.org
 /Users/will/Dropbox/Teaching/Sinodal/2016-05-ArturoTinoco/arturo-tinoco-will-comments.org
@@ -681,9 +675,7 @@
 /Users/will/Dropbox/Org/christophe.org
 /Users/will/Dropbox/Org/github.org
 /Users/will/Dropbox/Org/test-org-indent.org
-/Users/will/Dropbox/Org/bubbles (robbie.crya.privado's conflicted copy 2013-10-22).org
 /Users/will/Dropbox/Org/citas.org
-/Users/will/Dropbox/Org/JOURNAL (demdike's conflicted copy 2020-05-16).org
 /Users/will/Dropbox/Org/org-trello-test.org
 /Users/will/Dropbox/Org/janexray.org
 /Users/will/Dropbox/Org/studentprojects.org
@@ -704,13 +696,11 @@
 /Users/will/Dropbox/Org/temarios/temario-nuevo-medio.org
 /Users/will/Dropbox/Org/hh-orion.org
 /Users/will/Dropbox/Org/journalfigs.org
-/Users/will/Dropbox/Org/elecciones (demdike's conflicted copy 2020-05-17).org
 /Users/will/Dropbox/Org/temarios/temario-nuevo-extragal.org
 /Users/will/Dropbox/Org/consejo-interno.org
 /Users/will/Dropbox/Org/helix-paper-comments.org
 /Users/will/Dropbox/Org/temarios/temarios-procesos.org
 /Users/will/Dropbox/Org/pandas.org
-/Users/will/Dropbox/Org/notes (demdike's conflicted copy 2020-05-17).org
 /Users/will/Dropbox/Org/gpu.org
 /Users/will/Dropbox/Org/bugtest.org
 /Users/will/Dropbox/Org/radpress.org
@@ -729,14 +719,8 @@
 /Users/will/Dropbox/Org/pub-orion-atlas/index.org
 /Users/will/Dropbox/Org/mir.org
 /Users/will/Dropbox/Org/orgjournal.org
-/Users/will/Dropbox/Org/notes (robbie.crya.privado's conflicted copy 2013-10-22).org
-/Users/will/Dropbox/Org/proplyd (demdike's conflicted copy 2020-05-17).org
 /Users/will/Dropbox/Org/orion.org
 /Users/will/Dropbox/Org/posgrado.org
-/Users/will/Dropbox/Org/orion (demdike's conflicted copy 2020-05-17).org
-/Users/will/Dropbox/Org/orion (robbie.crya.privado's conflicted copy 2013-10-22).org
-/Users/will/Dropbox/Org/posgrado (robbie.crya.privado's conflicted copy 2013-10-22).org
-/Users/will/Dropbox/Org/garrelt-simulations (robbie.crya.privado's conflicted copy 2013-10-22).org
 /Users/will/Dropbox/Org/mixing.org
 /Users/will/Dropbox/Org/mhd-uuu.org
 /Users/will/Dropbox/Org/t2.org
@@ -744,8 +728,6 @@
 /Users/will/Dropbox/Org/mhd-xxx.org
 /Users/will/Dropbox/Org/helix.org
 /Users/will/Dropbox/Org/garrelt-simulations.org
-/Users/will/Dropbox/Org/proplyd (robbie.crya.privado's conflicted copy 2013-10-22).org
-/Users/will/Dropbox/Org/helix (robbie.crya.privado's conflicted copy 2013-10-22).org
 /Users/will/Dropbox/Org/willpremio.org
 /Users/will/Dropbox/Org/temarios/temarios-actuales.org
 /Users/will/Dropbox/Org/temarios/temarios.org
@@ -758,11 +740,7 @@
 /Users/will/Dropbox/Org/gargi.org
 /Users/will/Dropbox/Org/diffusefield.org
 /Users/will/Dropbox/Org/mhd.org
-/Users/will/Dropbox/Org/TODO (demdike's conflicted copy 2020-05-17).org
 /Users/will/Dropbox/Org/TODO.org
-/Users/will/Dropbox/Org/TODO (robbie.crya.privado's conflicted copy 2013-10-22).org
-/Users/will/Dropbox/Org/llobjects (demdike's conflicted copy 2020-05-17).org
-/Users/will/Dropbox/Org/llobjects (robbie.crya.privado's conflicted copy 2013-10-22).org
 /Users/will/Dropbox/Org/llobjects.org
 /Users/will/Dropbox/Org/guille.org
 /Users/will/Dropbox/Org/papers.org
