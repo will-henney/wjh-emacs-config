@@ -64,6 +64,11 @@
 ;;   :quelpa (org :fetcher git)
 ;;   )
 
+
+;; 2025-10-15 - this package seems to be wanted by native compilation
+(use-package shut-up
+  :ensure t)
+
 ;; 2024-06-04 - Try again with getting org from upstream
 (use-package org
   :ensure t
@@ -1523,7 +1528,15 @@ when a file is dopped on Emacs window."
      ;; Discovered in Emacs Rocks Epsiode 16: http://emacsrocks.com/e16.html
      (setq dired-dwim-target t)
      (dired-omit-mode 1)))
-  (add-hook 'dired-mode-hook #'turn-on-auto-revert-mode)
+  ;; 2025-10-14: get round Emacs 30 bug
+  ;; Enable auto-revert in Dired, but force polling (no file-notify)
+  (add-hook 'dired-mode-hook
+	    (lambda ()
+	      (setq-local auto-revert-use-notify nil      ; <- key change
+			  auto-revert-verbose nil
+			  auto-revert-interval 2)         ; tune if you like
+	      (auto-revert-mode 1)))
+  
   (customize-set-value 'auto-revert-verbose nil
 		       "Prevent any auto-revert messages from
 		     obscuring the minibuffer at crucial times!")

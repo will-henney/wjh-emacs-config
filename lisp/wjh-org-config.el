@@ -661,8 +661,7 @@ block."
 ;; Add clickable links in source files
 (use-package orglink
   :ensure t
-  :hook ((prog-mode . orglink-mode)
-         (text-mode . orglink-mode)))
+  :hook ((prog-mode . orglink-mode)))
 
 ;; 23 Jun 2017 - try and improve workflow
 
