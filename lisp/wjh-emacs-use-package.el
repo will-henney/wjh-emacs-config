@@ -230,7 +230,10 @@
 
 ;; 2023-11-30 Try shellcheck
 ;; Based on this blog post: https://amitp.blogspot.com/2023/10/emacs-and-shellcheck.html
+
+
 (use-package flymake
+  :after python
   :bind (("s-e" . flymake-show-project-diagnostics)))
 
 (use-package sh-script
@@ -1349,8 +1352,8 @@ when a file is dopped on Emacs window."
 
 
 ;; Trying something new 10 Mar 2013: https://github.com/jorgenschaefer/elpy/wiki
-;; 2024-12-31 Try a more minimalist config while investigating bugs
-(load "wjh-python-elpy-minimalist-config")
+;; WJH 2025-10-15 - try and get uv and elpy to play nice together - they do not want to!
+(load "wjh-python-elpy-uv-config")
 
 ;; And try and set up better treatment of doc strings
 (use-package python-docstring
@@ -1561,6 +1564,7 @@ prefix argument set OTHER-WINDOW true."
   ;; 13 Aug 2014 - A convenient binding for going up from a file to the enclosing dir
   (global-set-key (kbd "C-^") 'wjh/dired-jump)
   (global-set-key (kbd "M-6") 'wjh/dired-jump))
+
 
 ;; dired-details mode is obsolete - functionality is now built in
 (add-hook 'dired-mode-hook 'dired-hide-details-mode)

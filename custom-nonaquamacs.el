@@ -265,14 +265,12 @@
      (100 defun "\12\12") (68 defun-name " ") (101 line "\12")
      (98 buffer-file-name nil)))
  '(elpy-modules
-   '(elpy-module-company elpy-module-eldoc elpy-module-flymake
-			 elpy-module-pyvenv
+   '(elpy-module-company elpy-module-eldoc elpy-module-pyvenv
 			 elpy-module-highlight-indentation
 			 elpy-module-sane-defaults))
  '(elpy-shell-cell-boundary-regexp "^# %%.*$")
  '(elpy-shell-codecell-beginning-regexp "^# %%.*$")
  '(elpy-shell-echo-output 'when-shell-not-visible)
- '(elpy-syntax-check-command "black")
  '(elpy-test-runner 'elpy-test-pytest-runner)
  '(fortune-dir "/usr/local/share/games/fortunes/")
  '(git-messenger:show-detail t)
@@ -349,43 +347,31 @@
  '(org-tag-faces '(("noexport" . "#33bb44")))
  '(org-tags-column 50)
  '(package-selected-packages
-   '(ace-jump-mode achievements ack-and-a-half ag airplay alert
-		   all-the-icons all-the-icons-dired
-		   all-the-icons-ibuffer all-the-icons-ibuffer-mode
-		   all-the-icons-ivy all-the-icons-ivy-rich apples
-		   applescript applescript-mode atomic-chrome auctex
-		   auto-org-md beacon bf-mode bibslurp casual-avy
-		   color-identifiers-mode conda constants copilot
-		   counsel counsel-projectile creole-mode crosshairs
-		   deft detached diminish dired-details dired-git-info
-		   dirvish e2wm editorconfig elfeed-org elnode
-		   emacs-websocket eros esxml exec-path-from-shell
-		   fancy-narrow fold-dwim-org ggtags git-gutter
-		   git-messenger gitty god-mode golden-ratio
-		   google-this google-translate-default-ui
-		   google-translate-smooth-ui guide-key header2
-		   helm-bibtex helm-dash htmlize hydra-posframe
-		   idomenu ivy-posframe ivy-prescient julia-mode
-		   latex-extra magit magit-delta magit-svn magithub
-		   math-delimiters mu4e nose ob-fish ob-ipython org
-		   org-attach-screenshot org-bullets org-contacts
-		   org-dotemacs org-download org-dropbox
-		   org-edit-latex org-extra org-fstree
-		   org-link-minor-mode org-mac-image-paste org-magit
-		   org-modern org-plus-contrib org-pomodoro org-ref
-		   org-sticky-header org-table-sticky-header
-		   org-trello orglink pallet peg pinboard prescient
-		   prodigy python-docstring-mode quarto quarto-mode
-		   quelpa-use-package rainbow-mode
-		   region-bindings-mode selected-window-accent-mode
-		   smex sparkline speedrect spotlight stripe-buffer
-		   svg-mode-line-themes synonyms tex-parens
-		   transient-posframe typo ultra-scroll-mac undo-fu
-		   virtualenv visual-fill-column vterm w3m web-mode
-		   wrap-region))
+   '(ace-window ag alert all-the-icons-dired all-the-icons-ibuffer
+		all-the-icons-ivy all-the-icons-ivy-rich
+		applescript-mode atomic-chrome auctex beacon
+		casual-avy constants copilot counsel-projectile
+		csv-mode deft detached diminish dired-git-info dirvish
+		easy-kill-extras ein elpy eros exec-path-from-shell
+		expand-region fancy-narrow fish-mode flx-ido
+		flymake-ruff fold-dwim-org forge git-messenger
+		google-this google-translate gptel guess-language
+		helpful hungry-delete ibuffer-vc ido-vertical-mode
+		ivy-hydra jupyter key-chord keyfreq langtool
+		literate-calc-mode magit-delta magit-todos
+		math-delimiters move-text multiple-cursors ob-fish
+		ob-ipython org-attach-screenshot org-bookmark-heading
+		org-bullets org-download org-link-minor-mode
+		org-sidebar org-sticky-header orgit orglink ox-gfm
+		ox-hugo ox-pandoc paradox persistent-scratch puni
+		python-docstring quarto-mode quelpa-use-package
+		reformatter shell-switcher shut-up smart-mode-line
+		smartscan smex spanish-simple-prefix speedrect
+		spotlight stripe-buffer suggest tex-parens
+		tree-sitter-langs typo ultra-scroll-mac undo-fu unfill
+		vterm vundo worf wrap-region yaml-mode zenburn-theme))
  '(paradox-automatically-star t)
  '(pinboard-url "http://feeds.pinboard.in/json/u:deprecated/?count=10")
- '(python-check-command "black")
  '(python-indent-guess-indent-offset-verbose nil)
  '(recentf-arrange-rules
    '(("Elisp files (%d)" ".\\.el\\'") ("Org files (%d)" ".\\.org\\'")
