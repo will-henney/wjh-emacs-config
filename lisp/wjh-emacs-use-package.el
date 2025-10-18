@@ -1353,7 +1353,10 @@ when a file is dopped on Emacs window."
 
 ;; Trying something new 10 Mar 2013: https://github.com/jorgenschaefer/elpy/wiki
 ;; WJH 2025-10-15 - try and get uv and elpy to play nice together - they do not want to!
-(load "wjh-python-elpy-uv-config")
+;; (load "wjh-python-elpy-uv-config")
+
+;; WJH 2025-10-15: finally moving away from Elpy
+(load "wjh-python-lsp-uv-config")
 
 ;; And try and set up better treatment of doc strings
 (use-package python-docstring
