@@ -350,20 +350,21 @@
    '(ace-window ag alert all-the-icons-dired all-the-icons-ibuffer
 		all-the-icons-ivy all-the-icons-ivy-rich
 		applescript-mode atomic-chrome auctex beacon
-		casual-avy constants copilot counsel-projectile
+		casual-avy constants copilot corfu counsel-projectile
 		csv-mode deft detached diminish dired-git-info dirvish
-		easy-kill-extras ein elpy eros exec-path-from-shell
-		expand-region fancy-narrow fish-mode flx-ido
-		flymake-ruff fold-dwim-org forge git-messenger
-		google-this google-translate gptel guess-language
-		helpful hungry-delete ibuffer-vc ido-vertical-mode
-		ivy-hydra jupyter key-chord keyfreq langtool
-		literate-calc-mode magit-delta magit-todos
-		math-delimiters move-text multiple-cursors ob-fish
-		ob-ipython org-attach-screenshot org-bookmark-heading
-		org-bullets org-download org-link-minor-mode
-		org-sidebar org-sticky-header orgit orglink ox-gfm
-		ox-hugo ox-pandoc paradox persistent-scratch puni
+		easy-kill-extras eglot-signature-eldoc-talkative ein
+		eldoc-box elpy eros exec-path-from-shell expand-region
+		fancy-narrow fish-mode flx-ido flymake-ruff
+		fold-dwim-org forge git-messenger google-this
+		google-translate gptel guess-language helpful
+		hungry-delete ibuffer-vc ido-vertical-mode ivy-hydra
+		jupyter key-chord keyfreq langtool literate-calc-mode
+		magit-delta magit-todos math-delimiters move-text
+		multiple-cursors ob-fish ob-ipython
+		org-attach-screenshot org-bookmark-heading org-bullets
+		org-download org-link-minor-mode org-sidebar
+		org-sticky-header orgit orglink ox-gfm ox-hugo
+		ox-pandoc paradox persistent-scratch puni
 		python-docstring quarto-mode quelpa-use-package
 		reformatter shell-switcher shut-up smart-mode-line
 		smartscan smex spanish-simple-prefix speedrect

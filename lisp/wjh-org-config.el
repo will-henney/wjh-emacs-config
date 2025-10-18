@@ -607,6 +607,15 @@ block."
 (define-key org-mode-map (kbd "M-s-<left>") #'org-backward-paragraph)
 (define-key org-mode-map (kbd "M-s-<right>") #'org-forward-paragraph)
 
+;; 2025-10-17 - Insert time-stamp for NOW
+(defun wjh/org-timestamp-now ()
+  "Equivalent of `C-u C-u C-c !`"
+  (interactive)
+  (org-timestamp-inactive '(16))
+  )
+(define-key org-mode-map (kbd "s-n") #'wjh/org-timestamp-now)
+
+
 ;; 2022-10-06 Try out a better binding for editing source blocks with
 ;; Command-comma, although it turns out that 5 years ago I already had
 ;; done something similar with Command-l
