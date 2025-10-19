@@ -657,14 +657,28 @@ block."
 (setq org-agenda-files (expand-file-name "~/.emacs.d/all-my-org-files.txt"))
 ;; see id:A5A8238C-C673-4834-9134-29C187F31AE9
 
+;; 2025-10-19 - Improved version of keeping my org-id locations file up to date
 ;; And this is so that any new link that I create gets its ID registered straight away
 (with-eval-after-load 'org-id
-  (defun my/org-id-register-after-create (&rest _)
-    (when-let* ((file (buffer-file-name))
-                (id   (org-entry-get nil "ID")))
-      (org-id-add-location id file)
-      (org-id-locations-save)))
-  (advice-add 'org-id-get-create :after #'my/org-id-register-after-create))
+  ;; User option to toggle verbosity
+  (defcustom my/org-id-verbose t
+    "When non-nil, log messages whenever org-id locations are updated."
+    :type 'boolean
+    :group 'org-id)
+
+  (defun my/org-id--register (id)
+    "Register ID→file mapping, save locations, and optionally log."
+    (when (and id (buffer-file-name))
+      (org-id-add-location id (buffer-file-name))
+      (org-id-locations-save)
+      (when my/org-id-verbose
+        (message "[org-id] Registered ID %s in %s and saved locations."
+                 id (abbreviate-file-name (buffer-file-name)))))
+    id)
+
+  ;; Advise both functions that can create new IDs
+  (advice-add 'org-id-get-create :filter-return #'my/org-id--register)
+  (advice-add 'org-id-new         :filter-return #'my/org-id--register))
 
 
 ;; Add clickable links in source files
