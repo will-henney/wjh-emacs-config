@@ -93,7 +93,14 @@
 (global-set-key (kbd "H-b") 'bookmark-jump)
 (global-set-key (kbd "H-l") 'bookmark-bmenu-list)
 
+(defun wjh/comment-line-no-move (n)
+  "Just like `comment-line' but do not move point"
+  (interactive "p")
+  (save-excursion (comment-line n)))
 
+;; Compatibility with other code editors
+;; WJH 2025-10-18 - Command-slash to comment/uncomment current line
+(bind-key "s-/" #'wjh/comment-line-no-move)
 
 (defun wjh/dired-open-file-at-point ()
   "Run the shell command 'open' on the file at point in dired mode."

@@ -1250,19 +1250,20 @@ when a file is dopped on Emacs window."
 
 
 ;; 12 Oct 2013 - try projectile
+;; WJH 2025-10-18 - simplify the config using customize
 (use-package projectile
   :ensure t
   :config
   (projectile-global-mode)
-  (setq projectile-enable-caching nil)
-  (setq projectile-require-project-root nil)
-  (setq projectile-switch-project-action 'projectile-dired)
-  (setq projectile-remember-window-configs t) 
-  (setq projectile-find-dir-includes-top-level t)
-  ;; (define-key projectile-mode-map [?\s-d] 'projectile-find-dir)
-  (define-key projectile-mode-map [?\s-p] 'hydra-projectile/body)
-  ;; (define-key projectile-mode-map [?\s-f] 'projectile-find-file)
-  ;; (define-key projectile-mode-map [?\s-g] 'projectile-grep)
+  :custom
+  (projectile-enable-caching nil)
+  (projectile-require-project-root nil)
+  (projectile-switch-project-action 'projectile-recentf)
+  (projectile-remember-window-configs t) 
+  (projectile-find-dir-includes-top-level t)
+  :bind (:map projectile-mode-map
+	      ("s-p" . hydra-projectile/body)
+	 )
   )
 
 ;; 03 May 2017 - Use Ag for searching in project (executable must be
