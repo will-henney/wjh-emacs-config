@@ -46,16 +46,24 @@
 ;; 2022-10-06 - Use Command key with numbers as an alias for C-x NUMBER
 ;; 2024-05-08 - Also add keypad number bindings explicitly, since they
 ;;              do not get translated automatically
-(global-set-key (kbd "s-4") 'ctl-x-4-prefix)
-(global-set-key (kbd "s-<kp-4>") 'ctl-x-4-prefix)
-(global-set-key (kbd "s-1") 'delete-other-windows)
-(global-set-key (kbd "s-<kp-1>") 'delete-other-windows)
-(global-set-key (kbd "s-2") 'split-window-below)
-(global-set-key (kbd "s-<kp-2>") 'split-window-below)
-(global-set-key (kbd "s-3") 'split-window-right)
-(global-set-key (kbd "s-<kp-3>") 'split-window-right)
-(global-set-key (kbd "s-0") 'delete-window)
-(global-set-key (kbd "s-<kp-0>") 'delete-window)
+;; 2025-10-19 - Port to use bind-keys and add Cmd-5 for opening new frame
+;;              for next command
+(bind-keys
+ ("s-0"       . delete-window)		; same as C-x 0
+ ("s-<kp-0>"  . delete-window)
+ ("s-1"       . delete-other-windows)	; same as C-x 1
+ ("s-<kp-1>"  . delete-other-windows)
+ ("s-2"       . split-window-below) 	; same as C-x 2
+ ("s-<kp-2>"  . split-window-below)
+ ("s-3"       . split-window-right)	; same as C-x 3
+ ("s-<kp-3>"  . split-window-right)
+ ;; Make the next command open in a new window
+ ("s-4"       . other-window-prefix)	; same as C-x 4 4
+ ("s-<kp-4>"  . other-window-prefix)
+ ;; Make the next command open in a new frame
+ ("s-5"       . other-frame-prefix)	; same as C-x 5 5
+ ("s-<kp-5>"  . other-frame-prefix)
+ )
 
 ;; emacs-25.2-mac-6.6 (2017-08-24) adds mac-send-action function
 ;; 19 Sep 2017: Use it to implement ⌘ H and ⎇ ⌘ H functionality
