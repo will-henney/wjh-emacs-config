@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 (defun wjh/insert-current-date (arg)
   "Insert the current date in format \"yyyy-mm-dd\" at point.
 With a prefix argument, use the format \"dd MONTH yyyy\" instead."

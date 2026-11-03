@@ -1,4 +1,4 @@
-;; Let M-DIGIT be useful
+;; Let M-DIGIT be useful  -*- lexical-binding: nil; -*-
 ;;
 ;; We already have C-DIGIT for digit-argument, so we don't need
 ;; M-DIGIT as well.  Instead, we can use the digits to do something

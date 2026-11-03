@@ -1,4 +1,4 @@
-;; puni is a mode like paredit and smartparens, but hopefully more suited to me
+;; puni is a mode like paredit and smartparens, but hopefully more suited to me  -*- lexical-binding: nil; -*-
 (use-package puni
   :ensure t
   :defer t

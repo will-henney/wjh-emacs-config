@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 (deftheme wjh-misc-appearance
   "An attempt to de-uglify emacs")
 (custom-theme-set-variables

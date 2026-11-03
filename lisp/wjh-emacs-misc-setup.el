@@ -1,4 +1,4 @@
-;; Other stuff
+;; Other stuff  -*- lexical-binding: nil; -*-
 
 
 ;; 24 Aug 2020 - Use mouse when in terminal emacs - useful when connecting from iPad!

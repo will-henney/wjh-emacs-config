@@ -1,4 +1,4 @@
-;;; .emacs --- Will Henney's GNU Emacs configuration
+;;; .emacs --- Will Henney's GNU Emacs configuration  -*- lexical-binding: nil; -*-
 ;; 
 
 ;;; Commentary:

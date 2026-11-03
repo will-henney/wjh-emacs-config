@@ -1,4 +1,4 @@
-;; eliminate UI annoyances
+;; eliminate UI annoyances  -*- lexical-binding: nil; -*-
 (scroll-bar-mode -1) ; hmm, inconsistent with the others: 0 is true here
 (blink-cursor-mode 0)
 (tool-bar-mode 0) 

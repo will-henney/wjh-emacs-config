@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 (deftheme wjh-latex-faces
   "Make latex buffers look nice")
 (custom-theme-set-faces

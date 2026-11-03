@@ -1,4 +1,4 @@
-;; xemacs emulation
+;; xemacs emulation  -*- lexical-binding: nil; -*-
 (global-set-key [C-tab] 'other-window)
 ;; not needed for CVS emacs since we have `M-g g' or `M-g M-g'
 (if (< emacs-major-version 22)

@@ -1,3 +1,5 @@
+;;; wjh-emacs-use-package.el -*- lexical-binding: nil -*-
+;;;
 ;; Third party add-on packages that are not shipped with Emacs
 ;; 16 Jan 2017 : Ported to John Wiegley's use-package
 
@@ -262,8 +264,10 @@
 ;; tends to trigger some error with the native compilation stuff. I
 ;; don't know why, and it does not seem to affect the functionality of
 ;; the package.
-(with-demoted-errors "Error loading wjh-copilot-load-and-config: %S"
-  (load "wjh-copilot-load-and-config"))
+
+;; 2026-11-02 - turn off copilot since I never use it any more and it caused a startup error
+;; (with-demoted-errors "Error loading wjh-copilot-load-and-config: %S"
+;;   (load "wjh-copilot-load-and-config"))
 ;; 
 
 ;; Paradox uses a private github token and ChatGPT uses a private API
@@ -1066,6 +1070,13 @@ recognised."
   (setq-local electric-pair-text-pairs electric-pair-pairs))
 
 (add-hook 'LaTeX-mode-hook #'my-electric-pairs)
+;; 2026-07-07 - the following should not be necessary but it is
+(add-hook 'LaTeX-mode-hook
+	  (lambda ()
+	    ;; In LaTeX buffers, typing } before an auto-inserted }
+	    ;; should step over it, not insert another one.
+	    (setq-local electric-pair-skip-self t)))
+
 
 ;; 2022-10-07 The other feature from smartparens that I would
 ;; occasionally use is the horrendously named slurping and barfing to
@@ -1349,7 +1360,8 @@ when a file is dopped on Emacs window."
 (use-package exec-path-from-shell
   :ensure t
   :config
-  (exec-path-from-shell-initialize))
+  (exec-path-from-shell-initialize)
+  (exec-path-from-shell-copy-env "LIBRARY_PATH"))
 
 
 ;; Trying something new 10 Mar 2013: https://github.com/jorgenschaefer/elpy/wiki
@@ -1369,15 +1381,19 @@ when a file is dopped on Emacs window."
 (use-package jupyter
   :ensure t)
 
-;; 2021-02-03 - Try tree-sitter, mainly to get fontified f-strings,
-;; but it may have other advantages too
-(use-package tree-sitter
-  :ensure t
-  :config
-  (global-tree-sitter-mode)
-  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
-  )
-(use-package tree-sitter-langs :ensure t)
+;; ;; 2021-02-03 - Try tree-sitter, mainly to get fontified f-strings,
+;; ;; but it may have other advantages too
+;; (use-package tree-sitter
+;;   :ensure t
+;;   :config
+;;   (global-tree-sitter-mode)
+;;   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
+;;   )
+;; (use-package tree-sitter-langs :ensure t)
+
+;; 2026-11-02 - Update to more modern usage of treesitter, which is now built in
+(when (>= emacs-major-version 31)
+  (setopt treesit-enabled-modes t))
 
 ;; (use-package zmq
 ;;   :quelpa ((zmq :fetcher github :repo "dzop/emacs-zmq")

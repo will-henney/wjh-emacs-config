@@ -1,4 +1,4 @@
-;;; spanish-simple-prefix.el --- Spanish input method using ascii quote key alone
+;;; spanish-simple-prefix.el --- Spanish input method using ascii quote key alone  -*- lexical-binding: nil; -*-
 ;; 
 ;; Filename: spanish-simple-prefix.el
 ;; Description: Spanish input method using ascii quote key alone

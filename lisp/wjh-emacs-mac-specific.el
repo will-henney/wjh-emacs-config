@@ -1,4 +1,4 @@
-;; 08 Nov 2013 - Rationalize modifier keys
+;; 08 Nov 2013 - Rationalize modifier keys  -*- lexical-binding: nil; -*-
 
 
 ;; ;; Main thing: option is meta
@@ -43,14 +43,22 @@
 ;; consistency with other apps
 (global-set-key (kbd "s-`") 'other-frame)
 
+
+(defun delete-window-or-frame ()
+  "Delete the current window, or the frame if it's the only window."
+  (interactive)
+  (if (one-window-p)
+      (delete-frame)
+    (delete-window)))
+
 ;; 2022-10-06 - Use Command key with numbers as an alias for C-x NUMBER
 ;; 2024-05-08 - Also add keypad number bindings explicitly, since they
 ;;              do not get translated automatically
 ;; 2025-10-19 - Port to use bind-keys and add Cmd-5 for opening new frame
 ;;              for next command
 (bind-keys
- ("s-0"       . delete-window)		; same as C-x 0
- ("s-<kp-0>"  . delete-window)
+ ("s-0"       . delete-window-or-frame)	; combines C-x 0 and C-x 5 0
+ ("s-<kp-0>"  . delete-window-or-frame)
  ("s-1"       . delete-other-windows)	; same as C-x 1
  ("s-<kp-1>"  . delete-other-windows)
  ("s-2"       . split-window-below) 	; same as C-x 2
@@ -321,3 +329,6 @@ left/right swipes"
 ;; 2023-08-12 New drag options in 29.1 but I can't get them to work 🙁
 (setq mouse-drag-and-drop-region-cross-program t)
 (setq mouse-drag-mode-line-buffer t)
+
+;; 2026-11-02 - workaround slowness on macOS 27 with Emacs 31
+(setq frame-resize-pixelwise t)

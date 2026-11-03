@@ -1,4 +1,4 @@
-;; 06 Mar 2014 - Now I am used to Cmd for Ctl, we will try it a
+;; 06 Mar 2014 - Now I am used to Cmd for Ctl, we will try it a  -*- lexical-binding: nil; -*-
 ;; different way.  Do the swapping system-wide in the Keyboard
 ;; Preference pane.  This should help with consistency with the
 ;; emacs-like shortcuts in other apps (Terminal, browsers, etc)

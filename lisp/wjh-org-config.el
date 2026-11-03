@@ -1,4 +1,4 @@
-;; 03 Nov 2006
+;; 03 Nov 2006  -*- lexical-binding: nil; -*-
 
 ;; org-mode comes included with recent emacsen 
 ;; - but let's just use a new version
@@ -737,3 +737,6 @@ block."
   :bind
   (("s-[" . bjm/worf-insert-internal-link))
   )
+
+(use-package org-present
+  :ensure t)

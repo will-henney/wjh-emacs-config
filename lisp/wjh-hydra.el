@@ -1,5 +1,5 @@
-;; Examples copied from hydra wiki
-(use-package "hydra" :ensure t)
+;; Examples copied from hydra wiki  -*- lexical-binding: nil; -*-
+(use-package hydra :ensure t)
 
 ;; Org mode
 ;; 

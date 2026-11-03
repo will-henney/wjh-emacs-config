@@ -1,3 +1,4 @@
+;; -*- lexical-binding: nil; -*-
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -280,7 +281,7 @@
  '(magit-section-visibility-indicator '(" ... " . t))
  '(magit-todos-insert-after '(bottom) nil nil "Changed by setter of obsolete option `magit-todos-insert-at'")
  '(org-agenda-files
-   '("~/Dropbox/muse-hii-regions/docs/README-2021.org"
+   '("/Users/will/Dropbox/muse-hii-regions/docs/README-2021.org"
      "/Users/will/Dropbox/Metal-Permitted/metal-permitted.org"
      "/Users/will/Dropbox/Teaching/Computacional/curso-computacional.org"
      "/Users/will/Dropbox/Teresa-Turtle/doc/teresa-turtle.org"
@@ -291,7 +292,8 @@
      "/Users/will/Dropbox/Notes/apple accounts.org"
      "/Users/will/Dropbox/Notes/paper projects 2015.org"
      "/Users/will/Dropbox/Org/pub-orion-atlas/index.org"
-     "/Users/will/Dropbox/Family/Matthew-Money/matt-loan.org"))
+     "/Users/will/Dropbox/Family/Matthew-Money/matt-loan.org"
+     "~/Dropbox/Papiit-Evaluador-2024/convocatoria-2025-segunda/IN107725/IN107725_comments.org"))
  '(org-agenda-text-search-extra-files
    '(agenda-archives "/Users/will/Dropbox/OrionWest/alba-orion-west.org"
 		     "/Users/will/Dropbox/Teresa-Owl/teresa-owl.org"))
@@ -352,25 +354,26 @@
 		applescript-mode atomic-chrome auctex beacon
 		casual-avy constants copilot corfu counsel-projectile
 		csv-mode deft detached diminish dired-git-info dirvish
-		easy-kill-extras eglot-signature-eldoc-talkative ein
-		eldoc-box elpy eros exec-path-from-shell expand-region
-		fancy-narrow fish-mode flx-ido flymake-ruff
-		fold-dwim-org forge git-messenger google-this
-		google-translate gptel guess-language helpful
-		hungry-delete ibuffer-vc ido-vertical-mode ivy-hydra
-		jupyter key-chord keyfreq langtool literate-calc-mode
-		magit-delta magit-todos math-delimiters move-text
-		multiple-cursors ob-fish ob-ipython
-		org-attach-screenshot org-bookmark-heading org-bullets
-		org-download org-link-minor-mode org-sidebar
-		org-sticky-header orgit orglink ox-gfm ox-hugo
-		ox-pandoc paradox persistent-scratch puni
-		python-docstring quarto-mode quelpa-use-package
-		reformatter shell-switcher shut-up smart-mode-line
-		smartscan smex spanish-simple-prefix speedrect
-		spotlight stripe-buffer suggest tex-parens
-		tree-sitter-langs typo ultra-scroll-mac undo-fu unfill
-		vterm vundo worf wrap-region yaml-mode zenburn-theme))
+		easy-kill-extras eat eglot-signature-eldoc-talkative
+		ein eldoc-box elpy eros exec-path-from-shell
+		expand-region fancy-narrow fish-mode flx-ido
+		flymake-ruff fold-dwim-org forge git-messenger
+		google-this google-translate gptel guess-language
+		helpful hungry-delete ibuffer-vc ido-vertical-mode
+		ivy-hydra jupyter key-chord keyfreq langtool
+		literate-calc-mode magit magit-delta magit-todos
+		math-delimiters move-text multiple-cursors ob-fish
+		ob-ipython org-attach-screenshot org-bookmark-heading
+		org-bullets org-download org-link-minor-mode
+		org-present org-sidebar org-sticky-header orgit
+		orglink ox-gfm ox-hugo ox-pandoc paradox
+		persistent-scratch puni python-docstring quarto-mode
+		quelpa-use-package reformatter shell-switcher shut-up
+		smart-mode-line smartscan smex spanish-simple-prefix
+		speedrect spotlight stripe-buffer suggest tex-parens
+		transient tree-sitter-langs typo ultra-scroll-mac
+		undo-fu unfill vterm vundo worf wrap-region yaml-mode
+		zenburn-theme))
  '(paradox-automatically-star t)
  '(pinboard-url "http://feeds.pinboard.in/json/u:deprecated/?count=10")
  '(python-indent-guess-indent-offset-verbose nil)

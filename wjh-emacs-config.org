@@ -101,6 +101,7 @@ I should really make a Yasnippet snippet out of this.
 
 
 #+begin_src elisp
+  ;; -*- lexical-binding: nil; -*-
   (deftheme wjh-latex-faces
     "Make latex buffers look nice")
   (custom-theme-set-faces
@@ -149,64 +150,65 @@ We also make the height smaller for code blocks, tables etc.   This is because t
 Each =org-level-N= faces inherits from the corresponding =outline-N= face, so we change those.  The general philosophy here is that the different heading levels shouldn't have random contrasting colors since that just adds noise to the appearance of the file.  Instead,  our headings start as  variants of yellow, with a continuous change in tone from towards a grey misty color as one descends the hierarchy.  At least, that is the plan.  So far, I have only implemented the set for dark backgrounds.  
 
 #+begin_src elisp
-    (deftheme wjh-org-faces
-      "Created 2011-11-04.")
-    (custom-theme-set-faces
-     'wjh-org-faces
-     '(org-block ((t (:inherit (shadow fixed-pitch) :height 0.8))))
-     '(org-block-background ((default (:inherit fixed-pitch) :height 0.8)
-                             (((class color) (background dark)) (:background "gray18"))
-                             ) nil "This looks good with zenburn. YMMV otherwise")
-     '(org-code ((t (:inherit (shadow fixed-pitch)))))
-     '(org-formula (
-                    (((class color) (background dark)) (:foreground "LightSalmon1"))
-                    ))
-     '(org-table ((default (:inherit fixed-pitch :height 0.7))
-                  (((class color) (background light)) (:foreground "Blue4"))
-                  (((class color) (background dark)) (:foreground "PaleTurquoise1"))
+  ;; -*- lexical-binding: nil; -*-
+  (deftheme wjh-org-faces
+    "Created 2011-11-04.")
+  (custom-theme-set-faces
+   'wjh-org-faces
+   '(org-block ((t (:inherit (shadow fixed-pitch) :height 0.8))))
+   '(org-block-background ((default (:inherit fixed-pitch) :height 0.8)
+                           (((class color) (background dark)) (:background "gray18"))
+                           ) nil "This looks good with zenburn. YMMV otherwise")
+   '(org-code ((t (:inherit (shadow fixed-pitch)))))
+   '(org-formula (
+                  (((class color) (background dark)) (:foreground "LightSalmon1"))
                   ))
-     '(org-date ((default (:underline t))
-                 (((class color) (background light)) (:foreground "Purple4"))
-                 (((class color) (background dark)) (:foreground "#c2a9c2"))
-                 ))
-     '(org-document-title ((default  (:weight bold))
-                           (((class color) (background light)) 
-                            (:foreground "midnight blue"))
-                           (((class color) (background dark)) 
-                            (:foreground "white"))
-                           ))
-     '(org-formula ((t (:inherit org-table :foreground "chocolate1"))))
-     '(org-meta-line ((t (:inherit font-lock-comment-face :slant italic))))
-     '(org-special-keyword ((t (:inherit font-lock-keyword-face :slant italic))))
-     ;; LemonChiffon to GhostWhite
-     '(org-level-1 ((((class color) (background dark)) (:foreground "#fffacd"))))
-     '(org-level-2 ((((class color) (background dark)) (:foreground "#fefad4"))))
-     '(org-level-3 ((((class color) (background dark)) (:foreground "#fdf9db"))))
-     '(org-level-4 ((((class color) (background dark)) (:foreground "#fcf9e2"))))
-     '(org-level-5 ((((class color) (background dark)) (:foreground "#fbf9ea"))))
-     '(org-level-6 ((((class color) (background dark)) (:foreground "#faf9f1"))))
-     '(org-level-7 ((((class color) (background dark)) (:foreground "#f9f8f8"))))
-     '(org-level-8 ((((class color) (background dark)) (:foreground "#f8f8ff"))))
-     '(org-link ((((class color) (background light)) (:foreground "gray50" :underline t :weight bold))))
-     '(org-todo ((t (:weight bold)))
-                (((class color) (background light)) (:foreground "#b93030"))
-                (((class color) (background dark)) (:foreground "DarkOrange"))
-                )
-    
-     ;; Org column
-     '(org-column-title ((((class color) (min-colors 16) (background light)) (:background "grey90" :underline t :weight bold :family "monaco"))))
-    
-     '(outline-1 ((t (:weight bold))))
-     '(outline-2 ((t (:inherit outline-1)))) 
-     '(outline-3 ((t (:inherit outline-1)))) 
-     '(outline-4 ((t (:inherit outline-1)))) 
-     '(outline-5 ((t (:inherit outline-1)))) 
-     '(outline-6 ((t (:inherit outline-1)))) 
-     '(outline-7 ((t (:inherit outline-1)))) 
-     '(outline-8 ((t (:inherit outline-1)))) 
-     )
-    (provide-theme 'wjh-org-faces)
-    
+   '(org-table ((default (:inherit fixed-pitch :height 0.7))
+                (((class color) (background light)) (:foreground "Blue4"))
+                (((class color) (background dark)) (:foreground "PaleTurquoise1"))
+                ))
+   '(org-date ((default (:underline t))
+               (((class color) (background light)) (:foreground "Purple4"))
+               (((class color) (background dark)) (:foreground "#c2a9c2"))
+               ))
+   '(org-document-title ((default  (:weight bold))
+                         (((class color) (background light)) 
+                          (:foreground "midnight blue"))
+                         (((class color) (background dark)) 
+                          (:foreground "white"))
+                         ))
+   '(org-formula ((t (:inherit org-table :foreground "chocolate1"))))
+   '(org-meta-line ((t (:inherit font-lock-comment-face :slant italic))))
+   '(org-special-keyword ((t (:inherit font-lock-keyword-face :slant italic))))
+   ;; LemonChiffon to GhostWhite
+   '(org-level-1 ((((class color) (background dark)) (:foreground "#fffacd"))))
+   '(org-level-2 ((((class color) (background dark)) (:foreground "#fefad4"))))
+   '(org-level-3 ((((class color) (background dark)) (:foreground "#fdf9db"))))
+   '(org-level-4 ((((class color) (background dark)) (:foreground "#fcf9e2"))))
+   '(org-level-5 ((((class color) (background dark)) (:foreground "#fbf9ea"))))
+   '(org-level-6 ((((class color) (background dark)) (:foreground "#faf9f1"))))
+   '(org-level-7 ((((class color) (background dark)) (:foreground "#f9f8f8"))))
+   '(org-level-8 ((((class color) (background dark)) (:foreground "#f8f8ff"))))
+   '(org-link ((((class color) (background light)) (:foreground "gray50" :underline t :weight bold))))
+   '(org-todo ((t (:weight bold)))
+              (((class color) (background light)) (:foreground "#b93030"))
+              (((class color) (background dark)) (:foreground "DarkOrange"))
+              )
+
+   ;; Org column
+   '(org-column-title ((((class color) (min-colors 16) (background light)) (:background "grey90" :underline t :weight bold :family "monaco"))))
+
+   '(outline-1 ((t (:weight bold))))
+   '(outline-2 ((t (:inherit outline-1)))) 
+   '(outline-3 ((t (:inherit outline-1)))) 
+   '(outline-4 ((t (:inherit outline-1)))) 
+   '(outline-5 ((t (:inherit outline-1)))) 
+   '(outline-6 ((t (:inherit outline-1)))) 
+   '(outline-7 ((t (:inherit outline-1)))) 
+   '(outline-8 ((t (:inherit outline-1)))) 
+   )
+  (provide-theme 'wjh-org-faces)
+
 #+end_src
 
 *** Python script for choosing a color scheme
@@ -254,6 +256,7 @@ Each =org-level-N= faces inherits from the corresponding =outline-N= face, so we
 **** New color schemes 21 Apr 2013
 Now that I am using my dice glyphs, there is less need to use color to distinguish adjacent levels from one another.  As a result, I am looking for a subtler run of nice brightish colors.  What I have been using until now (lavender to goldenrod) goes too grey around level two and then too dark and browny towards the end. 
 #+begin_src sh :results output code
+  echo ";; -*- lexical-binding: nil; -*-"
   python choose-org-colors.py LightYellow PapayaWhip
   python choose-org-colors.py LightYellow Beige
   python choose-org-colors.py LemonChiffon GhostWhite
@@ -363,6 +366,7 @@ Use a nice red hollow box for the cursor. This is a good compromise between visi
 In non-selected windows, I use a horizontal bar instead. 
 
 #+begin_src elisp
+  ;; -*- lexical-binding: nil; -*-
   (deftheme wjh-redbox-cursor
     "Created 2011-11-04.")
   (custom-theme-set-variables
@@ -376,7 +380,7 @@ In non-selected windows, I use a horizontal bar instead.
    '(cursor ((t (:background "OrangeRed1" :foreground "#f6f3e8"))))
    )
   (provide-theme 'wjh-redbox-cursor)
-  
+
 #+end_src
 
 ** Org misc
@@ -395,6 +399,7 @@ In non-selected windows, I use a horizontal bar instead.
 So, these customizations have nothing to do with faces.  It might be better to put them in normal configuration files, rather than a custom theme.  It isn't as if I am going to turn them on and off.  
 
 #+begin_src elisp
+  ;; -*- lexical-binding: nil; -*-
   (deftheme wjh-org-misc
     "Miscellaneous tweaks to org-mode configuration")
   (custom-theme-set-variables
@@ -439,6 +444,7 @@ Remove extraneous chrome and try to de-uglify buttons and highlighting and the l
     + Strangely, the customization buffer for the mode-line face even appears differently, according to which frame I start it from. 
 
 #+begin_src elisp
+  ;; -*- lexical-binding: nil; -*-
   (deftheme wjh-misc-appearance
     "An attempt to de-uglify emacs")
   (custom-theme-set-variables

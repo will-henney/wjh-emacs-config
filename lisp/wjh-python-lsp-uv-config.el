@@ -1,4 +1,4 @@
-;; Wjh 2025-10-15 - new python setup using eglot mode, uv, and pyright
+;; WJH 2025-10-15 - new python setup using eglot mode, uv, and pyrefly  -*- lexical-binding: nil; -*-
 
 ;;
 ;; Fly-make uses ruff linter to mark errors or bad practices
