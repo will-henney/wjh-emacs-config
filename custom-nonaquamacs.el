@@ -371,9 +371,8 @@
 		quelpa-use-package reformatter shell-switcher shut-up
 		smart-mode-line smartscan smex spanish-simple-prefix
 		speedrect spotlight stripe-buffer suggest tex-parens
-		transient tree-sitter-langs typo ultra-scroll-mac
-		undo-fu unfill vterm vundo worf wrap-region yaml-mode
-		zenburn-theme))
+		tree-sitter-langs typo ultra-scroll-mac undo-fu unfill
+		vterm vundo worf wrap-region yaml-mode zenburn-theme))
  '(paradox-automatically-star t)
  '(pinboard-url "http://feeds.pinboard.in/json/u:deprecated/?count=10")
  '(python-indent-guess-indent-offset-verbose nil)

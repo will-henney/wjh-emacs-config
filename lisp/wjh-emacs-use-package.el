@@ -1265,7 +1265,7 @@ when a file is dopped on Emacs window."
 (use-package projectile
   :ensure t
   :config
-  (projectile-global-mode)
+  (projectile-mode)
   :custom
   (projectile-enable-caching nil)
   (projectile-require-project-root nil)
@@ -1319,6 +1319,9 @@ when a file is dopped on Emacs window."
 (use-package magit
   :ensure t
   :bind ("C-c G" . magit-file-dispatch)
+  :custom
+  ;; 2026-11-05 - 
+  (magit-diff-visit-prefer-worktree t)
   :config
   (setq magit-repository-directories
 	`((,(expand-file-name "~/Dropbox") . 5)

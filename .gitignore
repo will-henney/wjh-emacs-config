@@ -50,9 +50,11 @@ quelpa
 /org-roam.db
 /.#ido.last
 /transient/
-/forge-database.sqlite
+/forge-database*.sqlite
+/forge-database*.db
 /eln-cache/
 /detached/
-/forge-database-v10-20240214-1051.sqlite
 /org-persist/
 /.cache/
+tree-sitter
+/projectile-frecency.eld
