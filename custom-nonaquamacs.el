@@ -398,7 +398,19 @@
    '(" hl-p" " Undo-Tree" " MRev" " Projectile" " Google" " Guide"
      " Helm" " Ind" " GG" " OCDL"))
  '(safe-local-variable-values
-   '((org-export-html-style
+   '((eval with-eval-after-load 'ox-latex
+	   (add-to-list 'org-latex-classes
+			'("tufte-handout"
+			  "\\documentclass[]{tufte-handout}\12[NO-DEFAULT-PACKAGES]\12[PACKAGES]\12[EXTRA]"
+			  ("\\section{%s}" . "\\section*{%s}")
+			  ("\\subsection{%s}" . "\\subsection*{%s}"))))
+     (eval with-eval-after-load 'ox-latex
+	   (add-to-list 'org-latex-classes
+			'("tufte-handout"
+			  "\\documentclass[nofonts]{tufte-handout}\12[NO-DEFAULT-PACKAGES]\12[PACKAGES]\12[EXTRA]"
+			  ("\\section{%s}" . "\\section*{%s}")
+			  ("\\subsection{%s}" . "\\subsection*{%s}"))))
+     (org-export-html-style
       . "<link rel=stylesheet\12  href=\"temarios.css\"\12  type=\"text/css\">\12<meta HTTP-EQUIV=\"Refresh\" CONTENT=300>")
      (system-time-locale . "es_MX.ISO8859-1")
      (eval defun wjh/jupytext-sync nil

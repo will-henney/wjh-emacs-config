@@ -66,6 +66,59 @@
 ;;   :quelpa (org :fetcher git)
 ;;   )
 
+;; 2026-11-14 - setup reftex and auctex to recognise tufte package features
+(use-package tex
+  :ensure auctex
+  :hook ((LaTeX-mode . turn-on-reftex)
+         (LaTeX-mode . wjh/latex-tufte-setup))
+  :config
+  (setq reftex-plug-into-AUCTeX t
+        ;; Parse document macros/environments automatically on save/load
+        TeX-auto-save t
+        TeX-parse-self t)
+
+  (defun wjh/latex-tufte-setup ()
+    "Configure AUCTeX environments, macros, and font-lock for tufte-handout."
+    ;; 1. Environments (C-c C-e)
+    (LaTeX-add-environments
+     '("marginfigure" LaTeX-env-figure)
+     '("margintable"  LaTeX-env-table)
+     '("fullwidth"))
+
+    ;; 2. Tufte-specific macros (C-c C-m)
+    (TeX-add-symbols
+     '("sidenote"   [ "Number" ] [ "Offset" ] t)
+     '("marginnote" [ "Offset" ] t)
+     '("newthought" t)
+     '("allcaps"    t)
+     '("smallcaps"  t))
+
+    ;; 3. Syntax highlighting for Tufte macros
+    (when (fboundp 'font-latex-add-keywords)
+      (font-latex-add-keywords '(("sidenote"   "[[{")
+                                 ("marginnote" "[{"))
+                               'reference)
+      (font-latex-add-keywords '(("newthought" "{")
+                                 ("allcaps"    "{")
+                                 ("smallcaps"  "{"))
+                               'type-command))))
+
+(use-package reftex
+  :ensure nil
+  :after tex
+  :config
+  ;; Treat marginfigure as a standard figure (?f)
+  (add-to-list 'reftex-label-alist
+               '("marginfigure" ?f "fig:" "~\\ref{%s}" caption
+                 (regexp "figure*" "fig\\." "Fig\\.")))
+  ;; Treat margintable as a standard table (?t)
+  (add-to-list 'reftex-label-alist
+               '("margintable" ?t "tab:" "~\\ref{%s}" caption
+                 (regexp "table*" "tab\\." "Tab\\."))))
+
+
+
+
 
 ;; 2025-10-15 - this package seems to be wanted by native compilation
 (use-package shut-up
