@@ -718,7 +718,20 @@ recognised."
 ;; 
 ;; New version worked out on my own mainly, with some inspiration from
 ;; http://gromnitsky.blogspot.mx/2016/09/emacs-251-hunspell.html
-;; although some of those recommendations didn't work 
+;; although some of those recommendations didn't work
+
+
+;; 2026-11-05: Move the hunspell stuff out of the flyspell config
+(use-package ispell
+  :ensure nil
+  :init
+  (setenv "LANG" "en_US.UTF-8")
+  (setq ispell-program-name "/opt/homebrew/bin/hunspell"
+        ispell-dictionary "en_US,es_MX,en_GB-large")
+  :config
+  (ispell-set-spellchecker-params)
+  (ispell-hunspell-add-multi-dic ispell-dictionary))
+
 (use-package flyspell
   :ensure t
   :init
@@ -730,13 +743,6 @@ recognised."
   ;; 2024-05-31 - I only ever use the C-; binding, so I'm going to
   ;; remove the C-. one so that I can use it with avy instead
   (keymap-unset flyspell-mode-map "C-." t)
-  ;; Use hunspell if available 
-  (when (executable-find "hunspell")
-    (setq-default ispell-program-name (executable-find "hunspell"))
-    (setq ispell-really-hunspell t)
-    (clean-hunspell-config)
-    ;; (hackish-hunspell-config)
-    )
   ;; 10 Aug 2017: restore this since the next bit doesn't work
   (define-key flyspell-mouse-map [s-down-mouse-1] 'flyspell-correct-word))
 
