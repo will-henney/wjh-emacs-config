@@ -233,7 +233,8 @@ block."
 (setq org-log-done t)
 ;; prettier formatting 
 ;; (setq org-hide-leading-stars t)
-(setq org-startup-folded 'content)
+;; (setq org-startup-folded 'content)
+(setq org-startup-folded 'showeverything)
 
 ;; footnotes
 (setq org-footnote-auto-label nil)	; always prompt for label
