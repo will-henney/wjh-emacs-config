@@ -324,6 +324,7 @@
  '(org-format-latex-header
    "\\documentclass{article}\12\\usepackage[usenames]{color}\12\\usepackage{amsmath}\12\\usepackage[T1]{fontenc}\12\\usepackage[nomath]{lmodern}\12\\renewcommand{\\rmdefault}{lmvtt}\12\\usepackage[eulergreek]{mathastext}\12\\MathastextEulerScale{0.92}\12\\usepackage[mathscr]{eucal}\12\\AtBeginDocument{\\large}\12\\pagestyle{empty}             % do not remove\12[PACKAGES]\12[DEFAULT-PACKAGES]\12% The settings below are copied from fullpage.sty\12\\usepackage{geometry}\12\\geometry{letterpaper,margin=1in}\12")
  '(org-goto-interface 'outline)
+ '(org-html-validation-link "")
  '(org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id)
  '(org-image-actual-width '(500))
  '(org-link-file-path-type 'relative)
@@ -350,7 +351,7 @@
  '(org-tags-column 50)
  '(package-selected-packages
    '(ace-window ag alert all-the-icons-dired all-the-icons-ibuffer
-		all-the-icons-ivy all-the-icons-ivy-rich
+		all-the-icons-ivy all-the-icons-ivy-rich anju
 		applescript-mode atomic-chrome auctex beacon
 		casual-avy constants copilot corfu counsel-projectile
 		csv-mode deft detached diminish dired-git-info dirvish

@@ -1709,6 +1709,17 @@ prefix argument set OTHER-WINDOW true."
   (setq vundo-compact-display t)
   (global-set-key (kbd "C-x u")   'vundo))
 
+
+;; 2026-11-06: try out anju, which will completely change the mouse behavior
+(use-package anju
+  :ensure t
+  :demand t
+  :config
+  (anju-init)
+  :bind ("C-x 1" . anju-toggle-one-window)
+  )
+
+
 ;; (use-package undo-tree
 ;;   :ensure t
 ;;   :config

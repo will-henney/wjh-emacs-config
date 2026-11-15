@@ -310,10 +310,13 @@ left/right swipes"
 ;; ones I leave are "Emacs", "Edit", "Help", plus any mode-specific
 ;; ones.  This should then leave loads of space in my menubar for all
 ;; my little OS X menubar items, which might otherwise disappear
-(global-unset-key [menu-bar tools])
-(global-unset-key [menu-bar options])
-(global-unset-key [menu-bar buffer])
-(global-unset-key [menu-bar file])
+
+;; 2026-11-06: reinstate the menus, now that I am using Anju
+;; (global-unset-key [menu-bar tools])
+;; (global-unset-key [menu-bar options])
+;; (global-unset-key [menu-bar buffer])
+;; (global-unset-key [menu-bar file])
+
 (global-unset-key (kbd "<menu-bar> <Virtual Envs>"))
 (add-hook 'pyvenv-mode-hook
 	  (lambda ()
